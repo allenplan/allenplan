@@ -4,4 +4,4 @@ AllenPlan is a browser extension that scrapes data from sites like DARS, MyPlan,
 
 By consolidating information from these sources, students will be able to conveniently make course plans with less risk of forgetting to consult a resource and making an unoptimal course plan, while saving time by not needing to rely on a potentially long process to schedule and attend advising appointments.
 
-[Living Document Link Placeholder]()
+[Living Document](https://docs.google.com/document/d/1lcMlHKdeGeLQlEwwXSiABRWEiz8iWdu12LJ2YI6Aelk/edit?usp=sharing)
