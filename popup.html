@@ -2,11 +2,86 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>AllenPlan</title>
+    <link rel="stylesheet" href="popup.css">
     <script src="popup.js" defer></script>
   </head>
   <body>
-    <button id="open-tab" type="button">Open new tab</button>
+    <header class="brand">
+      <p class="eyebrow">YOUR NEXT QUARTER</p>
+      <h1>AllenPlan<span aria-hidden="true">.</span></h1>
+      <p>A little planning. A world of possibilities.</p>
+    </header>
+    <div class="tabs" role="tablist" aria-label="Planning tools">
+      <button id="generate-tab" type="button" role="tab" aria-selected="true"
+          aria-controls="generate-panel">Generate Schedule</button>
+      <button id="dars-tab" type="button" role="tab" aria-selected="false"
+          aria-controls="dars-panel" tabindex="-1">Import DARS</button>
+      <button id="settings-tab" type="button" role="tab" aria-selected="false"
+          aria-controls="settings-panel" tabindex="-1">Settings</button>
+    </div>
+    <main>
+      <section id="generate-panel" role="tabpanel" aria-labelledby="generate-tab"
+          tabindex="0">
+        <p class="eyebrow">01 / MAKE IT YOURS</p>
+        <h2>Build your next quarter.</h2>
+        <p class="intro">Choose what matters to you. We'll take it from here.</p>
+        <fieldset>
+          <legend>Schedule preferences <span class="badge">TBD</span></legend>
+          <p class="hint">Placeholder options; final preferences are coming soon.</p>
+          <label class="option"><input type="checkbox" name="option-1">
+            <span>Schedule option 1 <small>Preference to be determined</small></span>
+          </label>
+          <label class="option"><input type="checkbox" name="option-2">
+            <span>Schedule option 2 <small>Preference to be determined</small></span>
+          </label>
+          <label class="option"><input type="checkbox" name="option-3">
+            <span>Schedule option 3 <small>Preference to be determined</small></span>
+          </label>
+        </fieldset>
+        <button id="generate-schedule" class="primary" type="button">Generate schedule
+          <span aria-hidden="true">&rarr;</span></button>
+        <p class="hint action-note">For now, opens the Hello World preview.</p>
+      </section>
+      <section id="dars-panel" role="tabpanel" aria-labelledby="dars-tab"
+          tabindex="0" hidden>
+        <p class="eyebrow">02 / START WITH YOUR PROGRESS</p>
+        <h2>Bring your credits along.</h2>
+        <p class="intro">Your degree audit will help shape your next steps.</p>
+        <div id="dars-controls" class="card">
+          <h3>Your DARS audit</h3>
+          <p>Open your degree audit, then import it into AllenPlan.</p>
+          <button id="open-dars" class="secondary" type="button">Open DARS page
+            <span aria-hidden="true">&nearr;</span></button>
+          <button id="import-dars" class="primary" type="button"
+              aria-describedby="dars-hint" disabled>Import</button>
+          <p id="dars-hint" class="hint action-note" role="status">Open your DARS degree audit to enable Import.</p>
+        </div>
+        <div id="dars-loading" class="card loading" role="status" tabindex="-1" hidden>
+          <span class="spinner" aria-hidden="true"></span>
+          <h3>Importing Degree Audit...</h3>
+          <p>Preview only. No audit data is being imported.</p>
+        </div>
+      </section>
+      <section id="settings-panel" role="tabpanel" aria-labelledby="settings-tab"
+          tabindex="0" hidden>
+        <p class="eyebrow">03 / YOUR WORKSPACE</p>
+        <h2>A plan that fits you.</h2>
+        <p class="intro">Your preferences, all in one place.</p>
+        <div class="settings-sections">
+          <section class="card"><h3>General</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p></section>
+          <section class="card"><h3>Scraping</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p></section>
+          <section class="card"><h3>Schedule</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p></section>
+          <section class="card"><h3>Help</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p></section>
+        </div>
+      </section>
+    </main>
+    <footer>AllenPlan <span>Made for your next chapter.</span></footer>
   </body>
 </html>
 

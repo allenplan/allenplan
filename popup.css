@@ -1,0 +1,268 @@
+:root {
+  --uw-purple: #32006e;
+  --uw-spirit-purple: #4b2e83;
+  --uw-gold: #b7a57a;
+  --uw-web-gold: #e8e3d3;
+  --ink: #26212e;
+  --muted: #67616e;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #faf9f6;
+  color: var(--ink);
+  font: 14px/1.5 'Trebuchet MS', sans-serif;
+  margin: 0;
+  width: 420px;
+}
+
+button, input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.brand {
+  background: linear-gradient(120deg, var(--uw-purple), var(--uw-spirit-purple));
+  border-top: 5px solid var(--uw-gold);
+  color: #fff;
+  padding: 22px 24px;
+}
+
+.eyebrow {
+  color: var(--uw-spirit-purple);
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 1.6px;
+  margin: 0 0 8px;
+}
+
+.brand .eyebrow, .brand h1 span {
+  color: var(--uw-web-gold);
+}
+
+h1, h2 {
+  font-family: Georgia, serif;
+  font-weight: normal;
+  letter-spacing: -1px;
+  line-height: 1.2;
+  margin: 0;
+}
+
+h1 {
+  font-size: 36px;
+}
+
+.brand > p:last-child {
+  color: var(--uw-web-gold);
+  font-size: 12px;
+  margin: 8px 0 0;
+}
+
+.tabs {
+  background: #fff;
+  border-bottom: 1px solid var(--uw-web-gold);
+  display: flex;
+  padding: 0 14px;
+}
+
+.tabs button {
+  background: transparent;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  color: var(--muted);
+  flex: 1;
+  font-size: 12px;
+  padding: 16px 6px 13px;
+}
+
+.tabs button[aria-selected="true"] {
+  border-bottom-color: var(--uw-purple);
+  color: var(--uw-purple);
+  font-weight: bold;
+}
+
+main {
+  min-height: 370px;
+  padding: 24px;
+}
+
+h2 {
+  color: var(--uw-purple);
+  font-size: 26px;
+}
+
+.intro {
+  color: var(--muted);
+  font-size: 12px;
+  margin: 10px 0 22px;
+}
+
+fieldset, .card {
+  background: #fff;
+  border: 1px solid var(--uw-web-gold);
+  border-radius: 8px;
+  margin: 0 0 20px;
+  padding: 16px;
+}
+
+legend, h3 {
+  color: var(--uw-purple);
+  font-size: 14px;
+  font-weight: bold;
+}
+
+legend {
+  padding: 0 6px;
+}
+
+.badge {
+  background: var(--uw-web-gold);
+  border-radius: 3px;
+  font-size: 9px;
+  margin-left: 6px;
+  padding: 3px 5px;
+}
+
+.hint, small {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.hint {
+  margin: 0 0 12px;
+}
+
+.option {
+  align-items: flex-start;
+  display: flex;
+  gap: 10px;
+  padding: 10px 0;
+}
+
+.option + .option {
+  border-top: 1px solid #efedf2;
+}
+
+.option input {
+  accent-color: var(--uw-purple);
+  height: 16px;
+  margin: 3px 0 0;
+  width: 16px;
+}
+
+small {
+  display: block;
+  margin-top: 2px;
+}
+
+.primary, .secondary {
+  border: 1px solid var(--uw-purple);
+  border-radius: 6px;
+  display: flex;
+  font-weight: bold;
+  justify-content: space-between;
+  padding: 14px 18px;
+  width: 100%;
+}
+
+.primary {
+  background: var(--uw-purple);
+  color: #fff;
+}
+
+.primary:hover:not(:disabled) {
+  background: var(--uw-spirit-purple);
+}
+
+.secondary {
+  background: var(--uw-web-gold);
+  color: var(--uw-purple);
+  margin-bottom: 10px;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: .6;
+}
+
+:focus-visible {
+  outline: 3px solid var(--uw-spirit-purple);
+  outline-offset: 3px;
+}
+
+.action-note {
+  margin: 10px 0 0;
+  text-align: center;
+}
+
+h3 {
+  margin: 0 0 6px;
+}
+
+.card p {
+  color: var(--muted);
+  font-size: 12px;
+  margin: 0 0 16px;
+}
+
+.card .action-note {
+  font-size: 11px;
+  margin: 12px 0 0;
+}
+
+.settings-sections .card {
+  border-left: 3px solid var(--uw-gold);
+  margin-bottom: 10px;
+  padding: 12px 14px;
+}
+
+.settings-sections p {
+  margin: 0;
+}
+
+footer {
+  border-top: 1px solid var(--uw-web-gold);
+  color: var(--uw-spirit-purple);
+  display: flex;
+  font-size: 10px;
+  justify-content: space-between;
+  padding: 12px 24px;
+}
+
+footer span {
+  color: var(--muted);
+}
+
+.loading {
+  padding: 40px 16px;
+  text-align: center;
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+  border: 3px solid var(--uw-web-gold);
+  border-radius: 50%;
+  border-top-color: var(--uw-purple);
+  display: inline-block;
+  height: 32px;
+  margin-bottom: 18px;
+  width: 32px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation: none;
+  }
+}
