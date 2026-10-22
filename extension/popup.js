@@ -1,3 +1,13 @@
+import { nextCount } from './counter.mjs';
+
+let count = 0;
+const button = document.querySelector('#count');
+
+button.addEventListener('click', () => {
+  count = nextCount(count);
+  button.textContent = `Count: ${count}`;
+});
+
 /** Opens the Hello World page in a new browser tab. */
 function openHelloWorld() {
   chrome.tabs.create({url: chrome.runtime.getURL('hello.html')});
