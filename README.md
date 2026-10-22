@@ -17,10 +17,24 @@ Reopen the popup after navigating to DARS. The `activeTab` permission lets the
 popup check the current URL when you click the extension icon. Settings contain
 placeholder text. Preferences are not saved when the popup closes.
 
-## Run locally
+## Building and running tests
+AllenPlan can be run directly from the files in this repository with no additional
+build steps. Clone or download this repository and then follow the instructions
+in the **Installation** section.
+
+To run the automated test suite,
+[install Node.js](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+and run `node --test` from this folder.
+
+## Installation
+As a Manifest V3 extension, it is possible to run AllenPlan in several browsers.
+Only Chrome is officially supported; Firefox and Safari may work, but may
+periodically be broken by new commits.
+
+### Chrome
 
 1. Open `chrome://extensions` in Chrome and enable **Developer mode**.
-2. Click **Load unpacked** and select this repository directory.
+2. Click **Load unpacked** and select the `extensions/` subdirectory of this repository.
 3. Click the AllenPlan extension icon, then **Generate schedule**.
 4. Verify that the new tab displays **Hello World**.
 
@@ -31,5 +45,11 @@ pages (including other audit routes), and shows the loading placeholder when cli
 The loading placeholder remains until the popup is closed and reopened.
 
 After editing files, reload the extension from `chrome://extensions`.
+
+### Safari
+Enable developer mode via `Safari > Settings > Advanced > Show features for web developers`.
+Then, enter the new `Developer` tab and enable `Allow unsigned extensions`.
+Finally, click `Add Temporary Extension` and select the `extensions` subdirectory of this repository.
+To update the extension after making changes, go to the Extensions tab, select `AllenPlan` and press `Reload`.
 
 [Living Document](https://docs.google.com/document/d/1lcMlHKdeGeLQlEwwXSiABRWEiz8iWdu12LJ2YI6Aelk/edit?usp=sharing)
