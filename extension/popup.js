@@ -1,4 +1,5 @@
 import { nextCount } from './counter.mjs';
+import {groupSchedule} from './schedule.mjs';
 
 let count = 0;
 const button = document.querySelector('#count');
@@ -8,9 +9,17 @@ button.addEventListener('click', () => {
   button.textContent = `Count: ${count}`;
 });
 
-/** Opens the Hello World page in a new browser tab. */
-function openHelloWorld() {
-  chrome.tabs.create({url: chrome.runtime.getURL('hello.html')});
+/**
+ * Opens a schedule tab, adapting class instances before transferring display data.
+ * @param {!Array<!Object>} classes Recommended class instances.
+ * @param {function(!Object): !Object=} adapter Maps a class to display fields.
+ * @return {!Promise<!chrome.tabs.Tab>} The newly opened schedule tab.
+ */
+export function showSchedule(classes, adapter) {
+  const data = encodeURIComponent(JSON.stringify(groupSchedule(classes, adapter)));
+  return chrome.tabs.create({
+    url: `${chrome.runtime.getURL('schedule.html')}#${data}`,
+  });
 }
 
 const tabs = [...document.querySelectorAll('[role="tab"]')];
@@ -55,7 +64,7 @@ for (const tab of tabs) {
 }
 
 document.querySelector('#generate-schedule').addEventListener(
-    'click', openHelloWorld);
+    'click', () => showSchedule([]));
 
 const DARS_URL = 'https://myplan.uw.edu/audit/#/degree';
 const importButton = document.querySelector('#import-dars');

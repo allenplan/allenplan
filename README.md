@@ -8,14 +8,31 @@ The Manifest V3 extension uses `manifest.json` and `icon.png`. Its popup,
 `popup.html`, has Generate Schedule, Import DARS, and Settings tabs, styled by
 `popup.css` using the [UW color palette](https://www.washington.edu/brand/brand-elements/colors/).
 `popup.js` handles tab navigation, including arrow keys, Home, and End.
-Schedule preferences are placeholders; **Generate schedule** opens `hello.html`
-as a preview. **Open DARS page** opens `https://myplan.uw.edu/audit/#/degree`.
+Schedule preferences are placeholders; **Generate schedule** displays the
+recommended schedule in a new browser tab, grouped into Autumn, Winter, and
+Spring. The results page uses three columns on wider screens and stacks quarters
+on narrow screens.
+**Open DARS page** opens `https://myplan.uw.edu/audit/#/degree`.
 **Import** is enabled on any active page under `https://myplan.uw.edu/audit/`,
 including nested paths, query parameters, and hash routes; it shows an
 "Importing Degree Audit..." loading placeholder without reading or importing data.
 Reopen the popup after navigating to DARS. The `activeTab` permission lets the
 popup check the current URL when you click the extension icon. Settings contain
 placeholder text. Preferences are not saved when the popup closes.
+
+The generator is not connected yet, so the schedule initially shows empty
+quarters. To integrate it, replace `showSchedule([])` in `extension/popup.js`
+with `showSchedule(classes)` using the generator's array of class instances.
+`extension/schedule.mjs` isolates the provisional mapping of `quarter`, `code`,
+`title` (or `name`), and optional `credits`. Alternatively, pass
+`showSchedule(classes, course => ({quarter: ..., code: ..., title: ...,
+credits: ...}))` to adapt any future class API, including methods. Quarter names
+are case insensitive and trimmed. Courses with missing or unrecognized quarters
+appear under **Quarter to be assigned** until the generator supplies a quarter.
+Input instances are neither serialized nor modified. Only normalized display
+fields are transferred to `extension/schedule.html` through its URL fragment, so
+each tab keeps its own schedule when refreshed without extra permissions.
+`extension/schedule-page.js` renders course text as text, not HTML.
 
 ## Building and running tests
 AllenPlan can be run directly from the files in this repository with no additional
@@ -34,9 +51,18 @@ periodically be broken by new commits.
 ### Chrome
 
 1. Open `chrome://extensions` in Chrome and enable **Developer mode**.
-2. Click **Load unpacked** and select the `extensions/` subdirectory of this repository.
+2. Click **Load unpacked** and select the `extension/` subdirectory of this repository.
 3. Click the AllenPlan extension icon, then **Generate schedule**.
-4. Verify that the new tab displays **Hello World**.
+4. Verify a new browser tab displays **Your recommended schedule** and the
+   Autumn, Winter, and Spring cards with empty-state messages.
+5. Refresh the results tab and verify the schedule remains visible. Resize the
+   window to verify the quarter cards stack on narrow screens.
+
+For populated results, temporarily supply an array to `showSchedule` in the
+button handler, such as `[{quarter: 'Autumn', code: 'CSE 332',
+title: 'Data Structures', credits: 4}]`. Verify the course appears in Autumn,
+the other quarters remain visible, and missing quarters appear in the
+unassigned section. Restore the empty input after checking.
 
 Also verify that all three popup tabs switch correctly, checkboxes toggle,
 Settings shows all four sections, and **Open DARS page** opens the audit URL.

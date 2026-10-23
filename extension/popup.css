@@ -226,6 +226,26 @@ h3 {
   margin: 0;
 }
 
+.quarter {
+  border-left: 3px solid var(--uw-gold);
+  overflow-wrap: anywhere;
+}
+
+.quarter ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.quarter li {
+  border-top: 1px solid var(--uw-web-gold);
+  padding: 10px 0;
+}
+
+.quarter p {
+  margin: 0;
+}
+
 footer {
   border-top: 1px solid var(--uw-web-gold);
   color: var(--uw-spirit-purple);
