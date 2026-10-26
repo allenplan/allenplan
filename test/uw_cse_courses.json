@@ -1,0 +1,2555 @@
+[
+  {
+    "code": "CSE 110",
+    "title": "Computer Science Principles",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 112",
+    "title": "Advanced Placement (AP) Computer Science A",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 121",
+    "title": "Introduction to Computer Programming I",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": "completion of Paul G. Allen School's Guided Self-Placement"
+  },
+  {
+    "code": "CSE 122",
+    "title": "Introduction to Computer Programming II",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [
+      "CSE 121"
+    ],
+    "prerequisite_text": null,
+    "suggested_text": "CSE 121 or completion of Paul G. Allen School's Guided Self-Placement"
+  },
+  {
+    "code": "CSE 123",
+    "title": "Introduction to Computer Programming III",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [
+      "CSE 122"
+    ],
+    "prerequisite_text": null,
+    "suggested_text": "CSE 122 or completion of Paul G. Allen School's Guided Self-Placement"
+  },
+  {
+    "code": "CSE 131",
+    "title": "Science and Art of Digital Photography",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 142",
+    "title": "Computer Programming I",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 143",
+    "title": "Computer Programming II",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 142"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 142",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 154",
+    "title": "Web Programming",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 122",
+        "CSE 123",
+        "CSE 142",
+        "CSE 143",
+        "CSE 160",
+        "CSE 163"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "a minimum grade of 2.0 in either CSE 122, CSE 123, CSE 142, CSE 143, CSE 160, or CSE 163",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 160",
+    "title": "Data Programming",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 163",
+    "title": "Intermediate Data Programming",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 122",
+        "CSE 123",
+        "CSE 142",
+        "CSE 143",
+        "CSE 160"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either CSE 122, CSE 123, CSE 142, CSE 143, or CSE 160",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 170",
+    "title": "Artificial Intelligence Principles, Applications, and Impacts",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 180",
+    "title": "Introduction to Data Science",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 190",
+    "title": "Current Topics in Computer Science and Engineering",
+    "credits": "1-5",
+    "credits_min": 1,
+    "credits_max": 5,
+    "max_total_credits": 15,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 195",
+    "title": "Allen Scholars Bridge Program",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 196",
+    "title": "Allen Scholars Seminar",
+    "credits": "1",
+    "credits_min": 1,
+    "credits_max": 1,
+    "max_total_credits": 4,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 197",
+    "title": "Problem Solving for Computer Science and Engineering",
+    "credits": "1/2",
+    "credits_min": 1,
+    "credits_max": 2,
+    "max_total_credits": 8,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 301",
+    "title": "CSE Internship Education",
+    "credits": "1-2",
+    "credits_min": 1,
+    "credits_max": 2,
+    "max_total_credits": 12,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 311",
+    "title": "Foundations of Computing I",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 123",
+        "CSE 143"
+      ],
+      [
+        "MATH 126",
+        "MATH 135"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "a minimum grade of 2.0 in either CSE 123 or CSE 143; and a minimum grade of 2.0 in MATH 126 or MATH 135",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 312",
+    "title": "Foundations of Computing II",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 311"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 311",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 331",
+    "title": "Software Design and Implementation",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 123",
+        "CSE 143"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "a minimum grade of 2.0 in either CSE 123 or CSE 143",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 332",
+    "title": "Data Structures and Parallelism",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 311"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 311",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 333",
+    "title": "Systems Programming",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 351"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 351",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 340",
+    "title": "Interaction Programming",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 123",
+        "CSE 143"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 123 or CSE 143",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 341",
+    "title": "Programming Languages",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 123",
+        "CSE 143"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 123 or CSE 143",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 344",
+    "title": "Introduction to Data Management",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 311"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 311",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 351",
+    "title": "The Hardware/Software Interface",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 123",
+        "CSE 143"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 123 or CSE 143",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 369",
+    "title": "Introduction to Digital Design",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 311"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 311",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 371",
+    "title": "Design of Digital Circuits and Systems",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 205",
+        "E E 215"
+      ],
+      [
+        "E E 271",
+        "CSE 369"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either E E 205 or E E 215; either E E 271 or CSE 369",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 373",
+    "title": "Data Structures and Algorithms",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 123",
+        "CSE 143"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 123 or CSE 143",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 374",
+    "title": "Intermediate Programming Concepts and Tools",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 123",
+        "CSE 143"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 123 or CSE 143",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 390",
+    "title": "Special Topics in Computer Science and Engineering",
+    "credits": "1-5",
+    "credits_min": 1,
+    "credits_max": 5,
+    "max_total_credits": 10,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 391",
+    "title": "System and Software Tools",
+    "credits": "1",
+    "credits_min": 1,
+    "credits_max": 1,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 122",
+        "CSE 123",
+        "CSE 143"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either CSE 122, CSE 123, or CSE 143",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 394",
+    "title": "Introduction to Research in Computer Science and Engineering",
+    "credits": "2",
+    "credits_min": 2,
+    "credits_max": 2,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 399",
+    "title": "CSE Foreign Study",
+    "credits": "*",
+    "credits_min": null,
+    "credits_max": null,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 401",
+    "title": "Introduction to Compiler Construction",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 332"
+      ],
+      [
+        "CSE 351"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 332 and CSE 351",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 402",
+    "title": "Design and Implementation of Domain-Specific Languages",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 332"
+      ],
+      [
+        "CSE 351"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 332 and CSE 351",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 403",
+    "title": "Software Engineering",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 331"
+      ],
+      [
+        "CSE 332"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 331; CSE 332",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 410",
+    "title": "Computer Systems",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 373"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 373",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 412",
+    "title": "Introduction to Data Visualization",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 123",
+        "CSE 143",
+        "CSE 163"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either CSE 123, CSE 143, or CSE 163",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 413",
+    "title": "Programming Languages and Their Implementation",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 373"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 373",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 414",
+    "title": "Introduction to Database Systems",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 123",
+        "CSE 143",
+        "CSE 163"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "a minimum grade of 2.5 in either CSE 123, CSE 143, or CSE 163",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 415",
+    "title": "Introduction to Artificial Intelligence",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 373"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 373",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 416",
+    "title": "Introduction to Machine Learning",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 123",
+        "CSE 143",
+        "CSE 160",
+        "CSE 163"
+      ],
+      [
+        "STAT 311",
+        "STAT 390",
+        "STAT 391",
+        "IND E 315",
+        "MATH 394",
+        "STAT 394",
+        "STAT 395",
+        "MATH 395",
+        "Q SCI 381"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either CSE 123, CSE 143, CSE 160, or CSE 163; and either STAT 311, STAT 390, STAT 391, IND E 315, MATH 394/STAT 394, STAT 395/MATH 395, or Q SCI 381",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 417",
+    "title": "Algorithms and Computational Complexity",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 373"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 373",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 421",
+    "title": "Introduction to Algorithms",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 312"
+      ],
+      [
+        "CSE 332"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 312; CSE 332",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 422",
+    "title": "Toolkit for Modern Algorithms",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 312"
+      ],
+      [
+        "CSE 332"
+      ],
+      [
+        "MATH 136",
+        "MATH 208"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 312; CSE 332; and MATH 136 or MATH 208",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 426",
+    "title": "Cryptography",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 312"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 312",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 427",
+    "title": "Computational Biology",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 312"
+      ],
+      [
+        "CSE 332"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 312; CSE 332",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 428",
+    "title": "Computational Biology Capstone",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 312"
+      ],
+      [
+        "CSE 331"
+      ],
+      [
+        "CSE 332"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 312; CSE 331; CSE 332",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 431",
+    "title": "Introduction to Theory of Computation",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 312"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 312",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 434",
+    "title": "Introduction to Quantum Computation",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 312"
+      ],
+      [
+        "MATH 136",
+        "MATH 208"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 312; and MATH 136 or MATH 208",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 438",
+    "title": "Computational Neuroscience",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "MATH 126",
+        "MATH 136"
+      ],
+      [
+        "MATH 208"
+      ],
+      [
+        "CSE 312"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "MATH 126 or MATH 136; MATH 208; and CSE 312",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 440",
+    "title": "Introduction to HCI: User Interface Design, Prototyping, and Evaluation",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 332"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 332",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 441",
+    "title": "Advanced HCI: Advanced User Interface Design, Prototyping, and Evaluation",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 440"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 440",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 442",
+    "title": "Data Visualization",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 332"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 332",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 443",
+    "title": "Digital Accessibility",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 340"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 340",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 444",
+    "title": "Database Systems Internals",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 332"
+      ],
+      [
+        "CSE 344",
+        "CSE 414"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 332; and either CSE 344 or CSE 414",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 446",
+    "title": "Machine Learning",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 332"
+      ],
+      [
+        "MATH 208",
+        "MATH 136"
+      ],
+      [
+        "STAT 390",
+        "STAT 391",
+        "CSE 312"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 332; MATH 208 or MATH 136; and either STAT 390, STAT 391, or CSE 312",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 447",
+    "title": "Natural Language Processing",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 312"
+      ],
+      [
+        "CSE 332"
+      ]
+    ],
+    "suggested_courses": [
+      "MATH 208",
+      "CSE 446"
+    ],
+    "prerequisite_text": "CSE 312 and CSE 332",
+    "suggested_text": "MATH 208; and CSE 446 before or concurrently"
+  },
+  {
+    "code": "CSE 450",
+    "title": "Animation Production Seminar",
+    "credits": "1",
+    "credits_min": 1,
+    "credits_max": 1,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 451",
+    "title": "Introduction to Operating Systems",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 332"
+      ],
+      [
+        "CSE 333"
+      ],
+      [
+        "CSE 351"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 332; CSE 333; and CSE 351",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 452",
+    "title": "Introduction to Distributed Systems",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 332"
+      ],
+      [
+        "CSE 333"
+      ]
+    ],
+    "suggested_courses": [
+      "CSE 451"
+    ],
+    "prerequisite_text": "CSE 332 and CSE 333",
+    "suggested_text": "CSE 451"
+  },
+  {
+    "code": "CSE 453",
+    "title": "Datacenter Systems",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 332"
+      ],
+      [
+        "CSE 333"
+      ]
+    ],
+    "suggested_courses": [
+      "CSE 451",
+      "CSE 452"
+    ],
+    "prerequisite_text": "CSE 332 and CSE 333",
+    "suggested_text": "CSE 451 or CSE 452"
+  },
+  {
+    "code": "CSE 454",
+    "title": "Advanced Internet and Web Services",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 332"
+      ],
+      [
+        "CSE 351"
+      ],
+      [
+        "CSE 331",
+        "CSE 352"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 332; CSE 351; either CSE 331 or CSE 352",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 455",
+    "title": "Computer Vision",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 332"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 332",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 456",
+    "title": "Story Design for Computer Animation",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 457",
+    "title": "Computer Graphics",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 332"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 332",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 458",
+    "title": "Computer Animation",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 457"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 457",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 459",
+    "title": "Pre-Production for Collaborative Animation",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 458"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 458",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 460",
+    "title": "Animation Capstone",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 458"
+      ],
+      [
+        "CSE 459"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 458, CSE 459",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 461",
+    "title": "Introduction to Computer-Communication Networks",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 326",
+        "CSE 332"
+      ],
+      [
+        "CSE 303",
+        "CSE 333"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either CSE 326 or CSE 332; either CSE 303 or CSE 333",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 462",
+    "title": "Wireless Communication",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 333"
+      ],
+      [
+        "MATH 136",
+        "MATH 208"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 333; and MATH 136 or MATH 208",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 464",
+    "title": "Advanced Topics in Digital Animation",
+    "credits": "1-5",
+    "credits_min": 1,
+    "credits_max": 5,
+    "max_total_credits": 10,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 469",
+    "title": "Computer Architecture I",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 271",
+        "CSE 369"
+      ],
+      [
+        "CSE 123",
+        "CSE 143"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either E E 271 or CSE 369; and either CSE 123 or CSE 143",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 470",
+    "title": "Computer Architecture II",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 469",
+        "E E 469"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either CSE 469 or E E 469",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 472",
+    "title": "Introduction to Computational Linguistics",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "LING 200",
+        "LING 400"
+      ],
+      [
+        "LING 461",
+        "CSE 311"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either LING 200 or LING 400; either LING 461 or CSE 311",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 473",
+    "title": "Artificial Intelligence",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 312"
+      ],
+      [
+        "CSE 332"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 312 and CSE 332",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 474",
+    "title": "Introduction to Embedded Systems",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 123",
+        "CSE 143"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 123 or CSE 143",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 475",
+    "title": "Embedded Systems Capstone",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 271",
+        "CSE 369"
+      ],
+      [
+        "E E 472",
+        "CSE 474",
+        "E E 474"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 271 or CSE 369; and E E 472 or CSE 474/E E 474",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 478",
+    "title": "Autonomous Robotics",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 332"
+      ]
+    ],
+    "suggested_courses": [
+      "CSE 312",
+      "MATH 208"
+    ],
+    "prerequisite_text": "CSE 332",
+    "suggested_text": "CSE 312; MATH 208"
+  },
+  {
+    "code": "CSE 480",
+    "title": "Computer Ethics Seminar",
+    "credits": "1-3",
+    "credits_min": 1,
+    "credits_max": 3,
+    "max_total_credits": 5,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 481",
+    "title": "Capstone Software Design",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": 15,
+    "prerequisite_courses": [
+      [
+        "CSE 312"
+      ],
+      [
+        "CSE 332"
+      ],
+      [
+        "CSE 351"
+      ],
+      [
+        "CSE 331",
+        "CSE 333",
+        "CSE 369"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 312; CSE 332; CSE 351; and either CSE 331, CSE 333, or CSE 369",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 482",
+    "title": "Capstone Software Design to Empower Underserved Populations",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": 15,
+    "prerequisite_courses": [
+      [
+        "CSE 332"
+      ],
+      [
+        "CSE 351"
+      ],
+      [
+        "CSE 331",
+        "CSE 352"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 332; CSE 351; either CSE 331 or CSE 352",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 484",
+    "title": "Computer Security",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 332"
+      ],
+      [
+        "CSE 351"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 332; CSE 351",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 486",
+    "title": "Introduction to Synthetic Biology",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "MATH 136",
+        "MATH 207",
+        "MATH 307",
+        "AMATH 351",
+        "CSE 311"
+      ],
+      [
+        "MATH 208",
+        "MATH 308",
+        "AMATH 352"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either MATH 136, MATH 207, MATH 307, AMATH 351, or CSE 311; and either MATH 208, MATH 308, or AMATH 352",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 487",
+    "title": "Advanced Systems and Synthetic Biology",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 423",
+        "BIOEN 423",
+        "CHEM E 476",
+        "CSE 486"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 423/BIOEN 423/CHEM E 476/CSE 486",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 488",
+    "title": "Laboratory Methods in Synthetic Biology",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 423",
+        "BIOEN 423",
+        "CHEM E 476",
+        "CSE 486"
+      ],
+      [
+        "CHEM 142",
+        "CHEM 143",
+        "CHEM 145"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 423/BIOEN 423/CHEM E 476/CSE 486; and either CHEM 142, CHEM 143, or CHEM 145",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 490",
+    "title": "Special Topics in Computer Science and Engineering",
+    "credits": "1-5",
+    "credits_min": 1,
+    "credits_max": 5,
+    "max_total_credits": 15,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 491",
+    "title": "Data Science and Society Seminar",
+    "credits": "1",
+    "credits_min": 1,
+    "credits_max": 1,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 492",
+    "title": "Undergraduate Seminar",
+    "credits": "1-2",
+    "credits_min": 1,
+    "credits_max": 2,
+    "max_total_credits": 5,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 493",
+    "title": "Advanced Special Topics in Computer Science and Engineering",
+    "credits": "1-5",
+    "credits_min": 1,
+    "credits_max": 5,
+    "max_total_credits": 15,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 494",
+    "title": "Guided Research in Computer Science and Engineering",
+    "credits": "3/4",
+    "credits_min": 3,
+    "credits_max": 4,
+    "max_total_credits": 8,
+    "prerequisite_courses": [
+      [
+        "CSE 394"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 394",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 495",
+    "title": "Project Practicum",
+    "credits": "[1-5]-",
+    "credits_min": 1,
+    "credits_max": 5,
+    "max_total_credits": 5,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 496",
+    "title": "Honors Undergraduate Research",
+    "credits": "1-9",
+    "credits_min": 1,
+    "credits_max": 9,
+    "max_total_credits": 9,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 498",
+    "title": "Undergraduate Research",
+    "credits": "1-9",
+    "credits_min": 1,
+    "credits_max": 9,
+    "max_total_credits": 9,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 499",
+    "title": "Reading and Research",
+    "credits": "1-24",
+    "credits_min": 1,
+    "credits_max": 24,
+    "max_total_credits": 24,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 501",
+    "title": "Programming Language Analysis and Implementation",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 341"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 341",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 503",
+    "title": "Software Engineering",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 505",
+    "title": "Principles of Programming Languages",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 341"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 341",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 507",
+    "title": "Computer-Aided Reasoning for Software",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 510",
+    "title": "Advanced Topics in Human-Computer Interaction",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 512",
+    "title": "Data Visualization",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 513",
+    "title": "Disability Inclusion for Technologists",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 515",
+    "title": "Statistical Methods in Computer Science",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 312",
+        "STAT 341",
+        "STAT 391"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either CSE 312,STAT 341, STAT 391 or equivalent",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 517",
+    "title": "Natural Language Processing",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 519",
+    "title": "Current Research in Computer Science",
+    "credits": "1",
+    "credits_min": 1,
+    "credits_max": 1,
+    "max_total_credits": 18,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 520",
+    "title": "Computer Science Colloquium",
+    "credits": "1",
+    "credits_min": 1,
+    "credits_max": 1,
+    "max_total_credits": 18,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 521",
+    "title": "Design and Analysis of Algorithms I",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 332"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either CSE 332 or equivalent",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 522",
+    "title": "Design and Analysis of Algorithms II",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 521"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 521",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 525",
+    "title": "Randomized Algorithms and Probabilistic Analysis",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 521"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either CSE 521 or equivalent",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 526",
+    "title": "Cryptography",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 527",
+    "title": "Computational Biology",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 528",
+    "title": "Computational Neuroscience",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": "coursework in elementary calculus; linear algebra; and statistics"
+  },
+  {
+    "code": "CSE 529",
+    "title": "Computational Genomics",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [
+      "CSE 446"
+    ],
+    "prerequisite_text": null,
+    "suggested_text": "familiarity with general concepts in machine learning (e.g. CSE 446 or equivalent); and some familiarity with general principles of biology (e.g., college-level introductory course or equivalent)"
+  },
+  {
+    "code": "CSE 531",
+    "title": "Computational Complexity I",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 311"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either CSE 311 or equivalent",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 532",
+    "title": "Computational Complexity II",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 533",
+    "title": "Advanced Topics in Complexity Theory",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 534",
+    "title": "Quantum Information and Computation",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": "either solid background in mathematics and/or theoretical computer science, or prior familiarity with quantum-computing fundamentals"
+  },
+  {
+    "code": "CSE 535",
+    "title": "Theory of Optimization and Continuous Algorithms",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 541",
+    "title": "Interactive Learning",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 542",
+    "title": "Reinforcement Learning",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [
+      "MATH 208",
+      "MATH 126",
+      "CSE 312",
+      "STAT 390",
+      "CSE 421",
+      "CSE 446",
+      "CSE 546"
+    ],
+    "prerequisite_text": null,
+    "suggested_text": "comfortable with programming; and working knowledge of linear algebra (MATH 208); vector calculus (MATH 126); probability and statistics (CSE 312 and STAT 390); algorithms (CSE 421); and machine learning (CSE 446 or CSE 546)"
+  },
+  {
+    "code": "CSE 543",
+    "title": "Deep Learning",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [
+      "MATH 208",
+      "MATH 126",
+      "CSE 312",
+      "STAT 390",
+      "CSE 421",
+      "CSE 446",
+      "CSE 546"
+    ],
+    "prerequisite_text": null,
+    "suggested_text": "comfortable with programming; and working knowledge of linear algebra (MATH 208); vector calculus (MATH 126); probability and statistics (CSE 312 and STAT 390); algorithms (CSE 421); and machine learning (CSE 446 or CSE 546)"
+  },
+  {
+    "code": "CSE 544",
+    "title": "Principles of Database Systems",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 546",
+    "title": "Machine Learning",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 312",
+        "STAT 341",
+        "STAT 391"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either CSE 312, STAT 341, STAT 391 or equivalent",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 547",
+    "title": "Machine Learning for Big Data",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "STAT 535",
+        "CSE 546"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either STAT 535 or CSE 546",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 548",
+    "title": "Computer Systems Architecture",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 451"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 451",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 549",
+    "title": "High-Performance Computer Architectures",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 548",
+        "E E 544"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 548/E E 544",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 550",
+    "title": "Computer Systems",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 451"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 451",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 551",
+    "title": "Operating Systems",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 451"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 451",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 552",
+    "title": "Distributed and Parallel Systems",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 551"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 551",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 554",
+    "title": "Systems for Machine Learning",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [
+      "CSE 446",
+      "CSE 451",
+      "CSE 452"
+    ],
+    "prerequisite_text": null,
+    "suggested_text": "machine learning from a course at the level of CSE 446; and systems from a course at the level of CSE 451 or CSE 452"
+  },
+  {
+    "code": "CSE 556",
+    "title": "Computational Fabrication",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 557",
+    "title": "Computer Graphics",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": "solid knowledge of linear algebra",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 558",
+    "title": "Special Topics in Computer Graphics",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 557"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 557 or permission of instructor",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 561",
+    "title": "Computer Communication and Networks",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 451"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either CSE 451 or equivalent",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 562",
+    "title": "Mobile Systems and Applications",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": "familiarity with low-level systems programming; digital representation of data; and basic calculus and trigonometry"
+  },
+  {
+    "code": "CSE 564",
+    "title": "Computer Security and Privacy",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 567",
+    "title": "Digital VLSI: Gates to Systems",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 371",
+        "CSE 371",
+        "E E 469",
+        "CSE 469"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either E E 371/CSE 371, or E E 469/CSE 469",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 568",
+    "title": "Introduction to VLSI Systems",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 567"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either CSE 567 or permission of instructor",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 571",
+    "title": "AI-based Mobile Robotics",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 473"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either CSE 473 or permission of instructor",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 573",
+    "title": "Artificial Intelligence",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": "familiarity with data structures; algorithms; probability; and computer programming"
+  },
+  {
+    "code": "CSE 574",
+    "title": "Explainable Artificial Intelligence",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 576",
+    "title": "Computer Vision",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": "solid knowledge of linear algebra; good programming skills",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 577",
+    "title": "Special Topics in Computer Vision",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 576",
+        "E E 576"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 576/E E 576",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 578",
+    "title": "Convex Optimization",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "A A 510",
+        "CHEM E 510",
+        "E E 510",
+        "M E 510"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "A A 510, CHEM E 510, E E 510, or M E 510",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 579",
+    "title": "Intelligent Control through Learning and Optimization",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": "vector calculus; linear algebra; MATLAB",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 580",
+    "title": "Computing for Social Good",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 581",
+    "title": "Computer Ethics",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 582",
+    "title": "Ethics in Artificial Intelligence",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 446",
+        "CSE 546"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 446 or CSE 546",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 583",
+    "title": "Software Development for Data Scientists",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 586",
+    "title": "Introduction to Synthetic Biology",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "MATH 136",
+        "MATH 207",
+        "MATH 307",
+        "AMATH 351",
+        "CSE 311"
+      ],
+      [
+        "MATH 208",
+        "MATH 308",
+        "AMATH 352"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either MATH 136, MATH 207, MATH 307, AMATH 351, or CSE 311; and either MATH 208, MATH 308, or AMATH 352",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 587",
+    "title": "Advanced Systems and Synthetic Biology",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 523",
+        "BIOEN 523",
+        "CHEM E 576",
+        "CSE 586",
+        "MOLENG 525"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 523/BIOEN 523/CHEM E 576/CSE 586/MOLENG 525",
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 589",
+    "title": "Software Entrepreneurship",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 590",
+    "title": "Research Seminar",
+    "credits": "*",
+    "credits_min": null,
+    "credits_max": null,
+    "max_total_credits": 50,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 591",
+    "title": "Group Projects in Computer Science",
+    "credits": "1-3",
+    "credits_min": 1,
+    "credits_max": 3,
+    "max_total_credits": 25,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 599",
+    "title": "Special Topics in Computer Science",
+    "credits": "1-5",
+    "credits_min": 1,
+    "credits_max": 5,
+    "max_total_credits": 30,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 600",
+    "title": "Independent Study or Research",
+    "credits": "*-",
+    "credits_min": null,
+    "credits_max": null,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 601",
+    "title": "Internship",
+    "credits": "1-2",
+    "credits_min": 1,
+    "credits_max": 2,
+    "max_total_credits": 12,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 700",
+    "title": "Master's Thesis",
+    "credits": "*-",
+    "credits_min": null,
+    "credits_max": null,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "CSE 800",
+    "title": "Doctoral Dissertation",
+    "credits": "*-",
+    "credits_min": null,
+    "credits_max": null,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  }
+]
