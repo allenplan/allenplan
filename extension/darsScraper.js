@@ -1,24 +1,24 @@
 // WORK IN PROGRESS //
-enum CourseCategory{
-    "A&H",
-    "DIV",
-    "SSc",
-    "NSc",
-    "RSN",
-    "W",
-    "CS",
-    "CE"
-}
+const CourseCategory = Object.freeze({
+    AH: 'Arts and Humanities',
+    DIV: 'Diversity',
+    SSc: 'Social Science',
+    NSc: 'Natural Science',
+    RSN: 'Reasoning',
+    W: 'Writing',
+    CS: 'Computer Science',
+    CE: 'Computer Engineering'
+});
 class Course {
-    name: String
-    courseType: CourseCategory
-    credits: number
-    preReqs: Course[][] // 2-D array of courses
-    recommendation: string
+    name; // string
+    courseType; // CourseCategory
+    credits; // int
+    preReqs; // 2-D array of courses
+    recommendation; // string
 }
 
-let reqList: Course[];
-let fulfillList: Course[];
+let reqList;
+let fulfillList; // Course[]
 
 // CONSTANTS
 const courseTitleLength = 8; // "CSE 121 ".length
@@ -65,12 +65,12 @@ async function retrieveFinishedClasses() {
  * @param courseName The short name code for the class that wants to be searched (Ex. CSE 121)
  * @returns Course class that contains its
  */
-async function grabClassData(courseName: String) {
+async function grabClassData(courseName) {
     if (document.URL != "https://www.washington.edu/students/crscat/cse.html") {
         throw "Wrong website. Navigate to https://www.washington.edu/students/crscat/cse.html"
     }
 
-    const name: string = courseName.split(" ").join("").toLowerCase(); // CSE 121 -> cse121
+    const name = courseName.split(" ").join("").toLowerCase(); // CSE 121 -> cse121
     const results = document.querySelectorAll("a[name=" + name + "]");
     if (results.length === 0) {
         // not a valid class
@@ -81,7 +81,7 @@ async function grabClassData(courseName: String) {
     const course_info = results[1].children; // results[0] is empty
     const title = course_info[0]; // <b>
     // credit search //
-    let read_credits: number;
+    let read_credits;
     read_credits = parseInt(title.innerHTML.charAt(title.innerHTML.indexOf("(") + 1)); // only works with single digit credit classes
     if (Number.isNaN(read_credits)) {
         // error for invalid read of integer
@@ -109,10 +109,10 @@ async function grabClassData(courseName: String) {
         throw "Failed to parse course description of " + name;
     }
     // override strict type checking, 
-    if (text!.indexOf("Prerequisite: ") >= 0) {
+    if (text.indexOf("Prerequisite: ") >= 0) {
         let preReqString = text?.substring(text?.indexOf("Prerequisite:") + "Prerequisite: ".length);
     }
-    new_course.recommendation = text!.substring(text!.search(/recommended: /i) + "recommended: ".length);
+    new_course.recommendation = text.substring(text.search(/recommended: /i) + "recommended: ".length);
     
 
 
@@ -125,6 +125,6 @@ async function grabClassData(courseName: String) {
  * @param char the character to be checked
  * @returns true if the character is uppercase, false otherwise
  */
-async function isUpper(char: string) {
+async function isUpper(char) {
     return (/[A-Z]/.test(char));
 }
