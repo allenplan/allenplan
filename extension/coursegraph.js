@@ -22,15 +22,15 @@ export class CourseGraph {
   }
 
   /**
-   * Add or update the given course in the graph, setting dependent to depend on that course. Also
-   * adds dependent to the graph if not already present.
+   * Add or update the given course in the graph, setting dependent to depend on that course as a
+   * prerequisite. Also adds dependent to the graph if not already present.
    * @param {String} course 
    * @param {String} dependent 
    */
   addCourseWithDependent(course, dependent) {
     this.addCourse(course);
     this.addCourse(dependent);
-    this.adjList.get(course).push(dependent);
+    if (!this.adjList.get(course).includes(dependent)) this.adjList.get(course).push(dependent);
   }
 
   /**
