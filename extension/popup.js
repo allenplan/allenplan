@@ -1,13 +1,4 @@
-import { nextCount } from './counter.mjs';
 import {groupSchedule} from './schedule.mjs';
-
-let count = 0;
-const button = document.querySelector('#count');
-
-button.addEventListener('click', () => {
-  count = nextCount(count);
-  button.textContent = `Count: ${count}`;
-});
 
 /**
  * Opens a schedule tab, adapting class instances before transferring display data.
