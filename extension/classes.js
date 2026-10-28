@@ -1,4 +1,3 @@
-
 export class Course {
     name; // string
     courseType; // CourseCategory
@@ -37,22 +36,27 @@ export class CourseOffering {
         
 
         let parsed_num;
-        this.credits_min = parseInt(credits_range.substring(0,credits_range.indexOf('-')));
-        if (Number.isNaN(parsed_num)) {
-            throw new Error("Invalid minimum credits. Check your formatting.");
-        }
-        this.credits_min = parsed_num;
-        parsed_num = parseInt(credits_range.substring(credits_range.indexOf('-')));
-         if (Number.isNaN(parsed_num)) {
-            throw new Error("Invalid maximum credits. Check your formatting.");
-        }
-        this.credits_max = parsed_num;
-        if (time_range.indexOf('-') < 0) {
-            this.start_time = 'TBA';
-            this.end_time = 'TBA';
+        if (credits_range === 'N/A') {
+            this.credits_min = 0;
+            this.credits_max = 0;
         } else {
-            this.start_time = time_range.substring(0,time_range.indexOf('-')).trim();
-            this.end_time = time_range.substring(time_range.indexOf('-')).trim();
+            this.credits_min = parseInt(credits_range.substring(0,credits_range.indexOf('-')));
+            if (Number.isNaN(parsed_num)) {
+                throw new Error("Invalid minimum credits. Check your formatting: " + credits_range.substring(0,credits_range.indexOf('-')));
+            }
+            this.credits_min = parsed_num;
+            parsed_num = parseInt(credits_range.substring(credits_range.indexOf('-') + 1));
+            if (Number.isNaN(parsed_num)) {
+                throw new Error("Invalid maximum credits. Check your formatting: " + credits_range.substring(credits_range.indexOf('-')));
+            }
+            this.credits_max = parsed_num;
+            if (time_range.indexOf('-') < 0) {
+                this.start_time = 'TBA';
+                this.end_time = 'TBA';
+            } else {
+                this.start_time = time_range.substring(0,time_range.indexOf('-')).trim();
+                this.end_time = time_range.substring(time_range.indexOf('-') + 1).trim();
+            }
         }
     }
 
@@ -87,7 +91,7 @@ export class CourseOffering {
 
     setMaxCredits(max_credits) {
         let parsed_num;
-        parsed_num = parseInt(credits_range.substring(0,credits_range.indexOf('-')));
+        parsed_num = parseInt(credits_range.substring(credits_range.indexOf('-') + 1));
         if (Number.isNaN(parsed_num)) {
             throw new Error("Invalid maximum credits. Check your formatting.");
         }

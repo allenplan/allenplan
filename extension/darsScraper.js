@@ -1,3 +1,5 @@
+import {Course} from './classes.js'
+
 // WORK IN PROGRESS //
 export const CourseCategory = Object.freeze({
     AH: 'Arts and Humanities',
@@ -30,7 +32,7 @@ const courseCreditIndex = 2;
  * @returns Course[] an array of courses that the student has finished or is in progress of taking, empty if an error occurs
  * 
  */
-async function retrieveFinishedClasses(list) {
+export function retrieveFinishedClasses(list) {
     // Intentional fail
     let return_list = [];
     for (let i = 0; i < list.length; i++) {
@@ -47,6 +49,7 @@ async function retrieveFinishedClasses(list) {
             console.log(error);
             return [];
         }
+        return_list.push(finished_course);
     }
     return return_list;
     

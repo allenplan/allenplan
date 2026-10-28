@@ -1,5 +1,5 @@
-import {CourseCategory} from 'darsScraper.js'
-import {CourseOffering} from 'classes.js'
+import {CourseCategory} from './darsScraper.js'
+import {CourseOffering} from './classes.js'
 
 export const CourseType = Object.freeze({
     LC: 'Lecture',
@@ -18,7 +18,7 @@ export const CourseType = Object.freeze({
  * @returns A list of CourseOfferings, 
  *          empty if there are no current offerings or the class is not found on the site
  */
-async function retrieveOfferingsFromList(list) {
+export function retrieveOfferingsFromList(list) {
     if (list.length === 0) {
         return [];
     }
@@ -26,6 +26,10 @@ async function retrieveOfferingsFromList(list) {
     // iterate through array
     for (let i = 0; i < list.length; i++) {
         //iterate through course listing
+        if (list[i].length !== 7) {
+            throw new Error("Invalid size of array for finished course." +
+                            "Size was: " + list[i].length + " for index " + i);
+        }
         let new_course_offering = 
             new CourseOffering(list[i][0],
                                list[i][1],
@@ -34,7 +38,6 @@ async function retrieveOfferingsFromList(list) {
                                list[i][4],
                                list[i][5],
                                list[i][6],
-                               list[i][7],
             );
         return_list.push(new_course_offering);
     }
