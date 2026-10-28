@@ -8,11 +8,7 @@ export const CourseCategory = Object.freeze({
     W: 'Writing',
     CSE: 'Computer Science & Engineering',
 });
-class Course {
-    name; // string
-    courseType; // CourseCategory
-    credits; // int
-}
+
 
 let reqList;
 let fulfillList; // Course[]
@@ -20,9 +16,9 @@ let fulfillList; // Course[]
 // CONSTANTS
 const courseTitleLength = 8; // "CSE 121 ".length
 
-const courseNameSubjectIndex = 1;
-const courseTitleIndex = 2;
-const courseCreditIndex = 3;
+const courseNameIndex = 0;
+const courseTypeIndex = 1;
+const courseCreditIndex = 2;
 
 /**
  * Parses the student's DARS audit degree page to collect what classes they have completed or are in progress.
@@ -30,14 +26,38 @@ const courseCreditIndex = 3;
  * Uses the provided Course class as a template to fill out its name, the course type, and its credits.
  * Leaves the preReqs and recommendedCourses fields as null
  * 
- * @param dars_dom the DOM for the html from the DARS audit degree page
- * @returns Course[] an array of courses that the student has finished or is in progress of taking
+ * @param list the list for the text from the DARS audit degree page, must be formatted like [name, courseType, credits]
+ * @returns Course[] an array of courses that the student has finished or is in progress of taking, empty if an error occurs
+ * 
  */
-async function retrieveFinishedClasses(dars_dom) {
+async function retrieveFinishedClasses(list) {
     // Intentional fail
-    let nothing = null;
-    return nothing;
-    // real code under
+    let return_list = [];
+    for (let i = 0; i < list.length; i++) {
+        if (list[i].length !== 3) {
+            throw new Error("Invalid size of array for finished course." +
+                            "Size was: " + list[i].length + "for index " + i);
+        }
+        let finished_course; 
+        try {
+            finished_course = new Course(list[i][courseNameIndex],
+                                         list[i][courseTypeIndex],
+                                         list[i][courseCreditIndex])
+        } catch (error) {
+            console.log(error);
+            return [];
+        }
+    }
+    return return_list;
+    
+
+}
+
+async function retrieveDARSDocumentDom(course_name) {
+    // Intentional fail
+    return null;
+    let parser = new DOMParser();
+    // return document.querySelectorAll("a[name=" + course_namename + "]");
     if (document.URL != "https://myplan.uw.edu/audit/#/degree") {
         throw "Wrong website. Navigate to https://myplan.uw.edu/audit/#/degree"
     }
@@ -56,12 +76,4 @@ async function retrieveFinishedClasses(dars_dom) {
         }
         
     }
-
-}
-
-async function retrieveDARSDocumentDom(course_name) {
-    // Intentional fail
-    return null;
-    let parser = new DOMParser();
-    // return document.querySelectorAll("a[name=" + course_namename + "]");
 }
