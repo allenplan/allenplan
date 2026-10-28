@@ -26,18 +26,6 @@ export class CourseOffering {
     start_time; // string with format HHMM 
     end_time; // string with format HHMM 
 
-    constructor() {
-        this.name = null;
-        this.title = null;
-        this.description = null;
-        this.courseType = null;
-        this.credits_min = null;
-        this.credits_max = null;
-        this.days = null;
-        this.start_time = null;
-        this.end_time = null;
-    }
-
     constructor(name, title, description, 
                 courseType, credits_range, 
                 days, time_range) {
