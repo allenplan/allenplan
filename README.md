@@ -79,3 +79,11 @@ Finally, click `Add Temporary Extension` and select the `extensions` subdirector
 To update the extension after making changes, go to the Extensions tab, select `AllenPlan` and press `Reload`.
 
 [Living Document](https://docs.google.com/document/d/1lcMlHKdeGeLQlEwwXSiABRWEiz8iWdu12LJ2YI6Aelk/edit?usp=sharing)
+
+### Week of 10/19
+Found sites to webscrape class and quarter data from, planned best way to store data keeping privacy a top concern
+Ran into some setbacks on sites we originally though we could webscrape from not working
+Desgined some of the UI of how data will be displayed to the user in our MVP
+
+### Week of 10/26
+Planned how the JavaScript classes and functions should interact with each other
