@@ -1,0 +1,218 @@
+[
+  {
+    "code": "CSE 331",
+    "title": "Software Design & Implementation",
+    "credits": 4,
+    "footnote": "*"
+  },
+  {
+    "code": "CSE 333",
+    "title": "Systems Programming",
+    "credits": 4
+  },
+  {
+    "code": "CSE 340",
+    "title": "Interaction Programming",
+    "credits": 4
+  },
+  {
+    "code": "CSE 341",
+    "title": "Programming Languages",
+    "credits": 4
+  },
+  {
+    "code": "CSE 344",
+    "title": "Intro to Data Management",
+    "credits": 4,
+    "footnote": "**"
+  },
+  {
+    "code": "CSE 369",
+    "title": "Introduction to Digital Design",
+    "credits": 3,
+    "footnote": "***"
+  },
+  {
+    "code": "CSE 371",
+    "title": "Design of Digital Circuits and Systems",
+    "credits": 5,
+    "cross_listed": [
+      "E E 371"
+    ],
+    "footnote": "***"
+  },
+  {
+    "code": "STAT 391",
+    "title": "Probability & Statistics for Computer Science",
+    "credits": 4
+  },
+  {
+    "code": "CSE 401",
+    "title": "Intro to Compiler Construction",
+    "credits": 4
+  },
+  {
+    "code": "CSE 402",
+    "title": "Design and Implementation of Domain-Specific Languages",
+    "credits": 4
+  },
+  {
+    "code": "CSE 403",
+    "title": "Software Engineering",
+    "credits": 4
+  },
+  {
+    "code": "CSE 421",
+    "title": "Intro to Analysis of Algorithms",
+    "credits": 3
+  },
+  {
+    "code": "CSE 422",
+    "title": "Toolkit for Modern Algorithms",
+    "credits": 3
+  },
+  {
+    "code": "CSE 426",
+    "title": "Cryptography",
+    "credits": 4
+  },
+  {
+    "code": "CSE 427",
+    "title": "Computational Biology",
+    "credits": 3
+  },
+  {
+    "code": "CSE 431",
+    "title": "Intro to Complexity",
+    "credits": 3
+  },
+  {
+    "code": "CSE 434",
+    "title": "Quantum Computation",
+    "credits": 4
+  },
+  {
+    "code": "CSE 438",
+    "title": "Computational Neuroscience",
+    "credits": 3
+  },
+  {
+    "code": "CSE 440",
+    "title": "Intro to HCI",
+    "credits": 5
+  },
+  {
+    "code": "CSE 442",
+    "title": "Data Visualization",
+    "credits": 4
+  },
+  {
+    "code": "CSE 443",
+    "title": "Digital Accessibility",
+    "credits": 4
+  },
+  {
+    "code": "CSE 444",
+    "title": "Database Systems Internals",
+    "credits": 4
+  },
+  {
+    "code": "CSE 446",
+    "title": "Machine Learning",
+    "credits": 4
+  },
+  {
+    "code": "CSE 447",
+    "title": "Natural Language Processing",
+    "credits": 4
+  },
+  {
+    "code": "CSE 451",
+    "title": "Intro to Operating Systems",
+    "credits": 4
+  },
+  {
+    "code": "CSE 452",
+    "title": "Distributed Systems",
+    "credits": 4
+  },
+  {
+    "code": "CSE 453",
+    "title": "Data Center Systems",
+    "credits": 4
+  },
+  {
+    "code": "CSE 455",
+    "title": "Computer Vision",
+    "credits": 4
+  },
+  {
+    "code": "CSE 457",
+    "title": "Computer Graphics",
+    "credits": 4
+  },
+  {
+    "code": "CSE 458",
+    "title": "Computer Animation",
+    "credits": 5
+  },
+  {
+    "code": "CSE 461",
+    "title": "Computer Networks",
+    "credits": 4
+  },
+  {
+    "code": "CSE 462",
+    "title": "Wireless Communications",
+    "credits": 4
+  },
+  {
+    "code": "CSE 469",
+    "title": "Computer Architecture I",
+    "credits": 5,
+    "cross_listed": [
+      "E E 469"
+    ]
+  },
+  {
+    "code": "CSE 470",
+    "title": "Computer Architecture II",
+    "credits": 4,
+    "cross_listed": [
+      "E E 470"
+    ]
+  },
+  {
+    "code": "CSE 473",
+    "title": "Artificial Intelligence",
+    "credits": 3
+  },
+  {
+    "code": "CSE 474",
+    "title": "Introduction to Embedded Systems",
+    "credits": 4,
+    "cross_listed": [
+      "E E 474"
+    ]
+  },
+  {
+    "code": "CSE 478",
+    "title": "Autonomous Robotics",
+    "credits": 4
+  },
+  {
+    "code": "CSE 484",
+    "title": "Computer Security",
+    "credits": 4
+  },
+  {
+    "code": "CSE 486",
+    "title": "Synthetic Biology",
+    "credits": 3
+  },
+  {
+    "code": "CSE 493",
+    "title": "Special Topics Courses",
+    "credits": 4
+  }
+]
