@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { CourseGraph } from '../extension/coursegraph.js';
+import { CourseGraph } from '../extension/course-graph.js';
 import { ScheduleCalculator } from '../extension/schedule-calculator.js';
 
 /** Catalog entry in the same shape as uw_cse_courses.json. */

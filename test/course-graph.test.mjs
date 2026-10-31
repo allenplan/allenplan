@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import fs from 'node:fs/promises';
-import { CourseGraph } from '../extension/coursegraph.js';
+import { CourseGraph } from '../extension/course-graph.js';
 
 test('CourseGraph: Graph from fromCatalog() contains all courses and prereqs', async () => {
   const json = await fs.readFile('./extension/uw_cse_courses.json', 'utf8', async (err, data) => {
