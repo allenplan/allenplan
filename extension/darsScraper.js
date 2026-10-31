@@ -18,15 +18,16 @@ let fulfillList; // Course[]
 // CONSTANTS
 const courseTitleLength = 8; // "CSE 121 ".length
 
-const courseNameIndex = 0;
-const courseTypeIndex = 1;
-const courseCreditIndex = 2;
+const courseNameIndex = 1;
+const courseDescriptionIndex = 2;
+const courseCreditIndex = 3;
 
 /**
  * Parses the student's DARS audit degree page to collect what classes they have completed or are in progress.
  * 
- * Uses the provided Course class as a template to fill out its name, the course type, and its credits.
- * Leaves the preReqs and recommendedCourses fields as null
+ * Uses the provided Course class as a template to fill out its name, 
+ * the course description, and its credits.
+ * 
  * 
  * @param list the list for the text from the DARS audit degree page, must be formatted like [name, courseType, credits]
  * @returns Course[] an array of courses that the student has finished or is in progress of taking, empty if an error occurs
@@ -43,7 +44,7 @@ export function retrieveFinishedClasses(list) {
         let finished_course; 
         try {
             finished_course = new Course(list[i][courseNameIndex],
-                                         list[i][courseTypeIndex],
+                                         list[i][courseDescriptionIndex],
                                          list[i][courseCreditIndex])
         } catch (error) {
             console.log(error);
@@ -55,28 +56,29 @@ export function retrieveFinishedClasses(list) {
     
 
 }
-
-async function retrieveDARSDocumentDom(course_name) {
-    // Intentional fail
-    return null;
-    let parser = new DOMParser();
+/**
+ * Reads the document DOM of the DARS audit degree for all the classes that the user has finished
+ * @requires document.URL === "https://myplan.uw.edu/audit/#/degree"
+ * @returns A list of Courses that the user has finished or are in progress of finishing.
+ */
+function parseFinishedCourses() {
     // return document.querySelectorAll("a[name=" + course_namename + "]");
     if (document.URL != "https://myplan.uw.edu/audit/#/degree") {
         throw "Wrong website. Navigate to https://myplan.uw.edu/audit/#/degree"
     }
-    const tables = document.querySelectorAll("tbody");
+    const tables = document.querySelectorAll("tr[class]");
     let finished_courses = [];
     for (let index = 0; index < tables.length; index++) {
-        // grab the table body
-        let table_children = tables[index].children; // <tr class> or <tr class=ip>
-        for (let class_index = 0; class_index < table_children.length; class_index++) {
-            let course_properties = table_children[class_index].children
-            let new_course = new Course();
-            // name and title
-            new_course.name = course_properties[courseNameSubjectIndex].innerText;
-            // credits
-            new_course.credits = parseInt(table_children[class_index].innerText)
-        }
-        
+        let course_properties = tables[index].children
+        let new_course_array = [course_properties[courseNameIndex].innerText,
+                                course_properties[courseDescriptionIndex].innerText,
+                                course_properties[courseCreditIndex].innerText];
+        finished_courses.push(new_course_array);
     }
+    return finished_courses;
+}
+
+
+function parseMajorRequirements() {
+    return -1;
 }
