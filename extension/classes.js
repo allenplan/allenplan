@@ -15,10 +15,8 @@
 
 export class Course {
     name; // string
-    description; // string
     courseType; // CourseCategory[]
     credits; // number
-    ccode; // string
 
     constructor(name, courseType, credits) {
         this.name = name;
