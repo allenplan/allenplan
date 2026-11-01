@@ -7,15 +7,16 @@
  * the class for the user's DARS.
  * 
  * The name field can represent a placeholder classes with these special namings:
- * 1. CSE 4XX: this means any course within CSE that is 400 or higher
+ * 1. CSE 4XX: this means any course within CSE that is 400 level 
  * 2. XXX: refer to the courseType and CourseCategory 
  *         to see what type of course this needs to be.
+ * 3. CSE 3XX/4XX: refers to any 300 or 400 level course 
  */
 
 export class Course {
     name; // string
     description; // string
-    courseType; // CourseCategory
+    courseType; // CourseCategory[]
     credits; // number
     ccode; // string
 
