@@ -17,8 +17,9 @@ export class Course {
     name; // string
     courseType; // CourseCategory[]
     credits; // number
+    notes; // string
 
-    constructor(name, courseType, credits) {
+    constructor(name, courseType, credits, notes) {
         this.name = name;
         this.courseType = courseType;
         let parsed_num = parseInt(credits);
@@ -26,6 +27,7 @@ export class Course {
             throw new Error("Invalid input for credits. Inputted number: " + credits);
         }
         this.credits = parsed_num;
+        this.notes = notes;
     }
 }
 

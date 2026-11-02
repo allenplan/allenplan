@@ -1,18 +1,6 @@
 import {Course} from './classes.js'
 
-// WORK IN PROGRESS //
-export const CourseCategory = Object.freeze({
-    AH: 'Arts and Humanities',
-    DIV: 'Diversity',
-    SSc: 'Social Science',
-    NSc: 'Natural Science',
-    RSN: 'Reasoning',
-    W: 'Writing',
-    CSE: 'Computer Science & Engineering',
-});
-
 // CONSTANTS
-const courseTitleLength = 8; // "CSE 121 ".length
 
 const courseNameIndex = 1;
 const courseTypeIndex = 2;
@@ -27,7 +15,9 @@ function getFinishedCourses() {
 
 function getRequiredCourses() {
     const dom_list = parseDARSDocumentRequirements();
-    return CSRequirementsOrganizer(dom_list);
+    const requirement_list = CSRequirementsOrganizer(dom_list);
+    const course_list = retrieveRequiredClasses(requirement_list);
+    return course_list;
 }
 /**
  * Parses the student's DARS audit degree page to collect what classes they have completed or are in progress.
@@ -43,6 +33,9 @@ function getRequiredCourses() {
 export function retrieveFinishedClasses(list) {
     let return_list = [];
     for (let i = 0; i < list.length; i++) {
+        console.log(list[i][courseNameIndex - 1],
+            list[i][courseTypeIndex - 1],
+            list[i][courseCreditIndex - 1]);
         let dup = false;
         if (list[i].length !== 3) {
             throw new Error("Invalid size of array for finished course." +
@@ -50,17 +43,18 @@ export function retrieveFinishedClasses(list) {
         }
         let finished_course;
         // check if duplicate course was found (splitting credits)
-        for (let course in return_list) {
-            if (course.name === list[i][courseNameIndex]) {
-                course.courseType.push(list[i][courseTypeIndex]);
+        return_list.forEach((course) => {
+            if (course.name == list[i][courseNameIndex - 1]) {
+                course.courseType.push(list[i][courseTypeIndex - 1]);
                 dup = true;
             }
-        }
+        });
         if (!dup) {
             try {
-                finished_course = new Course(list[i][courseNameIndex],
-                                                [list[i][courseTypeIndex]],
-                                                list[i][courseCreditIndex])
+                finished_course = new Course(list[i][courseNameIndex - 1],
+                                                [list[i][courseTypeIndex - 1]],
+                                                list[i][courseCreditIndex - 1],
+                                                "Finished course");
             } catch (error) {
                 console.log(error);
                 return [];
@@ -69,8 +63,6 @@ export function retrieveFinishedClasses(list) {
         }
     }
     return return_list;
-    
-
 }
 /**
  * Reads the document DOM of the DARS audit degree for all the classes that the user has finished and
@@ -78,17 +70,20 @@ export function retrieveFinishedClasses(list) {
  * @requires document.URL === "https://myplan.uw.edu/audit/#/degree"
  * @returns A list of Courses that the user has finished or are in progress of finishing.
  */
-async function parseFinishedCourses() {
+function parseFinishedCourses() {
     // return document.querySelectorAll("a[name=" + course_namename + "]");
-    if (!document.URL.includes("https://myplan.uw.edu/audit/#/degree")) {
-        throw "Wrong website. Navigate to https://myplan.uw.edu/audit/#/degree"
+    if (!document.URL.includes("https://myplan.uw.edu/audit/")) {
+        throw new Error("Wrong website. Navigate to https://myplan.uw.edu/audit/#/degree : " + document.URL);
+    }
+    if (!document.getElementsByClassName("page-heading")[0].innerText.includes("DARS")) {
+        throw new Error("Wrong website. Navigate to https://myplan.uw.edu/audit/#/degree : " + document.URL);
     }
     const tables = document.querySelectorAll("tr[class]");
     let finished_courses = [];
     for (let index = 0; index < tables.length; index++) {
         let course_properties = tables[index].children
-        const requirement_div = tables[index].offsetParent.offsetParent.offsetParent;
-        const courseType = searchCourseType(requirement_div);
+        const requirement_div_class_list = tables[index].offsetParent.offsetParent.offsetParent.classList;
+        const courseType = searchCourseType(requirement_div_class_list);
         if (courseType === -1) {
             throw new Error("courseType was not found for the class list: " + requirement_div.classList);
         }
@@ -104,7 +99,37 @@ async function parseFinishedCourses() {
     }
     return finished_courses;
 }
-
+/**
+ * Encapsulates requirements into Course class.
+ * 
+ * @param {*} list 
+ * @returns 
+ */
+export function retrieveRequiredClasses(list) {
+    let return_list = [];
+    for (let i = 0; i < list.length; i++) {
+        console.log(list[i][courseNameIndex - 1],
+            list[i][courseTypeIndex - 1],
+            list[i][courseCreditIndex - 1],
+            list[i][3]);
+        if (list[i].length !== 4) {
+            throw new Error("Invalid size of array for finished course." +
+                            "Size was: " + list[i].length + "for index " + i);
+        }
+        let finished_course;
+        try {
+            finished_course = new Course(list[i][courseNameIndex - 1],
+                                         [list[i][courseTypeIndex - 1]],
+                                         list[i][courseCreditIndex - 1],
+                                         list[i][3]);
+        } catch (error) {
+            console.log(error);
+            return [];
+        }
+        return_list.push(finished_course);
+    }
+    return return_list;
+}
 /**
  * Reads the document DOM of the DARS audit degree for all the degree sections that the user has not finished and
  * encapsulates in a course Class
@@ -112,7 +137,7 @@ async function parseFinishedCourses() {
  * @returns A list of Courses that the user has finished or are in progress of finishing.
  * @throws 
  */
-async function parseDARSDocumentRequirements() {
+function parseDARSDocumentRequirements() {
     if (!document.URL.includes("https://myplan.uw.edu/audit/#/degree")) {
         throw new Error("Wrong website. Navigate to https://myplan.uw.edu/audit/#/degree");
     }
@@ -164,19 +189,19 @@ function CSRequirementsOrganizer(requirements) {
                 // matches order in DARS of the subrequirements
                 case 1:
                   for (let j = 0; j < course_amt; j++) {
-                    course_list.push(["CSE 4XX", "CSE", 4]);
+                    course_list.push(["CSE 4XX", "CSE", 4, "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#core"]);
                   }
                   break;
                 case 2:
                     for (let j = 0; j < course_amt; j++) {
-                        course_list.push(["CSE 3XX/4XX", "CSE", 4]);
+                        course_list.push(["CSE 3XX/4XX", "CSE", 4, "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#core"]);
                     }
                     break;
                 case 3:
-                    course_list.push(["CSE 3XX/4XX", "CSE", 4]);
+                    course_list.push(["CSE 3XX/4XX", "CSE", 4, "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#core"]);
                     break;
                 case 4: // electives list, will need adjustment to be accurate with credit count. assuming 4 credit
-                    course_list.push(["XXX", "CSE", 4]);
+                    course_list.push(["XXX", "CSE", 5, "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#electives"]);
                     break;
                 default:
                     throw new Error("Entered CSIC ELEC and got a number subcategory that does not exist: " + category_num);
@@ -193,35 +218,33 @@ function CSRequirementsOrganizer(requirements) {
             switch (category_num) {
                 case 1:
                     // check for CSE 143 while clearing this
-                    course_list.push(["CSE 123", "CSE", 4]);
+                    course_list.push(["CSE 123", "CSE", 4, "required"]);
                     break;
                 case 2:
-                    course_list.push(["CSE 311", "CSE", 4]);
-                    course_list.push(["CSE 312", "CSE", 4]);
+                    course_list.push(["CSE 311", "CSE", 4, "required"]);
+                    course_list.push(["CSE 312", "CSE", 4, "required"]);
                     break;
                 case 3:
-                    course_list.push(["CSE 331", "CSE", 4]);
-                    course_list.push(["CSE 332", "CSE", 4]);
+                    course_list.push(["CSE 331", "CSE", 4, "required"]);
+                    course_list.push(["CSE 332", "CSE", 4, "required"]);
                     break;
                 case 4:
-                    course_list.push(["CSE 351", "CSE", 4]);
+                    course_list.push(["CSE 351", "CSE", 4, "required"]);
                     break;
                 default:
                     throw new Error("Entered CSIC Core and got a number subcategory that does not exist: " + category_num);
                 }
-            // TODO: make it so that it adds classes on a case by case basis
-            // Check in filter if CSE 143 has been completed and change credits
             
         } else if (offsetParentClassList.contains("CS-MATH")) {
             // Check in filter if MATH 134 and 135 has been completed
-            course_list.push(["MATH 124", "NSc", 5]);
-            course_list.push(["MATH 125", "NSc", 5]);
+            course_list.push(["MATH 124", "CS-MATH", 5, "alternative: MATH 134"]);
+            course_list.push(["MATH 125", "CS-MATH", 5, "alternative: MATH 135"]);
             // check if MATH 136 has been completed for both
-            course_list.push(["MATH 126", "NSc", 5]);
-            course_list.push(["MATH 208", "NSc", 5]);
+            course_list.push(["MATH 126", "CS-MATH", 5, "alternative: MATH 136"]);
+            course_list.push(["MATH 208", "CS-MATH", 3, "alternative: MATH 136"]);
         } else if (offsetParentClassList.contains("CSCI-NS")) {
-            course_list.push(["XXX", "NSc", 5]);
-        } else if (offsetParentClassList.contains("A&S&A&HY")) {
+            course_list.push(["XXX", "CS-NSc", 5, "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#cs-natural-science"]);
+        } else if (offsetParentClassList.contains("A&SA&HY")) {
             let credits_amt;
             const text = requirements[i].offsetParent.innerText;
             try {
@@ -232,10 +255,10 @@ function CSRequirementsOrganizer(requirements) {
             }
             while (credits_amt > 0) {
                 if (credits_amt < 5) {
-                    course_list.push(["XXX", "A&H", credits_amt]);
+                    course_list.push(["XXX", "A&H", credits_amt, "required"]);
                     credits_amt = 0;
                 } else {
-                    course_list.push(["XXX", "A&H", 5]);
+                    course_list.push(["XXX", "A&H", 5, "required"]);
                     credits_amt -= 5;
                 }
                 
@@ -251,10 +274,10 @@ function CSRequirementsOrganizer(requirements) {
             }
             while (credits_amt > 0) {
                 if (credits_amt < 5) {
-                    course_list.push(["XXX", "SSc", credits_amt]);
+                    course_list.push(["XXX", "SSc", credits_amt, "required"]);
                     credits_amt = 0;
                 } else {
-                    course_list.push(["XXX", "SSc", 5]);
+                    course_list.push(["XXX", "SSc", 5, "required"]);
                     credits_amt -= 5;
                 }
                 
@@ -270,24 +293,24 @@ function CSRequirementsOrganizer(requirements) {
             }
             while (credits_amt > 0) {
                 if (credits_amt < 5) {
-                    course_list.push(["XXX", "NSc", credits_amt]);
+                    course_list.push(["XXX", "NSc", credits_amt, "required"]);
                     credits_amt = 0;
                 } else {
-                    course_list.push(["XXX", "NSc", 5]);
+                    course_list.push(["XXX", "NSc", 5, "required"]);
                     credits_amt -= 5;
                 }
                 
             }
         } else if (offsetParentClassList.contains("ENGLCOMP")) {
-            course_list.push(["XXX", "C", 5]);
+            course_list.push(["XXX", "C", 5, "required"]);
         } else if (offsetParentClassList.contains("FORLANG")) {
             if (course_list.some(subArray => subArray.includes("FORLANG"))) {
                 continue;
             } else {
-                course_list.push(["XXX", "FORLANG", 15]);
+                course_list.push(["XXX", "FORLANG", 15,"https://advising.uw.edu/degree-overview/general-education/foreign-language/"]);
             }
         } else if (offsetParentClassList.contains("RSN")) {
-            course_list.push(["XXX", "RSN", 5]);
+            course_list.push(["XXX", "RSN", 5, "required"]);
         } else if (offsetParentClassList.contains("WRITING")) {
             let credits_amt;
             const text = requirements[i].offsetParent.innerText;
@@ -299,35 +322,151 @@ function CSRequirementsOrganizer(requirements) {
             }
             while (credits_amt > 0) {
                 if (credits_amt < 5) {
-                    course_list.push(["XXX", "W", credits_amt]);
+                    course_list.push(["XXX", "W", credits_amt, "required"]);
                     credits_amt = 0;
                 } else {
-                    course_list.push(["XXX", "W", 5]);
+                    course_list.push(["XXX", "W", 5, "required"]);
                     credits_amt -= 5;
                 }
                 
             }
         } else if (offsetParentClassList.contains("DIVERSITY")) {
-            course_list.push(["XXX", "DIV", 5]);
+            course_list.push(["XXX", "DIV", 5, "required"]);
         } else {
             return -1;
         }
     }
+    // Areas of Inquiry, minimum 75 calculation
+    const progress_spans = document.querySelector("div.AOISUM75").children[2].children[0].children
+    let AOI_needed;
+    switch (progress_spans.length) {
+        // order goes as: earned, in-progress, needs
+        case 1:
+            // Only needs or only earned (earned only means nothing needs to be done)
+            if (progress_spans[0].className == "Needs") {
+                course_list.push(["XXX", "A&H/SSc/NSc", 5, "required"]);
+                course_list.push(["XXX", "A&H/SSc/NSc", 5, "required"]);
+                course_list.push(["XXX", "A&H/SSc/NSc", 5, "required"]);
+            }
+            break;
+        case 2:
+            // In-progress and needs or earned and needs
+            try {
+                AOI_needed = parseInt(progress_spans[1].lastElementChild.innerText);
+            } catch (error) {
+                console.log(error);
+                return -1;
+            }
+            if (AOI_needed <= 15) {
+                while (AOI_needed > 0) {
+                    if (AOI_needed >= 5) {
+                        course_list.push(["XXX", "A&H/SSc/NSc", 5, "required"]);
+                        AOI_needed -= 5;
+                    } else {
+                        course_list.push(["XXX", "A&H/SSc/NSc", AOI_needed, "required"]);
+                        AOI_needed = 0;
+                    }
+                }
+            } else {
+                course_list.push(["XXX", "A&H/SSc/NSc", 5, "required"]);
+                course_list.push(["XXX", "A&H/SSc/NSc", 5, "required"]);
+                course_list.push(["XXX", "A&H/SSc/NSc", 5, "required"]);
+            }
+            break;
+        case 3:
+            // earned, in-progress, and needs
+            try {
+                parseInt(progress_spans[2].lastElementChild.innerText);
+            } catch (error) {
+                console.log(error);
+                return -1;
+            }
+            if (AOI_needed <= 15) {
+                while (AOI_needed > 0) {
+                    if (AOI_needed >= 5) {
+                        course_list.push(["XXX", "A&H/SSc/NSc", 5, "required"]);
+                        AOI_needed -= 5;
+                    } else {
+                        course_list.push(["XXX", "A&H/SSc/NSc", AOI_needed, "required"]);
+                        AOI_needed = 0;
+                    }
+                }
+            } else {
+                course_list.push(["XXX", "A&H/SSc/NSc", 5, "required"]);
+                course_list.push(["XXX", "A&H/SSc/NSc", 5, "required"]);
+                course_list.push(["XXX", "A&H/SSc/NSc", 5, "required"]);
+            }
+            break;
+
+    }
     return course_list;
 }
 
-function needCreditsParser() {
-    // TODO: clean above code in store the parsing of needed credits in here
+function filterRequirements_CS(completed, required) {
+    let completed_copy = Array.from(completed);
+    let new_required = [];
+    for (let i = 0; i < required.length; i++) {
+        const index = -1;
+        switch (required[i].name) {
+            case "MATH 124":
+                index = CourseNameIndexOf(completed, "MATH 124|134");
+                if (index != -1) {
+                    break;
+                }
+            case "MATH 125":
+                index = CourseNameIndexOf(completed, "MATH 125|135");
+                if (index != -1) {
+                    break;
+                }
+            case "MATH 126":
+                index = CourseNameIndexOf(completed, "MATH 126|136");
+                if (index != -1) {
+                    break;
+                }
+            case "MATH 208":
+                index = CourseNameIndexOf(completed, "MATH 208|136");
+                if (index != -1) {
+                    break;
+                }
+            case "CSE 311":
+                index = CourseNameIndexOf(completed, "CSE 311");
+                if (index != -1) {
+                    break;
+                }
+            case "CSE 312":
+                index = CourseNameIndexOf(completed, "CSE 312");
+                if (index != -1) {
+                    break;
+                }
+            case "CSE 331":
+                index = CourseNameIndexOf(completed, "CSE 331");
+                if (index != -1) {
+                    break;
+                }
+            case "CSE 332":
+                index = CourseNameIndexOf(completed, "CSE 332");
+                if (index != -1) {
+                    break;
+                }
+            default:
+                new_required.push(required[i]);
+        }
+    }
+    return new_required;
 }
-
+/**
+ * Given a class list, returns what type of course the div contains
+ * @param {NodeList} course_div the list of classes that the div contains
+ * @returns A string that represents what class
+ */
 function searchCourseType(course_div) {
     if (course_div.contains("CSCICORE") || course_div.contains("CSCI-ELEC")) {
         return "CSE";
     } else if (course_div.contains("CS-MATH")) {
-        return "NSc";
+        return "CS-MATH";
     } else if (course_div.contains("CSCI-NS")) {
-        return "NSc";
-    } else if (course_div.contains("A&S&A&HY")) {
+        return "CS-NSc";
+    } else if (course_div.contains("A&SA&HY")) {
         return "A&H"
     } else if (course_div.contains("A&SSSCY")) {
         return "SSc";
@@ -344,6 +483,15 @@ function searchCourseType(course_div) {
     } else if (course_div.contains("DIVERSITY")) {
         return "DIV";
     } else {
-        return -1;
+        return "courseTypeNotFound";
     }
+}
+
+function CourseNameIndexOf(array, target) {
+    for (let i = 0; i < array.length; i++) {
+        if (array[i].name.match(target)) {
+            return i;
+        }
+    }
+    return -1;
 }
