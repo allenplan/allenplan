@@ -81,6 +81,6 @@ async function retrieveDARSDocumentDom(course_name) {
     }
 }
 
-function retrieveDARS() {
+export function retrieveDARS() {
     return [getFinishedCourses(), getRequiredCourses()];
 }
