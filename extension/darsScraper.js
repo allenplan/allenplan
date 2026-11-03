@@ -7,17 +7,18 @@ const courseTypeIndex = 2;
 const courseCreditIndex = 3;
 const courseCCodeIndex = 5;
 
-function getFinishedCourses() {
+export function getFinishedCourses() {
     const dom_list = parseFinishedCourses();
     const course_list = retrieveFinishedClasses(dom_list);
     return course_list;
 }
 
-function getRequiredCourses() {
+export function getRequiredCourses() {
     const dom_list = parseDARSDocumentRequirements();
     const requirement_list = CSRequirementsOrganizer(dom_list);
-    const course_list = retrieveRequiredClasses(requirement_list);
-    return course_list;
+    const required_course_list = retrieveRequiredClasses(requirement_list);
+    const finished_course_list = getFinishedCourses();
+    return filterRequirements_CS(finished_course_list, required_course_list);
 }
 /**
  * Parses the student's DARS audit degree page to collect what classes they have completed or are in progress.
@@ -70,7 +71,7 @@ export function retrieveFinishedClasses(list) {
  * @requires document.URL === "https://myplan.uw.edu/audit/#/degree"
  * @returns A list of Courses that the user has finished or are in progress of finishing.
  */
-function parseFinishedCourses() {
+export function parseFinishedCourses() {
     // return document.querySelectorAll("a[name=" + course_namename + "]");
     if (!document.URL.includes("https://myplan.uw.edu/audit/")) {
         throw new Error("Wrong website. Navigate to https://myplan.uw.edu/audit/#/degree : " + document.URL);
@@ -137,7 +138,7 @@ export function retrieveRequiredClasses(list) {
  * @returns A list of Courses that the user has finished or are in progress of finishing.
  * @throws 
  */
-function parseDARSDocumentRequirements() {
+export function parseDARSDocumentRequirements() {
     if (!document.URL.includes("https://myplan.uw.edu/audit/")) {
         throw new Error("Wrong website. Navigate to https://myplan.uw.edu/audit/#/degree : " + document.URL);
     }
@@ -160,7 +161,7 @@ function parseDARSDocumentRequirements() {
  * @param {!Array<!Object} requirements A list of arrays that contains the course name, the type, and its credits
  * @returns list of Courses or placeholder courses that the user needs to take
  */
-function CSRequirementsOrganizer(requirements) {
+export function CSRequirementsOrganizer(requirements) {
     let course_list = [];
     for (let i = 0; i < requirements.length; i++) {
         const offsetParentClassList = requirements[i].offsetParent.classList;
@@ -405,7 +406,7 @@ function CSRequirementsOrganizer(requirements) {
     return course_list;
 }
 
-function filterRequirements_CS(completed, required) {
+export function filterRequirements_CS(completed, required) {
     let completed_copy = Array.from(completed);
     let new_required = [];
     for (let i = 0; i < required.length; i++) {
@@ -462,7 +463,7 @@ function filterRequirements_CS(completed, required) {
  * @param {NodeList} course_div the list of classes that the div contains
  * @returns A string that represents what class
  */
-function searchCourseType(course_div) {
+export function searchCourseType(course_div) {
     if (course_div.contains("CSCICORE") || course_div.contains("CSCI-ELEC")) {
         return "CSE";
     } else if (course_div.contains("CS-MATH")) {
@@ -490,7 +491,7 @@ function searchCourseType(course_div) {
     }
 }
 
-function CourseNameIndexOf(array, target) {
+export function CourseNameIndexOf(array, target) {
     for (let i = 0; i < array.length; i++) {
         if (array[i].name.match(target)) {
             return i;
