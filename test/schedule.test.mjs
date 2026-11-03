@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import {groupSchedule} from '../extension/schedule.mjs';
+import {groupSchedule, isImportedDars, scheduleFromDars} from '../extension/schedule.mjs';
 
 test('always includes the three quarters in academic order', () => {
   assert.deepEqual(groupSchedule([]), [
@@ -38,4 +38,39 @@ test('accepts future class instances through a custom adapter', () => {
   assert.deepEqual(groups[2].courses, [
     {code: 'CSE 351', title: '', credits: '4'},
   ]);
+});
+
+const catalog = [100, 200, 300].map((number, index) => ({
+  code: `CSE ${number}`,
+  title: `Course ${number}`,
+  credits_min: 4,
+  credits_max: 4,
+  max_total_credits: null,
+  prerequisite_courses: index ? [[`CSE ${number - 100}`]] : [],
+}));
+
+test('plans from serialized DARS courses, excluding completed prerequisites', () => {
+  const audit = [[{name: ' cse   100 '}], [{name: 'CSE 300'}]];
+  const before = structuredClone(audit);
+  const courses = scheduleFromDars(audit, catalog);
+  assert.deepEqual(courses, [
+    {quarter: 'Autumn', code: 'CSE 200', title: 'Course 200', credits: 4},
+    {quarter: 'Winter', code: 'CSE 300', title: 'Course 300', credits: 4},
+  ]);
+  assert.deepEqual(audit, before);
+  assert.equal(groupSchedule(courses)[2].courses.length, 0);
+});
+
+test('rejects missing or malformed audits but accepts empty course lists', () => {
+  for (const audit of [null, undefined, [], {}, [[], null], [[{}], []]]) {
+    assert.equal(isImportedDars(audit), false);
+    assert.throws(() => scheduleFromDars(audit, catalog), /valid degree audit/);
+  }
+  assert.equal(isImportedDars([[], []]), true);
+  assert.deepEqual(scheduleFromDars([[], []], catalog), []);
+});
+
+test('does not recommend completed goals or unrelated courses', () => {
+  assert.deepEqual(scheduleFromDars([['CSE 300'], ['CSE 300']], catalog), []);
+  assert.deepEqual(scheduleFromDars([[], ['MATH 999']], catalog), []);
 });
