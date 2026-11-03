@@ -1,6 +1,5 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import {readFile} from 'node:fs/promises';
 
 const catalog = [{
   code: 'CSE 200', title: 'Next course', credits_min: 4, credits_max: 4,
@@ -40,6 +39,7 @@ async function loadPopup(t, audit) {
   const opened = [];
   const stored = [];
   const fetched = [];
+  const executions = [];
   globalThis.document = {querySelector: element, querySelectorAll: () => []};
   globalThis.chrome = {
     runtime: {getURL: (path) => `chrome-extension://test/${path}`},
@@ -47,8 +47,12 @@ async function loadPopup(t, audit) {
       get: async () => ({importedDars: await audit}),
       set: async (value) => { stored.push(value); },
     }},
+    scripting: {executeScript: async (options) => {
+      executions.push(options);
+      return [{result: {audit: [[{name: 'CSE 100'}], [{name: 'CSE 200'}]]}}];
+    }},
     tabs: {
-      query: async () => [{url: 'https://myplan.uw.edu/audit/#/degree'}],
+      query: async () => [{id: 42, url: 'https://myplan.uw.edu/audit/#/degree'}],
       create: async (options) => { opened.push(options); },
       onUpdated: {addListener() {}},
       onActivated: {addListener() {}},
@@ -60,7 +64,7 @@ async function loadPopup(t, audit) {
   };
   await import(`../extension/popup.js?test=${popupInstance++}`);
   await new Promise((resolve) => setImmediate(resolve));
-  return {element, opened, stored, fetched};
+  return {element, opened, stored, fetched, executions};
 }
 
 test('missing audit disables generation and prevents catalog/tab requests', async (t) => {
@@ -93,26 +97,33 @@ test('waits for restoration and sends calculated courses to schedule.html', asyn
   assert.equal(ui.element('#generate-schedule').disabled, false);
 });
 
-test('sample import saves both course lists and enables generation immediately', async (t) => {
+test('webpage import saves scraped courses and enables generation', async (t) => {
   const ui = await loadPopup(t, null);
   await ui.element('#import-dars').listeners.click();
-  assert.equal(ui.stored.length, 1);
-  const [finished, required] = ui.stored[0].importedDars;
-  assert.equal(finished.length, 34);
-  assert.equal(required.length, 8);
-  assert.ok(finished.some((course) => course.name === 'CSE 332'));
-  assert.ok(required.every((course) => /^CSE \d{3}$/.test(course.name)));
-  assert.equal(ui.element('#dars-hint').textContent, 'Sample degree audit imported.');
+  assert.equal(ui.executions.length, 1);
+  assert.deepEqual(ui.executions[0].target, {tabId: 42});
+  assert.equal(ui.executions[0].world, 'ISOLATED');
+  assert.deepEqual(ui.executions[0].args, ['chrome-extension://test/darsScraper.js']);
+  assert.deepEqual(ui.stored, [{
+    importedDars: [[{name: 'CSE 100'}], [{name: 'CSE 200'}]],
+  }]);
+  assert.equal(ui.element('#dars-hint').textContent, 'Degree audit imported.');
   assert.equal(ui.element('#generate-schedule').disabled, false);
-  const bundledCatalog = JSON.parse(await readFile(
-      new URL('../extension/uw_cse_courses.json', import.meta.url), 'utf8'));
-  globalThis.fetch = async () => ({ok: true, json: async () => bundledCatalog});
   await ui.element('#generate-schedule').listeners.click();
   assert.equal(ui.opened.length, 1);
-  const groups = JSON.parse(decodeURIComponent(new URL(ui.opened[0].url).hash.slice(1)));
-  const scheduled = groups.flatMap((group) => group.courses.map((course) => course.code));
-  assert.deepEqual([...scheduled].sort(), required.map((course) => course.name).sort());
-  assert.ok(!scheduled.some((code) => finished.some((course) => course.name === code)));
+});
+
+test('failed imports preserve the saved audit and display the scraper error', async (t) => {
+  const ui = await loadPopup(t, [[{name: 'CSE 100'}], [{name: 'CSE 200'}]]);
+  const originalError = console.error;
+  console.error = () => {};
+  t.after(() => { console.error = originalError; });
+  chrome.scripting.executeScript = async () => [{result: {error: 'Audit is still loading.'}}];
+  await ui.element('#import-dars').listeners.click();
+  assert.deepEqual(ui.stored, []);
+  assert.match(ui.element('#dars-hint').textContent, /Audit is still loading/);
+  assert.equal(ui.element('#generate-schedule').disabled, false);
+  assert.equal(ui.element('#import-dars').disabled, false);
 });
 
 test('catalog failure reports an error and permits retry without opening a tab', async (t) => {

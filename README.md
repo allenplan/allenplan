@@ -15,19 +15,20 @@ Spring. The results page uses three columns on wider screens and stacks quarters
 on narrow screens.
 **Open DARS page** opens `https://myplan.uw.edu/audit/#/degree`.
 **Import** is enabled on any active page under `https://myplan.uw.edu/audit/`,
-including nested paths, query parameters, and hash routes. Temporarily, it uses
-`[temp_finished_classes, temp_requirements]` from `popup.js` and saves that sample
-under `importedDars` in `chrome.storage.local`. Replace this assignment with
-`await retrieveDARS()` and restore its import when the scraper is ready.
+including nested paths, query parameters, and hash routes. It runs `retrieveDARS()`
+against the active tab's live document through `extension/dars-import.js`, then
+saves the finished and required course lists under `importedDars` in
+`chrome.storage.local`. Wait for your DARS audit to finish loading before importing.
 The `storage` permission allows the audit to survive popup closure and browser
 restarts; opening the popup restores it into the `importedDars` variable.
 Stored courses retain their data fields, but not class methods.
-The sample import bypasses the unfinished scraper. Its temporary requirements
-are CSE 333, 421, 444, 446, 451, 452, 473, and 484, which produce a populated
-schedule using the sample completed courses. Click Import again to replace any
-previously saved sample requirements.
+Click Import again to replace any previously saved sample data with your audit.
+Scraper failures appear in the popup and preserve the previously saved audit.
 Reopen the popup after navigating to DARS. The `activeTab` permission lets the
-popup check the current URL when you click the extension icon. Settings contain
+popup access the current tab when you click the extension icon. The `scripting`
+permission runs the scraper in an isolated content-script context. The manifest
+exposes only `darsScraper.js` and its dependency `classes.js` to MyPlan so the
+injected function can import them. Settings contain
 placeholder text. Preferences are not saved when the popup closes.
 
 `extension/schedule.mjs` connects the audit to `ScheduleCalculator.planQuarters()`.
@@ -67,7 +68,7 @@ periodically be broken by new commits.
 2. Click **Load unpacked** and select the `extension/` subdirectory of this repository.
 3. Click the AllenPlan extension icon. Without a saved audit, verify
    **Generate schedule** is disabled and asks you to import DARS.
-4. Import an audit (or seed the fixture below while the scraper is unfinished),
+4. Open a loaded DARS audit and import it (or seed the development fixture below),
    then click **Generate schedule**. Verify a new browser tab displays
    **Your recommended schedule** with course codes, titles, and credits in the
    Autumn, Winter, and Spring cards.
@@ -92,8 +93,8 @@ check restoration, import, generation, and catalog failure handling.
 Also verify that all three popup tabs switch correctly, checkboxes toggle,
 Settings shows all four sections, and **Open DARS page** opens the audit URL.
 Verify Import is disabled outside MyPlan's `/audit/` section, enabled on audit
-pages (including other audit routes). Verify a successful sample import displays
-"Sample degree audit imported." and retains the result in `importedDars`.
+pages (including other audit routes). Verify a successful import displays
+"Degree audit imported." and retains the scraped result in `importedDars`.
 Close and reopen the popup and verify the saved audit is restored. A failed
 import or save should show an error and leave the previous saved audit intact.
 
