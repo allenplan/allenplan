@@ -38,9 +38,7 @@ export class CourseOffering {
     courseType; // CourseCategory
     credits_min; // number
     credits_max; // number
-    days; // string MTWTHF, maybe use enum for type safety
-    start_time; // string with format HHMM 
-    end_time; // string with format HHMM 
+    time_info; // CourseOfferingTimeInfo
 
     constructor(name, title, description, 
                 courseType, credits_range, 
@@ -49,8 +47,6 @@ export class CourseOffering {
         this.title = title.trim();
         this.description = description.trim();
         this.courseType = courseType.trim();
-        this.days = days.trim();
-        
 
         let parsed_num;
         if (credits_range === 'N/A') {
@@ -67,13 +63,7 @@ export class CourseOffering {
                 throw new Error("Invalid maximum credits. Check your formatting: " + credits_range.substring(credits_range.indexOf('-')));
             }
             this.credits_max = parsed_num;
-            if (time_range.indexOf('-') < 0) {
-                this.start_time = 'TBA';
-                this.end_time = 'TBA';
-            } else {
-                this.start_time = time_range.substring(0,time_range.indexOf('-')).trim();
-                this.end_time = time_range.substring(time_range.indexOf('-') + 1).trim();
-            }
+            this.time_info = new CourseOfferingTimeInfo(days, time_range);
         }
     }
 
@@ -92,14 +82,10 @@ export class CourseOffering {
     setCourseType(courseType) {
         this.courseType = courseType.trim();
     }
-    
-    setDays(days) {
-        this.days = days.trim();
-    }
 
     setMinCredits(min_credits) {
         let parsed_num;
-        parsed_num = parseInt(credits_range.substring(0,credits_range.indexOf('-')));
+        parsed_num = parseInt(min_credits);
         if (Number.isNaN(parsed_num)) {
             throw new Error("Invalid minimum credits. Check your formatting.");
         }
@@ -108,11 +94,42 @@ export class CourseOffering {
 
     setMaxCredits(max_credits) {
         let parsed_num;
-        parsed_num = parseInt(credits_range.substring(credits_range.indexOf('-') + 1));
+        parsed_num = parseInt(max_credits);
         if (Number.isNaN(parsed_num)) {
             throw new Error("Invalid maximum credits. Check your formatting.");
         }
         this.credits_max = parsed_num;
+    }
+}
+/**
+ * All time is represented in PST as UW is located in this time zone
+ */
+export class CourseOfferingTimeInfo {
+    days; // string MTWTHF, maybe use enum for type safety
+    start_time; // string with format HHMM 
+    end_time; // string with format HHMM 
+
+    // time range format seperates the two times with a dash (-)
+    constructor(days, time_range) {
+        if (typeof days != "string") {
+            throw new Error("days is not a string : " + days);
+        } else if (typeof time_range != "string") {
+            throw new Error("time_range is not a string : " + days);
+        }
+        if (days.trim().match("[^M^T^W^Th^F]")) {
+            throw new Error("days contains a character that is not a day : " + days);
+        }
+        this.days = days.trim();
+        if (time_range.indexOf('-') < 0) {
+            this.start_time = 'TBA';
+            this.end_time = 'TBA';
+        } else {
+            this.start_time = time_range.substring(0,time_range.indexOf('-')).trim();
+            this.end_time = time_range.substring(time_range.indexOf('-') + 1).trim();
+        }
+    }
+    setDays(days) {
+        this.days = days.trim();
     }
 
     setStartTime(start_time) {
@@ -122,11 +139,4 @@ export class CourseOffering {
     setEndTime(end_time) {
         this.start_time = end_time;
     }
-}
-
-class CSCoreElectives {
-    FourCoreHigher
-    TwoAdditionalCore
-    OneCoreOrCapstone
-
 }

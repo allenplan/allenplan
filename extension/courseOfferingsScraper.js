@@ -1,4 +1,3 @@
-import {CourseCategory} from './darsScraper.js'
 import {CourseOffering} from './classes.js'
 
 export const CourseType = Object.freeze({
@@ -7,6 +6,14 @@ export const CourseType = Object.freeze({
     SM: 'Seminar',
 });
 
+// CONSTANTS
+const courseOfferingName = 0;
+const courseOfferingTitle = 1;
+const courseOfferingDescription = 2;
+const courseOfferingType = 3;
+const courseOfferingMinMax = 4;
+const courseOfferingDays = 5;
+const courseOfferingStartEnd = 6;
 /**
  * @requires list each array has to have their text ordered like "name, title, description, 
  *                courseType, credits_range, days, time_range" for its indices.
@@ -31,13 +38,13 @@ export function retrieveOfferingsFromList(list) {
                             "Size was: " + list[i].length + " for index " + i);
         }
         let new_course_offering = 
-            new CourseOffering(list[i][0],
-                               list[i][1],
-                               list[i][2],
-                               list[i][3],
-                               list[i][4],
-                               list[i][5],
-                               list[i][6],
+            new CourseOffering(list[i][courseOfferingName],
+                               list[i][courseOfferingTitle],
+                               list[i][courseOfferingDescription],
+                               list[i][courseOfferingType],
+                               list[i][courseOfferingMinMax],
+                               list[i][courseOfferingDays],
+                               list[i][courseOfferingStartEnd],
             );
         return_list.push(new_course_offering);
     }

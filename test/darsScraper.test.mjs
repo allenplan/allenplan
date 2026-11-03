@@ -3,9 +3,9 @@ import test from 'node:test';
 import {retrieveFinishedClasses} from '../extension/darsScraper.js'
 import {Course} from '../extension/classes.js'
 
-const class1 = new Course("HSTAA 231", "W", "5");
-const class2 = new Course("CSE 391", "CSE", "1");
-const class3 = new Course("HSTAA 231", "DIV", "5");
+const class1 = new Course("HSTAA 231", ["W"], "5", "Finished course");
+const class2 = new Course("CSE 391", ["CSE"], "1", "Finished course");
+const class3 = new Course("HSTAA 231", ["DIV"], "5", "Finished course");
 test('Empty List of Finished Classes: 0 iterations', () => {
     let empty_list = [];
     let empty_input = [];
@@ -24,5 +24,6 @@ test('Two Finished Classes: 2+ iteration', () => {
 
 test('Two Finished Classes with one duplicate name (DIV and W): 2+ iterations', () => {
   let input = [["CSE 391", "CSE", "1"], ["HSTAA 231", "DIV", "5"], ["HSTAA 231", "W", "5"]];
-  assert.deepStrictEqual(retrieveFinishedClasses(input), [class2, class3, class1]);
+  const expected_merge = new Course("HSTAA 231", ["DIV", "W"], "5", "Finished course");
+  assert.deepStrictEqual(retrieveFinishedClasses(input), [class2, expected_merge]);
 });
