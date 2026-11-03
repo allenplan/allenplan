@@ -87,7 +87,8 @@ test('waits for restoration and sends calculated courses to schedule.html', asyn
   assert.equal(ui.opened.length, 1);
   const url = new URL(ui.opened[0].url);
   assert.equal(url.pathname, '/schedule.html');
-  const groups = JSON.parse(decodeURIComponent(url.hash.slice(1)));
+  const {groups, warnings} = JSON.parse(decodeURIComponent(url.hash.slice(1)));
+  assert.deepEqual(warnings, []);
   assert.deepEqual(groups[0], {
     quarter: 'Autumn',
     courses: [{code: 'CSE 200', title: 'Next course', credits: '4'}],
@@ -136,4 +137,28 @@ test('catalog failure reports an error and permits retry without opening a tab',
   assert.deepEqual(ui.opened, []);
   assert.equal(ui.element('#generate-schedule').disabled, false);
   assert.match(ui.element('#generate-hint').textContent, /Unable to generate/);
+});
+
+test('placeholder generation loads core choices and passes unresolved warnings to the page', async (t) => {
+  const ui = await loadPopup(t, [[], [
+    {name: 'CSE 4XX', notes: 'https://example.com/#core'},
+    {name: 'XXX', courseType: ['A&H'], credits: 5},
+  ]]);
+  const requests = [];
+  globalThis.fetch = async (url) => {
+    requests.push(url);
+    return {ok: true, json: async () => url.endsWith('uw_cse_core_courses.json') ?
+      [{code: 'CSE 421'}] : [
+        {code: 'CSE 401', credits_min: 4, credits_max: 4, prerequisite_courses: []},
+        {code: 'CSE 421', title: 'Algorithms', credits_min: 3, credits_max: 3,
+          prerequisite_courses: []},
+      ]};
+  };
+  await ui.element('#generate-schedule').listeners.click();
+  assert.equal(requests.length, 2);
+  const {groups, warnings} = JSON.parse(
+      decodeURIComponent(new URL(ui.opened[0].url).hash.slice(1)));
+  assert.deepEqual(groups[0].courses, [{code: 'CSE 421', title: 'Algorithms', credits: '3'}]);
+  assert.equal(warnings.length, 1);
+  assert.match(warnings[0], /A&H/);
 });

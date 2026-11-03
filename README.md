@@ -33,18 +33,33 @@ placeholder text. Preferences are not saved when the popup closes.
 
 `extension/schedule.mjs` connects the audit to `ScheduleCalculator.planQuarters()`.
 The audit must be `[finishedCourses, requiredCourses]`, where each course is a
-code string or an object with a `name` or `code` field. Required courses are
-specific course goals, not requirement categories. Finished courses satisfy
-prerequisites and are excluded from recommendations. The generator loads the
-bundled `uw_cse_courses.json` catalog and plans Autumn, Winter, and Spring with
+code string or an object with a `name` or `code` field. The scheduling adapter
+resolves specific goals and CSE level placeholders such as `CSE 3XX`, `CSE 4XX`,
+and `CSE 3XX/4XX`. Each level placeholder is one course slot, including when its
+nominal credits differ from the chosen course. Repeated slots require distinct
+courses. `XXX` with `courseType: ['CSE']` represents a credit total filled by
+upper-division CSE electives; matching credit rows are pooled. Requirements
+whose notes link to `#core` use the bundled `uw_cse_core_courses.json` choices.
+
+`extension/requirement-resolver.js` reserves exact goals first, then fills narrow
+slots before broader ones and credit totals. It greedily prefers courses needing
+fewer additional prerequisites; it does not optimize all possible combinations.
+Each course counts toward at most one remaining requirement. Finished courses
+satisfy prerequisites and are excluded from new choices because DARS already
+reports the remaining requirements. The generator loads the bundled
+`uw_cse_courses.json` catalog and plans Autumn, Winter, and Spring with
 up to three courses and 18 credits per quarter. Only courses supported by the
 calculator's CSE catalog rules can be recommended; offering availability and
 meeting-time conflicts are not checked. If no courses qualify, the results page
-shows an empty-state explanation. Generation failures show an error in the popup
-and allow retrying.
+shows an empty-state explanation. Unsupported categories (such as general
+education `XXX` requirements), unfilled slots, and goals beyond the planning
+horizon appear under **Requirements needing attention**. The available catalog
+does not encode general-education designations or all degree exceptions.
+Generation failures show an error in the popup and allow retrying.
 
 The adapter adds catalog titles and credits to the generated course codes.
-Only normalized display fields are transferred to `extension/schedule.html` through its URL fragment, so
+Normalized display fields and unresolved-requirement messages are transferred
+to `extension/schedule.html` through its URL fragment, so
 each tab keeps its own schedule when refreshed without extra permissions.
 `extension/schedule-page.js` renders course text as text, not HTML.
 
