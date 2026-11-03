@@ -12,6 +12,10 @@ function renderSchedule() {
     return;
   }
   const container = document.querySelector('#schedule-quarters');
+  const courseCount = groups.reduce((total, group) => total + group.courses.length, 0);
+  document.querySelector('#schedule-status').textContent = courseCount ?
+      `${courseCount} course${courseCount === 1 ? '' : 's'} recommended from your degree audit.` :
+      'No eligible courses found for your remaining requirements in the supported catalog.';
   container.replaceChildren();
   for (const {quarter, courses} of groups) {
     const section = document.createElement('section');

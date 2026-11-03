@@ -40,8 +40,10 @@
             <span>Schedule option 3 <small>Preference to be determined</small></span>
           </label>
         </fieldset>
-        <button id="generate-schedule" class="primary" type="button">Generate schedule
+        <button id="generate-schedule" class="primary" type="button"
+            aria-describedby="generate-hint" disabled>Generate schedule
           <span aria-hidden="true">&rarr;</span></button>
+        <p id="generate-hint" class="hint action-note" role="status">Import your DARS degree audit to generate a schedule.</p>
       </section>
       <section id="dars-panel" role="tabpanel" aria-labelledby="dars-tab"
           tabindex="0" hidden>
@@ -60,7 +62,7 @@
         <div id="dars-loading" class="card loading" role="status" tabindex="-1" hidden>
           <span class="spinner" aria-hidden="true"></span>
           <h3>Importing Degree Audit...</h3>
-          <p>Preview only. No audit data is being imported.</p>
+          <p>Please wait while your degree audit is imported.</p>
         </div>
       </section>
       <section id="settings-panel" role="tabpanel" aria-labelledby="settings-tab"
