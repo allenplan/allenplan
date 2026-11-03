@@ -44,9 +44,9 @@ export function planDarsSchedule(audit, catalog, coreCatalog = []) {
   const {desired, warnings} = resolveRequirements(
       required, completed, graph, catalog, coreCatalog);
   const plan = ScheduleCalculator.planQuarters(
-      graph, completed, QUARTERS, {
-        desired,
-        maxCourses: 3,
+      graph, finished.map(courseCode), QUARTERS, {
+        desired: required.map(courseCode),
+        maxCourses: 2,
         maxCredits: 18,
       });
   const courses = plan.flatMap(({quarter, courses}) => courses.map((code) => ({
