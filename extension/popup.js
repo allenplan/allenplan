@@ -1,14 +1,16 @@
-import {groupSchedule, isImportedDars, scheduleFromDars} from './schedule.mjs';
+import {groupSchedule, isImportedDars, planDarsSchedule} from './schedule.mjs';
 import {importDarsFromTab} from './dars-import.js';
 
 /**
  * Opens a schedule tab, adapting class instances before transferring display data.
  * @param {!Array<!Object>} classes Recommended class instances.
  * @param {function(!Object): !Object=} adapter Maps a class to display fields.
+ * @param {!Array<string>=} warnings Requirements the plan could not cover.
  * @return {!Promise<!chrome.tabs.Tab>} The newly opened schedule tab.
  */
-export function showSchedule(classes, adapter) {
-  const data = encodeURIComponent(JSON.stringify(groupSchedule(classes, adapter)));
+export function showSchedule(classes, adapter, warnings = []) {
+  const groups = groupSchedule(classes, adapter);
+  const data = encodeURIComponent(JSON.stringify({groups, warnings}));
   return chrome.tabs.create({
     url: `${chrome.runtime.getURL('schedule.html')}#${data}`,
   });
@@ -98,12 +100,14 @@ async function generateSchedule() {
   generateHint.textContent = 'Generating your schedule...';
   let status;
   try {
-    const response = await fetch(chrome.runtime.getURL('uw_cse_courses.json'));
-    if (!response.ok) {
-      throw new Error('Unable to load the course catalog.');
-    }
-    const courses = scheduleFromDars(importedDars, await response.json());
-    await showSchedule(courses);
+    const [catalog, coreCatalog] = await Promise.all(
+        ['uw_cse_courses.json', 'uw_cse_core_courses.json'].map(async (path) => {
+          const response = await fetch(chrome.runtime.getURL(path));
+          if (!response.ok) throw new Error('Unable to load the course catalog.');
+          return response.json();
+        }));
+    const {courses, warnings} = planDarsSchedule(importedDars, catalog, coreCatalog);
+    await showSchedule(courses, undefined, warnings);
     status = 'Your recommended schedule opened in a new tab.';
   } catch (error) {
     console.error('Unable to generate schedule:', error);

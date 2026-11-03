@@ -1,9 +1,14 @@
 /** Renders the normalized schedule passed by the popup in the URL fragment. */
 function renderSchedule() {
   let groups;
+  let warnings;
   try {
-    groups = JSON.parse(decodeURIComponent(window.location.hash.slice(1)));
-    if (!Array.isArray(groups)) {
+    const data = JSON.parse(decodeURIComponent(window.location.hash.slice(1)));
+    // Continue to support schedule tabs opened before warnings were introduced.
+    groups = Array.isArray(data) ? data : data.groups;
+    warnings = Array.isArray(data) ? [] : data.warnings ?? [];
+    if (!Array.isArray(groups) || !Array.isArray(warnings) ||
+        !warnings.every((warning) => typeof warning === 'string')) {
       throw new Error('Invalid schedule');
     }
   } catch {
@@ -12,6 +17,20 @@ function renderSchedule() {
     return;
   }
   const container = document.querySelector('#schedule-quarters');
+  const notice = document.querySelector('#schedule-warnings');
+  notice.replaceChildren();
+  notice.hidden = warnings.length === 0;
+  if (warnings.length) {
+    const heading = document.createElement('h3');
+    heading.textContent = 'Requirements needing attention';
+    const list = document.createElement('ul');
+    for (const warning of warnings) {
+      const item = document.createElement('li');
+      item.textContent = warning;
+      list.append(item);
+    }
+    notice.append(heading, list);
+  }
   const courseCount = groups.reduce((total, group) => total + group.courses.length, 0);
   document.querySelector('#schedule-status').textContent = courseCount ?
       `${courseCount} course${courseCount === 1 ? '' : 's'} recommended from your degree audit.` :
