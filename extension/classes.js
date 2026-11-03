@@ -1,9 +1,25 @@
+/**
+ * A Course wrapper that contains information scrapped form the DARS page.
+ * 
+ * Contains the name of the class in terms of its class code, its full name,
+ * the amount of credits it provided, what type of credits it provides with the
+ * courseType field, and the special code that signifies any additional information
+ * the class for the user's DARS.
+ * 
+ * The name field can represent a placeholder classes with these special namings:
+ * 1. CSE 4XX: this means any course within CSE that is 400 level 
+ * 2. XXX: refer to the courseType and CourseCategory 
+ *         to see what type of course this needs to be.
+ * 3. CSE 3XX/4XX: refers to any 300 or 400 level course 
+ */
+
 export class Course {
     name; // string
-    courseType; // CourseCategory
+    courseType; // CourseCategory[]
     credits; // number
+    notes; // string
 
-    constructor(name, courseType, credits) {
+    constructor(name, courseType, credits, notes) {
         this.name = name;
         this.courseType = courseType;
         let parsed_num = parseInt(credits);
@@ -11,6 +27,7 @@ export class Course {
             throw new Error("Invalid input for credits. Inputted number: " + credits);
         }
         this.credits = parsed_num;
+        this.notes = notes;
     }
 }
 
