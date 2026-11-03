@@ -85,7 +85,7 @@ export class CourseOffering {
 
     setMinCredits(min_credits) {
         let parsed_num;
-        parsed_num = parseInt(credits_range.substring(0,credits_range.indexOf('-')));
+        parsed_num = parseInt(min_credits);
         if (Number.isNaN(parsed_num)) {
             throw new Error("Invalid minimum credits. Check your formatting.");
         }
@@ -94,7 +94,7 @@ export class CourseOffering {
 
     setMaxCredits(max_credits) {
         let parsed_num;
-        parsed_num = parseInt(credits_range.substring(credits_range.indexOf('-') + 1));
+        parsed_num = parseInt(max_credits);
         if (Number.isNaN(parsed_num)) {
             throw new Error("Invalid maximum credits. Check your formatting.");
         }
