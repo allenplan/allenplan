@@ -173,7 +173,7 @@ export function CSRequirementsOrganizer(requirements) {
             try {
                 category_num = parseInt(text.charAt(text.match("[0-9] (\)").index));
             } catch (error) {
-                console.log(error);
+                console.log("CSCI-ELEC: ", error);
                 return -1;
             }
             console.log(category_num);
@@ -216,7 +216,7 @@ export function CSRequirementsOrganizer(requirements) {
             try {
                 category_num = parseInt(text.charAt(text.match("[0-9] (\)").index));
             } catch (error) {
-                console.log(error);
+                console.log("CSCICORE: ", error);
                 return -1;
             }
             switch (category_num) {
@@ -254,7 +254,7 @@ export function CSRequirementsOrganizer(requirements) {
             try {
                 credits_amt = parseInt((text.match("Needs: [0-9]+ credits")[0]).substring("Needs: ".length));
             } catch (error) {
-                console.log(error);
+                console.log("CS-MATH: ", error);
                 return -1;
             }
             while (credits_amt > 0) {
@@ -273,7 +273,7 @@ export function CSRequirementsOrganizer(requirements) {
             try {
                 credits_amt = parseInt((text.match("Needs: [0-9]+ credits")[0]).substring("Needs: ".length));
             } catch (error) {
-                console.log(error);
+                console.log("A&SSSCY: ", error);
                 return -1;
             }
             while (credits_amt > 0) {
@@ -292,7 +292,7 @@ export function CSRequirementsOrganizer(requirements) {
             try {
                 credits_amt = parseInt((text.match("Needs: [0-9]+ credits")[0]).substring("Needs: ".length));
             } catch (error) {
-                console.log(error);
+                console.log("A&SNSCY: ", error);
                 return -1;
             }
             while (credits_amt > 0) {
@@ -321,7 +321,7 @@ export function CSRequirementsOrganizer(requirements) {
             try {
                 credits_amt = parseInt((text.match("Needs: [0-9]+ credits")[0]).substring("Needs: ".length));
             } catch (error) {
-                console.log(error);
+                console.log("WRITING: ", error);
                 return -1;
             }
             while (credits_amt > 0) {
@@ -491,7 +491,7 @@ export function searchCourseType(course_div) {
     }
 }
 
-export function CourseNameIndexOf(array, target) {
+function CourseNameIndexOf(array, target) {
     for (let i = 0; i < array.length; i++) {
         if (array[i].name.match(target)) {
             return i;
