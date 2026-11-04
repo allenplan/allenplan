@@ -165,6 +165,8 @@ export function CSRequirementsOrganizer(requirements) {
     let course_list = [];
     for (let i = 0; i < requirements.length; i++) {
         const offsetParentClassList = requirements[i].offsetParent.classList;
+        console.log(offsetParentClassList);
+        console.log(requirements[i].innerText);
         if (offsetParentClassList.contains("CSCI-ELEC")) {
             let course_amt;
             let category_num;
