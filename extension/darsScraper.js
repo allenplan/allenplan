@@ -168,6 +168,7 @@ export function CSRequirementsOrganizer(requirements) {
         console.log(offsetParentClassList);
         console.log(requirements[i].innerText);
         if (offsetParentClassList.contains("CSCI-ELEC")) {
+            console.log("CSCI-ELEC");
             let course_amt;
             let category_num;
             const text = requirements[i].innerText;
@@ -215,6 +216,7 @@ export function CSRequirementsOrganizer(requirements) {
                     throw new Error("Entered CSIC ELEC and got a number subcategory that does not exist: " + category_num);
             }
         } else if (offsetParentClassList.contains("CSCICORE")) {
+            console.log("CSCI-CORE");
             let category_num;
             const text = requirements[i].innerText;
             try {
@@ -253,6 +255,7 @@ export function CSRequirementsOrganizer(requirements) {
         } else if (offsetParentClassList.contains("CSCI-NS")) {
             course_list.push(["XXX", "CS-NSc", 5, "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#cs-natural-science"]);
         } else if (offsetParentClassList.contains("A&SA&HY")) {
+            console.log("A&H");
             let credits_amt;
             const text = requirements[i].offsetParent.innerText;
             try {
@@ -272,6 +275,7 @@ export function CSRequirementsOrganizer(requirements) {
                 
             }
         } else if (offsetParentClassList.contains("A&SSSCY")) {
+            console.log("SSc");
             let credits_amt;
             const text = requirements[i].offsetParent.innerText;
             try {
@@ -291,6 +295,7 @@ export function CSRequirementsOrganizer(requirements) {
                 
             }
         } else if (offsetParentClassList.contains("A&SNSCY")) {
+            console.log("NSc");
             let credits_amt;
             const text = requirements[i].offsetParent.innerText;
             try {
@@ -320,6 +325,7 @@ export function CSRequirementsOrganizer(requirements) {
         } else if (offsetParentClassList.contains("RSN")) {
             course_list.push(["XXX", "RSN", 5, "required"]);
         } else if (offsetParentClassList.contains("WRITING")) {
+            console.log("WRITING");
             let credits_amt;
             const text = requirements[i].offsetParent.innerText;
             try {
