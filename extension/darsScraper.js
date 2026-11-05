@@ -175,6 +175,7 @@ export function CSRequirementsOrganizer(requirements) {
             try {
                 category_num = parseInt(text.charAt(text.match("[0-9] (\)").index));
             } catch (error) {
+                console.log("category_parse");
                 console.log("CSCI-ELEC: ", error);
                 return -1;
             }
@@ -186,6 +187,7 @@ export function CSRequirementsOrganizer(requirements) {
                 try {
                     course_amt = parseInt(text.charAt(temp.index));
                 } catch (error) {
+                    console.log("course_amt");
                     console.log(error);
                     return -1;
                 }
@@ -356,7 +358,11 @@ export function CSRequirementsOrganizer(requirements) {
             }
             break;
         case 2:
-            // In-progress and needs or earned and needs
+            // In-progress and needs or earned and needs, or earned and in-progress
+            if (progress_spans[1].className == "inprogress") {
+                // earned and inprogress case (already finished)
+                break;
+            }
             try {
                 AOI_needed = parseInt(progress_spans[1].lastElementChild.innerText);
             } catch (error) {
