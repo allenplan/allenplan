@@ -28,14 +28,23 @@
         <h2>Build your next quarter.</h2>
         <p class="intro">Choose what matters to you. We'll take it from here.</p>
         <fieldset>
-          <legend>Schedule preferences <span class="badge">TBD</span></legend>
-          <p class="hint">Placeholder options; final preferences are coming soon.</p>
-          <label class="option"><input type="checkbox" name="option-1">
-            <span>Schedule option 1 <small>Preference to be determined</small></span>
-          </label>
-          <label class="option"><input type="checkbox" name="option-2">
-            <span>Schedule option 2 <small>Preference to be determined</small></span>
-          </label>
+          <legend>Schedule preferences</legend>
+          <div class="preference">
+            <label for="max-cs-courses">Maximum CS classes per quarter</label>
+            <select id="max-cs-courses" name="max-cs-courses">
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3" selected>3</option>
+              <option value="4">4</option>
+            </select>
+          </div>
+          <div class="preference">
+            <label for="desired-courses">Desired courses</label>
+            <textarea id="desired-courses" name="desired-courses" rows="2"
+                placeholder="CSE 421, CSE 451" aria-describedby="desired-courses-hint"></textarea>
+            <small id="desired-courses-hint">Separate course codes with commas or new lines. These are added to your audit goals.</small>
+          </div>
           <label class="option"><input type="checkbox" name="option-3">
             <span>Schedule option 3 <small>Preference to be determined</small></span>
           </label>

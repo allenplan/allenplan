@@ -30,6 +30,7 @@ async function loadPopup(t, audit) {
     if (!elements.has(selector)) {
       elements.set(selector, {
         disabled: true, hidden: false, textContent: '', listeners: {},
+        value: selector === '#max-cs-courses' ? '3' : '',
         addEventListener(event, callback) { this.listeners[event] = callback; },
         focus() {},
       });
@@ -161,4 +162,29 @@ test('placeholder generation loads core choices and passes unresolved warnings t
   assert.deepEqual(groups[0].courses, [{code: 'CSE 421', title: 'Algorithms', credits: '3'}]);
   assert.equal(warnings.length, 1);
   assert.match(warnings[0], /A&H/);
+});
+
+test('generation uses the entered desired courses and zero course limit', async (t) => {
+  const ui = await loadPopup(t, [['CSE 100'], []]);
+  ui.element('#desired-courses').value = 'cse200, CSE 200';
+  ui.element('#max-cs-courses').value = '0';
+  await ui.element('#generate-schedule').listeners.click();
+  const empty = JSON.parse(decodeURIComponent(new URL(ui.opened[0].url).hash.slice(1)));
+  assert.ok(empty.groups.every((group) => group.courses.length === 0));
+  ui.element('#max-cs-courses').value = '1';
+  await ui.element('#generate-schedule').listeners.click();
+  const populated = JSON.parse(decodeURIComponent(new URL(ui.opened[1].url).hash.slice(1)));
+  assert.equal(populated.groups[0].courses[0].code, 'CSE 200');
+});
+
+test('invalid desired-course input explains the format without opening a schedule', async (t) => {
+  const ui = await loadPopup(t, [[], []]);
+  const originalError = console.error;
+  console.error = () => {};
+  t.after(() => { console.error = originalError; });
+  ui.element('#desired-courses').value = 'CSE 4XX';
+  await ui.element('#generate-schedule').listeners.click();
+  assert.equal(ui.opened.length, 0);
+  assert.match(ui.element('#generate-hint').textContent, /Use course codes like CSE 421/);
+  assert.equal(ui.element('#generate-schedule').disabled, false);
 });

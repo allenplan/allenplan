@@ -1,4 +1,4 @@
-import {groupSchedule, isImportedDars, planDarsSchedule} from './schedule.mjs';
+import {groupSchedule, isImportedDars, parseDesiredCourses, planDarsSchedule} from './schedule.mjs';
 import {importDarsFromTab} from './dars-import.js';
 
 /**
@@ -100,18 +100,22 @@ async function generateSchedule() {
   generateHint.textContent = 'Generating your schedule...';
   let status;
   try {
+    const options = {
+      maxCourses: Number(document.querySelector('#max-cs-courses').value),
+      desired: parseDesiredCourses(document.querySelector('#desired-courses').value),
+    };
     const [catalog, coreCatalog] = await Promise.all(
         ['uw_cse_courses.json', 'uw_cse_core_courses.json'].map(async (path) => {
           const response = await fetch(chrome.runtime.getURL(path));
           if (!response.ok) throw new Error('Unable to load the course catalog.');
           return response.json();
         }));
-    const {courses, warnings} = planDarsSchedule(importedDars, catalog, coreCatalog);
+    const {courses, warnings} = planDarsSchedule(importedDars, catalog, coreCatalog, options);
     await showSchedule(courses, undefined, warnings);
     status = 'Your recommended schedule opened in a new tab.';
   } catch (error) {
     console.error('Unable to generate schedule:', error);
-    status = 'Unable to generate your schedule. Please try again.';
+    status = `Unable to generate your schedule: ${error.message || 'Please try again.'}`;
   } finally {
     generating = false;
     updateGenerateAvailability();

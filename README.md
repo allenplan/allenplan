@@ -8,7 +8,11 @@ The Manifest V3 extension uses `manifest.json` and `icon.png`. Its popup,
 `popup.html`, has Generate Schedule, Import DARS, and Settings tabs, styled by
 `popup.css` using the [UW color palette](https://www.washington.edu/brand/brand-elements/colors/).
 `popup.js` handles tab navigation, including arrow keys, Home, and End.
-Schedule preferences are placeholders; **Generate schedule** is enabled after a
+Schedule preferences include a maximum of 0–4 CS classes per quarter (default 3)
+and a desired-course textbox. Enter course codes separated by commas or new lines,
+such as `CSE 421, CSE 451`. Desired courses supplement the audit's goals and obey
+prerequisites; completed courses are not repeated. Choosing 0 produces an empty
+CS schedule. The third preference remains a placeholder. **Generate schedule** is enabled after a
 valid DARS audit is imported or restored from storage. It displays the
 recommended schedule in a new browser tab, grouped into Autumn, Winter, and
 Spring. The results page uses three columns on wider screens and stacks quarters
@@ -48,7 +52,7 @@ Each course counts toward at most one remaining requirement. Finished courses
 satisfy prerequisites and are excluded from new choices because DARS already
 reports the remaining requirements. The generator loads the bundled
 `uw_cse_courses.json` catalog and plans Autumn, Winter, and Spring with
-up to three courses and 18 credits per quarter. Only courses supported by the
+the selected course limit and at most 18 credits per quarter. Only courses supported by the
 calculator's CSE catalog rules can be recommended; offering availability and
 meeting-time conflicts are not checked. If no courses qualify, the results page
 shows an empty-state explanation. Unsupported categories (such as general

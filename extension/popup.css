@@ -19,7 +19,7 @@ body {
   width: 420px;
 }
 
-button, input {
+button, input, select, textarea {
   font: inherit;
 }
 
@@ -154,6 +154,32 @@ legend {
   height: 16px;
   margin: 3px 0 0;
   width: 16px;
+}
+
+.preference {
+  padding: 10px 0;
+}
+
+.preference + .preference, .preference + .option {
+  border-top: 1px solid #efedf2;
+}
+
+.preference label {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.preference select, .preference textarea {
+  background: #fff;
+  border: 1px solid var(--uw-gold);
+  border-radius: 4px;
+  color: var(--ink);
+  padding: 7px 9px;
+  width: 100%;
+}
+
+.preference textarea {
+  resize: vertical;
 }
 
 small {

@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import {groupSchedule, isImportedDars, scheduleFromDars, planDarsSchedule} from '../extension/schedule.mjs';
+import {groupSchedule, isImportedDars, scheduleFromDars, planDarsSchedule, parseDesiredCourses} from '../extension/schedule.mjs';
 
 test('always includes the three quarters in academic order', () => {
   assert.deepEqual(groupSchedule([]), [
@@ -157,4 +157,33 @@ test('quarter course and credit limits still apply and deferred goals are report
     assert.equal(courses.filter((c) => c.quarter === quarter).length, 2);
   }
   assert.equal(warnings.length, 2);
+});
+
+test('desired course input normalizes, deduplicates and rejects incomplete codes', () => {
+  assert.deepEqual(parseDesiredCourses(' cse421, CSE 421;\ncse 451\nE E 469'),
+      ['CSE 421', 'CSE 451', 'E E 469']);
+  assert.deepEqual(parseDesiredCourses(''), []);
+  assert.throws(() => parseDesiredCourses('CSE 4XX'), /Invalid course/);
+});
+
+test('all dropdown limits, including zero and four, cap each quarter', () => {
+  const catalog = Array.from({length: 12}, (_, i) => entry(`CSE ${400 + i}`));
+  const required = catalog.map((course) => course.code);
+  for (let maxCourses = 0; maxCourses <= 4; maxCourses++) {
+    const {courses} = planDarsSchedule([[], required], catalog, [], {maxCourses});
+    for (const quarter of ['Autumn', 'Winter', 'Spring']) {
+      assert.equal(courses.filter((course) => course.quarter === quarter).length, maxCourses);
+    }
+  }
+});
+
+test('user desired courses supplement audit goals while retaining prerequisites', () => {
+  const {courses, warnings} = planDarsSchedule([[], ['CSE 401']], [
+    entry('CSE 301'), entry('CSE 401'), entry('CSE 402', [['CSE 301']]),
+  ], [], {maxCourses: 1, desired: ['CSE 402']});
+  assert.equal(courses.length, 3);
+  const codes = courses.map((course) => course.code);
+  assert.ok(codes.includes('CSE 401'));
+  assert.ok(codes.indexOf('CSE 301') < codes.indexOf('CSE 402'));
+  assert.deepEqual(warnings, []);
 });
