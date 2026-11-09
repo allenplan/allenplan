@@ -31,6 +31,9 @@ async function loadPopup(t, audit) {
       elements.set(selector, {
         disabled: true, hidden: false, textContent: '', listeners: {},
         value: selector === '#max-cs-courses' ? '3' : '',
+        attributes: {},
+        setAttribute(name, value) { this.attributes[name] = value; },
+        getAttribute(name) { return this.attributes[name]; },
         addEventListener(event, callback) { this.listeners[event] = callback; },
         focus() {},
       });
@@ -41,7 +44,15 @@ async function loadPopup(t, audit) {
   const stored = [];
   const fetched = [];
   const executions = [];
-  globalThis.document = {querySelector: element, querySelectorAll: () => []};
+  const tabs = ['generate', 'dars', 'settings'].map((name) => {
+    const tab = element(`#${name}-tab`);
+    tab.setAttribute('aria-controls', `${name}-panel`);
+    return tab;
+  });
+  globalThis.document = {
+    querySelector: element, querySelectorAll: () => tabs,
+    getElementById: (id) => element(`#${id}`),
+  };
   globalThis.chrome = {
     runtime: {getURL: (path) => `chrome-extension://test/${path}`},
     storage: {local: {
@@ -70,6 +81,9 @@ async function loadPopup(t, audit) {
 
 test('missing audit disables generation and prevents catalog/tab requests', async (t) => {
   const ui = await loadPopup(t, null);
+  assert.equal(ui.element('#dars-tab').getAttribute('aria-selected'), 'true');
+  assert.equal(ui.element('#dars-panel').hidden, false);
+  assert.equal(ui.element('#generate-panel').hidden, true);
   assert.equal(ui.element('#generate-schedule').disabled, true);
   await ui.element('#generate-schedule').listeners.click();
   assert.deepEqual(ui.opened, []);
@@ -83,6 +97,9 @@ test('waits for restoration and sends calculated courses to schedule.html', asyn
   assert.equal(ui.element('#generate-schedule').disabled, true);
   restore([[{name: 'CSE 100'}], [{name: 'CSE 200'}]]);
   await new Promise((resolve) => setImmediate(resolve));
+  assert.equal(ui.element('#generate-tab').getAttribute('aria-selected'), 'true');
+  assert.equal(ui.element('#generate-panel').hidden, false);
+  assert.equal(ui.element('#dars-panel').hidden, true);
   assert.equal(ui.element('#generate-schedule').disabled, false);
   await ui.element('#generate-schedule').listeners.click();
   assert.equal(ui.opened.length, 1);

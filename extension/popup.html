@@ -14,16 +14,16 @@
       <p>A little planning. A world of possibilities.</p>
     </header>
     <div class="tabs" role="tablist" aria-label="Planning tools">
-      <button id="generate-tab" type="button" role="tab" aria-selected="true"
-          aria-controls="generate-panel">Generate Schedule</button>
-      <button id="dars-tab" type="button" role="tab" aria-selected="false"
-          aria-controls="dars-panel" tabindex="-1">Import DARS</button>
+      <button id="generate-tab" type="button" role="tab" aria-selected="false"
+          aria-controls="generate-panel" tabindex="-1">Generate Schedule</button>
+      <button id="dars-tab" type="button" role="tab" aria-selected="true"
+          aria-controls="dars-panel">Import DARS</button>
       <button id="settings-tab" type="button" role="tab" aria-selected="false"
           aria-controls="settings-panel" tabindex="-1">Settings</button>
     </div>
     <main>
       <section id="generate-panel" role="tabpanel" aria-labelledby="generate-tab"
-          tabindex="0">
+          tabindex="0" hidden>
         <p class="eyebrow">01 / MAKE IT YOURS</p>
         <h2>Build your next quarter.</h2>
         <p class="intro">Choose what matters to you. We'll take it from here.</p>
@@ -55,7 +55,7 @@
         <p id="generate-hint" class="hint action-note" role="status">Import your DARS degree audit to generate a schedule.</p>
       </section>
       <section id="dars-panel" role="tabpanel" aria-labelledby="dars-tab"
-          tabindex="0" hidden>
+          tabindex="0">
         <p class="eyebrow">02 / START WITH YOUR PROGRESS</p>
         <h2>Bring your credits along.</h2>
         <p class="intro">Your degree audit will help shape your next steps.</p>

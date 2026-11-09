@@ -77,6 +77,8 @@ async function restoreDars() {
     console.error('Unable to restore saved DARS:', error);
   } finally {
     updateGenerateAvailability();
+    selectTab(document.querySelector(
+        isImportedDars(importedDars) ? '#generate-tab' : '#dars-tab'));
   }
 }
 

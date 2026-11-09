@@ -8,6 +8,8 @@ The Manifest V3 extension uses `manifest.json` and `icon.png`. Its popup,
 `popup.html`, has Generate Schedule, Import DARS, and Settings tabs, styled by
 `popup.css` using the [UW color palette](https://www.washington.edu/brand/brand-elements/colors/).
 `popup.js` handles tab navigation, including arrow keys, Home, and End.
+The popup opens on Import DARS when no valid audit is saved, or Generate Schedule
+when a valid audit is restored from storage.
 Schedule preferences include a maximum of 0–4 CS classes per quarter (default 3)
 and a desired-course textbox. Enter course codes separated by commas or new lines,
 such as `CSE 421, CSE 451`. Desired courses supplement the audit's goals and obey
