@@ -2,6 +2,7 @@
 
 > [!CAUTION]
 > DO NOT MERGE WITH MAIN
+>
 > This branch is only for testing the extension with `.html` files.
 
 AllenPlan is a browser extension that scrapes data from sites like DARS, MyPlan, and the CSE Teaching Schedule to create more informed course plans for students.
