@@ -17,8 +17,6 @@ const catalog = [
 ];
 const goals = { desired: ['CSE 300'], fundamental: new Set(), core: new Set() };
 
-// ---------- scoreEligible ----------
-
 test('ScheduleCalculator: scoreEligible() only scores eligible courses', () => {
   const graph = CourseGraph.fromCatalog(catalog);
   const scores = ScheduleCalculator.scoreEligible(graph, new Set(), goals);
