@@ -355,6 +355,9 @@ export function CSRequirementsOrganizer(requirements) {
             break;
         case 2:
             // In-progress and needs or earned and needs
+            if (progress_spans[1].className == "inprogress") {
+                break;
+            }
             try {
                 AOI_needed = parseInt(progress_spans[1].lastElementChild.innerText);
             } catch (error) {
