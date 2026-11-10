@@ -42,6 +42,7 @@ async function loadPopup(t, audit) {
   };
   const opened = [];
   const stored = [];
+  const removed = [];
   const fetched = [];
   const executions = [];
   const tabs = ['generate', 'dars', 'settings'].map((name) => {
@@ -58,6 +59,7 @@ async function loadPopup(t, audit) {
     storage: {local: {
       get: async () => ({importedDars: await audit}),
       set: async (value) => { stored.push(value); },
+      remove: async (key) => { removed.push(key); },
     }},
     scripting: {executeScript: async (options) => {
       executions.push(options);
@@ -76,7 +78,7 @@ async function loadPopup(t, audit) {
   };
   await import(`../extension/popup.js?test=${popupInstance++}`);
   await new Promise((resolve) => setImmediate(resolve));
-  return {element, opened, stored, fetched, executions};
+  return {element, opened, stored, removed, fetched, executions};
 }
 
 test('missing audit disables generation and prevents catalog/tab requests', async (t) => {
@@ -88,6 +90,32 @@ test('missing audit disables generation and prevents catalog/tab requests', asyn
   await ui.element('#generate-schedule').listeners.click();
   assert.deepEqual(ui.opened, []);
   assert.deepEqual(ui.fetched, []);
+});
+
+test('deleting the audit removes only imported data and prevents generation', async (t) => {
+  const ui = await loadPopup(t, [['CSE 100'], ['CSE 200']]);
+  await ui.element('#settings-tab').listeners.click();
+  assert.equal(ui.element('#delete-imported-data').disabled, false);
+  await ui.element('#delete-imported-data').listeners.click();
+  assert.deepEqual(ui.removed, ['importedDars']);
+  assert.equal(ui.element('#generate-schedule').disabled, true);
+  assert.equal(ui.element('#delete-imported-data').disabled, true);
+  assert.match(ui.element('#delete-data-status').textContent, /Imported data deleted/);
+  assert.equal(ui.element('#settings-panel').hidden, false);
+  await ui.element('#generate-schedule').listeners.click();
+  assert.deepEqual(ui.opened, []);
+});
+
+test('failed deletion retains the audit and permits retry', async (t) => {
+  const ui = await loadPopup(t, [['CSE 100'], ['CSE 200']]);
+  const originalError = console.error;
+  console.error = () => {};
+  t.after(() => { console.error = originalError; });
+  chrome.storage.local.remove = async () => { throw new Error('Storage unavailable'); };
+  await ui.element('#delete-imported-data').listeners.click();
+  assert.equal(ui.element('#generate-schedule').disabled, false);
+  assert.equal(ui.element('#delete-imported-data').disabled, false);
+  assert.match(ui.element('#delete-data-status').textContent, /Unable to delete/);
 });
 
 test('waits for restoration and sends calculated courses to schedule.html', async (t) => {

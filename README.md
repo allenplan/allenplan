@@ -10,6 +10,9 @@ The Manifest V3 extension uses `manifest.json` and `icon.png`. Its popup,
 `popup.js` handles tab navigation, including arrow keys, Home, and End.
 The popup opens on Import DARS when no valid audit is saved, or Generate Schedule
 when a valid audit is restored from storage.
+Use **Settings → Scraping → Delete imported data** to remove the saved audit.
+This disables generation until another audit is imported; the next popup opens
+on Import DARS. Previously opened schedule tabs keep their displayed results.
 Schedule preferences include a maximum of 0–4 CS classes per quarter (default 3)
 and a desired-course textbox. Enter course codes separated by commas or new lines,
 such as `CSE 421, CSE 451`. Desired courses supplement the audit's goals and obey

@@ -62,8 +62,11 @@ const generateButton = document.querySelector('#generate-schedule');
 const generateHint = document.querySelector('#generate-hint');
 const importButton = document.querySelector('#import-dars');
 const darsHint = document.querySelector('#dars-hint');
+const deleteDataButton = document.querySelector('#delete-imported-data');
+const deleteDataStatus = document.querySelector('#delete-data-status');
 let importing = false;
 let generating = false;
+let deleting = false;
 // In-memory copy of the DARS result persisted in chrome.storage.local.
 let importedDars = null;
 const darsReady = restoreDars();
@@ -85,7 +88,8 @@ async function restoreDars() {
 /** Enables generation only when a usable imported audit is available. */
 function updateGenerateAvailability() {
   const available = isImportedDars(importedDars);
-  generateButton.disabled = !available || importing || generating;
+  generateButton.disabled = !available || importing || generating || deleting;
+  deleteDataButton.disabled = importedDars === null || importing || generating || deleting;
   generateHint.textContent = available ?
       'Your imported degree audit is ready.' :
       'Import your DARS degree audit to generate a schedule.';
@@ -94,7 +98,7 @@ function updateGenerateAvailability() {
 /** Generates a schedule from the saved audit and opens the populated view. */
 async function generateSchedule() {
   await darsReady;
-  if (generating || importing || !isImportedDars(importedDars)) {
+  if (generating || importing || deleting || !isImportedDars(importedDars)) {
     return;
   }
   generating = true;
@@ -154,7 +158,7 @@ async function updateImportAvailability() {
     });
     const allowed = isAuditUrl(activeTab?.url) &&
         (!activeTab.pendingUrl || isAuditUrl(activeTab.pendingUrl));
-    importButton.disabled = importing || !allowed;
+    importButton.disabled = importing || deleting || !allowed;
     darsHint.textContent = allowed ?
         'Ready to import your degree audit.' :
         'Open your DARS degree audit to enable Import.';
@@ -172,7 +176,7 @@ function openDars() {
 
 /** Imports and retains the DARS result after verifying the active page. */
 async function importDars() {
-  if (importing || !await updateImportAvailability()) {
+  if (!await updateImportAvailability() || importing || deleting) {
     return;
   }
   importing = true;
@@ -187,6 +191,7 @@ async function importDars() {
     const result = await importDarsFromTab();
     await chrome.storage.local.set({importedDars: result});
     importedDars = result;
+    deleteDataStatus.textContent = '';
     status = 'Degree audit imported.';
   } catch (error) {
     console.error('Unable to import DARS:', error);
@@ -201,9 +206,32 @@ async function importDars() {
   }
 }
 
+/** Deletes the saved audit and clears the popup's in-memory copy. */
+async function deleteImportedData() {
+  await darsReady;
+  if (deleting || importing || generating || importedDars === null) return;
+  deleting = true;
+  updateGenerateAvailability();
+  importButton.disabled = true;
+  deleteDataStatus.textContent = 'Deleting imported data...';
+  try {
+    await chrome.storage.local.remove('importedDars');
+    importedDars = null;
+    deleteDataStatus.textContent = 'Imported data deleted. Import a degree audit to generate a new schedule.';
+  } catch (error) {
+    console.error('Unable to delete imported data:', error);
+    deleteDataStatus.textContent = 'Unable to delete imported data. Please try again.';
+  } finally {
+    deleting = false;
+    updateGenerateAvailability();
+    await updateImportAvailability();
+  }
+}
+
 document.querySelector('#open-dars').addEventListener('click', openDars);
 generateButton.addEventListener('click', generateSchedule);
 importButton.addEventListener('click', importDars);
+deleteDataButton.addEventListener('click', deleteImportedData);
 chrome.tabs.onUpdated.addListener(() => updateImportAvailability());
 chrome.tabs.onActivated.addListener(() => updateImportAvailability());
 updateImportAvailability();
