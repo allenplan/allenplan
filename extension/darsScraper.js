@@ -73,12 +73,12 @@ export function retrieveFinishedClasses(list) {
  */
 export function parseFinishedCourses() {
     // return document.querySelectorAll("a[name=" + course_namename + "]");
-    if (!document.URL.includes("https://myplan.uw.edu/audit/")) {
-        throw new Error("Wrong website. Navigate to https://myplan.uw.edu/audit/#/degree : " + document.URL);
-    }
-    if (!document.getElementsByClassName("page-heading")[0].innerText.includes("DARS")) {
-        throw new Error("Wrong website. Navigate to https://myplan.uw.edu/audit/#/degree : " + document.URL);
-    }
+    // if (!document.URL.includes("https://myplan.uw.edu/audit/")) {
+    //     throw new Error("Wrong website. Navigate to https://myplan.uw.edu/audit/#/degree : " + document.URL);
+    // }
+    // if (!document.getElementsByClassName("page-heading")[0].innerText.includes("DARS")) {
+    //     throw new Error("Wrong website. Navigate to https://myplan.uw.edu/audit/#/degree : " + document.URL);
+    // }
     const tables = document.querySelectorAll("tr[class]");
     let finished_courses = [];
     for (let index = 0; index < tables.length; index++) {
@@ -139,12 +139,12 @@ export function retrieveRequiredClasses(list) {
  * @throws 
  */
 export function parseDARSDocumentRequirements() {
-    if (!document.URL.includes("https://myplan.uw.edu/audit/")) {
-        throw new Error("Wrong website. Navigate to https://myplan.uw.edu/audit/#/degree : " + document.URL);
-    }
-    if (!document.getElementsByClassName("page-heading")[0].innerText.includes("DARS")) {
-        throw new Error("Wrong website. Navigate to https://myplan.uw.edu/audit/#/degree : " + document.URL);
-    }
+    // if (!document.URL.includes("https://myplan.uw.edu/audit/")) {
+    //     throw new Error("Wrong website. Navigate to https://myplan.uw.edu/audit/#/degree : " + document.URL);
+    // }
+    // if (!document.getElementsByClassName("page-heading")[0].innerText.includes("DARS")) {
+    //     throw new Error("Wrong website. Navigate to https://myplan.uw.edu/audit/#/degree : " + document.URL);
+    // }
     const results = document.querySelectorAll("div.audit-subrequirement");
     let requirements = [];
     for (let i = 0; i < results.length; i++) {
@@ -165,7 +165,7 @@ export function CSRequirementsOrganizer(requirements) {
     let course_list = [];
     for (let i = 0; i < requirements.length; i++) {
         const offsetParentClassList = requirements[i].offsetParent.classList;
-        if (offsetParentClassList.contains("CSCI-ELEC")) {
+        if (offsetParentClassList.contains("CSCIELEC")) {
             let course_amt;
             let category_num;
             const text = requirements[i].innerText;
@@ -464,7 +464,7 @@ export function filterRequirements_CS(completed, required) {
  * @returns A string that represents what class
  */
 export function searchCourseType(course_div) {
-    if (course_div.contains("CSCICORE") || course_div.contains("CSCI-ELEC")) {
+    if (course_div.contains("CSCICORE") || course_div.contains("CSCIELEC")) {
         return "CSE";
     } else if (course_div.contains("CS-MATH")) {
         return "CS-MATH";

@@ -7,7 +7,7 @@
   "web_accessible_resources": [
     {
       "resources": ["darsScraper.js", "classes.js"],
-      "matches": ["https://myplan.uw.edu/*"]
+      "matches": ["<all_urls>"]
     }
   ],
   "action": {

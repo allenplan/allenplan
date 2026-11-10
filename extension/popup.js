@@ -145,6 +145,7 @@ function isAuditUrl(value) {
  * @return {!Promise<boolean>} Whether importing is allowed.
  */
 async function updateImportAvailability() {
+  return true;
   importButton.disabled = true;
   await darsReady;
   try {

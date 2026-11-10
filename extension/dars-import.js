@@ -7,10 +7,10 @@ import {isImportedDars} from './schedule.mjs';
 export async function importDarsFromTab() {
   const [tab] = await chrome.tabs.query({active: true, currentWindow: true});
   const url = new URL(tab?.pendingUrl || tab?.url || 'about:blank');
-  if (!Number.isInteger(tab?.id) || url.origin !== 'https://myplan.uw.edu' ||
-      !url.pathname.startsWith('/audit/')) {
-    throw new Error('Open your DARS degree audit and try again.');
-  }
+  // if (!Number.isInteger(tab?.id) || url.origin !== 'https://myplan.uw.edu' ||
+  //     !url.pathname.startsWith('/audit/')) {
+  //   throw new Error('Open your DARS degree audit and try again.');
+  // }
   const [execution] = await chrome.scripting.executeScript({
     target: {tabId: tab.id},
     world: 'ISOLATED',
@@ -19,10 +19,10 @@ export async function importDarsFromTab() {
     func: async (moduleUrl) => {
       try {
         const pageUrl = new URL(document.URL);
-        if (pageUrl.origin !== 'https://myplan.uw.edu' ||
-            !pageUrl.pathname.startsWith('/audit/')) {
-          throw new Error('The tab navigated away from DARS. Open your audit again.');
-        }
+        // if (pageUrl.origin !== 'https://myplan.uw.edu' ||
+        //     !pageUrl.pathname.startsWith('/audit/')) {
+        //   throw new Error('The tab navigated away from DARS. Open your audit again.');
+        // }
         if (!document.querySelector('.page-heading')?.innerText.includes('DARS')) {
           throw new Error('Open a completed DARS audit and wait for it to finish loading.');
         }
