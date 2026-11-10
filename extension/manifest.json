@@ -4,6 +4,11 @@
   "version": "1.0",
   "manifest_version": 3,
   "permissions": ["activeTab", "storage", "scripting"],
+  "host_permissions": [
+    "<all_urls>",
+    "mhtml://*/*",
+    "file:///*"
+  ],
   "web_accessible_resources": [
     {
       "resources": ["darsScraper.js", "classes.js"],
