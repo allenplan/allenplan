@@ -1,4 +1,5 @@
-import {groupSchedule, isImportedDars, parseDesiredCourses, planDarsSchedule} from './schedule.mjs';
+import {groupSchedule, isImportedDars, parseDesiredCourses} from './schedule.mjs';
+import {generateFromAudit} from './schedule-generation.js';
 import {importDarsFromTab} from './dars-import.js';
 
 /**
@@ -6,11 +7,12 @@ import {importDarsFromTab} from './dars-import.js';
  * @param {!Array<!Object>} classes Recommended class instances.
  * @param {function(!Object): !Object=} adapter Maps a class to display fields.
  * @param {!Array<string>=} warnings Requirements the plan could not cover.
+ * @param {!Object=} options Preferences to restore on the results page.
  * @return {!Promise<!chrome.tabs.Tab>} The newly opened schedule tab.
  */
-export function showSchedule(classes, adapter, warnings = []) {
+export function showSchedule(classes, adapter, warnings = [], options = {}) {
   const groups = groupSchedule(classes, adapter);
-  const data = encodeURIComponent(JSON.stringify({groups, warnings}));
+  const data = encodeURIComponent(JSON.stringify({groups, warnings, options}));
   return chrome.tabs.create({
     url: `${chrome.runtime.getURL('schedule.html')}#${data}`,
   });
@@ -114,14 +116,8 @@ async function generateSchedule() {
       maxCourses: Number(document.querySelector('#max-cs-courses').value),
       desired: parseDesiredCourses(document.querySelector('#desired-courses').value),
     };
-    const [catalog, coreCatalog] = await Promise.all(
-        ['uw_cse_courses.json', 'uw_cse_core_courses.json'].map(async (path) => {
-          const response = await fetch(chrome.runtime.getURL(path));
-          if (!response.ok) throw new Error('Unable to load the course catalog.');
-          return response.json();
-        }));
-    const {courses, warnings} = planDarsSchedule(importedDars, catalog, coreCatalog, options);
-    await showSchedule(courses, undefined, warnings);
+    const {courses, warnings} = await generateFromAudit(importedDars, options);
+    await showSchedule(courses, undefined, warnings, options);
     status = 'Your recommended schedule opened in a new tab.';
   } catch (error) {
     console.error('Unable to generate schedule:', error);

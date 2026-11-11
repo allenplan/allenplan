@@ -20,8 +20,14 @@ prerequisites; completed courses are not repeated. Choosing 0 produces an empty
 CS schedule. The third preference remains a placeholder. **Generate schedule** is enabled after a
 valid DARS audit is imported or restored from storage. It displays the
 recommended schedule in a new browser tab, grouped into Autumn, Winter, and
-Spring. The results page uses three columns on wider screens and stacks quarters
-on narrow screens.
+Spring. On wider screens, the results page places compact generation controls
+on the left and the three quarter cards on the right. Requirements needing
+attention span the width below both sections. Narrow screens stack the sections
+and, on phones, the quarter cards.
+The results page also includes the same schedule preferences and Generate schedule
+button. It restores the preferences used in the popup, reads the saved audit, and
+regenerates in the current tab. Results and preferences survive page refreshes.
+Deleting the saved audit disables regeneration until an audit is imported again.
 **Open DARS page** opens `https://myplan.uw.edu/audit/#/degree`.
 **Import** is enabled on any active page under `https://myplan.uw.edu/audit/`,
 including nested paths, query parameters, and hash routes. It runs `retrieveDARS()`

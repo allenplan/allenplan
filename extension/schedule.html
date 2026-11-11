@@ -15,12 +15,44 @@
       <p>A little planning. A world of possibilities.</p>
     </header>
     <main>
-      <h2>Your recommended schedule</h2>
-      <p class="intro">Your course plan for Autumn, Winter, and Spring, based on your imported degree audit.</p>
-      <p class="hint">Plans respect your selected course limit and an 18-credit maximum per quarter. Recommendations cover eligible CSE courses in the catalog; quarter availability and meeting times are not checked.</p>
-      <p id="schedule-status" role="status"></p>
+      <section class="schedule-controls" aria-label="Generate another schedule">
+        <h2>Build your next quarter.</h2>
+        <p class="intro">Adjust your preferences and generate another schedule.</p>
+        <fieldset>
+          <legend>Schedule preferences</legend>
+          <div class="preference">
+            <label for="max-cs-courses">Maximum CS classes per quarter</label>
+            <select id="max-cs-courses" name="max-cs-courses">
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3" selected>3</option>
+              <option value="4">4</option>
+            </select>
+          </div>
+          <div class="preference">
+            <label for="desired-courses">Desired courses (Optional)</label>
+            <textarea id="desired-courses" name="desired-courses" rows="2"
+                placeholder="CSE 421, CSE 451" aria-describedby="desired-courses-hint"></textarea>
+            <small id="desired-courses-hint">Separate course codes with commas or new lines. These are added to your audit goals.</small>
+          </div>
+          <label class="option"><input type="checkbox" name="option-3">
+            <span>Schedule option 3 <small>Preference to be determined</small></span>
+          </label>
+        </fieldset>
+        <button id="generate-schedule" class="primary" type="button"
+            aria-describedby="generate-hint" disabled>Generate schedule
+          <span aria-hidden="true">&rarr;</span></button>
+        <p id="generate-hint" class="hint action-note" role="status">Import your DARS degree audit to generate a schedule.</p>
+      </section>
+      <section class="schedule-results" aria-labelledby="schedule-heading">
+        <h2 id="schedule-heading">Your recommended schedule</h2>
+        <p class="intro">Your course plan for Autumn, Winter, and Spring, based on your imported degree audit.</p>
+        <p class="hint">Plans respect your selected course limit and an 18-credit maximum per quarter. Recommendations cover eligible CSE courses in the catalog; quarter availability and meeting times are not checked.</p>
+        <p id="schedule-status" role="status"></p>
+        <div id="schedule-quarters"></div>
+      </section>
       <section id="schedule-warnings" class="card" hidden></section>
-      <div id="schedule-quarters"></div>
     </main>
     <footer>AllenPlan <span>Made for your next chapter.</span></footer>
   </body>
