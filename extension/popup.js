@@ -64,6 +64,10 @@ const importButton = document.querySelector('#import-dars');
 const darsHint = document.querySelector('#dars-hint');
 const deleteDataButton = document.querySelector('#delete-imported-data');
 const deleteDataStatus = document.querySelector('#delete-data-status');
+const importSuccess = document.querySelector('#import-success');
+importSuccess.addEventListener('animationend', (event) => {
+  if (event.target === importSuccess) importSuccess.hidden = true;
+});
 let importing = false;
 let generating = false;
 let deleting = false;
@@ -180,12 +184,10 @@ async function importDars() {
     return;
   }
   importing = true;
+  importSuccess.hidden = true;
   updateGenerateAvailability();
   importButton.disabled = true;
-  document.querySelector('#dars-controls').hidden = true;
-  const loading = document.querySelector('#dars-loading');
-  loading.hidden = false;
-  loading.focus();
+  darsHint.textContent = 'Importing your degree audit...';
   let status;
   try {
     const result = await importDarsFromTab();
@@ -193,14 +195,13 @@ async function importDars() {
     importedDars = result;
     deleteDataStatus.textContent = '';
     status = 'Degree audit imported.';
+    importSuccess.hidden = false;
   } catch (error) {
     console.error('Unable to import DARS:', error);
     status = `Unable to import your degree audit: ${error.message || 'Please try again.'}`;
   } finally {
     importing = false;
     updateGenerateAvailability();
-    loading.hidden = true;
-    document.querySelector('#dars-controls').hidden = false;
     await updateImportAvailability();
     darsHint.textContent = status;
   }

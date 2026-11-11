@@ -68,11 +68,6 @@
               aria-describedby="dars-hint" disabled>Import</button>
           <p id="dars-hint" class="hint action-note" role="status">Open your DARS degree audit to enable Import.</p>
         </div>
-        <div id="dars-loading" class="card loading" role="status" tabindex="-1" hidden>
-          <span class="spinner" aria-hidden="true"></span>
-          <h3>Importing Degree Audit...</h3>
-          <p>Please wait while your degree audit is imported.</p>
-        </div>
       </section>
       <section id="settings-panel" role="tabpanel" aria-labelledby="settings-tab"
           tabindex="0" hidden>
@@ -97,6 +92,10 @@
       </section>
     </main>
     <footer>AllenPlan <span>Made for your next chapter.</span></footer>
+    <div id="import-success" class="import-success" role="status"
+        aria-live="polite" hidden>
+      <strong>Import Success!</strong>
+    </div>
   </body>
 </html>
 

@@ -155,6 +155,10 @@ test('webpage import saves scraped courses and enables generation', async (t) =>
     importedDars: [[{name: 'CSE 100'}], [{name: 'CSE 200'}]],
   }]);
   assert.equal(ui.element('#dars-hint').textContent, 'Degree audit imported.');
+  const success = ui.element('#import-success');
+  assert.equal(success.hidden, false);
+  success.listeners.animationend({target: success});
+  assert.equal(success.hidden, true);
   assert.equal(ui.element('#generate-schedule').disabled, false);
   await ui.element('#generate-schedule').listeners.click();
   assert.equal(ui.opened.length, 1);
@@ -169,6 +173,7 @@ test('failed imports preserve the saved audit and display the scraper error', as
   await ui.element('#import-dars').listeners.click();
   assert.deepEqual(ui.stored, []);
   assert.match(ui.element('#dars-hint').textContent, /Audit is still loading/);
+  assert.equal(ui.element('#import-success').hidden, true);
   assert.equal(ui.element('#generate-schedule').disabled, false);
   assert.equal(ui.element('#import-dars').disabled, false);
 });

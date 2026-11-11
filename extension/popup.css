@@ -285,30 +285,47 @@ footer span {
   color: var(--muted);
 }
 
-.loading {
-  padding: 40px 16px;
+.import-success:not([hidden]) {
+  align-items: center;
+  animation: import-success-flash 1.6s ease-out both;
+  background: var(--uw-purple);
+  color: #fff;
+  display: grid;
+  inset: 0;
+  padding: 24px;
+  pointer-events: none;
+  position: fixed;
   text-align: center;
+  z-index: 10;
 }
 
-.spinner {
-  animation: spin 1s linear infinite;
-  border: 3px solid var(--uw-web-gold);
-  border-radius: 50%;
-  border-top-color: var(--uw-purple);
-  display: inline-block;
-  height: 32px;
-  margin-bottom: 18px;
-  width: 32px;
+.import-success strong {
+  animation: import-success-pop .35s ease-out both;
+  font-size: 46px;
+  line-height: 1.15;
+  text-shadow: 0 3px 12px #0004;
 }
 
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+@keyframes import-success-flash {
+  0%, 100% { opacity: 0; }
+  15%, 75% { opacity: .97; }
+}
+
+@keyframes import-success-pop {
+  from { transform: scale(.75); }
+  to { transform: scale(1); }
+}
+
+@keyframes import-success-still {
+  from, to { opacity: 1; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .spinner {
+  .import-success:not([hidden]) {
+    animation-name: import-success-still;
+  }
+
+  .import-success strong {
     animation: none;
   }
 }
