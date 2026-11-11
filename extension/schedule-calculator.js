@@ -171,9 +171,14 @@ export class ScheduleCalculator {
     const done = new Set(completed);
     const credits = (code) => graph.getCourse(code)?.credits ?? 0;
 
-    return quarters.map((quarter) => {
+    return quarters.map((quarter, i) => {
       const scores = ScheduleCalculator.scoreEligible(graph, done, { desired, fundamental, core });
-      const { courses } = ScheduleCalculator.bestSchedule(scores, { maxCourses, maxCredits, credits, conflicts, includeZeroScore: false });
+      // Spread the remaining goals and their prerequisites evenly over the quarters left
+      const memo = new Map();
+      const remaining = new Set();
+      desired.forEach((target) => graph.requiredFor(target, done, memo).courses.forEach((c) => remaining.add(c)));
+      const cap = Math.min(maxCourses, Math.ceil(remaining.size / (quarters.length - i)));
+      const { courses } = ScheduleCalculator.bestSchedule(scores, { maxCourses: cap, maxCredits, credits, conflicts, includeZeroScore: false });
       // Mark courses taken in previous quarter as complete
       courses.forEach((c) => done.add(c));
       return { quarter, courses, credits: courses.reduce((sum, c) => sum + credits(c), 0) };

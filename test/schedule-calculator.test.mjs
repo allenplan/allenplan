@@ -89,3 +89,11 @@ test('ScheduleCalculator: planQuarters() does not repeat courses', () => {
   assert.ok(!all.includes('CSE 100'));
   assert.equal(new Set(all).size, all.length);
 });
+test('ScheduleCalculator: planQuarters() spreads goals evenly over the quarters', () => {
+  const codes = ['CSE 401', 'CSE 402', 'CSE 403', 'CSE 404', 'CSE 405', 'CSE 406'];
+  const graph = CourseGraph.fromCatalog(codes.map((code) => entry(code)));
+  const plan = ScheduleCalculator.planQuarters(graph, [], ['Q1', 'Q2', 'Q3'], {
+    desired: codes, fundamental: new Set(), core: new Set(), maxCourses: 3,
+  });
+  assert.deepStrictEqual(plan.map((q) => q.courses.length), [2, 2, 2]);
+});

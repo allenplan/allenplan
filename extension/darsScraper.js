@@ -174,7 +174,7 @@ export function CSRequirementsOrganizer(requirements) {
                 category_num = parseInt(text.charAt(text.match("[0-9] (\)").index));
             } catch (error) {
                 console.log(error);
-                return -1;
+                continue;
             }
             console.log(category_num);
             const temp = text.match("[0-9] (\)");
@@ -185,7 +185,7 @@ export function CSRequirementsOrganizer(requirements) {
                     course_amt = parseInt(text.charAt(temp.index));
                 } catch (error) {
                     console.log(error);
-                    return -1;
+                    continue;
                 }
             }
             // TODO: make it so that it adds classes on a case by case basis
@@ -217,7 +217,7 @@ export function CSRequirementsOrganizer(requirements) {
                 category_num = parseInt(text.charAt(text.match("[0-9] (\)").index));
             } catch (error) {
                 console.log(error);
-                return -1;
+                continue;
             }
             switch (category_num) {
                 case 1:
@@ -255,7 +255,7 @@ export function CSRequirementsOrganizer(requirements) {
                 credits_amt = parseInt((text.match("Needs: [0-9]+ credits")[0]).substring("Needs: ".length));
             } catch (error) {
                 console.log(error);
-                return -1;
+                continue;
             }
             while (credits_amt > 0) {
                 if (credits_amt < 5) {
@@ -274,7 +274,7 @@ export function CSRequirementsOrganizer(requirements) {
                 credits_amt = parseInt((text.match("Needs: [0-9]+ credits")[0]).substring("Needs: ".length));
             } catch (error) {
                 console.log(error);
-                return -1;
+                continue;
             }
             while (credits_amt > 0) {
                 if (credits_amt < 5) {
@@ -293,7 +293,7 @@ export function CSRequirementsOrganizer(requirements) {
                 credits_amt = parseInt((text.match("Needs: [0-9]+ credits")[0]).substring("Needs: ".length));
             } catch (error) {
                 console.log(error);
-                return -1;
+                continue;
             }
             while (credits_amt > 0) {
                 if (credits_amt < 5) {
@@ -322,7 +322,7 @@ export function CSRequirementsOrganizer(requirements) {
                 credits_amt = parseInt((text.match("Needs: [0-9]+ credits")[0]).substring("Needs: ".length));
             } catch (error) {
                 console.log(error);
-                return -1;
+                continue;
             }
             while (credits_amt > 0) {
                 if (credits_amt < 5) {
@@ -337,7 +337,7 @@ export function CSRequirementsOrganizer(requirements) {
         } else if (offsetParentClassList.contains("DIVERSITY")) {
             course_list.push(["XXX", "DIV", 5, "required"]);
         } else {
-            return -1;
+            continue;
         }
     }
     // Areas of Inquiry, minimum 75 calculation
@@ -407,56 +407,12 @@ export function CSRequirementsOrganizer(requirements) {
 }
 
 export function filterRequirements_CS(completed, required) {
-    let completed_copy = Array.from(completed);
-    let new_required = [];
-    for (let i = 0; i < required.length; i++) {
-        const index = -1;
-        switch (required[i].name) {
-            case "MATH 124":
-                index = CourseNameIndexOf(completed, "MATH 124|134");
-                if (index != -1) {
-                    break;
-                }
-            case "MATH 125":
-                index = CourseNameIndexOf(completed, "MATH 125|135");
-                if (index != -1) {
-                    break;
-                }
-            case "MATH 126":
-                index = CourseNameIndexOf(completed, "MATH 126|136");
-                if (index != -1) {
-                    break;
-                }
-            case "MATH 208":
-                index = CourseNameIndexOf(completed, "MATH 208|136");
-                if (index != -1) {
-                    break;
-                }
-            case "CSE 311":
-                index = CourseNameIndexOf(completed, "CSE 311");
-                if (index != -1) {
-                    break;
-                }
-            case "CSE 312":
-                index = CourseNameIndexOf(completed, "CSE 312");
-                if (index != -1) {
-                    break;
-                }
-            case "CSE 331":
-                index = CourseNameIndexOf(completed, "CSE 331");
-                if (index != -1) {
-                    break;
-                }
-            case "CSE 332":
-                index = CourseNameIndexOf(completed, "CSE 332");
-                if (index != -1) {
-                    break;
-                }
-            default:
-                new_required.push(required[i]);
-        }
-    }
-    return new_required;
+    // Alternative courses that also satisfy a requirement
+    const alternatives = {"MATH 124": "MATH 134", "MATH 125": "MATH 135",
+                          "MATH 126": "MATH 136", "MATH 208": "MATH 136"};
+    const done = new Set(completed.map((course) => course.name.trim()));
+    return required.filter((course) =>
+        !done.has(course.name) && !done.has(alternatives[course.name]));
 }
 /**
  * Given a class list, returns what type of course the div contains
