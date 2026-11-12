@@ -25,6 +25,14 @@ periodically be broken by new commits.
 1. Open `chrome://extensions` in Chrome and enable **Developer mode**.
 2. Click **Load unpacked** and select the `extension/` subdirectory of this repository.
 
+### Firefox
+
+1. Navigate to `about:debugging` > This Firefox
+2. Click "Load Temporary Add-on" and select the `extension/manifest.json` file from this repository.
+
+To update the extension after making changes, return to This Firefox and click the Reload button under
+Temporary Extensions > AllenPlan.
+
 ### Safari
 
 1. Enable developer mode via `Safari > Settings > Advanced > Show features for web developers`.
