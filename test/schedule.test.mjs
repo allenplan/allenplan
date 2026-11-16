@@ -139,13 +139,13 @@ test('placeholder goals schedule prerequisite chains in earlier quarters', () =>
   assert.deepEqual(warnings, []);
 });
 
-test('rejects blocked choices and reports unsupported categories and exhausted slots', () => {
+test('rejects blocked choices, schedules gen-ed templates, and reports exhausted slots', () => {
   const {courses, warnings} = planDarsSchedule([[], [
     'CSE 4XX', 'CSE 4XX', {name: 'XXX', courseType: ['A&H'], credits: 5},
   ]], [entry('CSE 401', [['MATH 999']]), entry('CSE 402')]);
-  assert.deepEqual(courses.map((c) => c.code), ['CSE 402']);
-  assert.equal(warnings.length, 2);
-  assert.ok(warnings.some((warning) => warning.includes('A&H')));
+  assert.deepEqual(courses.filter((c) => !c.isPlaceholder).map((c) => c.code), ['CSE 402']);
+  assert.equal(courses.find((c) => c.isPlaceholder).title, 'Arts & Humanities placeholder');
+  assert.equal(warnings.length, 1);
   assert.ok(warnings.some((warning) => warning.includes('remaining course slot')));
 });
 
@@ -186,4 +186,29 @@ test('user desired courses supplement audit goals while retaining prerequisites'
   assert.ok(codes.includes('CSE 401'));
   assert.ok(codes.indexOf('CSE 301') < codes.indexOf('CSE 402'));
   assert.deepEqual(warnings, []);
+});
+
+test('gen-ed-only plans retain template labels, types and partial credits through serialization', () => {
+  const audit = [[{name: 'ENGL 111', courseType: ['W'], credits: 5}], [
+    {name: 'XXX', courseType: ['W'], credits: 7},
+    {name: 'XXX', courseType: ['A&H', 'SSc'], credits: 2},
+  ]];
+  const before = structuredClone(audit);
+  const {courses, warnings} = planDarsSchedule(audit, [], [], {maxCourses: 0});
+  assert.equal(courses.reduce((sum, course) => sum + course.credits, 0), 9);
+  assert.ok(courses.every((course) => course.isPlaceholder));
+  assert.ok(courses.some((course) => course.credits === 2));
+  const groups = JSON.parse(JSON.stringify(groupSchedule(courses)));
+  assert.ok(groups[0].courses.some((course) => course.type === 'A&H/SSC'));
+  assert.ok(groups[0].courses.some((course) => course.title === 'Writing placeholder'));
+  assert.deepEqual(warnings, []);
+  assert.deepEqual(audit, before);
+});
+
+test('gen-ed credits beyond the planning horizon remain visible as warnings', () => {
+  const {courses, warnings} = planDarsSchedule([[], [
+    {name: 'XXX', courseType: ['W'], credits: 100},
+  ]], [], [], {maxCourses: 0});
+  assert.equal(courses.reduce((sum, course) => sum + course.credits, 0), 45);
+  assert.ok(warnings.some((warning) => warning.includes('55 gen-ed credits')));
 });

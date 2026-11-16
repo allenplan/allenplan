@@ -68,6 +68,19 @@ test('results page restores preferences, regenerates in place, and tracks audit 
   assert.ok(saved.groups.every((group) => group.courses.length === 0));
   assert.equal(saved.options.maxCourses, 0);
 
+  audit = [[], [{name: 'XXX', courseType: ['W'], credits: 2}]];
+  element('#desired-courses').value = '';
+  await element('#generate-schedule').listeners.click();
+  saved = JSON.parse(decodeURIComponent(window.location.hash.slice(1)));
+  assert.equal(saved.groups[0].courses[0].isPlaceholder, true);
+  assert.equal(saved.groups[0].courses[0].credits, '2');
+  const template = element('#schedule-quarters').children[0].children[1].children[0];
+  assert.equal(template.className, 'gen-ed-template');
+  assert.equal(template.children[0].textContent, 'Writing placeholder');
+  assert.match(template.children[1].textContent, /Choose a course/);
+  assert.equal(template.children[2].textContent, '2 credits');
+  assert.match(element('#schedule-status').textContent, /Includes 1 gen-ed template/);
+
   audit = null;
   onStorageChange({importedDars: {newValue: null}}, 'local');
   assert.equal(element('#generate-schedule').disabled, true);

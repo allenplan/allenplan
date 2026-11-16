@@ -1,5 +1,5 @@
 import {CourseGraph} from './course-graph.js';
-import {ScheduleCalculator} from './schedule-calculator.js';
+import {ScheduleCalculator, splitGenEdRequirements} from './schedule-calculator.js';
 import {courseCode, resolveRequirements} from './requirement-resolver.js';
 
 const QUARTERS = ['Autumn', 'Winter', 'Spring'];
@@ -64,8 +64,10 @@ export function planDarsSchedule(audit, catalog, coreCatalog = [], options = {})
   const graph = CourseGraph.fromCatalog(catalog);
   const entries = new Map(catalog.map((entry) => [entry.code, entry]));
   const completed = new Set(finished.map(courseCode));
+  const {resolverRequirements, genEds, warnings: genEdWarnings} = splitGenEdRequirements(required);
   const {desired, warnings} = resolveRequirements(
-      required, completed, graph, catalog, coreCatalog);
+      resolverRequirements, completed, graph, catalog, coreCatalog);
+  warnings.push(...genEdWarnings);
   for (const code of parseDesiredCourses(requested.join(','))) {
     if (completed.has(code) || desired.includes(code)) continue;
     if (graph.getCourse(code)?.schedulable) {
@@ -79,13 +81,28 @@ export function planDarsSchedule(audit, catalog, coreCatalog = [], options = {})
         desired,
         maxCourses,
         maxCredits: 18,
+        remainingGenEds: genEds,
       });
-  const courses = plan.flatMap(({quarter, courses}) => courses.map((code) => ({
-    quarter,
-    code,
-    title: entries.get(code)?.title ?? '',
-    credits: graph.getCourse(code).credits,
-  })));
+  const courses = plan.flatMap(({quarter, courses, placeholders = []}) => [
+    ...courses.map((code) => ({
+      quarter, code, title: entries.get(code)?.title ?? '',
+      credits: graph.getCourse(code).credits,
+    })),
+    ...placeholders.map(({type, label, credits}) => ({
+      quarter, code: '', title: label, credits, type, isPlaceholder: true,
+    })),
+  ]);
+  const remaining = new Map();
+  for (const row of genEds) {
+    const type = row.courseType.join('/');
+    remaining.set(type, (remaining.get(type) ?? 0) + row.credits);
+  }
+  for (const course of courses.filter((course) => course.isPlaceholder)) {
+    remaining.set(course.type, remaining.get(course.type) - course.credits);
+  }
+  for (const [type, credits] of remaining) {
+    if (credits > 0) warnings.push(`${type}: ${credits} gen-ed credits could not fit into the three-quarter plan.`);
+  }
   const scheduled = new Set(courses.map((course) => course.code));
   for (const code of desired) {
     if (!scheduled.has(code)) {
@@ -106,6 +123,7 @@ export function adaptCourse(course) {
     code: course.code,
     title: course.title ?? course.name,
     credits: course.credits,
+    ...(course.isPlaceholder ? {isPlaceholder: true, type: course.type} : {}),
   };
 }
 
@@ -128,6 +146,9 @@ export function groupSchedule(classes, adapter = adaptCourse) {
       code: String(display.code ?? '').trim(),
       title: String(display.title ?? '').trim(),
       credits: String(display.credits ?? '').trim(),
+      ...(display.isPlaceholder ? {
+        isPlaceholder: true, type: String(display.type ?? '').trim(),
+      } : {}),
     });
   }
   return unassigned.courses.length ? [...groups, unassigned] : groups;
