@@ -59,6 +59,13 @@ h2 {
   padding: 12px;
 }
 
+.quarter .gen-ed-template {
+  background: var(--uw-web-gold);
+  border-left: 3px dashed var(--uw-spirit-purple);
+  margin-top: 8px;
+  padding: 8px;
+}
+
 #schedule-warnings {
   grid-column: 1 / -1;
   margin-bottom: 0;

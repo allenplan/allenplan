@@ -1,7 +1,9 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import fs from 'node:fs/promises';
 import { CourseGraph } from '../extension/course-graph.js';
-import { ScheduleCalculator } from '../extension/schedule-calculator.js';
+import { ScheduleCalculator, splitGenEdRequirements } from '../extension/schedule-calculator.js';
+import { resolveRequirements } from '../extension/requirement-resolver.js';
 
 /** Catalog entry in the same shape as uw_cse_courses.json. */
 function entry(code, prerequisite_courses = [], credits = 4) {
@@ -86,4 +88,99 @@ test('ScheduleCalculator: planQuarters() does not repeat courses', () => {
   const all = plan.flatMap((q) => q.courses);
   assert.ok(!all.includes('CSE 100'));
   assert.equal(new Set(all).size, all.length);
+});
+
+test('ScheduleCalculator: splitGenEdRequirements() does not modify the requirements it is given', () => {
+  const requirements = ['CSE 403', { name: 'XXX', courseType: ['A&H', 'SSc'], credits: 10 }];
+  const copy = structuredClone(requirements);
+  splitGenEdRequirements(requirements);
+  assert.deepStrictEqual(requirements, copy);
+});
+
+test('ScheduleCalculator: planQuarters() does not use up the remainingGenEds rows, so the same rows can plan again', () => {
+  const graph = CourseGraph.fromCatalog(catalog);
+  const remainingGenEds = [{ courseType: ['W'], credits: 10 }];
+  const options = { ...goals, remainingGenEds, maxTotalCourses: 2 };
+  const first = ScheduleCalculator.planQuarters(graph, [], ['Q1', 'Q2', 'Q3'], options);
+  const second = ScheduleCalculator.planQuarters(graph, [], ['Q1', 'Q2', 'Q3'], options);
+  assert.deepStrictEqual(second, first);
+  assert.deepStrictEqual(remainingGenEds, [{ courseType: ['W'], credits: 10 }]);
+});
+
+test('ScheduleCalculator: planQuarters() adds no placeholders when the CSE courses already fill the credit limit', () => {
+  const graph = CourseGraph.fromCatalog(catalog);
+  const [first] = ScheduleCalculator.planQuarters(graph, [], ['Q1'], {
+    ...goals,
+    remainingGenEds: [{ courseType: ['W'], credits: 10 }],
+    maxTotalCredits: 4, // CSE 100 is 4 credits, so nothing is left
+  });
+  assert.deepStrictEqual(first.courses, ['CSE 100']);
+  assert.deepStrictEqual(first.placeholders, []);
+});
+
+test('ScheduleCalculator: rows the splitter keeps still get the resolver\'s own warnings', async () => {
+  const realCatalog = JSON.parse(await fs.readFile('./extension/uw_cse_courses.json', 'utf8'));
+  const graph = CourseGraph.fromCatalog(realCatalog);
+  const { resolverRequirements } = splitGenEdRequirements([
+    { name: 'XXX', courseType: 'W', credits: 10 }, // handled by placeholders, so no warning
+    'ENGL 131', // a specific non-CSE course is not in the planning catalog
+  ]);
+  const { warnings } = resolveRequirements(resolverRequirements, new Set(), graph, realCatalog, []);
+  assert.deepStrictEqual(warnings, ['ENGL 131: this course is not supported by the planning catalog.']);
+});
+
+test('ScheduleCalculator: planQuarters() adds placeholders for remainingGenEds', () => {
+  const graph = CourseGraph.fromCatalog(catalog);
+  const [first] = ScheduleCalculator.planQuarters(graph, [], ['Q1'], {
+    ...goals,
+    remainingGenEds: [{ courseType: ['W'], credits: 10 }],
+  });
+  assert.deepStrictEqual(first.courses, ['CSE 100']);
+  assert.ok(first.placeholders.length > 0);
+  assert.deepStrictEqual(first.placeholders[0], { type: 'W', label: 'Writing placeholder', credits: 5 });
+  assert.equal(first.totalCourses, first.courses.length + first.placeholders.length);
+  assert.equal(first.totalCredits, first.credits + 5 * first.placeholders.length);
+});
+
+test('ScheduleCalculator: planQuarters() adds placeholders for takenGenEds using the default requirements', () => {
+  const graph = CourseGraph.fromCatalog(catalog);
+  // Nothing taken, so every requirement is still needed. CSE 100 (4 cr) leaves room for two 5-credit
+  // placeholders under the default 18-credit limit.
+  const [first] = ScheduleCalculator.planQuarters(graph, [], ['Q1'], { ...goals, takenGenEds: [] });
+  assert.deepStrictEqual(first.placeholders.map((p) => p.type), ['A&H', 'SSc']);
+});
+
+test('ScheduleCalculator: planQuarters() adds no placeholders when every requirement is already met', () => {
+  const graph = CourseGraph.fromCatalog(catalog);
+  const takenGenEds = [
+    ['ENGL 131', 'ENGL', 5],
+    ['MATH 126', 'RSN', 5],
+    ['ENGL 281', 'W', 10],
+    ['ART 101', 'A&H', 20],
+    ['SOC 110', 'SSc', 20],
+    ['BIOL 180', 'NSc', 20],
+    ['ANY 100', 'AOI', 15],
+    ['DIV 100', 'DIV', 5],
+  ];
+  const plan = ScheduleCalculator.planQuarters(graph, [], ['Q1', 'Q2'], { ...goals, takenGenEds });
+  assert.ok(plan.every((q) => q.placeholders.length === 0));
+});
+
+test('ScheduleCalculator: planQuarters() adds no placeholders field unless gen eds are given', () => {
+  const graph = CourseGraph.fromCatalog(catalog);
+  const [first] = ScheduleCalculator.planQuarters(graph, [], ['Q1'], goals);
+  assert.equal('placeholders' in first, false);
+});
+
+test('ScheduleCalculator: planQuarters() keeps adding placeholders in later quarters until the credits are placed', () => {
+  const graph = CourseGraph.fromCatalog(catalog);
+  const plan = ScheduleCalculator.planQuarters(graph, [], ['Q1', 'Q2', 'Q3', 'Q4'], {
+    ...goals,
+    remainingGenEds: [{ courseType: ['W'], credits: 10 }],
+    maxTotalCourses: 2,
+  });
+  const quartersWithPlaceholders = plan.filter((q) => q.placeholders.length > 0).length;
+  const placed = plan.flatMap((q) => q.placeholders).reduce((sum, p) => sum + p.credits, 0);
+  assert.equal(quartersWithPlaceholders, 2); // one 5-credit placeholder in each of two quarters
+  assert.equal(placed, 10);
 });

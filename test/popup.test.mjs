@@ -209,9 +209,12 @@ test('placeholder generation loads core choices and passes unresolved warnings t
   assert.equal(requests.length, 2);
   const {groups, warnings} = JSON.parse(
       decodeURIComponent(new URL(ui.opened[0].url).hash.slice(1)));
-  assert.deepEqual(groups[0].courses, [{code: 'CSE 421', title: 'Algorithms', credits: '3'}]);
-  assert.equal(warnings.length, 1);
-  assert.match(warnings[0], /A&H/);
+  assert.deepEqual(groups[0].courses, [
+    {code: 'CSE 421', title: 'Algorithms', credits: '3'},
+    {code: '', title: 'Arts & Humanities placeholder', credits: '5',
+      type: 'A&H', isPlaceholder: true},
+  ]);
+  assert.deepEqual(warnings, []);
 });
 
 test('generation uses the entered desired courses and zero course limit', async (t) => {

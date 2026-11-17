@@ -50,8 +50,10 @@ function renderSchedule() {
     notice.append(heading, list);
   }
   const courseCount = groups.reduce((total, group) => total + group.courses.length, 0);
+  const templateCount = groups.reduce((total, group) =>
+    total + group.courses.filter((course) => course.isPlaceholder).length, 0);
   document.querySelector('#schedule-status').textContent = courseCount ?
-      `${courseCount} course${courseCount === 1 ? '' : 's'} recommended from your degree audit.` :
+      `${courseCount} course${courseCount === 1 ? '' : 's'} recommended from your degree audit.${templateCount ? ` Includes ${templateCount} gen-ed template${templateCount === 1 ? '' : 's'}.` : ''}` :
       'No courses scheduled. Check your course limit and remaining requirements in the supported catalog.';
   container.replaceChildren();
   for (const {quarter, courses} of groups) {
@@ -68,10 +70,16 @@ function renderSchedule() {
       const list = document.createElement('ul');
       for (const course of courses) {
         const item = document.createElement('li');
+        if (course.isPlaceholder) item.className = 'gen-ed-template';
         const name = document.createElement('strong');
         name.textContent = [course.code, course.title].filter(Boolean).join(' — ') ||
             'Untitled course';
         item.append(name);
+        if (course.isPlaceholder) {
+          const explanation = document.createElement('small');
+          explanation.textContent = `Gen-ed template (${course.type}). Choose a course that fulfills this requirement.`;
+          item.append(explanation);
+        }
         if (course.credits !== '') {
           const credits = document.createElement('small');
           credits.textContent = `${course.credits} credits`;

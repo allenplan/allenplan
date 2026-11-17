@@ -165,7 +165,7 @@ export function CSRequirementsOrganizer(requirements) {
     let course_list = [];
     for (let i = 0; i < requirements.length; i++) {
         const offsetParentClassList = requirements[i].offsetParent.classList;
-        if (offsetParentClassList.contains("CSCI-ELEC")) {
+        if (offsetParentClassList.contains("CSCIELEC")) {
             let course_amt;
             let category_num;
             const text = requirements[i].innerText;
@@ -464,7 +464,7 @@ export function filterRequirements_CS(completed, required) {
  * @returns A string that represents what class
  */
 export function searchCourseType(course_div) {
-    if (course_div.contains("CSCICORE") || course_div.contains("CSCI-ELEC")) {
+    if (course_div.contains("CSCICORE") || course_div.contains("CSCIELEC")) {
         return "CSE";
     } else if (course_div.contains("CS-MATH")) {
         return "CS-MATH";
