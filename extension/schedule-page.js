@@ -1,4 +1,4 @@
-import {groupSchedule, isImportedDars, parseDesiredCourses} from './schedule.mjs';
+import {groupSchedule, isImportedDars, parseDesiredCourses, scheduleQuarters} from './schedule.mjs';
 import {generateFromAudit} from './schedule-generation.js';
 
 const generateButton = document.querySelector('#generate-schedule');
@@ -21,6 +21,12 @@ function renderSchedule() {
       throw new Error('Invalid schedule');
     }
     const options = data.options;
+    if (options && ['Autumn', 'Winter', 'Spring'].includes(options.startQuarter)) {
+      document.querySelector('#start-quarter').value = options.startQuarter;
+    }
+    if (options && Number.isInteger(options.startYear) && options.startYear >= 2026 && options.startYear <= 2032) {
+      document.querySelector('#start-year').value = String(options.startYear);
+    }
     if (options && Number.isInteger(options.maxCourses) &&
         options.maxCourses >= 0 && options.maxCourses <= 4) {
       document.querySelector('#max-cs-courses').value = String(options.maxCourses);
@@ -127,10 +133,12 @@ async function regenerateSchedule() {
     if (!auditAvailable) throw new Error('Import your DARS audit through the AllenPlan popup first.');
     const options = {
       maxCourses: Number(document.querySelector('#max-cs-courses').value),
+      startQuarter: document.querySelector('#start-quarter').value,
+      startYear: Number(document.querySelector('#start-year').value),
       desired: parseDesiredCourses(document.querySelector('#desired-courses').value),
     };
     const {courses, warnings} = await generateFromAudit(importedDars, options);
-    const data = {groups: groupSchedule(courses), warnings, options};
+    const data = {groups: groupSchedule(courses, undefined, scheduleQuarters(options)), warnings, options};
     window.history.replaceState(null, '', `#${encodeURIComponent(JSON.stringify(data))}`);
     renderSchedule();
     status = 'Schedule updated.';

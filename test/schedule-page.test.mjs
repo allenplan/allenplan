@@ -18,13 +18,17 @@ test('results page restores preferences, regenerates in place, and tracks audit 
   });
   const elements = new Map();
   const element = (selector) => {
-    if (!elements.has(selector)) elements.set(selector, node());
+    if (!elements.has(selector)) {
+      const entry = node();
+      entry.value = ({'#start-quarter': 'Autumn', '#start-year': '2026'})[selector] ?? '';
+      elements.set(selector, entry);
+    }
     return elements.get(selector);
   };
   globalThis.document = {querySelector: element, createElement: node};
   const initial = {
     groups: [{quarter: 'Autumn', courses: []}], warnings: [],
-    options: {maxCourses: 1, desired: ['CSE 401']},
+    options: {maxCourses: 1, desired: ['CSE 401'], startQuarter: 'Winter', startYear: 2028},
   };
   globalThis.window = {
     location: {hash: `#${encodeURIComponent(JSON.stringify(initial))}`},
@@ -46,12 +50,15 @@ test('results page restores preferences, regenerates in place, and tracks audit 
   await import('../extension/schedule-page.js');
   await new Promise((resolve) => setImmediate(resolve));
   assert.equal(element('#max-cs-courses').value, '1');
+  assert.equal(element('#start-quarter').value, 'Winter');
+  assert.equal(element('#start-year').value, '2028');
   assert.equal(element('#desired-courses').value, 'CSE 401');
   assert.equal(element('#generate-schedule').disabled, false);
 
   await element('#generate-schedule').listeners.click();
   let saved = JSON.parse(decodeURIComponent(window.location.hash.slice(1)));
   assert.equal(saved.groups[0].courses[0].code, 'CSE 401');
+  assert.deepEqual(saved.groups.map((group) => group.quarter), ['Winter 2028', 'Spring 2028', 'Autumn 2028']);
   assert.equal(element('#schedule-quarters').children.length, 3);
   assert.match(element('#schedule-status').textContent, /1 course recommended/);
 

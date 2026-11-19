@@ -1,6 +1,18 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import {groupSchedule, isImportedDars, scheduleFromDars, planDarsSchedule, parseDesiredCourses} from '../extension/schedule.mjs';
+import {groupSchedule, isImportedDars, scheduleFromDars, planDarsSchedule, parseDesiredCourses, scheduleQuarters} from '../extension/schedule.mjs';
+
+test('start quarter controls ordering, year rollover, and empty quarter labels', () => {
+  const options = {startQuarter: 'Autumn', startYear: 2032};
+  assert.deepEqual(scheduleQuarters(options), ['Autumn 2032', 'Winter 2033', 'Spring 2033']);
+  assert.deepEqual(scheduleQuarters({startQuarter: 'Spring', startYear: 2026}),
+      ['Spring 2026', 'Autumn 2026', 'Winter 2027']);
+  const courses = scheduleFromDars([[], ['CSE 300']], catalog, [], options);
+  assert.deepEqual(courses.map((course) => course.quarter), scheduleQuarters(options));
+  assert.deepEqual(groupSchedule([], undefined, scheduleQuarters(options)).map((group) => group.quarter),
+      scheduleQuarters(options));
+  assert.throws(() => scheduleQuarters({startQuarter: 'Summer', startYear: 2026}), /Choose/);
+});
 
 test('always includes the three quarters in academic order', () => {
   assert.deepEqual(groupSchedule([]), [

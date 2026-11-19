@@ -1,4 +1,4 @@
-import {groupSchedule, isImportedDars, parseDesiredCourses} from './schedule.mjs';
+import {groupSchedule, isImportedDars, parseDesiredCourses, scheduleQuarters} from './schedule.mjs';
 import {generateFromAudit} from './schedule-generation.js';
 import {importDarsFromTab} from './dars-import.js';
 
@@ -11,7 +11,7 @@ import {importDarsFromTab} from './dars-import.js';
  * @return {!Promise<!chrome.tabs.Tab>} The newly opened schedule tab.
  */
 export function showSchedule(classes, adapter, warnings = [], options = {}) {
-  const groups = groupSchedule(classes, adapter);
+  const groups = groupSchedule(classes, adapter, scheduleQuarters(options));
   const data = encodeURIComponent(JSON.stringify({groups, warnings, options}));
   return chrome.tabs.create({
     url: `${chrome.runtime.getURL('schedule.html')}#${data}`,
@@ -114,6 +114,8 @@ async function generateSchedule() {
   try {
     const options = {
       maxCourses: Number(document.querySelector('#max-cs-courses').value),
+      startQuarter: document.querySelector('#start-quarter').value,
+      startYear: Number(document.querySelector('#start-year').value),
       desired: parseDesiredCourses(document.querySelector('#desired-courses').value),
     };
     const {courses, warnings} = await generateFromAudit(importedDars, options);

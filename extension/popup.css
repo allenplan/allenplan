@@ -182,6 +182,12 @@ legend {
   resize: vertical;
 }
 
+.start-quarter-fields {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
 small {
   display: block;
   margin-top: 2px;

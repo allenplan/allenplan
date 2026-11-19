@@ -30,7 +30,7 @@ async function loadPopup(t, audit) {
     if (!elements.has(selector)) {
       elements.set(selector, {
         disabled: true, hidden: false, textContent: '', listeners: {},
-        value: selector === '#max-cs-courses' ? '3' : '',
+        value: ({'#max-cs-courses': '3', '#start-quarter': 'Autumn', '#start-year': '2026'})[selector] ?? '',
         attributes: {},
         setAttribute(name, value) { this.attributes[name] = value; },
         getAttribute(name) { return this.attributes[name]; },
@@ -136,7 +136,7 @@ test('waits for restoration and sends calculated courses to schedule.html', asyn
   const {groups, warnings} = JSON.parse(decodeURIComponent(url.hash.slice(1)));
   assert.deepEqual(warnings, []);
   assert.deepEqual(groups[0], {
-    quarter: 'Autumn',
+    quarter: 'Autumn 2026',
     courses: [{code: 'CSE 200', title: 'Next course', credits: '4'}],
   });
   assert.equal(groups[1].courses.length, 0);
