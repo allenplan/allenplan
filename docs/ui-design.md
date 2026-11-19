@@ -6,13 +6,13 @@ The tab-free popup manages the DARS audit. The planner page holds the schedule p
 
 | Saved audit | Active page | Primary action | Other actions besides Help |
 | --- | --- | --- | --- |
-| No | DARS | Import DARS | — |
+| No | DARS | Import DARS and open planner | — |
 | No | Any other page, including the planner | Open DARS | — |
-| Yes | DARS | Reimport DARS | Open planner, Delete imported audit |
+| Yes | DARS | Reimport DARS and open planner | Open planner with saved audit, Delete imported audit |
 | Yes | Planner | Open DARS | Delete imported audit |
 | Yes | Any other page | Open planner | Open DARS, Delete imported audit |
 
-Read the major from the degree heading on the open DARS audit. Enable **Import DARS** or **Reimport DARS** for Computer Science (CS), Computer Science: Data Science (CS:DS), or Computer Engineering (CE). Show the detected major beside the action. For a missing or unsupported major, disable the action and explain which audit to open.
+Read the major from the degree heading on the open DARS audit. Enable the import or reimport action for Computer Science (CS), Computer Science: Data Science (CS:DS), or Computer Engineering (CE). Show the detected major beside the action. For a missing or unsupported major, disable the action and explain which audit to open.
 
 After a successful import or reimport, open or focus the planner. When an audit is saved, show its major and import date in the popup. A failed reimport keeps the previous audit available and shows the reason in the popup.
 

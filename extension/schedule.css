@@ -24,6 +24,15 @@ h2 {
   font-size: 22px;
 }
 
+main:has(.schedule-results[hidden]) {
+  grid-template-columns: minmax(0, 420px);
+  justify-content: center;
+}
+
+#planner-heading {
+  margin-bottom: 12px;
+}
+
 .intro {
   margin: 8px 0 12px;
 }

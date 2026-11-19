@@ -6,8 +6,10 @@ const generateHint = document.querySelector('#generate-hint');
 let generating = false;
 let auditAvailable = false;
 
-/** Renders the normalized schedule passed by the popup in the URL fragment. */
+/** Restores a generated schedule from the URL, or leaves a fresh planner empty. */
 function renderSchedule() {
+  if (!window.location.hash) return;
+  document.querySelector('.schedule-results').hidden = false;
   let groups;
   let warnings;
   try {
@@ -103,7 +105,7 @@ function renderSchedule() {
 function updateAvailability() {
   generateButton.disabled = generating || !auditAvailable;
   generateHint.textContent = auditAvailable ?
-      'Adjust your preferences and generate a new schedule below.' :
+      'Your imported audit is ready.' :
       'Import your DARS degree audit through the AllenPlan popup to generate a schedule.';
 }
 

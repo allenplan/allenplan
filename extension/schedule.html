@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Your recommended schedule | AllenPlan</title>
+    <title>Schedule planner | AllenPlan</title>
     <link rel="stylesheet" href="popup.css">
     <link rel="stylesheet" href="schedule.css">
     <script src="schedule-page.js" type="module"></script>
@@ -15,9 +15,8 @@
       <p>A little planning. A world of possibilities.</p>
     </header>
     <main>
-      <section class="schedule-controls" aria-label="Generate another schedule">
-        <h2>Build your next quarter.</h2>
-        <p class="intro">Adjust your preferences and generate another schedule.</p>
+      <section class="schedule-controls" aria-labelledby="planner-heading">
+        <h2 id="planner-heading">Plan your next three quarters</h2>
         <fieldset>
           <legend>Schedule preferences</legend>
           <div class="preference">
@@ -64,7 +63,7 @@
           <span aria-hidden="true">&rarr;</span></button>
         <p id="generate-hint" class="hint action-note" role="status">Import your DARS degree audit to generate a schedule.</p>
       </section>
-      <section class="schedule-results" aria-labelledby="schedule-heading">
+      <section class="schedule-results" aria-labelledby="schedule-heading" hidden>
         <h2 id="schedule-heading">Your recommended schedule</h2>
         <p class="intro">Your three-quarter course plan, based on your imported degree audit.</p>
         <p class="hint">Plans respect your selected CS course limit and an 18-credit maximum per quarter. Gen-ed templates reserve credits for a requirement; choose a matching course later. Quarter availability and meeting times are not checked.</p>

@@ -1,236 +1,96 @@
-import {groupSchedule, isImportedDars, parseDesiredCourses, scheduleQuarters} from './schedule.mjs';
-import {generateFromAudit} from './schedule-generation.js';
 import {importDarsFromTab} from './dars-import.js';
+import {isImportedDars} from './schedule.mjs';
 
-/**
- * Opens a schedule tab, adapting class instances before transferring display data.
- * @param {!Array<!Object>} classes Recommended class instances.
- * @param {function(!Object): !Object=} adapter Maps a class to display fields.
- * @param {!Array<string>=} warnings Requirements the plan could not cover.
- * @param {!Object=} options Preferences to restore on the results page.
- * @return {!Promise<!chrome.tabs.Tab>} The newly opened schedule tab.
- */
-export function showSchedule(classes, adapter, warnings = [], options = {}) {
-  const groups = groupSchedule(classes, adapter, scheduleQuarters(options));
-  const data = encodeURIComponent(JSON.stringify({groups, warnings, options}));
-  return chrome.tabs.create({
-    url: `${chrome.runtime.getURL('schedule.html')}#${data}`,
-  });
-}
+const DARS_ROOT = 'https://myplan.uw.edu/audit/';
+const PLANNER_URL = chrome.runtime.getURL('schedule.html');
 
-const tabs = [...document.querySelectorAll('[role="tab"]')];
-
-/**
- * Selects a tab and displays its associated panel.
- * @param {!HTMLButtonElement} selectedTab The tab to activate.
- */
-function selectTab(selectedTab) {
-  for (const tab of tabs) {
-    const selected = tab === selectedTab;
-    tab.setAttribute('aria-selected', String(selected));
-    tab.tabIndex = selected ? 0 : -1;
-    document.getElementById(tab.getAttribute('aria-controls')).hidden = !selected;
-  }
-}
-
-for (const tab of tabs) {
-  tab.addEventListener('click', () => selectTab(tab));
-  tab.addEventListener('keydown', (event) => {
-    let index = tabs.indexOf(tab);
-    switch (event.key) {
-      case 'ArrowRight':
-        index = (index + 1) % tabs.length;
-        break;
-      case 'ArrowLeft':
-        index = (index - 1 + tabs.length) % tabs.length;
-        break;
-      case 'Home':
-        index = 0;
-        break;
-      case 'End':
-        index = tabs.length - 1;
-        break;
-      default:
-        return;
-    }
-    event.preventDefault();
-    selectTab(tabs[index]);
-    tabs[index].focus();
-  });
-}
-
-const DARS_URL = 'https://myplan.uw.edu/audit/#/degree';
-const generateButton = document.querySelector('#generate-schedule');
-const generateHint = document.querySelector('#generate-hint');
+const actions = document.querySelector('#popup-actions');
 const importButton = document.querySelector('#import-dars');
-const darsHint = document.querySelector('#dars-hint');
-const deleteDataButton = document.querySelector('#delete-imported-data');
-const deleteDataStatus = document.querySelector('#delete-data-status');
-const importSuccess = document.querySelector('#import-success');
-importSuccess.addEventListener('animationend', (event) => {
-  if (event.target === importSuccess) importSuccess.hidden = true;
+const plannerButton = document.querySelector('#open-planner');
+const darsButton = document.querySelector('#open-dars');
+const deleteButton = document.querySelector('#delete-imported-data');
+const status = document.querySelector('#popup-status');
+let latestRead = 0;
+
+/** Shows the actions available for the active tab and the saved audit. */
+async function refreshActions() {
+  const read = ++latestRead;
+  try {
+    const [saved, [tab]] = await Promise.all([
+      chrome.storage.local.get('importedDars'),
+      chrome.tabs.query({active: true, currentWindow: true}),
+    ]);
+    // A newer tab or storage event may have completed while this read was pending.
+    if (read !== latestRead) return;
+    const hasAudit = isImportedDars(saved.importedDars);
+    const currentUrl = tab?.url || '';
+    const nextUrl = tab?.pendingUrl || currentUrl;
+    const onDars = currentUrl.startsWith(DARS_ROOT) && nextUrl.startsWith(DARS_ROOT);
+    const onPlanner = nextUrl.split(/[?#]/, 1)[0] === PLANNER_URL;
+
+    importButton.hidden = !onDars;
+    importButton.textContent = hasAudit ? 'Reimport DARS and open planner' : 'Import DARS and open planner';
+    plannerButton.hidden = !hasAudit || onPlanner;
+    plannerButton.textContent = onDars ? 'Open planner with saved audit' : 'Open planner';
+    plannerButton.className = onDars ? 'secondary' : 'primary';
+    darsButton.hidden = onDars;
+    darsButton.className = hasAudit && !onPlanner ? 'secondary' : 'primary';
+    deleteButton.hidden = !hasAudit;
+    actions.hidden = false;
+  } catch {
+    if (read !== latestRead) return;
+    actions.hidden = true;
+    status.textContent = 'Unable to read the active page or saved audit. Reopen AllenPlan to try again.';
+  }
+}
+
+/** Opens the planner without generating a schedule. */
+function openPlanner() {
+  return chrome.tabs.create({url: PLANNER_URL});
+}
+
+/**
+ * Disables the action group while an operation runs and reports errors in place.
+ * @param {!HTMLButtonElement} button
+ * @param {string} failureMessage
+ * @param {function(): !Promise<*>} action
+ */
+function bindAction(button, failureMessage, action) {
+  button.addEventListener('click', async () => {
+    if (actions.hidden || actions.disabled || button.hidden) return;
+    actions.disabled = true;
+    status.textContent = '';
+    try {
+      await action();
+    } catch (error) {
+      status.textContent = `${failureMessage} ${error.message || 'Please try again.'}`;
+    } finally {
+      actions.disabled = false;
+    }
+  });
+}
+
+bindAction(importButton, 'Unable to import your degree audit.', async () => {
+  const importedDars = await importDarsFromTab();
+  await chrome.storage.local.set({importedDars});
+  try {
+    await openPlanner();
+  } catch {
+    status.textContent = 'Audit saved. Try opening the planner again.';
+  }
 });
-let importing = false;
-let generating = false;
-let deleting = false;
-// In-memory copy of the DARS result persisted in chrome.storage.local.
-let importedDars = null;
-const darsReady = restoreDars();
+bindAction(plannerButton, 'Unable to open the planner.', openPlanner);
+bindAction(darsButton, 'Unable to open DARS.', () => chrome.tabs.create({url: DARS_ROOT + '#/degree'}));
+bindAction(deleteButton, 'Unable to delete your degree audit.', async () => {
+  await chrome.storage.local.remove('importedDars');
+  status.textContent = 'Imported audit deleted.';
+});
 
-/** Restores the saved audit when the popup opens. */
-async function restoreDars() {
-  try {
-    const saved = await chrome.storage.local.get('importedDars');
-    importedDars = saved.importedDars ?? null;
-  } catch (error) {
-    console.error('Unable to restore saved DARS:', error);
-  } finally {
-    updateGenerateAvailability();
-    selectTab(document.querySelector(
-        isImportedDars(importedDars) ? '#generate-tab' : '#dars-tab'));
-  }
-}
-
-/** Enables generation only when a usable imported audit is available. */
-function updateGenerateAvailability() {
-  const available = isImportedDars(importedDars);
-  generateButton.disabled = !available || importing || generating || deleting;
-  deleteDataButton.disabled = importedDars === null || importing || generating || deleting;
-  generateHint.textContent = available ?
-      'Your imported degree audit is ready.' :
-      'Import your DARS degree audit to generate a schedule.';
-}
-
-/** Generates a schedule from the saved audit and opens the populated view. */
-async function generateSchedule() {
-  await darsReady;
-  if (generating || importing || deleting || !isImportedDars(importedDars)) {
-    return;
-  }
-  generating = true;
-  updateGenerateAvailability();
-  generateHint.textContent = 'Generating your schedule...';
-  let status;
-  try {
-    const options = {
-      maxCourses: Number(document.querySelector('#max-cs-courses').value),
-      startQuarter: document.querySelector('#start-quarter').value,
-      startYear: Number(document.querySelector('#start-year').value),
-      desired: parseDesiredCourses(document.querySelector('#desired-courses').value),
-    };
-    const {courses, warnings} = await generateFromAudit(importedDars, options);
-    await showSchedule(courses, undefined, warnings, options);
-    status = 'Your recommended schedule opened in a new tab.';
-  } catch (error) {
-    console.error('Unable to generate schedule:', error);
-    status = `Unable to generate your schedule: ${error.message || 'Please try again.'}`;
-  } finally {
-    generating = false;
-    updateGenerateAvailability();
-    generateHint.textContent = status;
-  }
-}
-
-/**
- * Checks whether a URL belongs to the MyPlan audit section.
- * @param {string|undefined} value The tab URL to check.
- * @return {boolean} Whether the URL is an eligible audit page.
- */
-function isAuditUrl(value) {
-  try {
-    const url = new URL(value);
-    return url.origin === 'https://myplan.uw.edu' &&
-        url.pathname.startsWith('/audit/');
-  } catch {
-    return false;
-  }
-}
-
-/**
- * Checks whether the active tab is a MyPlan audit page.
- * @return {!Promise<boolean>} Whether importing is allowed.
- */
-async function updateImportAvailability() {
-  importButton.disabled = true;
-  await darsReady;
-  try {
-    const [activeTab] = await chrome.tabs.query({
-      active: true,
-      currentWindow: true,
-    });
-    const allowed = isAuditUrl(activeTab?.url) &&
-        (!activeTab.pendingUrl || isAuditUrl(activeTab.pendingUrl));
-    importButton.disabled = importing || deleting || !allowed;
-    darsHint.textContent = allowed ?
-        'Ready to import your degree audit.' :
-        'Open your DARS degree audit to enable Import.';
-    return allowed;
-  } catch {
-    darsHint.textContent = 'Unable to check this page. Reopen AllenPlan on your DARS degree audit.';
-    return false;
-  }
-}
-
-/** Opens the DARS degree audit page in a new tab. */
-function openDars() {
-  chrome.tabs.create({url: DARS_URL});
-}
-
-/** Imports and retains the DARS result after verifying the active page. */
-async function importDars() {
-  if (!await updateImportAvailability() || importing || deleting) {
-    return;
-  }
-  importing = true;
-  importSuccess.hidden = true;
-  updateGenerateAvailability();
-  importButton.disabled = true;
-  darsHint.textContent = 'Importing your degree audit...';
-  let status;
-  try {
-    const result = await importDarsFromTab();
-    await chrome.storage.local.set({importedDars: result});
-    importedDars = result;
-    deleteDataStatus.textContent = '';
-    status = 'Degree audit imported.';
-    importSuccess.hidden = false;
-  } catch (error) {
-    console.error('Unable to import DARS:', error);
-    status = `Unable to import your degree audit: ${error.message || 'Please try again.'}`;
-  } finally {
-    importing = false;
-    updateGenerateAvailability();
-    await updateImportAvailability();
-    darsHint.textContent = status;
-  }
-}
-
-/** Deletes the saved audit and clears the popup's in-memory copy. */
-async function deleteImportedData() {
-  await darsReady;
-  if (deleting || importing || generating || importedDars === null) return;
-  deleting = true;
-  updateGenerateAvailability();
-  importButton.disabled = true;
-  deleteDataStatus.textContent = 'Deleting imported data...';
-  try {
-    await chrome.storage.local.remove('importedDars');
-    importedDars = null;
-    deleteDataStatus.textContent = 'Imported data deleted. Import a degree audit to generate a new schedule.';
-  } catch (error) {
-    console.error('Unable to delete imported data:', error);
-    deleteDataStatus.textContent = 'Unable to delete imported data. Please try again.';
-  } finally {
-    deleting = false;
-    updateGenerateAvailability();
-    await updateImportAvailability();
-  }
-}
-
-document.querySelector('#open-dars').addEventListener('click', openDars);
-generateButton.addEventListener('click', generateSchedule);
-importButton.addEventListener('click', importDars);
-deleteDataButton.addEventListener('click', deleteImportedData);
-chrome.tabs.onUpdated.addListener(() => updateImportAvailability());
-chrome.tabs.onActivated.addListener(() => updateImportAvailability());
-updateImportAvailability();
+chrome.storage.onChanged.addListener((changes, area) => {
+  if (area === 'local' && Object.hasOwn(changes, 'importedDars')) refreshActions();
+});
+chrome.tabs.onUpdated.addListener((_id, change, tab) => {
+  if (tab.active && (change.url || change.status)) refreshActions();
+});
+chrome.tabs.onActivated.addListener(refreshActions);
+refreshActions();

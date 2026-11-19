@@ -1,243 +1,169 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-const catalog = [{
-  code: 'CSE 200', title: 'Next course', credits_min: 4, credits_max: 4,
-  prerequisite_courses: [['CSE 100']],
-}];
+const darsUrl = 'https://myplan.uw.edu/audit/#/degree';
+const plannerUrl = 'chrome-extension://test/schedule.html';
+const otherUrl = 'https://example.org/';
+const existingAudit = [['CSE 100'], ['CSE 200']];
+const newAudit = [[{name: 'CSE 101'}], [{name: 'CSE 201'}]];
+const buttonIds = ['import-dars', 'open-planner', 'open-dars', 'delete-imported-data'];
 let popupInstance = 0;
 
-/**
- * Loads the real popup module with minimal DOM and extension API substitutes.
- * @param {!Object} t Test context used to restore globals.
- * @param {*} audit Saved DARS result or a promise resolving to it.
- * @return {!Promise<!Object>} Controls and observed API calls.
- */
-async function loadPopup(t, audit) {
-  const originals = new Map(['document', 'chrome', 'fetch']
-      .map((name) => [name, Object.getOwnPropertyDescriptor(globalThis, name)]));
-  t.after(() => {
-    for (const [name, descriptor] of originals) {
-      if (descriptor) {
-        Object.defineProperty(globalThis, name, descriptor);
-      } else {
-        delete globalThis[name];
-      }
-    }
-  });
+/** Opens a popup with a mock active tab and local storage. */
+async function loadPopup(t, audit, url) {
   const elements = new Map();
-  const element = (selector) => {
-    if (!elements.has(selector)) {
-      elements.set(selector, {
-        disabled: true, hidden: false, textContent: '', listeners: {},
-        value: ({'#max-cs-courses': '3', '#start-quarter': 'Autumn', '#start-year': '2026'})[selector] ?? '',
-        attributes: {},
-        setAttribute(name, value) { this.attributes[name] = value; },
-        getAttribute(name) { return this.attributes[name]; },
-        addEventListener(event, callback) { this.listeners[event] = callback; },
-        focus() {},
-      });
-    }
-    return elements.get(selector);
-  };
+  const element = (id) => elements.get(id);
+  for (const id of ['popup-actions', 'popup-status', ...buttonIds]) {
+    elements.set(id, {
+      hidden: true, disabled: false, textContent: '', className: '',
+      addEventListener(event, callback) { this[event] = callback; },
+    });
+  }
+  const tab = {id: 42, active: true, url};
   const opened = [];
-  const stored = [];
-  const removed = [];
-  const fetched = [];
-  const executions = [];
-  const tabs = ['generate', 'dars', 'settings'].map((name) => {
-    const tab = element(`#${name}-tab`);
-    tab.setAttribute('aria-controls', `${name}-panel`);
-    return tab;
-  });
-  globalThis.document = {
-    querySelector: element, querySelectorAll: () => tabs,
-    getElementById: (id) => element(`#${id}`),
-  };
+  const writes = [];
+  const removals = [];
+  let onUpdated;
+  let onStorageChange;
+  t.mock.method(globalThis, 'fetch', () => assert.fail('Popup attempted to generate a schedule'));
+  globalThis.document = {querySelector: (selector) => element(selector.slice(1))};
   globalThis.chrome = {
     runtime: {getURL: (path) => `chrome-extension://test/${path}`},
-    storage: {local: {
-      get: async () => ({importedDars: await audit}),
-      set: async (value) => { stored.push(value); },
-      remove: async (key) => { removed.push(key); },
-    }},
-    scripting: {executeScript: async (options) => {
-      executions.push(options);
-      return [{result: {audit: [[{name: 'CSE 100'}], [{name: 'CSE 200'}]]}}];
-    }},
+    storage: {
+      local: {
+        get: async () => ({importedDars: audit}),
+        set: async (value) => {
+          writes.push(value);
+          audit = value.importedDars;
+          onStorageChange({importedDars: {newValue: audit}}, 'local');
+        },
+        remove: async (key) => {
+          removals.push(key);
+          audit = undefined;
+          onStorageChange({importedDars: {}}, 'local');
+        },
+      },
+      onChanged: {addListener(callback) { onStorageChange = callback; }},
+    },
+    scripting: {executeScript: async () => [{result: {audit: newAudit}}]},
     tabs: {
-      query: async () => [{id: 42, url: 'https://myplan.uw.edu/audit/#/degree'}],
-      create: async (options) => { opened.push(options); },
-      onUpdated: {addListener() {}},
+      query: async () => [tab],
+      create: async ({url}) => { opened.push(url); },
+      onUpdated: {addListener(callback) { onUpdated = callback; }},
       onActivated: {addListener() {}},
     },
   };
-  globalThis.fetch = async (url) => {
-    fetched.push(url);
-    return {ok: true, json: async () => catalog};
-  };
+  t.after(() => {
+    delete globalThis.document;
+    delete globalThis.chrome;
+  });
   await import(`../extension/popup.js?test=${popupInstance++}`);
-  await new Promise((resolve) => setImmediate(resolve));
-  return {element, opened, stored, removed, fetched, executions};
+  return {
+    element, opened, writes, removals,
+    visible: () => element('popup-actions').hidden ? [] : buttonIds.filter((id) => !element(id).hidden),
+    async navigate(url, pendingUrl) {
+      Object.assign(tab, {url, pendingUrl});
+      onUpdated(tab.id, {status: 'loading'}, tab);
+      await new Promise((resolve) => setImmediate(resolve));
+    },
+  };
 }
 
-test('missing audit disables generation and prevents catalog/tab requests', async (t) => {
-  const ui = await loadPopup(t, null);
-  assert.equal(ui.element('#dars-tab').getAttribute('aria-selected'), 'true');
-  assert.equal(ui.element('#dars-panel').hidden, false);
-  assert.equal(ui.element('#generate-panel').hidden, true);
-  assert.equal(ui.element('#generate-schedule').disabled, true);
-  await ui.element('#generate-schedule').listeners.click();
-  assert.deepEqual(ui.opened, []);
-  assert.deepEqual(ui.fetched, []);
-});
+const cases = [
+  ['no audit on DARS', null, darsUrl, ['import-dars']],
+  ['no audit elsewhere', null, otherUrl, ['open-dars']],
+  ['no audit on the planner', null, plannerUrl, ['open-dars']],
+  ['saved audit on DARS', existingAudit, darsUrl, ['import-dars', 'open-planner', 'delete-imported-data']],
+  ['saved audit on a planner result', existingAudit, plannerUrl + '#result', ['open-dars', 'delete-imported-data']],
+  ['saved audit elsewhere', existingAudit, otherUrl, ['open-planner', 'open-dars', 'delete-imported-data']],
+];
 
-test('deleting the audit removes only imported data and prevents generation', async (t) => {
-  const ui = await loadPopup(t, [['CSE 100'], ['CSE 200']]);
-  await ui.element('#settings-tab').listeners.click();
-  assert.equal(ui.element('#delete-imported-data').disabled, false);
-  await ui.element('#delete-imported-data').listeners.click();
-  assert.deepEqual(ui.removed, ['importedDars']);
-  assert.equal(ui.element('#generate-schedule').disabled, true);
-  assert.equal(ui.element('#delete-imported-data').disabled, true);
-  assert.match(ui.element('#delete-data-status').textContent, /Imported data deleted/);
-  assert.equal(ui.element('#settings-panel').hidden, false);
-  await ui.element('#generate-schedule').listeners.click();
-  assert.deepEqual(ui.opened, []);
-});
-
-test('failed deletion retains the audit and permits retry', async (t) => {
-  const ui = await loadPopup(t, [['CSE 100'], ['CSE 200']]);
-  const originalError = console.error;
-  console.error = () => {};
-  t.after(() => { console.error = originalError; });
-  chrome.storage.local.remove = async () => { throw new Error('Storage unavailable'); };
-  await ui.element('#delete-imported-data').listeners.click();
-  assert.equal(ui.element('#generate-schedule').disabled, false);
-  assert.equal(ui.element('#delete-imported-data').disabled, false);
-  assert.match(ui.element('#delete-data-status').textContent, /Unable to delete/);
-});
-
-test('waits for restoration and sends calculated courses to schedule.html', async (t) => {
-  let restore;
-  const pending = new Promise((resolve) => { restore = resolve; });
-  const ui = await loadPopup(t, pending);
-  assert.equal(ui.element('#generate-schedule').disabled, true);
-  restore([[{name: 'CSE 100'}], [{name: 'CSE 200'}]]);
-  await new Promise((resolve) => setImmediate(resolve));
-  assert.equal(ui.element('#generate-tab').getAttribute('aria-selected'), 'true');
-  assert.equal(ui.element('#generate-panel').hidden, false);
-  assert.equal(ui.element('#dars-panel').hidden, true);
-  assert.equal(ui.element('#generate-schedule').disabled, false);
-  await ui.element('#generate-schedule').listeners.click();
-  assert.equal(ui.opened.length, 1);
-  const url = new URL(ui.opened[0].url);
-  assert.equal(url.pathname, '/schedule.html');
-  const {groups, warnings} = JSON.parse(decodeURIComponent(url.hash.slice(1)));
-  assert.deepEqual(warnings, []);
-  assert.deepEqual(groups[0], {
-    quarter: 'Autumn 2026',
-    courses: [{code: 'CSE 200', title: 'Next course', credits: '4'}],
+for (const [name, audit, url, buttons] of cases) {
+  test(name, async (t) => {
+    const ui = await loadPopup(t, audit, url);
+    assert.deepEqual(ui.visible(), buttons);
+    if (buttons[0] === 'import-dars') {
+      assert.equal(ui.element('import-dars').textContent,
+          audit ? 'Reimport DARS and open planner' : 'Import DARS and open planner');
+    } else {
+      assert.equal(ui.element(buttons[0]).className, 'primary');
+      await ui.element(buttons[0]).click();
+      assert.deepEqual(ui.opened, [buttons[0] === 'open-dars' ? darsUrl : plannerUrl]);
+    }
   });
-  assert.equal(groups[1].courses.length, 0);
-  assert.equal(groups[2].courses.length, 0);
-  assert.equal(ui.element('#generate-schedule').disabled, false);
+}
+
+test('the saved-audit shortcut on DARS opens the planner without reimporting', async (t) => {
+  const ui = await loadPopup(t, existingAudit, darsUrl);
+  const scrape = t.mock.method(chrome.scripting, 'executeScript');
+  const planner = ui.element('open-planner');
+  assert.equal(planner.textContent, 'Open planner with saved audit');
+  await planner.click();
+  assert.deepEqual(ui.opened, [plannerUrl]);
+  assert.equal(scrape.mock.callCount(), 0);
+  assert.deepEqual(ui.writes, []);
+
+  await ui.navigate(otherUrl);
+  assert.equal(planner.textContent, 'Open planner');
 });
 
-test('webpage import saves scraped courses and enables generation', async (t) => {
-  const ui = await loadPopup(t, null);
-  await ui.element('#import-dars').listeners.click();
-  assert.equal(ui.executions.length, 1);
-  assert.deepEqual(ui.executions[0].target, {tabId: 42});
-  assert.equal(ui.executions[0].world, 'ISOLATED');
-  assert.deepEqual(ui.executions[0].args, ['chrome-extension://test/darsScraper.js']);
-  assert.deepEqual(ui.stored, [{
-    importedDars: [[{name: 'CSE 100'}], [{name: 'CSE 200'}]],
-  }]);
-  assert.equal(ui.element('#dars-hint').textContent, 'Degree audit imported.');
-  const success = ui.element('#import-success');
-  assert.equal(success.hidden, false);
-  success.listeners.animationend({target: success});
-  assert.equal(success.hidden, true);
-  assert.equal(ui.element('#generate-schedule').disabled, false);
-  await ui.element('#generate-schedule').listeners.click();
-  assert.equal(ui.opened.length, 1);
-});
+for (const previous of [null, existingAudit]) {
+  test(`${previous ? 'reimport' : 'first import'} saves before opening the empty planner`, async (t) => {
+    const ui = await loadPopup(t, previous, darsUrl);
+    t.mock.method(chrome.tabs, 'create', async ({url}) => {
+      assert.deepEqual(ui.writes, [{importedDars: newAudit}]);
+      ui.opened.push(url);
+    });
+    await ui.element('import-dars').click();
+    assert.deepEqual(ui.opened, [plannerUrl]);
+    assert.equal(ui.element('import-dars').textContent, 'Reimport DARS and open planner');
+  });
+}
 
-test('failed imports preserve the saved audit and display the scraper error', async (t) => {
-  const ui = await loadPopup(t, [[{name: 'CSE 100'}], [{name: 'CSE 200'}]]);
-  const originalError = console.error;
-  console.error = () => {};
-  t.after(() => { console.error = originalError; });
-  chrome.scripting.executeScript = async () => [{result: {error: 'Audit is still loading.'}}];
-  await ui.element('#import-dars').listeners.click();
-  assert.deepEqual(ui.stored, []);
-  assert.match(ui.element('#dars-hint').textContent, /Audit is still loading/);
-  assert.equal(ui.element('#import-success').hidden, true);
-  assert.equal(ui.element('#generate-schedule').disabled, false);
-  assert.equal(ui.element('#import-dars').disabled, false);
-});
-
-test('catalog failure reports an error and permits retry without opening a tab', async (t) => {
-  const ui = await loadPopup(t, [[], ['CSE 200']]);
-  globalThis.fetch = async () => ({ok: false});
-  const originalError = console.error;
-  console.error = () => {};
-  t.after(() => { console.error = originalError; });
-  await ui.element('#generate-schedule').listeners.click();
+test('failed reimport keeps the saved audit, explains the error, and permits retry', async (t) => {
+  const ui = await loadPopup(t, existingAudit, darsUrl);
+  chrome.scripting.executeScript = async () => [{result: {error: 'Open a completed DARS audit.'}}];
+  await ui.element('import-dars').click();
+  assert.deepEqual(ui.writes, []);
   assert.deepEqual(ui.opened, []);
-  assert.equal(ui.element('#generate-schedule').disabled, false);
-  assert.match(ui.element('#generate-hint').textContent, /Unable to generate/);
+  assert.deepEqual(ui.visible(), ['import-dars', 'open-planner', 'delete-imported-data']);
+  assert.match(ui.element('popup-status').textContent, /Open a completed DARS audit/);
+  assert.equal(ui.element('popup-actions').disabled, false);
 });
 
-test('placeholder generation loads core choices and passes unresolved warnings to the page', async (t) => {
-  const ui = await loadPopup(t, [[], [
-    {name: 'CSE 4XX', notes: 'https://example.com/#core'},
-    {name: 'XXX', courseType: ['A&H'], credits: 5},
-  ]]);
-  const requests = [];
-  globalThis.fetch = async (url) => {
-    requests.push(url);
-    return {ok: true, json: async () => url.endsWith('uw_cse_core_courses.json') ?
-      [{code: 'CSE 421'}] : [
-        {code: 'CSE 401', credits_min: 4, credits_max: 4, prerequisite_courses: []},
-        {code: 'CSE 421', title: 'Algorithms', credits_min: 3, credits_max: 3,
-          prerequisite_courses: []},
-      ]};
-  };
-  await ui.element('#generate-schedule').listeners.click();
-  assert.equal(requests.length, 2);
-  const {groups, warnings} = JSON.parse(
-      decodeURIComponent(new URL(ui.opened[0].url).hash.slice(1)));
-  assert.deepEqual(groups[0].courses, [
-    {code: 'CSE 421', title: 'Algorithms', credits: '3'},
-    {code: '', title: 'Arts & Humanities placeholder', credits: '5',
-      type: 'A&H', isPlaceholder: true},
-  ]);
-  assert.deepEqual(warnings, []);
+test('tab creation failure after import offers the planner without reimporting', async (t) => {
+  const ui = await loadPopup(t, null, darsUrl);
+  const create = chrome.tabs.create;
+  chrome.tabs.create = async () => { throw new Error('Tab unavailable'); };
+  await ui.element('import-dars').click();
+  assert.match(ui.element('popup-status').textContent, /Audit saved/);
+  assert.ok(ui.visible().includes('open-planner'));
+  chrome.tabs.create = create;
+  await ui.element('open-planner').click();
+  assert.deepEqual(ui.opened, [plannerUrl]);
+  assert.equal(ui.writes.length, 1);
 });
 
-test('generation uses the entered desired courses and zero course limit', async (t) => {
-  const ui = await loadPopup(t, [['CSE 100'], []]);
-  ui.element('#desired-courses').value = 'cse200, CSE 200';
-  ui.element('#max-cs-courses').value = '0';
-  await ui.element('#generate-schedule').listeners.click();
-  const empty = JSON.parse(decodeURIComponent(new URL(ui.opened[0].url).hash.slice(1)));
-  assert.ok(empty.groups.every((group) => group.courses.length === 0));
-  ui.element('#max-cs-courses').value = '1';
-  await ui.element('#generate-schedule').listeners.click();
-  const populated = JSON.parse(decodeURIComponent(new URL(ui.opened[1].url).hash.slice(1)));
-  assert.equal(populated.groups[0].courses[0].code, 'CSE 200');
+test('deletion permits retry on failure and updates the popup on success', async (t) => {
+  const ui = await loadPopup(t, existingAudit, plannerUrl);
+  const remove = chrome.storage.local.remove;
+  chrome.storage.local.remove = async () => { throw new Error('Storage unavailable'); };
+  await ui.element('delete-imported-data').click();
+  assert.match(ui.element('popup-status').textContent, /Unable to delete/);
+  assert.ok(ui.visible().includes('delete-imported-data'));
+  chrome.storage.local.remove = remove;
+  await ui.element('delete-imported-data').click();
+  assert.deepEqual(ui.removals, ['importedDars']);
+  assert.deepEqual(ui.visible(), ['open-dars']);
+  assert.match(ui.element('popup-status').textContent, /audit deleted/);
 });
 
-test('invalid desired-course input explains the format without opening a schedule', async (t) => {
-  const ui = await loadPopup(t, [[], []]);
-  const originalError = console.error;
-  console.error = () => {};
-  t.after(() => { console.error = originalError; });
-  ui.element('#desired-courses').value = 'CSE 4XX';
-  await ui.element('#generate-schedule').listeners.click();
-  assert.equal(ui.opened.length, 0);
-  assert.match(ui.element('#generate-hint').textContent, /Use course codes like CSE 421/);
-  assert.equal(ui.element('#generate-schedule').disabled, false);
+test('navigation away from DARS removes the import action', async (t) => {
+  const ui = await loadPopup(t, null, darsUrl);
+  await ui.navigate(darsUrl, otherUrl);
+  assert.deepEqual(ui.visible(), ['open-dars']);
+  await ui.element('import-dars').click();
+  assert.deepEqual(ui.writes, []);
+  await ui.navigate(darsUrl);
+  assert.deepEqual(ui.visible(), ['import-dars']);
 });
