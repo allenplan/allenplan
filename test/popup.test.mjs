@@ -13,7 +13,7 @@ let popupInstance = 0;
 async function loadPopup(t, audit, url, {major = 'Computer Science', info} = {}) {
   const elements = new Map();
   const element = (id) => elements.get(id);
-  for (const id of ['popup-actions', 'popup-status', 'audit-major', 'saved-audit', ...buttonIds]) {
+  for (const id of ['popup-actions', 'popup-status', 'audit-major', 'saved-audit', 'open-help', ...buttonIds]) {
     elements.set(id, {
       hidden: true, disabled: false, textContent: id === 'open-planner' ? 'Open planner' : '', className: '',
       addEventListener(event, callback) { this[event] = callback; },
@@ -98,6 +98,7 @@ for (const [name, audit, url, buttons] of cases) {
   test(name, async (t) => {
     const ui = await loadPopup(t, audit, url);
     assert.deepEqual(ui.visible(), buttons);
+    assert.equal(ui.element('open-help').hidden, false);
     if (buttons[0] === 'import-dars') {
       assert.equal(ui.element('import-dars').textContent,
           audit ? 'Reimport DARS' : 'Import DARS');
@@ -110,6 +111,14 @@ for (const [name, audit, url, buttons] of cases) {
     }
   });
 }
+
+test('Help is hidden on the Help page and available again after navigation', async (t) => {
+  const ui = await loadPopup(t, existingAudit, 'chrome-extension://test/help.html#planner');
+  assert.equal(ui.element('open-help').hidden, true);
+  assert.deepEqual(ui.visible(), ['open-planner', 'open-dars', 'delete-imported-data']);
+  await ui.navigate(otherUrl);
+  assert.equal(ui.element('open-help').hidden, false);
+});
 
 test('the saved-audit shortcut on DARS opens the planner without reimporting', async (t) => {
   const ui = await loadPopup(t, existingAudit, darsUrl);

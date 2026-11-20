@@ -2,6 +2,7 @@ import {DARS_ROOT, getDarsMajor, importDarsFromTab, isDarsTab} from './dars-impo
 import {isImportedDars} from './schedule.mjs';
 
 const PLANNER_URL = chrome.runtime.getURL('schedule.html');
+const HELP_URL = chrome.runtime.getURL('help.html');
 
 const actions = document.querySelector('#popup-actions');
 const importButton = document.querySelector('#import-dars');
@@ -11,6 +12,7 @@ const deleteButton = document.querySelector('#delete-imported-data');
 const status = document.querySelector('#popup-status');
 const majorHint = document.querySelector('#audit-major');
 const savedAudit = document.querySelector('#saved-audit');
+const helpLink = document.querySelector('#open-help');
 let latestRead = 0;
 let checkedMajor = null;
 let majorTimer;
@@ -47,17 +49,16 @@ async function refreshActions() {
   importButton.disabled = true;
   checkedMajor = null;
   try {
-    const [saved, [tab]] = await Promise.all([
-      chrome.storage.local.get(['importedDars', 'importedDarsInfo']),
-      chrome.tabs.query({active: true, currentWindow: true}),
-    ]);
-    // A newer tab or storage event may have completed while this read was pending.
+    const [tab] = await chrome.tabs.query({active: true, currentWindow: true});
     if (read !== latestRead) return;
-    const hasAudit = isImportedDars(saved.importedDars);
     const currentUrl = tab?.url || '';
     const nextUrl = tab?.pendingUrl || currentUrl;
     const onDars = isDarsTab(tab);
     const onPlanner = isPlannerUrl(nextUrl);
+    helpLink.hidden = nextUrl.split(/[?#]/, 1)[0] === HELP_URL;
+    const saved = await chrome.storage.local.get(['importedDars', 'importedDarsInfo']);
+    if (read !== latestRead) return;
+    const hasAudit = isImportedDars(saved.importedDars);
 
     importButton.hidden = !onDars;
     importButton.textContent = hasAudit ? 'Reimport DARS' : 'Import DARS';

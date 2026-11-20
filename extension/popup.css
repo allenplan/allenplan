@@ -230,8 +230,20 @@ h3 {
 }
 
 .popup-window .brand {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 12px 16px;
   background: var(--uw-purple);
+}
+
+#open-help {
+  color: inherit;
+  text-underline-offset: .2em;
+}
+
+#open-help:focus-visible {
+  outline-color: currentColor;
 }
 
 .popup {
