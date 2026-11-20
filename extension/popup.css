@@ -226,10 +226,16 @@ h3 {
 }
 
 .popup-window {
-  width: 310px;
+  width: 370px;
+}
+
+.popup-window .brand {
+  padding: 12px 16px;
+  background: var(--uw-purple);
 }
 
 .popup {
+  padding: 14px 16px;
   min-height: 0;
 }
 
@@ -242,7 +248,7 @@ h3 {
 
 #popup-actions:not([hidden]) {
   display: grid;
-  gap: 10px;
+  gap: 8px;
 }
 
 #popup-actions button[hidden] {
@@ -251,6 +257,17 @@ h3 {
 
 #popup-actions .secondary {
   margin: 0;
+}
+
+#popup-actions .primary, #popup-actions .secondary {
+  font-size: 16px;
+  padding: 10px 14px;
+}
+
+.audit-note {
+  color: var(--muted);
+  font-size: 12px;
+  margin: -4px 0 2px;
 }
 
 .delete-action {

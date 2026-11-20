@@ -10,12 +10,12 @@ const buttonIds = ['import-dars', 'open-planner', 'open-dars', 'delete-imported-
 let popupInstance = 0;
 
 /** Opens a popup with a mock active tab and local storage. */
-async function loadPopup(t, audit, url) {
+async function loadPopup(t, audit, url, {major = 'Computer Science', info} = {}) {
   const elements = new Map();
   const element = (id) => elements.get(id);
-  for (const id of ['popup-actions', 'popup-status', ...buttonIds]) {
+  for (const id of ['popup-actions', 'popup-status', 'audit-major', 'saved-audit', ...buttonIds]) {
     elements.set(id, {
-      hidden: true, disabled: false, textContent: '', className: '',
+      hidden: true, disabled: false, textContent: id === 'open-planner' ? 'Open planner' : '', className: '',
       addEventListener(event, callback) { this[event] = callback; },
     });
   }
@@ -25,27 +25,37 @@ async function loadPopup(t, audit, url) {
   const removals = [];
   let onUpdated;
   let onStorageChange;
+  let nextMajorCheck;
+  globalThis.window = {
+    setTimeout(callback) { nextMajorCheck = callback; return 1; },
+    clearTimeout() { nextMajorCheck = null; },
+  };
   t.mock.method(globalThis, 'fetch', () => assert.fail('Popup attempted to generate a schedule'));
   globalThis.document = {querySelector: (selector) => element(selector.slice(1))};
   globalThis.chrome = {
     runtime: {getURL: (path) => `chrome-extension://test/${path}`},
     storage: {
       local: {
-        get: async () => ({importedDars: audit}),
+        get: async () => ({importedDars: audit, importedDarsInfo: info}),
         set: async (value) => {
           writes.push(value);
           audit = value.importedDars;
+          info = value.importedDarsInfo;
           onStorageChange({importedDars: {newValue: audit}}, 'local');
         },
         remove: async (key) => {
           removals.push(key);
           audit = undefined;
+          info = undefined;
           onStorageChange({importedDars: {}}, 'local');
         },
       },
       onChanged: {addListener(callback) { onStorageChange = callback; }},
     },
-    scripting: {executeScript: async () => [{result: {audit: newAudit}}]},
+    scripting: {executeScript: async ({args}) => {
+      if (!major) return [{result: {error: 'Open a supported audit in DARS.'}}];
+      return [{result: args[2] ? {major, audit: newAudit} : {major}}];
+    }},
     tabs: {
       query: async () => [tab],
       create: async ({url}) => { opened.push(url); },
@@ -56,10 +66,16 @@ async function loadPopup(t, audit, url) {
   t.after(() => {
     delete globalThis.document;
     delete globalThis.chrome;
+    delete globalThis.window;
   });
   await import(`../extension/popup.js?test=${popupInstance++}`);
+  await new Promise((resolve) => setImmediate(resolve));
   return {
     element, opened, writes, removals,
+    async changeDegree(value) {
+      major = value;
+      await nextMajorCheck();
+    },
     visible: () => element('popup-actions').hidden ? [] : buttonIds.filter((id) => !element(id).hidden),
     async navigate(url, pendingUrl) {
       Object.assign(tab, {url, pendingUrl});
@@ -84,7 +100,9 @@ for (const [name, audit, url, buttons] of cases) {
     assert.deepEqual(ui.visible(), buttons);
     if (buttons[0] === 'import-dars') {
       assert.equal(ui.element('import-dars').textContent,
-          audit ? 'Reimport DARS and open planner' : 'Import DARS and open planner');
+          audit ? 'Reimport DARS' : 'Import DARS');
+      assert.equal(ui.element('import-dars').disabled, false);
+      assert.equal(ui.element('audit-major').textContent, 'Computer Science audit · Opens planner');
     } else {
       assert.equal(ui.element(buttons[0]).className, 'primary');
       await ui.element(buttons[0]).click();
@@ -97,7 +115,7 @@ test('the saved-audit shortcut on DARS opens the planner without reimporting', a
   const ui = await loadPopup(t, existingAudit, darsUrl);
   const scrape = t.mock.method(chrome.scripting, 'executeScript');
   const planner = ui.element('open-planner');
-  assert.equal(planner.textContent, 'Open planner with saved audit');
+  assert.equal(planner.textContent, 'Open planner');
   await planner.click();
   assert.deepEqual(ui.opened, [plannerUrl]);
   assert.equal(scrape.mock.callCount(), 0);
@@ -111,20 +129,28 @@ for (const previous of [null, existingAudit]) {
   test(`${previous ? 'reimport' : 'first import'} saves before opening the empty planner`, async (t) => {
     const ui = await loadPopup(t, previous, darsUrl);
     t.mock.method(chrome.tabs, 'create', async ({url}) => {
-      assert.deepEqual(ui.writes, [{importedDars: newAudit}]);
+      assert.equal(ui.writes.length, 1);
+      const [{importedDars, importedDarsInfo}] = ui.writes;
+      assert.deepEqual(importedDars, newAudit);
+      assert.equal(importedDarsInfo.major, 'Computer Science');
+      assert.equal(new Date(importedDarsInfo.importedAt).toISOString(), importedDarsInfo.importedAt);
       ui.opened.push(url);
     });
     await ui.element('import-dars').click();
     assert.deepEqual(ui.opened, [plannerUrl]);
-    assert.equal(ui.element('import-dars').textContent, 'Reimport DARS and open planner');
+    assert.equal(ui.element('import-dars').textContent, 'Reimport DARS');
   });
 }
 
-test('failed reimport keeps the saved audit, explains the error, and permits retry', async (t) => {
-  const ui = await loadPopup(t, existingAudit, darsUrl);
+test('failed reimport keeps the saved audit and its details and permits retry', async (t) => {
+  const importedAt = '2026-11-19T12:00:00.000Z';
+  const info = {major: 'Computer Engineering', importedAt};
+  const ui = await loadPopup(t, existingAudit, darsUrl, {info});
   chrome.scripting.executeScript = async () => [{result: {error: 'Open a completed DARS audit.'}}];
   await ui.element('import-dars').click();
   assert.deepEqual(ui.writes, []);
+  const date = new Date(importedAt).toLocaleDateString(undefined, {dateStyle: 'medium'});
+  assert.equal(ui.element('saved-audit').textContent, `Saved audit · Computer Engineering · ${date}`);
   assert.deepEqual(ui.opened, []);
   assert.deepEqual(ui.visible(), ['import-dars', 'open-planner', 'delete-imported-data']);
   assert.match(ui.element('popup-status').textContent, /Open a completed DARS audit/);
@@ -153,9 +179,28 @@ test('deletion permits retry on failure and updates the popup on success', async
   assert.ok(ui.visible().includes('delete-imported-data'));
   chrome.storage.local.remove = remove;
   await ui.element('delete-imported-data').click();
-  assert.deepEqual(ui.removals, ['importedDars']);
+  assert.deepEqual(ui.removals, [['importedDars', 'importedDarsInfo']]);
+  assert.equal(ui.element('saved-audit').hidden, true);
   assert.deepEqual(ui.visible(), ['open-dars']);
   assert.match(ui.element('popup-status').textContent, /audit deleted/);
+});
+
+test('an ineligible audit blocks only import and the heading updates on the same page', async (t) => {
+  const ui = await loadPopup(t, existingAudit, darsUrl, {major: null});
+  const button = ui.element('import-dars');
+  assert.equal(button.disabled, true);
+  assert.match(ui.element('audit-major').textContent, /Open a supported audit/);
+  assert.equal(ui.element('saved-audit').textContent, 'Previously imported audit');
+  await button.click();
+  assert.deepEqual(ui.writes, []);
+  await ui.element('open-planner').click();
+  assert.deepEqual(ui.opened, [plannerUrl]);
+
+  await ui.changeDegree('Computer Science: Data Science');
+  assert.equal(button.disabled, false);
+  assert.match(ui.element('audit-major').textContent, /Computer Science: Data Science audit/);
+  await button.click();
+  assert.equal(ui.writes[0].importedDarsInfo.major, 'Computer Science: Data Science');
 });
 
 test('navigation away from DARS removes the import action', async (t) => {

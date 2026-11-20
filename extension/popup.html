@@ -13,8 +13,10 @@
     </header>
     <main class="popup">
       <fieldset id="popup-actions" aria-label="Audit actions" hidden>
-        <button id="import-dars" class="primary" type="button" hidden>Import DARS and open planner</button>
-        <button id="open-planner" type="button" hidden>Open planner</button>
+        <button id="import-dars" class="primary" type="button" aria-describedby="audit-major" hidden disabled>Import DARS</button>
+        <p id="audit-major" class="audit-note" role="status" hidden></p>
+        <button id="open-planner" type="button" aria-describedby="saved-audit" hidden>Open planner</button>
+        <p id="saved-audit" class="audit-note" hidden></p>
         <button id="open-dars" type="button" hidden>Open DARS</button>
         <button id="delete-imported-data" class="delete-action" type="button" hidden>Delete imported audit</button>
       </fieldset>
