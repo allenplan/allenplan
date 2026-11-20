@@ -171,14 +171,14 @@ for (const previous of [null, existingAudit]) {
 }
 
 test('failed reimport keeps the saved audit and its details and permits retry', async (t) => {
-  const importedAt = '2026-11-19T12:00:00.000Z';
+  const importedAt = '2026-11-19T12:47:35.000Z';
   const info = {major: 'Computer Engineering', importedAt};
   const ui = await loadPopup(t, existingAudit, darsUrl, {info});
   chrome.scripting.executeScript = async () => [{result: {error: 'Open a completed DARS audit.'}}];
   await ui.element('import-dars').click();
   assert.deepEqual(ui.writes, []);
-  const date = new Date(importedAt).toLocaleDateString(undefined, {dateStyle: 'medium'});
-  assert.equal(ui.element('saved-audit').textContent, `Saved audit · Computer Engineering · ${date}`);
+  const timestamp = new Date(importedAt).toLocaleString(undefined, {dateStyle: 'medium', timeStyle: 'short'});
+  assert.equal(ui.element('saved-audit').textContent, `Imported · Computer Engineering · ${timestamp}`);
   assert.deepEqual(ui.opened, []);
   assert.deepEqual(ui.visible(), ['import-dars', 'open-planner', 'delete-imported-data']);
   assert.match(ui.element('popup-status').textContent, /Open a completed DARS audit/);

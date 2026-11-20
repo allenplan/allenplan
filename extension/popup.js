@@ -39,7 +39,8 @@ async function refreshMajor(tabId, read) {
 function savedAuditLabel(info) {
   const importedAt = new Date(info?.importedAt);
   if (!info?.major || Number.isNaN(importedAt.getTime())) return 'Previously imported audit';
-  return `Saved audit · ${info.major} · ${importedAt.toLocaleDateString(undefined, {dateStyle: 'medium'})}`;
+  const timestamp = importedAt.toLocaleString(undefined, {dateStyle: 'medium', timeStyle: 'short'});
+  return `Imported · ${info.major} · ${timestamp}`;
 }
 
 /** Shows the actions available for the active tab and the saved audit. */
