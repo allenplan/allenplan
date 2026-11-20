@@ -57,7 +57,7 @@ async function refreshActions() {
     const currentUrl = tab?.url || '';
     const nextUrl = tab?.pendingUrl || currentUrl;
     const onDars = isDarsTab(tab);
-    const onPlanner = nextUrl.split(/[?#]/, 1)[0] === PLANNER_URL;
+    const onPlanner = isPlannerUrl(nextUrl);
 
     importButton.hidden = !onDars;
     importButton.textContent = hasAudit ? 'Reimport DARS' : 'Import DARS';
@@ -78,8 +78,25 @@ async function refreshActions() {
   }
 }
 
-/** Opens the planner without generating a schedule. */
-function openPlanner() {
+/** Matches the planner even when the URL includes a generated schedule. */
+function isPlannerUrl(url) {
+  return url?.split(/[?#]/, 1)[0] === PLANNER_URL;
+}
+
+/** Activates an open planner tab or opens a new one. */
+async function openPlanner() {
+  const tabs = await chrome.tabs.query({});
+  const planner = tabs.find((tab) => isPlannerUrl(tab.pendingUrl ?? tab.url));
+  if (planner) {
+    let activated;
+    try {
+      activated = await chrome.tabs.update(planner.id, {active: true});
+    } catch (error) {
+      // The tab may have closed since the query. Surface other activation failures.
+      if ((await chrome.tabs.query({})).some((tab) => tab.id === planner.id)) throw error;
+    }
+    if (activated) return chrome.windows.update(activated.windowId, {focused: true});
+  }
   return chrome.tabs.create({url: PLANNER_URL});
 }
 

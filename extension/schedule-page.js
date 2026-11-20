@@ -3,6 +3,7 @@ import {generateFromAudit} from './schedule-generation.js';
 
 const generateButton = document.querySelector('#generate-schedule');
 const generateHint = document.querySelector('#generate-hint');
+const openDarsLink = document.querySelector('#planner-open-dars');
 const preferenceFields = document.querySelector('#schedule-preferences');
 const preferencesStatus = document.querySelector('#preferences-status');
 const courseLimit = document.querySelector('#max-cs-courses');
@@ -15,6 +16,7 @@ let auditAvailable = false;
 let auditLoadFailed = false;
 let preferencesReady = false;
 let latestSave = 0;
+let auditChange = 0;
 
 /** Applies supported preferences, including the options in older result URLs. */
 function applyPreferences(options) {
@@ -73,7 +75,7 @@ async function restorePreferences() {
 }
 
 /** Restores a generated schedule from the URL, or leaves a fresh planner empty. */
-function renderSchedule(restoreOptions = false) {
+function renderSchedule(restoreOptions = false, importedAt = null) {
   if (!window.location.hash) return;
   document.querySelector('.schedule-results').hidden = false;
   let groups;
@@ -89,6 +91,10 @@ function renderSchedule(restoreOptions = false) {
       throw new Error('Invalid schedule');
     }
     if (restoreOptions && data.options) applyPreferences(data.options);
+    if (restoreOptions && (!auditAvailable || (data.auditImportedAt ?? null) !== importedAt)) {
+      clearSchedule();
+      return;
+    }
   } catch {
     document.querySelector('#schedule-status').textContent =
         'Unable to load this schedule. Use the controls above to generate a new one.';
@@ -153,9 +159,21 @@ function renderSchedule(restoreOptions = false) {
   }
 }
 
+/** Removes the schedule from the page and URL while leaving form values intact. */
+function clearSchedule() {
+  document.querySelector('.schedule-results').hidden = true;
+  document.querySelector('#schedule-status').textContent = '';
+  document.querySelector('#schedule-quarters').replaceChildren();
+  const notice = document.querySelector('#schedule-warnings');
+  notice.hidden = true;
+  notice.replaceChildren();
+  if (window.location.hash) window.history.replaceState(null, '', chrome.runtime.getURL('schedule.html'));
+}
+
 /** Updates generation controls when the saved audit becomes available or changes. */
 function updateAvailability() {
   generateButton.disabled = generating || !auditAvailable || !preferencesReady;
+  openDarsLink.hidden = auditAvailable || auditLoadFailed;
   generateHint.textContent = auditLoadFailed ?
       'Unable to load your saved audit. Reload this page to try again.' : auditAvailable ?
       'Your imported audit is ready.' :
@@ -164,11 +182,16 @@ function updateAvailability() {
 
 /** Reads the current audit without relying on an open popup. */
 async function restoreAuditAvailability() {
+  const change = auditChange;
   try {
-    const {importedDars} = await chrome.storage.local.get('importedDars');
+    const {importedDars, importedDarsInfo} = await chrome.storage.local.get(['importedDars', 'importedDarsInfo']);
+    if (change !== auditChange) return;
     auditAvailable = isImportedDars(importedDars);
+    if (auditAvailable) renderSchedule(true, importedDarsInfo?.importedAt ?? null);
+    else clearSchedule();
     updateAvailability();
   } catch {
+    if (change !== auditChange) return;
     auditAvailable = false;
     auditLoadFailed = true;
     updateAvailability();
@@ -182,14 +205,18 @@ async function regenerateSchedule() {
   generateButton.disabled = true;
   generateHint.textContent = 'Generating your schedule...';
   let status;
+  const change = auditChange;
   try {
-    const {importedDars} = await chrome.storage.local.get('importedDars');
+    const {importedDars, importedDarsInfo} = await chrome.storage.local.get(['importedDars', 'importedDarsInfo']);
+    if (change !== auditChange) return;
     auditAvailable = isImportedDars(importedDars);
     if (!auditAvailable) throw new Error('Import your DARS audit through the AllenPlan popup first.');
     const {desiredCourses: draft, ...limits} = readPreferences();
     const options = {...limits, desired: parseDesiredCourses(draft)};
     const {courses, warnings} = await generateFromAudit(importedDars, options);
-    const data = {groups: groupSchedule(courses, undefined, scheduleQuarters(options)), warnings, options};
+    if (change !== auditChange) return;
+    const data = {groups: groupSchedule(courses, undefined, scheduleQuarters(options)), warnings, options,
+      auditImportedAt: importedDarsInfo?.importedAt ?? null};
     window.history.replaceState(null, '', `#${encodeURIComponent(JSON.stringify(data))}`);
     renderSchedule();
     status = 'Schedule updated.';
@@ -198,19 +225,20 @@ async function regenerateSchedule() {
   } finally {
     generating = false;
     updateAvailability();
-    generateHint.textContent = status;
+    if (change === auditChange && status) generateHint.textContent = status;
   }
 }
 
 generateButton.addEventListener('click', regenerateSchedule);
 preferenceFields.addEventListener('input', savePreferences);
 chrome.storage.onChanged.addListener((changes, area) => {
-  if (area === 'local' && Object.hasOwn(changes, 'importedDars')) {
+  if (area === 'local' && (Object.hasOwn(changes, 'importedDars') || Object.hasOwn(changes, 'importedDarsInfo'))) {
+    auditChange++;
+    clearSchedule();
     auditLoadFailed = false;
-    auditAvailable = isImportedDars(changes.importedDars.newValue);
+    if (Object.hasOwn(changes, 'importedDars')) auditAvailable = isImportedDars(changes.importedDars.newValue);
+    else restoreAuditAvailability();
     updateAvailability();
   }
 });
-renderSchedule(true);
-restorePreferences();
-restoreAuditAvailability();
+restoreAuditAvailability().then(restorePreferences);

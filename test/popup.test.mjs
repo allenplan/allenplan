@@ -125,6 +125,25 @@ test('the saved-audit shortcut on DARS opens the planner without reimporting', a
   assert.equal(planner.textContent, 'Open planner');
 });
 
+test('reimport saves the audit and focuses an existing planner in another window', async (t) => {
+  const ui = await loadPopup(t, existingAudit, darsUrl);
+  const activeTabQuery = chrome.tabs.query;
+  chrome.tabs.query = async (query) => query.active ? activeTabQuery(query) : [
+    {id: 17}, {id: 18, url: plannerUrl + '#generated', windowId: 9},
+  ];
+  chrome.tabs.update = async (id, properties) => {
+    assert.equal(ui.writes.length, 1);
+    assert.equal(id, 18);
+    assert.deepEqual(properties, {active: true});
+    return {id, windowId: 9};
+  };
+  const focused = [];
+  chrome.windows = {update: async (id, properties) => { focused.push([id, properties]); }};
+  await ui.element('import-dars').click();
+  assert.deepEqual(focused, [[9, {focused: true}]]);
+  assert.deepEqual(ui.opened, []);
+});
+
 for (const previous of [null, existingAudit]) {
   test(`${previous ? 'reimport' : 'first import'} saves before opening the empty planner`, async (t) => {
     const ui = await loadPopup(t, previous, darsUrl);

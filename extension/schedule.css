@@ -33,6 +33,13 @@ main:has(.schedule-results[hidden]) {
   margin-bottom: 12px;
 }
 
+#planner-open-dars:not([hidden]) {
+  color: var(--uw-purple);
+  display: block;
+  margin-top: 8px;
+  text-align: center;
+}
+
 .intro {
   margin: 8px 0 12px;
 }
