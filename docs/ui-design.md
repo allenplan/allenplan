@@ -21,6 +21,7 @@ After a successful import or reimport, open or focus the planner. A failed reimp
 ## Planner
 
 - Save edits to the CS course limit, desired courses, start quarter, and start year as the user makes them. Restore them when the planner reopens.
+- **Reset to defaults** restores and saves the form’s default preferences. Choose **Generate schedule** to apply them to a new schedule.
 - After import or reimport, show the preferences. Reveal results when the user chooses **Generate schedule**. Subsequent generations update the same page.
 - **Delete imported audit** clears the audit and its displayed results while preserving preferences. An open planner immediately disables **Generate schedule**, explains that an audit is required, and offers **Open DARS**.
 

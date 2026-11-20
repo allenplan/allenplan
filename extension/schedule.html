@@ -17,47 +17,50 @@
     <main>
       <section class="schedule-controls" aria-labelledby="planner-heading">
         <h2 id="planner-heading">Plan your next three quarters</h2>
-        <fieldset id="schedule-preferences" disabled>
-          <legend>Schedule preferences</legend>
-          <div class="preference">
-            <label for="max-cs-courses">Maximum CS classes per quarter</label>
-            <select id="max-cs-courses" name="max-cs-courses">
-              <option value="0">0</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3" selected>3</option>
-              <option value="4">4</option>
-            </select>
-          </div>
-          <div class="preference">
-            <label for="desired-courses">Desired courses (Optional)</label>
-            <textarea id="desired-courses" name="desired-courses" rows="2"
-                placeholder="CSE 421, CSE 451" aria-describedby="desired-courses-hint"></textarea>
-            <small id="desired-courses-hint">Separate course codes with commas or new lines. These are added to your audit goals.</small>
-          </div>
-          <div class="preference start-quarter-fields">
-            <div>
-              <label for="start-quarter">Start quarter</label>
-              <select id="start-quarter" name="start-quarter">
-                <option value="Autumn">Autumn</option>
-                <option value="Winter">Winter</option>
-                <option value="Spring">Spring</option>
+        <form>
+          <fieldset id="schedule-preferences" disabled>
+            <legend>Schedule preferences</legend>
+            <div class="preference">
+              <label for="max-cs-courses">Maximum CS classes per quarter</label>
+              <select id="max-cs-courses" name="max-cs-courses">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3" selected>3</option>
+                <option value="4">4</option>
               </select>
             </div>
-            <div>
-              <label for="start-year">Start year</label>
-              <select id="start-year" name="start-year">
-                <option value="2026">2026</option>
-                <option value="2027">2027</option>
-                <option value="2028">2028</option>
-                <option value="2029">2029</option>
-                <option value="2030">2030</option>
-                <option value="2031">2031</option>
-                <option value="2032">2032</option>
-              </select>
+            <div class="preference">
+              <label for="desired-courses">Desired courses (Optional)</label>
+              <textarea id="desired-courses" name="desired-courses" rows="2"
+                  placeholder="CSE 421, CSE 451" aria-describedby="desired-courses-hint"></textarea>
+              <small id="desired-courses-hint">Separate course codes with commas or new lines. These are added to your audit goals.</small>
             </div>
-          </div>
-        </fieldset>
+            <div class="preference start-quarter-fields">
+              <div>
+                <label for="start-quarter">Start quarter</label>
+                <select id="start-quarter" name="start-quarter">
+                  <option value="Autumn">Autumn</option>
+                  <option value="Winter">Winter</option>
+                  <option value="Spring">Spring</option>
+                </select>
+              </div>
+              <div>
+                <label for="start-year">Start year</label>
+                <select id="start-year" name="start-year">
+                  <option value="2026">2026</option>
+                  <option value="2027">2027</option>
+                  <option value="2028">2028</option>
+                  <option value="2029">2029</option>
+                  <option value="2030">2030</option>
+                  <option value="2031">2031</option>
+                  <option value="2032">2032</option>
+                </select>
+              </div>
+            </div>
+            <button id="reset-preferences" type="button">Reset to defaults</button>
+          </fieldset>
+        </form>
         <p id="preferences-status" class="hint" role="status" hidden></p>
         <button id="generate-schedule" class="primary" type="button"
             aria-describedby="generate-hint" disabled>Generate schedule

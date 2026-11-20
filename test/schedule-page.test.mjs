@@ -94,6 +94,26 @@ test('planner restores ungenerated preferences independently of the audit and UR
   });
 });
 
+test('reset saves form defaults over an older result without regenerating', async (t) => {
+  const storage = {};
+  const {element} = await loadPlanner(t, {
+    groups: [{quarter: 'Winter', courses: []}],
+    options: {startQuarter: 'Winter', startYear: 2030, maxCourses: 1, desired: ['CSE 401']},
+  }, storage);
+  const previousResult = window.location.hash;
+  element('#schedule-preferences').form = {reset() {
+    element('#start-quarter').value = 'Autumn';
+    element('#start-year').value = '2026';
+    element('#max-cs-courses').value = '3';
+    element('#desired-courses').value = '';
+  }};
+  await element('#reset-preferences').listeners.click();
+  assert.deepEqual(storage.schedulePreferences, {
+    startQuarter: 'Autumn', startYear: 2026, maxCourses: 3, desiredCourses: '',
+  });
+  assert.equal(window.location.hash, previousResult);
+});
+
 test('fresh planner waits for Generate and can retry after a catalog error', async (t) => {
   const {element, setAudit} = await loadPlanner(t);
   assert.equal(window.location.hash, '');

@@ -65,6 +65,14 @@ main:has(.schedule-results[hidden]) {
   padding: 8px 0;
 }
 
+#reset-preferences {
+  background: transparent;
+  border: 0;
+  color: var(--uw-purple);
+  padding: 4px 0;
+  text-decoration: underline;
+}
+
 .schedule-results {
   min-width: 0;
 }

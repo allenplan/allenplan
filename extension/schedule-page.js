@@ -231,6 +231,10 @@ async function regenerateSchedule() {
 
 generateButton.addEventListener('click', regenerateSchedule);
 preferenceFields.addEventListener('input', savePreferences);
+document.querySelector('#reset-preferences').addEventListener('click', () => {
+  preferenceFields.form.reset();
+  return savePreferences();
+});
 chrome.storage.onChanged.addListener((changes, area) => {
   if (area === 'local' && (Object.hasOwn(changes, 'importedDars') || Object.hasOwn(changes, 'importedDarsInfo'))) {
     auditChange++;
