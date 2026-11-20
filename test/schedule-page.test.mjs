@@ -4,7 +4,7 @@ import test from 'node:test';
 let plannerInstance = 0;
 
 /** Opens the planner with a saved audit and an optional previously generated result. */
-async function loadPlanner(t, initial) {
+async function loadPlanner(t, initial, storage = {}) {
   const originals = new Map(['document', 'window', 'chrome', 'fetch'].map((name) =>
     [name, Object.getOwnPropertyDescriptor(globalThis, name)]));
   t.after(() => {
@@ -39,7 +39,10 @@ async function loadPlanner(t, initial) {
   globalThis.chrome = {
     runtime: {getURL: (path) => path},
     storage: {
-      local: {get: async () => ({importedDars: audit})},
+      local: {
+        get: async (key) => key === 'importedDars' ? {importedDars: audit} : {[key]: storage[key]},
+        set: async (values) => { Object.assign(storage, values); },
+      },
       onChanged: {addListener: (handler) => { onStorageChange = handler; }},
     },
   };
@@ -57,6 +60,36 @@ async function loadPlanner(t, initial) {
     },
   };
 }
+
+test('planner restores ungenerated preferences independently of the audit and URL', async (t) => {
+  const storage = {};
+  const draft = 'CSE 401,\nCSE ';
+  await t.test('edit before generating', async (t) => {
+    const {element, setAudit} = await loadPlanner(t, undefined, storage);
+    for (const [selector, value] of [
+      ['#max-cs-courses', '0'], ['#start-quarter', 'Spring'], ['#start-year', '2029'],
+      ['#desired-courses', draft],
+    ]) {
+      element(selector).value = value;
+      await element('#schedule-preferences').listeners.input();
+    }
+    assert.equal(window.location.hash, '');
+    setAudit(null);
+    assert.deepEqual(storage.schedulePreferences, {
+      maxCourses: 0, startQuarter: 'Spring', startYear: 2029, desiredCourses: draft,
+    });
+  });
+  await t.test('reopen over an older result', async (t) => {
+    const {element} = await loadPlanner(t, {
+      groups: [{quarter: 'Autumn', courses: []}],
+      options: {maxCourses: 3, desired: ['CSE 401'], startQuarter: 'Autumn', startYear: 2028},
+    }, storage);
+    assert.equal(element('#max-cs-courses').value, '0');
+    assert.equal(element('#start-quarter').value, 'Spring');
+    assert.equal(element('#start-year').value, '2029');
+    assert.equal(element('#desired-courses').value, draft);
+  });
+});
 
 test('fresh planner waits for Generate and can retry after a catalog error', async (t) => {
   const {element, setAudit} = await loadPlanner(t);

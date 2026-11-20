@@ -3,11 +3,77 @@ import {generateFromAudit} from './schedule-generation.js';
 
 const generateButton = document.querySelector('#generate-schedule');
 const generateHint = document.querySelector('#generate-hint');
+const preferenceFields = document.querySelector('#schedule-preferences');
+const preferencesStatus = document.querySelector('#preferences-status');
+const courseLimit = document.querySelector('#max-cs-courses');
+const desiredCourses = document.querySelector('#desired-courses');
+const startQuarter = document.querySelector('#start-quarter');
+const startYear = document.querySelector('#start-year');
+const PREFERENCES_KEY = 'schedulePreferences';
 let generating = false;
 let auditAvailable = false;
+let auditLoadFailed = false;
+let preferencesReady = false;
+let latestSave = 0;
+
+/** Applies supported preferences, including the options in older result URLs. */
+function applyPreferences(options) {
+  if (['Autumn', 'Winter', 'Spring'].includes(options.startQuarter)) {
+    startQuarter.value = options.startQuarter;
+  }
+  if (Number.isInteger(options.startYear) && options.startYear >= 2026 && options.startYear <= 2032) {
+    startYear.value = String(options.startYear);
+  }
+  if (Number.isInteger(options.maxCourses) && options.maxCourses >= 0 && options.maxCourses <= 4) {
+    courseLimit.value = String(options.maxCourses);
+  }
+  if (typeof options.desiredCourses === 'string') {
+    desiredCourses.value = options.desiredCourses;
+  } else if (Array.isArray(options.desired) && options.desired.every((code) => typeof code === 'string')) {
+    desiredCourses.value = options.desired.join(', ');
+  }
+}
+
+/** Captures the current form, including unfinished course codes. */
+function readPreferences() {
+  return {
+    maxCourses: Number(courseLimit.value),
+    startQuarter: startQuarter.value,
+    startYear: Number(startYear.value),
+    desiredCourses: desiredCourses.value,
+  };
+}
+
+/** Saves immediately so there is no pending debounce when the planner closes. */
+async function savePreferences() {
+  const save = ++latestSave;
+  try {
+    await chrome.storage.local.set({[PREFERENCES_KEY]: readPreferences()});
+    if (save === latestSave) preferencesStatus.hidden = true;
+  } catch {
+    if (save !== latestSave) return;
+    preferencesStatus.textContent = 'Unable to save your preferences. Make another edit to retry.';
+    preferencesStatus.hidden = false;
+  }
+}
+
+/** Loads the saved draft over any preferences restored from an older result URL. */
+async function restorePreferences() {
+  try {
+    const saved = await chrome.storage.local.get(PREFERENCES_KEY);
+    applyPreferences(saved[PREFERENCES_KEY] ?? {});
+  } catch {
+    preferencesStatus.textContent = 'Unable to load your saved preferences.';
+    preferencesStatus.hidden = false;
+  } finally {
+    preferencesReady = true;
+    preferenceFields.disabled = false;
+    updateAvailability();
+  }
+}
 
 /** Restores a generated schedule from the URL, or leaves a fresh planner empty. */
-function renderSchedule() {
+function renderSchedule(restoreOptions = false) {
   if (!window.location.hash) return;
   document.querySelector('.schedule-results').hidden = false;
   let groups;
@@ -22,21 +88,7 @@ function renderSchedule() {
         !warnings.every((warning) => typeof warning === 'string')) {
       throw new Error('Invalid schedule');
     }
-    const options = data.options;
-    if (options && ['Autumn', 'Winter', 'Spring'].includes(options.startQuarter)) {
-      document.querySelector('#start-quarter').value = options.startQuarter;
-    }
-    if (options && Number.isInteger(options.startYear) && options.startYear >= 2026 && options.startYear <= 2032) {
-      document.querySelector('#start-year').value = String(options.startYear);
-    }
-    if (options && Number.isInteger(options.maxCourses) &&
-        options.maxCourses >= 0 && options.maxCourses <= 4) {
-      document.querySelector('#max-cs-courses').value = String(options.maxCourses);
-    }
-    if (options && Array.isArray(options.desired) &&
-        options.desired.every((code) => typeof code === 'string')) {
-      document.querySelector('#desired-courses').value = options.desired.join(', ');
-    }
+    if (restoreOptions && data.options) applyPreferences(data.options);
   } catch {
     document.querySelector('#schedule-status').textContent =
         'Unable to load this schedule. Use the controls above to generate a new one.';
@@ -103,8 +155,9 @@ function renderSchedule() {
 
 /** Updates generation controls when the saved audit becomes available or changes. */
 function updateAvailability() {
-  generateButton.disabled = generating || !auditAvailable;
-  generateHint.textContent = auditAvailable ?
+  generateButton.disabled = generating || !auditAvailable || !preferencesReady;
+  generateHint.textContent = auditLoadFailed ?
+      'Unable to load your saved audit. Reload this page to try again.' : auditAvailable ?
       'Your imported audit is ready.' :
       'Import your DARS degree audit through the AllenPlan popup to generate a schedule.';
 }
@@ -117,14 +170,14 @@ async function restoreAuditAvailability() {
     updateAvailability();
   } catch {
     auditAvailable = false;
+    auditLoadFailed = true;
     updateAvailability();
-    generateHint.textContent = 'Unable to load your saved audit. Reload this page to try again.';
   }
 }
 
 /** Generates in this tab and updates its URL so refreshing preserves the result. */
 async function regenerateSchedule() {
-  if (generating) return;
+  if (generating || !preferencesReady) return;
   generating = true;
   generateButton.disabled = true;
   generateHint.textContent = 'Generating your schedule...';
@@ -133,12 +186,8 @@ async function regenerateSchedule() {
     const {importedDars} = await chrome.storage.local.get('importedDars');
     auditAvailable = isImportedDars(importedDars);
     if (!auditAvailable) throw new Error('Import your DARS audit through the AllenPlan popup first.');
-    const options = {
-      maxCourses: Number(document.querySelector('#max-cs-courses').value),
-      startQuarter: document.querySelector('#start-quarter').value,
-      startYear: Number(document.querySelector('#start-year').value),
-      desired: parseDesiredCourses(document.querySelector('#desired-courses').value),
-    };
+    const {desiredCourses: draft, ...limits} = readPreferences();
+    const options = {...limits, desired: parseDesiredCourses(draft)};
     const {courses, warnings} = await generateFromAudit(importedDars, options);
     const data = {groups: groupSchedule(courses, undefined, scheduleQuarters(options)), warnings, options};
     window.history.replaceState(null, '', `#${encodeURIComponent(JSON.stringify(data))}`);
@@ -154,11 +203,14 @@ async function regenerateSchedule() {
 }
 
 generateButton.addEventListener('click', regenerateSchedule);
+preferenceFields.addEventListener('input', savePreferences);
 chrome.storage.onChanged.addListener((changes, area) => {
   if (area === 'local' && Object.hasOwn(changes, 'importedDars')) {
+    auditLoadFailed = false;
     auditAvailable = isImportedDars(changes.importedDars.newValue);
     updateAvailability();
   }
 });
-renderSchedule();
+renderSchedule(true);
+restorePreferences();
 restoreAuditAvailability();

@@ -17,7 +17,7 @@
     <main>
       <section class="schedule-controls" aria-labelledby="planner-heading">
         <h2 id="planner-heading">Plan your next three quarters</h2>
-        <fieldset>
+        <fieldset id="schedule-preferences" disabled>
           <legend>Schedule preferences</legend>
           <div class="preference">
             <label for="max-cs-courses">Maximum CS classes per quarter</label>
@@ -58,6 +58,7 @@
             </div>
           </div>
         </fieldset>
+        <p id="preferences-status" class="hint" role="status" hidden></p>
         <button id="generate-schedule" class="primary" type="button"
             aria-describedby="generate-hint" disabled>Generate schedule
           <span aria-hidden="true">&rarr;</span></button>
