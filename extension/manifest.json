@@ -3,7 +3,13 @@
   "description": "Plan future quarters with ease",
   "version": "1.0",
   "manifest_version": 3,
-  "permissions": ["activeTab", "storage"],
+  "permissions": ["activeTab", "storage", "scripting"],
+  "web_accessible_resources": [
+    {
+      "resources": ["darsScraper.js", "classes.js"],
+      "matches": ["https://myplan.uw.edu/*"]
+    }
+  ],
   "action": {
     "default_popup": "popup.html",
     "default_icon": "icon.png"

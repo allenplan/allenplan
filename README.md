@@ -8,42 +8,73 @@ The Manifest V3 extension uses `manifest.json` and `icon.png`. Its popup,
 `popup.html`, has Generate Schedule, Import DARS, and Settings tabs, styled by
 `popup.css` using the [UW color palette](https://www.washington.edu/brand/brand-elements/colors/).
 `popup.js` handles tab navigation, including arrow keys, Home, and End.
-Schedule preferences are placeholders; **Generate schedule** is enabled after a
+The popup opens on Import DARS when no valid audit is saved, or Generate Schedule
+when a valid audit is restored from storage.
+Use **Settings → Scraping → Delete imported data** to remove the saved audit.
+This disables generation until another audit is imported; the next popup opens
+on Import DARS. Previously opened schedule tabs keep their displayed results.
+Schedule preferences include a maximum of 0–4 CS classes per quarter (default 3)
+and a desired-course textbox. Enter course codes separated by commas or new lines,
+such as `CSE 421, CSE 451`. Desired courses supplement the audit's goals and obey
+prerequisites; completed courses are not repeated. Choosing 0 produces an empty
+CS schedule. The third preference remains a placeholder. **Generate schedule** is enabled after a
 valid DARS audit is imported or restored from storage. It displays the
 recommended schedule in a new browser tab, grouped into Autumn, Winter, and
-Spring. The results page uses three columns on wider screens and stacks quarters
-on narrow screens.
+Spring. On wider screens, the results page places compact generation controls
+on the left and the three quarter cards on the right. Requirements needing
+attention span the width below both sections. Narrow screens stack the sections
+and, on phones, the quarter cards.
+The results page also includes the same schedule preferences and Generate schedule
+button. It restores the preferences used in the popup, reads the saved audit, and
+regenerates in the current tab. Results and preferences survive page refreshes.
+Deleting the saved audit disables regeneration until an audit is imported again.
 **Open DARS page** opens `https://myplan.uw.edu/audit/#/degree`.
 **Import** is enabled on any active page under `https://myplan.uw.edu/audit/`,
-including nested paths, query parameters, and hash routes. Temporarily, it uses
-`[temp_finished_classes, temp_requirements]` from `popup.js` and saves that sample
-under `importedDars` in `chrome.storage.local`. Replace this assignment with
-`await retrieveDARS()` and restore its import when the scraper is ready.
+including nested paths, query parameters, and hash routes. It runs `retrieveDARS()`
+against the active tab's live document through `extension/dars-import.js`, then
+saves the finished and required course lists under `importedDars` in
+`chrome.storage.local`. Wait for your DARS audit to finish loading before importing.
 The `storage` permission allows the audit to survive popup closure and browser
 restarts; opening the popup restores it into the `importedDars` variable.
 Stored courses retain their data fields, but not class methods.
-The sample import bypasses the unfinished scraper. Its temporary requirements
-are CSE 333, 421, 444, 446, 451, 452, 473, and 484, which produce a populated
-schedule using the sample completed courses. Click Import again to replace any
-previously saved sample requirements.
+Click Import again to replace any previously saved sample data with your audit.
+Scraper failures appear in the popup and preserve the previously saved audit.
 Reopen the popup after navigating to DARS. The `activeTab` permission lets the
-popup check the current URL when you click the extension icon. Settings contain
+popup access the current tab when you click the extension icon. The `scripting`
+permission runs the scraper in an isolated content-script context. The manifest
+exposes only `darsScraper.js` and its dependency `classes.js` to MyPlan so the
+injected function can import them. Settings contain
 placeholder text. Preferences are not saved when the popup closes.
 
 `extension/schedule.mjs` connects the audit to `ScheduleCalculator.planQuarters()`.
 The audit must be `[finishedCourses, requiredCourses]`, where each course is a
-code string or an object with a `name` or `code` field. Required courses are
-specific course goals, not requirement categories. Finished courses satisfy
-prerequisites and are excluded from recommendations. The generator loads the
-bundled `uw_cse_courses.json` catalog and plans Autumn, Winter, and Spring with
-up to three courses and 18 credits per quarter. Only courses supported by the
+code string or an object with a `name` or `code` field. The scheduling adapter
+resolves specific goals and CSE level placeholders such as `CSE 3XX`, `CSE 4XX`,
+and `CSE 3XX/4XX`. Each level placeholder is one course slot, including when its
+nominal credits differ from the chosen course. Repeated slots require distinct
+courses. `XXX` with `courseType: ['CSE']` represents a credit total filled by
+upper-division CSE electives; matching credit rows are pooled. Requirements
+whose notes link to `#core` use the bundled `uw_cse_core_courses.json` choices.
+
+`extension/requirement-resolver.js` reserves exact goals first, then fills narrow
+slots before broader ones and credit totals. It greedily prefers courses needing
+fewer additional prerequisites; it does not optimize all possible combinations.
+Each course counts toward at most one remaining requirement. Finished courses
+satisfy prerequisites and are excluded from new choices because DARS already
+reports the remaining requirements. The generator loads the bundled
+`uw_cse_courses.json` catalog and plans Autumn, Winter, and Spring with
+the selected course limit and at most 18 credits per quarter. Only courses supported by the
 calculator's CSE catalog rules can be recommended; offering availability and
 meeting-time conflicts are not checked. If no courses qualify, the results page
-shows an empty-state explanation. Generation failures show an error in the popup
-and allow retrying.
+shows an empty-state explanation. Unsupported categories (such as general
+education `XXX` requirements), unfilled slots, and goals beyond the planning
+horizon appear under **Requirements needing attention**. The available catalog
+does not encode general-education designations or all degree exceptions.
+Generation failures show an error in the popup and allow retrying.
 
 The adapter adds catalog titles and credits to the generated course codes.
-Only normalized display fields are transferred to `extension/schedule.html` through its URL fragment, so
+Normalized display fields and unresolved-requirement messages are transferred
+to `extension/schedule.html` through its URL fragment, so
 each tab keeps its own schedule when refreshed without extra permissions.
 `extension/schedule-page.js` renders course text as text, not HTML.
 
@@ -67,7 +98,7 @@ periodically be broken by new commits.
 2. Click **Load unpacked** and select the `extension/` subdirectory of this repository.
 3. Click the AllenPlan extension icon. Without a saved audit, verify
    **Generate schedule** is disabled and asks you to import DARS.
-4. Import an audit (or seed the fixture below while the scraper is unfinished),
+4. Open a loaded DARS audit and import it (or seed the development fixture below),
    then click **Generate schedule**. Verify a new browser tab displays
    **Your recommended schedule** with course codes, titles, and credits in the
    Autumn, Winter, and Spring cards.
@@ -92,8 +123,8 @@ check restoration, import, generation, and catalog failure handling.
 Also verify that all three popup tabs switch correctly, checkboxes toggle,
 Settings shows all four sections, and **Open DARS page** opens the audit URL.
 Verify Import is disabled outside MyPlan's `/audit/` section, enabled on audit
-pages (including other audit routes). Verify a successful sample import displays
-"Sample degree audit imported." and retains the result in `importedDars`.
+pages (including other audit routes). Verify a successful import displays
+"Degree audit imported." and retains the scraped result in `importedDars`.
 Close and reopen the popup and verify the saved audit is restored. A failed
 import or save should show an error and leave the previous saved audit intact.
 

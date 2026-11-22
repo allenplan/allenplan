@@ -14,28 +14,37 @@
       <p>A little planning. A world of possibilities.</p>
     </header>
     <div class="tabs" role="tablist" aria-label="Planning tools">
-      <button id="generate-tab" type="button" role="tab" aria-selected="true"
-          aria-controls="generate-panel">Generate Schedule</button>
-      <button id="dars-tab" type="button" role="tab" aria-selected="false"
-          aria-controls="dars-panel" tabindex="-1">Import DARS</button>
+      <button id="dars-tab" type="button" role="tab" aria-selected="true"
+          aria-controls="dars-panel">Import DARS</button>
+      <button id="generate-tab" type="button" role="tab" aria-selected="false"
+          aria-controls="generate-panel" tabindex="-1">Generate Schedule</button>
       <button id="settings-tab" type="button" role="tab" aria-selected="false"
           aria-controls="settings-panel" tabindex="-1">Settings</button>
     </div>
     <main>
       <section id="generate-panel" role="tabpanel" aria-labelledby="generate-tab"
-          tabindex="0">
+          tabindex="0" hidden>
         <p class="eyebrow">01 / MAKE IT YOURS</p>
         <h2>Build your next quarter.</h2>
         <p class="intro">Choose what matters to you. We'll take it from here.</p>
         <fieldset>
-          <legend>Schedule preferences <span class="badge">TBD</span></legend>
-          <p class="hint">Placeholder options; final preferences are coming soon.</p>
-          <label class="option"><input type="checkbox" name="option-1">
-            <span>Schedule option 1 <small>Preference to be determined</small></span>
-          </label>
-          <label class="option"><input type="checkbox" name="option-2">
-            <span>Schedule option 2 <small>Preference to be determined</small></span>
-          </label>
+          <legend>Schedule preferences</legend>
+          <div class="preference">
+            <label for="max-cs-courses">Maximum CS classes per quarter</label>
+            <select id="max-cs-courses" name="max-cs-courses">
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3" selected>3</option>
+              <option value="4">4</option>
+            </select>
+          </div>
+          <div class="preference">
+            <label for="desired-courses">Desired courses (Optional)</label>
+            <textarea id="desired-courses" name="desired-courses" rows="2"
+                placeholder="CSE 421, CSE 451" aria-describedby="desired-courses-hint"></textarea>
+            <small id="desired-courses-hint">Separate course codes with commas or new lines. These are added to your audit goals.</small>
+          </div>
           <label class="option"><input type="checkbox" name="option-3">
             <span>Schedule option 3 <small>Preference to be determined</small></span>
           </label>
@@ -46,7 +55,7 @@
         <p id="generate-hint" class="hint action-note" role="status">Import your DARS degree audit to generate a schedule.</p>
       </section>
       <section id="dars-panel" role="tabpanel" aria-labelledby="dars-tab"
-          tabindex="0" hidden>
+          tabindex="0">
         <p class="eyebrow">02 / START WITH YOUR PROGRESS</p>
         <h2>Bring your credits along.</h2>
         <p class="intro">Your degree audit will help shape your next steps.</p>
@@ -59,11 +68,6 @@
               aria-describedby="dars-hint" disabled>Import</button>
           <p id="dars-hint" class="hint action-note" role="status">Open your DARS degree audit to enable Import.</p>
         </div>
-        <div id="dars-loading" class="card loading" role="status" tabindex="-1" hidden>
-          <span class="spinner" aria-hidden="true"></span>
-          <h3>Importing Degree Audit...</h3>
-          <p>Please wait while your degree audit is imported.</p>
-        </div>
       </section>
       <section id="settings-panel" role="tabpanel" aria-labelledby="settings-tab"
           tabindex="0" hidden>
@@ -75,7 +79,11 @@
           <section class="card"><h3>General</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p></section>
           <section class="card"><h3>Scraping</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p></section>
+            <p>Remove your saved degree audit from AllenPlan.</p>
+            <button id="delete-imported-data" class="secondary" type="button"
+                aria-describedby="delete-data-status" disabled>Delete imported data</button>
+            <p id="delete-data-status" class="action-note" role="status"></p>
+          </section>
           <section class="card"><h3>Schedule</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p></section>
           <section class="card"><h3>Help</h3>
@@ -84,6 +92,10 @@
       </section>
     </main>
     <footer>AllenPlan <span>Made for your next chapter.</span></footer>
+    <div id="import-success" class="import-success" role="status"
+        aria-live="polite" hidden>
+      <strong>Import Success!</strong>
+    </div>
   </body>
 </html>
 
