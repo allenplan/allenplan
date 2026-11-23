@@ -37,13 +37,25 @@ test('ScheduleCalculator: scoreEligible() applies correct scores to different co
   const late = ScheduleCalculator.scoreEligible(graph, new Set(['CSE 100', 'CSE 200']), goals);
   assert.equal(late.get('CSE 300'), 100);
  
-  // Fundamental and core courses each add 1
-  const bonus = ScheduleCalculator.scoreEligible(graph, new Set(), {
+  // Fundamental courses are weighted more heavily than core courses.
+  const fundamental = ScheduleCalculator.scoreEligible(graph, new Set(), {
+    desired: ['CSE 300'],
+    fundamental: new Set(['CSE 150']),
+    core: new Set(),
+  });
+  const core = ScheduleCalculator.scoreEligible(graph, new Set(), {
+    desired: ['CSE 300'],
+    fundamental: new Set(),
+    core: new Set(['CSE 150']),
+  });
+  const both = ScheduleCalculator.scoreEligible(graph, new Set(), {
     desired: ['CSE 300'],
     fundamental: new Set(['CSE 150']),
     core: new Set(['CSE 150']),
   });
-  assert.equal(bonus.get('CSE 150'), 2);
+  assert.equal(fundamental.get('CSE 150'), 2);
+  assert.equal(core.get('CSE 150'), 1);
+  assert.equal(both.get('CSE 150'), 3);
 });
 
 const scores = new Map([

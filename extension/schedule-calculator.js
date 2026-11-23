@@ -3,10 +3,10 @@
  *   desired course            +100
  *   prereq for desired course +10, plus its remaining chain height (so the start of a long chain
  *                              beats a prerequisite that has slack)
- *   fundamental course        +1
+ *   fundamental course        +2
  *   core course               +1
  */
-export const WEIGHTS = { desired: 100, prereq: 10, fundamental: 1, core: 1 };
+export const WEIGHTS = { desired: 100, prereq: 10, fundamental: 2, core: 1 };
 
 /** Room for placeholders in a quarter when no maxTotalCourses / maxTotalCredits is given. */
 export const DEFAULT_MAX_TOTAL_COURSES = 5;
