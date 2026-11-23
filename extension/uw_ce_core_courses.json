@@ -1,0 +1,96 @@
+[
+  {
+    "code": "CSE 401",
+    "title": "Introduction to Compiler Construction",
+    "credits": 4
+  },
+  {
+    "code": "CSE 402",
+    "title": "Design and Implementation of Domain-Specific Languages",
+    "credits": 4
+  },
+  {
+    "code": "CSE 403",
+    "title": "Software Engineering",
+    "credits": 4
+  },
+  {
+    "code": "CSE 444",
+    "title": "Database Systems Internals",
+    "credits": 4
+  },
+  {
+    "code": "CSE 451",
+    "title": "Introduction to Operating Systems",
+    "credits": 4
+  },
+  {
+    "code": "CSE 452",
+    "title": "Introduction to Distributed Systems",
+    "credits": 4
+  },
+  {
+    "code": "CSE 453",
+    "title": "Datacenter Systems",
+    "credits": 4
+  },
+  {
+    "code": "CSE 461",
+    "title": "Introduction to Computer-Communication Networks",
+    "credits": 4
+  },
+  {
+    "code": "CSE 474",
+    "title": "Introduction to Embedded Systems",
+    "credits": 4,
+    "cross_listed": [
+      "E E 474"
+    ]
+  },
+  {
+    "code": "CSE 467",
+    "title": "Advanced Digital Design",
+    "credits": 4
+  },
+  {
+    "code": "CSE 469",
+    "title": "Computer Architecture I",
+    "credits": 5,
+    "cross_listed": [
+      "E E 469"
+    ]
+  },
+  {
+    "code": "CSE 470",
+    "title": "Computer Architecture II",
+    "credits": 4,
+    "cross_listed": [
+      "E E 470"
+    ]
+  },
+  {
+    "code": "CSE 478",
+    "title": "Autonomous Robotics",
+    "credits": 4
+  },
+  {
+    "code": "CSE 480",
+    "title": "Computer Ethics Seminar",
+    "credits": "1-3"
+  },
+  {
+    "code": "CSE 484",
+    "title": "Computer Security",
+    "credits": 4
+  },
+  {
+    "code": "E E 476",
+    "title": "Digital VLSI: Transistors to Gates",
+    "credits": 5
+  },
+  {
+    "code": "E E 477",
+    "title": "Digital VLSI: Gates to Systems",
+    "credits": 5
+  }
+]

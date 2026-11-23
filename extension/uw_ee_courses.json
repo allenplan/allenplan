@@ -1,0 +1,3097 @@
+[
+  {
+    "code": "E E 200",
+    "title": "Undergraduate Research Exploration Seminar",
+    "credits": "1",
+    "credits_min": 1,
+    "credits_max": 1,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 201",
+    "title": "Computer Hardware Skills",
+    "credits": "2",
+    "credits_min": 2,
+    "credits_max": 2,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 122",
+        "CSE 123",
+        "CSE 142",
+        "CSE 143"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 122, CSE 123, CSE 142, or CSE 143, any of which may be taken concurrently",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 205",
+    "title": "Introduction to Signal Conditioning",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "MATH 126",
+        "MATH 136"
+      ],
+      [
+        "PHYS 122",
+        "PHYS 142"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either MATH 126 or MATH 136; and either PHYS 122 or PHYS 142",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 215",
+    "title": "Fundamentals of Electrical Engineering",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "MATH 136",
+        "MATH 126"
+      ],
+      [
+        "MATH 136",
+        "MATH 207",
+        "MATH 307",
+        "AMATH 351"
+      ],
+      [
+        "PHYS 122",
+        "PHYS 142"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either MATH 136, or MATH 126 and either MATH 207, MATH 307, or AMATH 351, any of which may be taken concurrently; and either PHYS 122 or PHYS 142",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 233",
+    "title": "Circuit Theory",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 215"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 215",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 241",
+    "title": "Programming for Signal and Information Processing Applications",
+    "credits": "2",
+    "credits_min": 2,
+    "credits_max": 2,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 122",
+        "CSE 123",
+        "CSE 142",
+        "CSE 143",
+        "CSE 160"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either CSE 122, CSE 123, CSE 142, CSE 143, or CSE 160",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 242",
+    "title": "Signals, Systems, and Data I",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "MATH 135",
+        "MATH 207",
+        "AMATH 351"
+      ],
+      [
+        "E E 241",
+        "CSE 163"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either MATH 135, MATH 207, or AMATH 351, any of which may be taken concurrently; and either E E 241 or CSE 163",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 271",
+    "title": "Digital Circuits and Systems",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 121",
+        "CSE 122",
+        "CSE 123",
+        "CSE 142",
+        "CSE 143"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either CSE 121, CSE 122, CSE 123, CSE 142, or CSE 143",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 280",
+    "title": "Exploring Devices",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 215"
+      ],
+      [
+        "PHYS 122",
+        "PHYS 142"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 215, which may be taken concurrently; and either PHYS 122 or PHYS 142",
+    "suggested_text": "either Python programming or Matlab; and Linux"
+  },
+  {
+    "code": "E E 299",
+    "title": "Introductory Topics in Electrical Engineering",
+    "credits": "1-5",
+    "credits_min": 1,
+    "credits_max": 5,
+    "max_total_credits": 10,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 331",
+    "title": "Devices and Circuits",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 215"
+      ],
+      [
+        "E E 280"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 215 and E E 280",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 332",
+    "title": "Devices and Circuits: Analog",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 233"
+      ],
+      [
+        "E E 280"
+      ]
+    ],
+    "suggested_courses": [
+      "E E 331"
+    ],
+    "prerequisite_text": "E E 233 and E E 280",
+    "suggested_text": "E E 331"
+  },
+  {
+    "code": "E E 333",
+    "title": "Analog Embedded Systems",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 233"
+      ],
+      [
+        "E E 242"
+      ],
+      [
+        "E E 280",
+        "E E 331"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 233; E E 242; and either E E 280 or E E 331",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 342",
+    "title": "Signals, Systems, and Data II",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 242"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 242",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 344",
+    "title": "Data-Driven Modeling and Machine Learning",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "MATH 126",
+        "MATH 136"
+      ],
+      [
+        "E E 241",
+        "CSE 163"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either MATH 126 or MATH 136; and either E E 241 or CSE 163",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 345",
+    "title": "Introduction to Foundations of Machine Learning",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "MATH 136",
+        "MATH 208",
+        "AMATH 352"
+      ],
+      [
+        "E E 241",
+        "CSE 163"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either MATH 136, MATH 208, or AMATH 352; and either E E 241 or CSE 163",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 347",
+    "title": "Introduction to Robotics and Control Systems",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 241",
+        "CSE 163"
+      ],
+      [
+        "MATH 136",
+        "MATH 208",
+        "AMATH 352"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 241 or CSE 163; and either MATH 136, MATH 208, or AMATH 352",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 351",
+    "title": "Energy Systems",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 215"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "a minimum grade of 1.0 in E E 215",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 361",
+    "title": "Applied Electromagnetics",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 215"
+      ],
+      [
+        "PHYS 123",
+        "PHYS 143"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "a minimum grade of 1.0 in E E 215; and either PHYS 123 or PHYS 143",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 371",
+    "title": "Design of Digital Circuits and Systems",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 205",
+        "E E 215"
+      ],
+      [
+        "E E 271",
+        "CSE 369"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either E E 205 or E E 215; either E E 271 or CSE 369",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 391",
+    "title": "Probability for Information and Communication Engineering",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 242"
+      ],
+      [
+        "MATH 126",
+        "MATH 136"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 242; and MATH 126 or MATH 136",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 393",
+    "title": "Advanced Technical Communication",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 397",
+    "title": "Sex and Gender in Engineering",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 398",
+    "title": "Introduction to Professional Issues",
+    "credits": "1",
+    "credits_min": 1,
+    "credits_max": 1,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 399",
+    "title": "Special Topics in Electrical Engineering",
+    "credits": "1-5",
+    "credits_min": 1,
+    "credits_max": 5,
+    "max_total_credits": 10,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 400",
+    "title": "Advanced Topics in Electrical Engineering",
+    "credits": "1-5",
+    "credits_min": 1,
+    "credits_max": 5,
+    "max_total_credits": 10,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 406",
+    "title": "Teaching Engineering",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 416",
+    "title": "Random Signals for Communications and Signal Processing",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 242",
+        "E E 341"
+      ],
+      [
+        "STAT 390",
+        "MATH 394",
+        "STAT 394",
+        "IND E 315"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either E E 242 or E E 341; either STAT 390, MATH 394/STAT 394, or IND E 315",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 417",
+    "title": "Modern Wireless Communications",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 416"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 416",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 418",
+    "title": "Network Security and Cryptography",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 163",
+        "E E 241"
+      ],
+      [
+        "MATH 136",
+        "MATH 126"
+      ],
+      [
+        "MATH 136",
+        "MATH 208",
+        "AMATH 352"
+      ],
+      [
+        "E E 391",
+        "IND E 315",
+        "MATH 394",
+        "STAT 394",
+        "STAT 390"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 163 or E E 241; either MATH 136, both MATH 126 and MATH 208, or both MATH 126 and AMATH 352; and either E E 391, IND E 315, MATH 394/STAT 394, or STAT 390",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 419",
+    "title": "Introduction to Computer-Communication Networks",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 391",
+        "IND E 315",
+        "STAT 390"
+      ],
+      [
+        "E E 241",
+        "CSE 163"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either E E 391, IND E 315, or STAT 390; and either E E 241 or CSE 163",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 420",
+    "title": "Design in Communications",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 417"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "1.0 in E E 417 which may be taken concurrently",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 421",
+    "title": "Quantum Mechanics for Engineers",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "MATH 135",
+        "MATH 207",
+        "MATH 307",
+        "AMATH 351"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either MATH 135, MATH 207, MATH 307, or AMATH 351",
+    "suggested_text": "Calculus through differential equations"
+  },
+  {
+    "code": "E E 423",
+    "title": "Introduction to Synthetic Biology",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "MATH 136",
+        "MATH 207",
+        "MATH 307",
+        "AMATH 351",
+        "CSE 311"
+      ],
+      [
+        "MATH 208",
+        "MATH 308",
+        "AMATH 352"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either MATH 136, MATH 207, MATH 307, AMATH 351, or CSE 311; and either MATH 208, MATH 308, or AMATH 352",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 424",
+    "title": "Advanced Systems and Synthetic Biology",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 423",
+        "BIOEN 423",
+        "CHEM E 476",
+        "CSE 486"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 423/BIOEN 423/CHEM E 476/CSE 486",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 425",
+    "title": "Laboratory Methods in Synthetic Biology",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 423",
+        "BIOEN 423",
+        "CHEM E 476",
+        "CSE 486"
+      ],
+      [
+        "CHEM 142",
+        "CHEM 143",
+        "CHEM 145"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 423/BIOEN 423/CHEM E 476/CSE 486; and either CHEM 142, CHEM 143, or CHEM 145",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 435",
+    "title": "Linear Integrated Circuits",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 332"
+      ],
+      [
+        "E E 333"
+      ]
+    ],
+    "suggested_courses": [
+      "E E 331",
+      "E E 361"
+    ],
+    "prerequisite_text": "E E 332 and E E 333",
+    "suggested_text": "E E 331 and E E 361"
+  },
+  {
+    "code": "E E 436",
+    "title": "Integrated Systems Capstone I",
+    "credits": "5-",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 435"
+      ]
+    ],
+    "suggested_courses": [
+      "E E 331",
+      "E E 361"
+    ],
+    "prerequisite_text": "E E 435",
+    "suggested_text": "E E 331 and E E 361"
+  },
+  {
+    "code": "E E 437",
+    "title": "Integrated Systems Capstone II",
+    "credits": "-5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 436"
+      ]
+    ],
+    "suggested_courses": [
+      "E E 331",
+      "E E 361"
+    ],
+    "prerequisite_text": "E E 436",
+    "suggested_text": "E E 331 and E E 361"
+  },
+  {
+    "code": "E E 440",
+    "title": "Introduction to Digital Imaging Systems",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 341",
+        "E E 342"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 341 or E E 342",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 442",
+    "title": "Digital Signals and Filtering",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 341",
+        "E E 342"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "a minimum grade of 1.0 in either E E 341 or E E 342",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 443",
+    "title": "Machine Learning for Signal Processing Applications",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 242"
+      ],
+      [
+        "MATH 136",
+        "MATH 126"
+      ],
+      [
+        "MATH 136",
+        "MATH 208",
+        "AMATH 352"
+      ],
+      [
+        "E E 391",
+        "IND E 315",
+        "MATH 394",
+        "STAT 394",
+        "STAT 390"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "a minimum grade of 1.0 in E E 242; either MATH 136, both MATH 126 and MATH 208, or both MATH 126 and AMATH 352; and either E E 391, IND E 315, MATH 394/STAT 394, or STAT 390",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 445",
+    "title": "Fundamentals of Optimization and Machine Learning",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 345"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 345",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 446",
+    "title": "Tiny Machine Learning for Ultra Low-Power Edge Computing",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 242"
+      ],
+      [
+        "AMATH 352",
+        "MATH 136",
+        "MATH 208"
+      ],
+      [
+        "IND E 315",
+        "MATH 394",
+        "STAT 394",
+        "STAT 390",
+        "E E 391"
+      ]
+    ],
+    "suggested_courses": [
+      "E E 344"
+    ],
+    "prerequisite_text": "E E 242; either AMATH 352, MATH 136, or MATH 208; and either IND E 315, MATH 394/STAT 394, STAT 390, or E E 391",
+    "suggested_text": "E E 344; and familiarity with Python programming and basic C/C++programming"
+  },
+  {
+    "code": "E E 447",
+    "title": "Control System Analysis I",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 233"
+      ],
+      [
+        "E E 235",
+        "E E 242"
+      ],
+      [
+        "MATH 136",
+        "MATH 208",
+        "MATH 308"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 233; either E E 235 or E E 242; and either MATH 136, MATH 208, or MATH 308",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 448",
+    "title": "Control Systems Laboratory",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 447"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 447",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 449",
+    "title": "Robotics and Controls Capstone",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 447"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 447",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 451",
+    "title": "Wind Energy",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 351"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 351",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 452",
+    "title": "Power Electronics Design",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 331"
+      ],
+      [
+        "E E 351"
+      ]
+    ],
+    "suggested_courses": [
+      "E E 361"
+    ],
+    "prerequisite_text": "E E 331 and E E 351",
+    "suggested_text": "E E 361"
+  },
+  {
+    "code": "E E 453",
+    "title": "Electric Drives",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 452"
+      ],
+      [
+        "E E 458"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "a minimum grade of 1.0 in E E 452; and a minimum grade of 1.0 in E E 458",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 454",
+    "title": "Power System Analysis",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 351"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "1.0 in E E 351",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 455",
+    "title": "Power System Dynamics and Protection",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 351"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "1.0 in E E 351",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 456",
+    "title": "Computer-Aided Design in Power Systems",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 454",
+        "E E 455"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either 1.0 in E E 454 or 1.0 in E E 455",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 457",
+    "title": "Electric Energy Distribution Systems",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 351"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "1.0 in E E 351",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 458",
+    "title": "Power Electronics Controls",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 447"
+      ],
+      [
+        "E E 452"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 447 and E E 452",
+    "suggested_text": "circuits; control systems; and power electronics"
+  },
+  {
+    "code": "E E 460",
+    "title": "Neural Engineering",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "BIOL 130",
+        "BIOL 162",
+        "BIOL 220"
+      ],
+      [
+        "MATH 208",
+        "AMATH 301",
+        "AMATH 352"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either BIOL 130, BIOL 162, or BIOL 220; and either MATH 208, AMATH 301, or AMATH 352",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 461",
+    "title": "Neural Engineering Tech Studio",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "BIOEN 460",
+        "E E 460"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "BIOEN 460/E E 460",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 462",
+    "title": "Electromagnetics I: Microwave Engineering",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 361"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "minimum grade of 1.0 in E E 361",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 463",
+    "title": "Microwave Electronic Design",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 361"
+      ],
+      [
+        "E E 332"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 361; E E 332, which may be taken concurrently",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 464",
+    "title": "Antennas: Analysis and Design",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 361"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "1.0 in E E 361",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 465",
+    "title": "Network and Web Security",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 163",
+        "E E 241"
+      ],
+      [
+        "E E 418"
+      ]
+    ],
+    "suggested_courses": [
+      "E E 419"
+    ],
+    "prerequisite_text": "either CSE 163 or E E 241; and E E 418",
+    "suggested_text": "E E 419"
+  },
+  {
+    "code": "E E 466",
+    "title": "Neural Computation and Engineering Laboratory",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "BIOL 130",
+        "BIOL 162",
+        "BIOL 220",
+        "AMATH 342"
+      ],
+      [
+        "MATH 208",
+        "AMATH 301",
+        "AMATH 352"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either BIOL 130, BIOL 162, BIOL 220, AMATH 342; and either MATH 208, AMATH 301, or AMATH 352",
+    "suggested_text": "courses in scientific computing and matrix manipulations in Matlab; and courses in neural signal processing and data analysis"
+  },
+  {
+    "code": "E E 467",
+    "title": "Machine Learning for Cybersecurity",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 163",
+        "E E 241"
+      ],
+      [
+        "AMATH 352",
+        "MATH 208",
+        "MATH 308",
+        "MATH 136"
+      ],
+      [
+        "IND E 315",
+        "MATH 394",
+        "STAT 394",
+        "STAT 390"
+      ]
+    ],
+    "suggested_courses": [
+      "E E 445"
+    ],
+    "prerequisite_text": "either CSE 163 or E E 241; either AMATH 352, MATH 208, MATH 308, or MATH 136; and either IND E 315, MATH 394/STAT 394, or STAT 390",
+    "suggested_text": "E E 445"
+  },
+  {
+    "code": "E E 468",
+    "title": "Software and Embedded Systems Security",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 241",
+        "CSE 163"
+      ]
+    ],
+    "suggested_courses": [
+      "E E 469",
+      "CSE 469",
+      "E E 472"
+    ],
+    "prerequisite_text": "E E 241 or CSE 163",
+    "suggested_text": "E E 469/CSE 469 or E E 472"
+  },
+  {
+    "code": "E E 469",
+    "title": "Computer Architecture I",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 271",
+        "CSE 369"
+      ],
+      [
+        "CSE 123",
+        "CSE 143"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either E E 271 or CSE 369; and either CSE 123 or CSE 143",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 470",
+    "title": "Computer Architecture II",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 469",
+        "E E 469"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either CSE 469 or E E 469",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 474",
+    "title": "Introduction to Embedded Systems",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 123",
+        "CSE 143"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 123 or CSE 143",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 475",
+    "title": "Embedded Systems Capstone",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 271",
+        "CSE 369"
+      ],
+      [
+        "E E 472",
+        "CSE 474",
+        "E E 474"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 271 or CSE 369; and E E 472 or CSE 474/E E 474",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 476",
+    "title": "Digital VLSI: Transistors to Gates",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 215"
+      ],
+      [
+        "E E 271",
+        "CSE 369"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 215; and either E E 271 or CSE 369",
+    "suggested_text": "basic circuit theory and basic digital design experience"
+  },
+  {
+    "code": "E E 477",
+    "title": "Digital VLSI: Gates to Systems",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 469",
+        "CSE 469"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 469/CSE 469",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 478",
+    "title": "Capstone Integrated Digital Design Projects",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 476"
+      ],
+      [
+        "E E 477"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 476 and E E 477",
+    "suggested_text": "introduction to VLSI design and knowledge of application-specific integrated circuit (ASIC) design flows"
+  },
+  {
+    "code": "E E 482",
+    "title": "Semiconductor Devices",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 280",
+        "E E 331",
+        "MSE 351",
+        "PHYS 324"
+      ],
+      [
+        "MATH 135",
+        "MATH 207",
+        "AMATH 351"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either E E 280, E E 331, MSE 351, or PHYS 324; and either MATH 135, MATH 207, or AMATH 351",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 484",
+    "title": "Sensors and Sensor Systems",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 331"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 331",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 486",
+    "title": "Fundamentals of Integrated Circuit Technology",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 331",
+        "MSE 351"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 331 or MSE 351",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 487",
+    "title": "Introduction to Photonics",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 361",
+        "PHYS 123",
+        "PHYS 143"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either E E 361, PHYS 123, or PHYS 143",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 488",
+    "title": "Advanced Photonics",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 485",
+        "E E 487"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 485 or E E 487",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 489",
+    "title": "Electronic-Photonic Integrated Systems",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 331",
+        "E E 332",
+        "E E 487"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either E E 331, E E 332, or E E 487",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 490",
+    "title": "Reading and Research",
+    "credits": "1-5",
+    "credits_min": 1,
+    "credits_max": 5,
+    "max_total_credits": 25,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 491",
+    "title": "Undergraduate Seminar",
+    "credits": "1",
+    "credits_min": 1,
+    "credits_max": 1,
+    "max_total_credits": 2,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 492",
+    "title": "Electrical Engineering Leadership Seminar",
+    "credits": "1",
+    "credits_min": 1,
+    "credits_max": 1,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 496",
+    "title": "Engineering Entrepreneurial Systems and Design",
+    "credits": "2",
+    "credits_min": 2,
+    "credits_max": 2,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 497",
+    "title": "Engineering Entrepreneurial Capstone",
+    "credits": "4-",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 498",
+    "title": "Engineering Entrepreneurial Capstone",
+    "credits": "-4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 497"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 497",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 499",
+    "title": "Undergraduate Research and Special Projects",
+    "credits": "1-5",
+    "credits_min": 1,
+    "credits_max": 5,
+    "max_total_credits": 10,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 500",
+    "title": "Graduate Seminar",
+    "credits": "1",
+    "credits_min": 1,
+    "credits_max": 1,
+    "max_total_credits": 9,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 501",
+    "title": "Academic Writing",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 503",
+    "title": "Modeling of MEMS",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 504",
+    "title": "Introduction to Microelectro Mechanical Systems",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 505",
+    "title": "Probability and Random Processes",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": "graduate standing and understanding of probability at the level of E E 416",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 506",
+    "title": "Fundamentals of Wireless Communication",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 505"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 505",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 508",
+    "title": "Stochastic Processes in Engineering",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 505"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 505",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 510",
+    "title": "Mathematical Foundations of Systems Theory",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 511",
+    "title": "Introduction to Statistical Learning",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 505",
+        "CSE 515"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either E E 505 or CSE 515",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 512",
+    "title": "Graphical Models in Pattern Recognition",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 508"
+      ],
+      [
+        "E E 511"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 508; E E 511",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 513",
+    "title": "Introduction to Deep Learning Applications in Engineering",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [
+      "E E 241",
+      "MATH 208",
+      "STAT 390",
+      "E E 416",
+      "E E 511"
+    ],
+    "prerequisite_text": null,
+    "suggested_text": "coursework in Python programming (E E 241); linear algebra (MATH 208); probability and statistics (STAT 390 or E E 416); and machine learning (E E 511)"
+  },
+  {
+    "code": "E E 514",
+    "title": "Information Theory I",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 505"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 505",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 515",
+    "title": "Information Theory II",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 514"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 514",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 516",
+    "title": "Computer Speech Processing",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 505"
+      ],
+      [
+        "E E 518"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 505; E E 518",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 517",
+    "title": "Introduction to Large Language Models",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 344",
+        "E E 345"
+      ],
+      [
+        "E E 241",
+        "CSE 163"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either E E 344, E E 345, or equivalent; and either E E 241, CSE 163, or equivalent",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 518",
+    "title": "Digital Signal Processing",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 442"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 442",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 519",
+    "title": "Stochastic Analysis of Data From Physical Systems",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 505"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 505",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 520",
+    "title": "Spectral Analysis of Time Series",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "STAT 342",
+        "STAT 390",
+        "STAT 509",
+        "CS&SS 509",
+        "ECON 580",
+        "IND E 315"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either STAT 342, STAT 390, STAT 509/CS&SS 509/ECON 580, or IND E 315",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 521",
+    "title": "Quantum Mechanics for Engineers",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "MATH 207",
+        "AMATH 351"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "MATH 207 or AMATH 351",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 522",
+    "title": "Quantum Information Practicum",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "PHYS 521",
+        "CHEM 561",
+        "MSE 561"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either PHYS 521, CHEM 561/MSE 561, or permission of instructor",
+    "suggested_text": "practical experience with cloud-based quantum processors"
+  },
+  {
+    "code": "E E 523",
+    "title": "Introduction to Synthetic Biology",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "MATH 136",
+        "MATH 207",
+        "MATH 307",
+        "AMATH 351",
+        "CSE 311"
+      ],
+      [
+        "MATH 208",
+        "MATH 308",
+        "AMATH 352"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either MATH 136, MATH 207, MATH 307, AMATH 351, or CSE 311; and either MATH 208, MATH 308, or AMATH 352",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 524",
+    "title": "Advanced Systems and Synthetic Biology",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 523",
+        "BIOEN 523",
+        "CHEM E 576",
+        "CSE 586",
+        "MOLENG 525"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 523/BIOEN 523/CHEM E 576/CSE 586/MOLENG 525",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 525",
+    "title": "Digital VLSI: Gates to Systems",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 371",
+        "CSE 371",
+        "E E 469",
+        "CSE 469"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either E E 371/CSE 371, or E E 469/CSE 469",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 526",
+    "title": "Capstone Integrated Digital Design Projects",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 476"
+      ],
+      [
+        "E E 477",
+        "E E 525"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 476; and either E E 477 or E E 525",
+    "suggested_text": "introduction to VLSI design and knowledge of application-specific integrated circuit (ASIC) design flows"
+  },
+  {
+    "code": "E E 527",
+    "title": "Microfabrication",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 528",
+    "title": "Quantum Optics for Quantum Information Applications",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "MATH 207"
+      ],
+      [
+        "MATH 208"
+      ],
+      [
+        "E E 521"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "MATH 207; MATH 208; and E E 521",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 529",
+    "title": "Semiconductor Optoelectronics",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 485"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 485",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 530",
+    "title": "Wavelets: Data Analysis, Algorithms, and Theory",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "STAT 390",
+        "MATH 390",
+        "STAT 509",
+        "CS&SS 509",
+        "ECON 580",
+        "STAT 513",
+        "IND E 315"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "college-level coursework in Fourier theory and linear algebra; and either STAT 390/MATH 390, STAT 509/CS&SS 509/ECON 580, STAT 513, or IND E 315",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 531",
+    "title": "Semiconductor Devices and Device Simulation",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 482"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 482",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 532",
+    "title": "Power Electronics Design",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 331"
+      ],
+      [
+        "E E 351"
+      ]
+    ],
+    "suggested_courses": [
+      "E E 361"
+    ],
+    "prerequisite_text": "E E 331 and E E 351",
+    "suggested_text": "E E 361"
+  },
+  {
+    "code": "E E 533",
+    "title": "Power Electronics Controls",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 452",
+        "E E 532"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 452 or E E 532",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 534",
+    "title": "Electric Drives",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 458",
+        "E E 533"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "a minimum grade of 1.0 in either E E 458 or E E 533",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 535",
+    "title": "Applied Nanophotonics",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 361",
+        "PHYS 321"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either E E 361, PHYS 321, or equivalent course or experience with nanophotonics",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 536",
+    "title": "Design of Analog Integrated Circuits and Systems",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 433"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 433",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 537",
+    "title": "Computation Methods for Circuit Analysis and Simulation",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 538",
+    "title": "Topics in Electronic Circuit Design",
+    "credits": "1-5",
+    "credits_min": 1,
+    "credits_max": 5,
+    "max_total_credits": 16,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 539",
+    "title": "Advanced Topics in Solid-State Electronics",
+    "credits": "1-5",
+    "credits_min": 1,
+    "credits_max": 5,
+    "max_total_credits": 16,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 540",
+    "title": "Wearable Robotics",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": "experience with MATLAB, or similar programming experience",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 541",
+    "title": "Automatic Layout of Integrated Circuits",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 271",
+        "CSE 370"
+      ],
+      [
+        "CSE 143"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either E E 271 or CSE 370; CSE 143",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 542",
+    "title": "Advanced Embedded Systems Design",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 478"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 478",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 543",
+    "title": "Models of Robot Manipulation",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": "linear algebra",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 544",
+    "title": "Computer Systems Architecture",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 451"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 451",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 545",
+    "title": "High-Performance Computer Architectures",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 548",
+        "E E 544"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 548/E E 544",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 546",
+    "title": "Advanced Topics in Control System Theory",
+    "credits": "1-5",
+    "credits_min": 1,
+    "credits_max": 5,
+    "max_total_credits": 16,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": "permission of instructor",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 547",
+    "title": "Linear Systems Theory",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 510",
+        "A A 510",
+        "CHEM E 510",
+        "M E 510"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 510/A A 510/CHEM E 510/M E 510",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 548",
+    "title": "Linear Multivariable Control",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "A A 547",
+        "E E 547",
+        "M E 547"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "A A 547/E E 547/M E 547",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 549",
+    "title": "Estimation and System Identification",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "A A 547",
+        "E E 547",
+        "M E 547"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either A A 547, E E 547, or M E 547",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 550",
+    "title": "Nonlinear Optimal Control",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 551",
+    "title": "Wind Energy",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 351"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 351",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 552",
+    "title": "Power Systems Dynamics and Control",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 351"
+      ],
+      [
+        "E E 455"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 351 and E E 455",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 553",
+    "title": "Power System Economics",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 454"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 454",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 554",
+    "title": "Large Electric Energy Systems Analysis",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 456"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 456",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 556",
+    "title": "Energy, Sustainability, and Society",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 557",
+    "title": "Dynamics of Controlled Systems",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 558",
+    "title": "Substation and Distribution Automation",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 559",
+    "title": "Special Topics in Electrical Energy Systems",
+    "credits": "1-5",
+    "credits_min": 1,
+    "credits_max": 5,
+    "max_total_credits": 16,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 560",
+    "title": "Neural Engineering",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 561",
+    "title": "Neural Engineering Tech Studio",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "BIOEN 560"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "BIOEN 560",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 562",
+    "title": "Artificial Intelligence for Engineers",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 373"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 373",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 563",
+    "title": "Submodular Functions, Optimization, and Applications",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 510",
+        "A A 510",
+        "CHEM E 510",
+        "M E 510"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 510/A A 510/CHEM E 510/M E 510",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 564",
+    "title": "Neural Computation and Engineering Laboratory",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 565",
+    "title": "Computer-Communication Networks",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 505"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 505",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 566",
+    "title": "Linear Integrated Circuits",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 332"
+      ],
+      [
+        "E E 333"
+      ]
+    ],
+    "suggested_courses": [
+      "E E 331",
+      "E E 361"
+    ],
+    "prerequisite_text": "E E 332 and E E 333",
+    "suggested_text": "E E 331 and E E 361"
+  },
+  {
+    "code": "E E 568",
+    "title": "Digital Image Processing",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": "permission of instructor",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 569",
+    "title": "Advanced Neurotechnology",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "BIOEN 460",
+        "E E 460",
+        "BIOEN 560",
+        "E E 560"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "BIOEN 460/E E 460 or BIOEN 560/E E 560",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 570",
+    "title": "Electronic-Photonic Integrated Systems",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 331",
+        "E E 332",
+        "E E 487"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either E E 331, E E 332, or E E 487",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 571",
+    "title": "Integrated Systems Capstone I",
+    "credits": "5-",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 566"
+      ]
+    ],
+    "suggested_courses": [
+      "E E 331",
+      "E E 361"
+    ],
+    "prerequisite_text": "E E 566",
+    "suggested_text": "E E 331 and E E 361"
+  },
+  {
+    "code": "E E 572",
+    "title": "Electromagnetics I: Microwave Engineering",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 361"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 361",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 573",
+    "title": "Integrated Systems Capstone II",
+    "credits": "-5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 571"
+      ]
+    ],
+    "suggested_courses": [
+      "E E 331",
+      "E E 361"
+    ],
+    "prerequisite_text": "E E 571",
+    "suggested_text": "E E 331 and E E 361"
+  },
+  {
+    "code": "E E 574",
+    "title": "Antennas: Analysis and Design",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 575",
+    "title": "Radar Remote Sensing",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 576",
+    "title": "Computer Vision",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": "solid knowledge of linear algebra; good programming skills",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 577",
+    "title": "Special Topics in Computer Vision",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 576",
+        "E E 576"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 576/E E 576",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 578",
+    "title": "Convex Optimization",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "A A 510",
+        "CHEM E 510",
+        "E E 510",
+        "M E 510"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "A A 510, CHEM E 510, E E 510, or M E 510",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 579",
+    "title": "Advanced Topics in Electromagnetics, Optics, and Acoustics",
+    "credits": "1-5",
+    "credits_min": 1,
+    "credits_max": 5,
+    "max_total_credits": 16,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 580",
+    "title": "Geometric Methods for Non-Linear Control Systems",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 581",
+    "title": "Digital Control System Design",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "A A 447",
+        "E E 447",
+        "M E 471"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "AA/E E 447 or ME 471",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 582",
+    "title": "Semiconductor Devices",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 280",
+        "E E 331",
+        "MSE 351",
+        "PHYS 324"
+      ],
+      [
+        "MATH 135",
+        "MATH 207",
+        "AMATH 351"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either E E 280, E E 331, MSE 351, or PHYS 324; and either MATH 135, MATH 207, or AMATH 351",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 583",
+    "title": "Nonlinear Control Systems",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "A A 447",
+        "E E 447",
+        "M E 471"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "A A 447/E E 447/M E 471",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 584",
+    "title": "Sensors and Sensor Systems",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 331"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 331",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 585",
+    "title": "Learning-Based Control",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [
+      "E E 548",
+      "A A 548",
+      "M E 548"
+    ],
+    "prerequisite_text": null,
+    "suggested_text": "E E 548/A A 548/M E 548"
+  },
+  {
+    "code": "E E 586",
+    "title": "Digital Video Coding Systems",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 587",
+    "title": "Introduction to Photonics",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 361",
+        "PHYS 123",
+        "PHYS 143"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either E E 361, PHYS 123, or PHYS 143",
+    "suggested_text": "basic principles of electromagnetism; complex numbers and functions; introductory differential and integral calculus; linear differential equations"
+  },
+  {
+    "code": "E E 588",
+    "title": "Advanced Photonics",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 485",
+        "E E 487",
+        "E E 587"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either E E 485, E E 487, or E E 587",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 589",
+    "title": "Advanced Topics in Sensors and Sensor Systems",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 590",
+    "title": "Advanced Topics in Digital Computers",
+    "credits": "2-5",
+    "credits_min": 2,
+    "credits_max": 5,
+    "max_total_credits": 16,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 591",
+    "title": "Robotics and Control Systems Colloquium",
+    "credits": "1",
+    "credits_min": 1,
+    "credits_max": 1,
+    "max_total_credits": 30,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 593",
+    "title": "Feedforward Control",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "A A 547",
+        "E E 547",
+        "M E 547"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "A A 547/E E 547/M E 547",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 594",
+    "title": "Robust Control",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "A A 547",
+        "E E 547",
+        "M E 547"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "A A 547/E E 547/M E 547",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 595",
+    "title": "Advanced Topics in Communication Theory",
+    "credits": "1-5",
+    "credits_min": 1,
+    "credits_max": 5,
+    "max_total_credits": 16,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 596",
+    "title": "Advanced Topics in Signal and Image Processing",
+    "credits": "2-5",
+    "credits_min": 2,
+    "credits_max": 5,
+    "max_total_credits": 16,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 597",
+    "title": "Networked Dynamics Systems",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "A A 547",
+        "E E 547",
+        "M E 547"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "A A 547/E E 547/M E 547",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 598",
+    "title": "Special topics in Electrical Engineering",
+    "credits": "1-5",
+    "credits_min": 1,
+    "credits_max": 5,
+    "max_total_credits": 16,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 599",
+    "title": "Special Projects in Electrical Engineering",
+    "credits": "1-5",
+    "credits_min": 1,
+    "credits_max": 5,
+    "max_total_credits": 15,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": "permission of instructor",
+    "suggested_text": null
+  },
+  {
+    "code": "E E 600",
+    "title": "Independent Study or Research",
+    "credits": "*-",
+    "credits_min": null,
+    "credits_max": null,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 700",
+    "title": "Master's Thesis",
+    "credits": "*-",
+    "credits_min": null,
+    "credits_max": null,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  },
+  {
+    "code": "E E 800",
+    "title": "Doctoral Dissertation",
+    "credits": "*-",
+    "credits_min": null,
+    "credits_max": null,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  }
+]

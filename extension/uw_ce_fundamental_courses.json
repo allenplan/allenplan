@@ -1,0 +1,50 @@
+[
+  {
+    "code": "CSE 123",
+    "title": "Introduction to Computer Programming III",
+    "credits": 4
+  },
+  {
+    "code": "CSE 311",
+    "title": "Foundations of Computing I",
+    "credits": 4
+  },
+  {
+    "code": "CSE 312",
+    "title": "Foundations of Computing II",
+    "credits": 4
+  },
+  {
+    "code": "CSE 332",
+    "title": "Data Structures and Parallelism",
+    "credits": 4
+  },
+  {
+    "code": "CSE 351",
+    "title": "The Hardware/Software Interface",
+    "credits": 4
+  },
+  {
+    "code": "CSE 369",
+    "title": "Introduction to Digital Design",
+    "credits": 3
+  },
+  {
+    "code": "CSE 371",
+    "title": "Design of Digital Circuits and Systems",
+    "credits": 5,
+    "cross_listed": [
+      "E E 371"
+    ]
+  },
+  {
+    "code": "E E 205",
+    "title": "Introduction to Signal Conditioning",
+    "credits": 4
+  },
+  {
+    "code": "E E 215",
+    "title": "Fundamentals of Electrical Engineering",
+    "credits": 4
+  }
+]
