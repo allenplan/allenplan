@@ -1,0 +1,14 @@
+[
+  {
+    "code": "SOC 225",
+    "title": "Data and Society",
+    "credits": "3-5",
+    "credits_min": 3,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null
+  }
+]
