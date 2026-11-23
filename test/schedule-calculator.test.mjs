@@ -10,10 +10,12 @@ function entry(code, prerequisite_courses = [], credits = 4) {
   return { code, credits_min: credits, credits_max: credits, max_total_credits: null, prerequisite_courses };
 }
 
-// CSE 100 -> CSE 200 -> CSE 300 is a chain; CSE 150 is unrelated.
+// CSE 100 -> CSE 200 -> CSE 300 is a chain; the other courses are unrelated.
 const catalog = [
   entry('CSE 100'),
-  entry('CSE 150'),
+  entry('CSE 123'),
+  entry('CSE 331'),
+  entry('CSE 333'),
   entry('CSE 200', [['CSE 100']]),
   entry('CSE 300', [['CSE 200']]),
 ];
@@ -22,16 +24,22 @@ const goals = { desired: ['CSE 300'], fundamental: new Set(), core: new Set() };
 test('ScheduleCalculator: scoreEligible() only scores eligible courses', () => {
   const graph = CourseGraph.fromCatalog(catalog);
   const scores = ScheduleCalculator.scoreEligible(graph, new Set(), goals);
-  assert.deepStrictEqual([...scores.keys()].sort(), ['CSE 100', 'CSE 150']);
+  assert.deepStrictEqual([...scores.keys()].sort(), ['CSE 100', 'CSE 123', 'CSE 331', 'CSE 333']);
 });
 
-test('ScheduleCalculator: scoreEligible() applies correct scores to different course types', () => {
+test('ScheduleCalculator: scoreEligible() applies correct scores to different course types', async () => {
+  const [fundamentalJson, coreJson] = await Promise.all([
+    fs.readFile('./extension/uw_cse_fundamental_courses.json', 'utf8'),
+    fs.readFile('./extension/uw_cse_core_courses.json', 'utf8'),
+  ]);
+  const fundamentalCourses = new Set(JSON.parse(fundamentalJson).map((course) => course.code));
+  const coreCourses = new Set(JSON.parse(coreJson).map((course) => course.code));
   const graph = CourseGraph.fromCatalog(catalog);
  
   // Prereq of desired course adds 10 plus chain length
   const early = ScheduleCalculator.scoreEligible(graph, new Set(), goals);
   assert.equal(early.get('CSE 100'), 13); // 10 + chain of 3 (100 -> 200 -> 300)
-  assert.equal(early.get('CSE 150'), 0);
+  assert.equal(early.get('CSE 123'), 0);
  
   // Desired courses add 100
   const late = ScheduleCalculator.scoreEligible(graph, new Set(['CSE 100', 'CSE 200']), goals);
@@ -40,22 +48,22 @@ test('ScheduleCalculator: scoreEligible() applies correct scores to different co
   // Fundamental courses are weighted more heavily than core courses.
   const fundamental = ScheduleCalculator.scoreEligible(graph, new Set(), {
     desired: ['CSE 300'],
-    fundamental: new Set(['CSE 150']),
+    fundamental: fundamentalCourses,
     core: new Set(),
   });
   const core = ScheduleCalculator.scoreEligible(graph, new Set(), {
     desired: ['CSE 300'],
     fundamental: new Set(),
-    core: new Set(['CSE 150']),
+    core: coreCourses,
   });
   const both = ScheduleCalculator.scoreEligible(graph, new Set(), {
     desired: ['CSE 300'],
-    fundamental: new Set(['CSE 150']),
-    core: new Set(['CSE 150']),
+    fundamental: fundamentalCourses,
+    core: coreCourses,
   });
-  assert.equal(fundamental.get('CSE 150'), 2);
-  assert.equal(core.get('CSE 150'), 1);
-  assert.equal(both.get('CSE 150'), 3);
+  assert.equal(fundamental.get('CSE 123'), 2);
+  assert.equal(core.get('CSE 333'), 1);
+  assert.equal(both.get('CSE 331'), 3);
 });
 
 const scores = new Map([

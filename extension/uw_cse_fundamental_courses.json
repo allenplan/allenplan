@@ -1,0 +1,32 @@
+[
+  {
+    "code": "CSE 123",
+    "title": "Introduction to Computer Programming III",
+    "credits": 4
+  },
+  {
+    "code": "CSE 311",
+    "title": "Foundations of Computing I",
+    "credits": 4
+  },
+  {
+    "code": "CSE 312",
+    "title": "Foundations of Computing II",
+    "credits": 4
+  },
+  {
+    "code": "CSE 331",
+    "title": "Software Design and Implementation",
+    "credits": 4
+  },
+  {
+    "code": "CSE 332",
+    "title": "Data Structures and Parallelism",
+    "credits": 4
+  },
+  {
+    "code": "CSE 351",
+    "title": "The Hardware/Software Interface",
+    "credits": 4
+  }
+]
