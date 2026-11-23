@@ -12,6 +12,23 @@ export const WEIGHTS = { desired: 100, prereq: 10, fundamental: 2, core: 1 };
 export const DEFAULT_MAX_TOTAL_COURSES = 5;
 export const DEFAULT_MAX_TOTAL_CREDITS = 18;
 
+// Temporary equivalences for Computer Engineering requirements. Completing either course in a
+// group satisfies the other course wherever the schedule calculator checks completion.
+const COMPLETION_EQUIVALENCES = [
+  ['E E 205', 'E E 215'],
+  ['CSE 371', 'E E 371'],
+  ['CSE 403', 'CSE 474', 'E E 474', 'CSE 480', 'CSE 484'],
+];
+
+/** Adds every hard-coded equivalent of a completed course to the internal completed set. */
+function addEquivalentCompletions(completed) {
+  for (const group of COMPLETION_EQUIVALENCES) {
+    if (group.some((code) => completed.has(code))) {
+      group.forEach((code) => completed.add(code));
+    }
+  }
+}
+
 /**
  * Non-CSE credit requirements from the UW College of Arts & Sciences degree page
  * (https://www.washington.edu/students/gencat/program/S/college_arts_sciences.html).
@@ -308,6 +325,8 @@ export class ScheduleCalculator {
    * @param {string[]} options.desired
    * @param {Set<string>} [options.fundamental]
    * @param {Set<string>} [options.core]
+   * @param {boolean} [options.computerEngineering=false] treat CE alternative and cross-listed
+   * courses as equivalent completions
    * @param {number} [options.maxCourses=3] most CSE courses in one quarter
    * @param {number} [options.maxCredits=18] most CSE credits in one quarter
    * @param {number} [options.maxTotalCourses] most courses of any kind in one quarter (CSE courses
@@ -334,6 +353,7 @@ export class ScheduleCalculator {
       desired,
       fundamental = new Set(),
       core = new Set(),
+      computerEngineering = false,
       maxCourses = 3,
       maxCredits = 18,
       maxTotalCourses,
@@ -345,6 +365,7 @@ export class ScheduleCalculator {
       placeholderCredits = 5,
     } = options;
     const done = new Set(completed);
+    if (computerEngineering) addEquivalentCompletions(done);
     const credits = (code) => graph.getCourse(code)?.credits ?? 0;
 
     const planGenEds = takenGenEds !== null || remainingGenEds !== null;
@@ -365,6 +386,7 @@ export class ScheduleCalculator {
       });
       // Mark courses taken in previous quarter as complete
       courses.forEach((c) => done.add(c));
+      if (computerEngineering) addEquivalentCompletions(done);
       const cseCredits = courses.reduce((sum, c) => sum + credits(c), 0);
       if (!planGenEds) return { quarter, courses, credits: cseCredits };
 
