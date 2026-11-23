@@ -1,0 +1,27 @@
+[
+  {
+    "code": "CSE 421",
+    "title": "Introduction to Algorithms",
+    "credits": 3
+  },
+  {
+    "code": "CSE 444",
+    "title": "Database Systems Internals",
+    "credits": 4
+  },
+  {
+    "code": "CSE 446",
+    "title": "Machine Learning",
+    "credits": 4
+  },
+  {
+    "code": "CSE 442",
+    "title": "Data Visualization",
+    "credits": 4
+  },
+  {
+    "code": "SOC 225",
+    "title": "Data & Society",
+    "credits": "3-5"
+  }
+]
