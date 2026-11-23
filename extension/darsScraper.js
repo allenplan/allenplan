@@ -1,6 +1,6 @@
 import {Course} from './classes.js'
-import * as filter from './scraper_scripts/degreeFilters.js'
-import * as organizer from './scraper_scripts/degreeOrganizers.js'
+// import * as filter from './scraper_scripts/degreeFilters.js'
+// import * as organizer from './scraper_scripts/degreeOrganizers.js'
 
 // CONSTANTS
 
@@ -721,7 +721,7 @@ export function CERequirementsOrganizer(requirements) {
 // College Organizers //
 
 export function ArtsAndSciencesOrganizer(requirements) {
-    return [];
+    return [["temp", "temp", 5, "temp"]];
 }
 
 export function EngineeringOrganizer(requirements) {
@@ -1194,7 +1194,7 @@ function CourseNameIndexOf(array, target) {
 
 function chooseCollegeMajorType(major_name) {
     switch (major_name) {
-        case "Data Science":
+        case "Computer Science: Data Science":
             return "DS";
         case "Computer Engineering":
             return "CE";
@@ -1238,7 +1238,7 @@ function returnFilter(major_name, completed, required) {
 
 export function retrieveDARS() {
     // TODO: Replace temp var with input from user
-    const major_name = chooseCollegeMajorType("temp var"); // will result in CS
+    const major_name = chooseCollegeMajorType("Computer Science"); // will result in CS
     const finished_courses = getFinishedCourses(major_name);
     const required_courses = getRequiredCourses(major_name, finished_courses);
     return [finished_courses, required_courses];
