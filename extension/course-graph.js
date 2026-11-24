@@ -138,7 +138,7 @@ export class CourseGraph {
    * @param {Set<string>} [visiting]
    * @returns {{courses: Set<string>, edges: Map<string, Set<string>>}}
    */
-  requiredFor(target, completed, memo = new Map(), visiting = new Set()) {
+  shortestChainToTarget(target, completed, memo = new Map(), visiting = new Set()) {
     if (completed.has(target)) return { courses: new Set(), edges: new Map() };
     if (memo.has(target)) return memo.get(target);
 
@@ -152,7 +152,7 @@ export class CourseGraph {
         let best = null;
         let bestAlt = null;
         for (const alt of group) {
-          const candidate = this.requiredFor(alt, completed, memo, visiting);
+          const candidate = this.shortestChainToTarget(alt, completed, memo, visiting);
           if (best === null || candidate.courses.size < best.courses.size) {
             best = candidate;
             bestAlt = alt;
@@ -168,7 +168,7 @@ export class CourseGraph {
   }
 
   /**
-   * Adds an edge to a graph. Solely used in requiredFor().
+   * Adds an edge to a graph. Solely used in shortestChainToTarget().
    * @param {Map<string, Set<string>>} edges 
    * @param {string} from 
    * @param {string} to 
@@ -179,7 +179,7 @@ export class CourseGraph {
   }
 
   /**
-   * Merges two graphs. Solely used in requiredFor().
+   * Merges two graphs. Solely used in shortestChainToTarget().
    * @param {{courses: Set<string>, edges: Map<string, Set<string>>}} into 
    * @param {{courses: Set<string>, edges: Map<string, Set<string>>}} from 
    */

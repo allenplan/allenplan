@@ -85,7 +85,7 @@ export function resolveRequirements(requirements, completed, graph, catalog, cor
   // Count prerequisites already selected for another goal only once in ranking.
   const planned = new Set(desired);
   for (const code of desired) {
-    graph.requiredFor(code, completed).courses.forEach((needed) => planned.add(needed));
+    graph.shortestChainToTarget(code, completed).courses.forEach((needed) => planned.add(needed));
   }
   pending.sort((a, b) => Number(a.byCredits) - Number(b.byCredits) ||
       a.candidates.length - b.candidates.length);
@@ -94,7 +94,7 @@ export function resolveRequirements(requirements, completed, graph, catalog, cor
       const choices = [];
       for (const entry of requirement.candidates) {
         if (desired.has(entry.code)) continue;
-        const chain = graph.requiredFor(entry.code, completed).courses;
+        const chain = graph.shortestChainToTarget(entry.code, completed).courses;
         // Reject missing, unschedulable, or cyclic prerequisite chains.
         const done = new Set(completed);
         let progress = true;

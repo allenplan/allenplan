@@ -250,14 +250,14 @@ test('CourseGraph: getEligibleCourses() returns an empty list for an empty graph
   assert.deepStrictEqual(graph.getEligibleCourses(new Set()), []);
 });
 
-test('CourseGraph: requiredFor() finds shortest chain to CSE 403', async () => {
+test('CourseGraph: shortestChainToTarget() finds shortest chain to CSE 403', async () => {
   const json = await fs.readFile('./extension/uw_cse_courses.json', 'utf8', async (err, data) => {
     return data;
   });
   const courses = await JSON.parse(json);
   const courseGraph = CourseGraph.fromCatalog(courses)
   
-  const { courses: requiredCourses } = courseGraph.requiredFor('CSE 403', new Set(['CSE 121', 'CSE 122', 'MATH 126']));
+  const { courses: requiredCourses } = courseGraph.shortestChainToTarget('CSE 403', new Set(['CSE 121', 'CSE 122', 'MATH 126']));
 
   assert.deepStrictEqual([...requiredCourses].sort(), ['CSE 123', 'CSE 311', 'CSE 331', 'CSE 332', 'CSE 403']);
 });

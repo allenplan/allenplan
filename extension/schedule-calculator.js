@@ -183,7 +183,7 @@ export class ScheduleCalculator {
     const needed = new Set();
     const edges = new Map();
     for (const target of desired) {
-      const req = graph.requiredFor(target, completed, memo);
+      const req = graph.shortestChainToTarget(target, completed, memo);
       req.courses.forEach((c) => needed.add(c));
       req.edges.forEach((tos, from) => {
         if (!edges.has(from)) edges.set(from, new Set());
