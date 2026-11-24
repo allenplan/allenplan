@@ -616,10 +616,6 @@ export function CERequirementsOrganizer(requirements) {
 
 // College Organizers //
 
-export function ArtsAndSciencesOrganizer(requirements) {
-    return [["temp", "temp", 5, "temp"]];
-}
-
 export function EngineeringOrganizer(requirements) {
     let course_list = [];
     for (let i = 0; i < requirements.length; i++) {
