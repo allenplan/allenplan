@@ -3,6 +3,10 @@ import test from 'node:test';
 import fs from 'node:fs/promises';
 import { CourseGraph } from '../extension/course-graph.js';
 
+function catalogEntry(code, prerequisite_courses = [], credits = 4) {
+  return { code, prerequisite_courses, credits_min: credits, credits_max: credits };
+}
+
 test('CourseGraph: Graph from fromCatalog() contains all courses and prereqs', async () => {
   const json = await fs.readFile('./extension/uw_cse_courses.json', 'utf8', async (err, data) => {
     return data;
@@ -23,21 +27,22 @@ test('CourseGraph: Graph from fromCatalog() contains all courses and prereqs', a
   });
 });
 
-test('CourseGraph: addCourse() adds and update courses correctly', () => {
-  const courseGraph = new CourseGraph();
-  courseGraph.addCourse('CSE 121');
-  assert.deepStrictEqual(courseGraph.getCourse('CSE 121'), { code: 'CSE 121', credits: 0, prereqs: [], schedulable: false });
-  courseGraph.addCourse('CSE 121', { credits: 4, prereqs: [['CSE 123']], schedulable: true });
-  assert.deepStrictEqual(courseGraph.getCourse('CSE 121'), { code: 'CSE 121', credits: 4, prereqs: [['CSE 123']], schedulable: true });
-  courseGraph.addCourse('CSE 122');
-  assert.deepStrictEqual(courseGraph.getCourse('CSE 122'), { code: 'CSE 122', credits: 0, prereqs: [], schedulable: false });
+test('CourseGraph: changing the source catalog leaves the graph intact', () => {
+  const entry = catalogEntry('CSE 200', [['CSE 100']]);
+  const graph = CourseGraph.fromCatalog([entry]);
+
+  entry.prerequisite_courses[0][0] = 'CSE 101';
+  entry.prerequisite_courses.push(['CSE 102']);
+
+  assert.deepStrictEqual(graph.getCourse('CSE 200').prereqs, [['CSE 100']]);
+  assert.equal(graph.prereqsSatisfied('CSE 200', new Set(['CSE 100'])), true);
+  assert.deepStrictEqual(graph.getDependents('CSE 100'), new Set(['CSE 200']));
 });
 
-test('CourseGraph: addCourse() twice with the same prerequisites does not duplicate dependents', () => {
-  const graph = new CourseGraph();
-  graph.addCourse('CSE 200', { prereqs: [['CSE 100']] });
-  graph.addCourse('CSE 200', { prereqs: [['CSE 100']] });
-  assert.equal(graph.getDependents('CSE 100').size, 1);
+test('CourseGraph: repeated catalog entries with the same prerequisites do not duplicate dependents', () => {
+  const entry = catalogEntry('CSE 200', [['CSE 100']]);
+  const graph = CourseGraph.fromCatalog([entry, entry]);
+  assert.deepStrictEqual(graph.getDependents('CSE 100'), new Set(['CSE 200']));
 });
 
 test('CourseGraph: has() functions correctly', async () => {
@@ -59,8 +64,7 @@ test('CourseGraph: has() functions correctly', async () => {
     });
   });
 
-  courseGraph.addCourse('CSE 121', { credits: 400, prereqs: [['CSE 100']], schedulable: true });
-  assert.equal(courseGraph.has('CSE 121'), true);
+  assert.equal(courseGraph.has('CSE 999'), false);
 });
 
 test('CourseGraph: getCourse() has correct credit and prereqs', async () => {
@@ -74,11 +78,7 @@ test('CourseGraph: getCourse() has correct credit and prereqs', async () => {
     const match = courseGraph.getCourse(course.code);
     assert.notEqual(match, null);
     assert.equal(Number(course.credits_min), match.credits);
-    if (match.prereqs === undefined) {
-      assert.deepStrictEqual(match.prerequisite_courses, []);
-    } else {
-      assert.deepStrictEqual(course.prereqs, match.prerequisite_courses);
-    }
+    assert.deepStrictEqual(match.prereqs, course.prerequisite_courses);
   });
 });
 
@@ -99,8 +99,7 @@ test('CourseGraph: getDependents() gives all dependents', async () => {
 });
 
 test('CourseGraph: modifying the set returned by getDependents() preserves the graph', () => {
-  const graph = new CourseGraph();
-  graph.addCourse('CSE 200', { prereqs: [['CSE 100']] });
+  const graph = CourseGraph.fromCatalog([catalogEntry('CSE 200', [['CSE 100']])]);
 
   graph.getDependents('CSE 100').clear();
 
@@ -243,10 +242,9 @@ test('CourseGraph: getEligibleCourses() does not modify the completed set', asyn
 });
 
 test('CourseGraph: getEligibleCourses() returns an empty list for an empty graph or one with nothing schedulable', () => {
-  assert.deepStrictEqual(new CourseGraph().getEligibleCourses(new Set()), []);
+  assert.deepStrictEqual(CourseGraph.fromCatalog([]).getEligibleCourses(new Set()), []);
 
-  const graph = new CourseGraph();
-  graph.addCourse('CSE 100');
+  const graph = CourseGraph.fromCatalog([catalogEntry('CSE 100', [], null)]);
   assert.deepStrictEqual(graph.getEligibleCourses(new Set()), []);
 });
 
@@ -262,12 +260,17 @@ test('CourseGraph: shortestChainToTarget() finds shortest chain to CSE 403', asy
   assert.deepStrictEqual([...requiredCourses].sort(), ['CSE 123', 'CSE 311', 'CSE 331', 'CSE 332', 'CSE 403']);
 });
 
-test('CourseGraph: getCourse() returns the stored record', async () => {
+test('CourseGraph: changing a record returned by getCourse() leaves the graph intact', async () => {
   const json = await fs.readFile('./extension/uw_cse_courses.json', 'utf8', async (err, data) => {
     return data;
   });
   const courses = await JSON.parse(json);
   const courseGraph = CourseGraph.fromCatalog(courses)
+
+  const course = courseGraph.getCourse('CSE 143');
+  course.credits = 0;
+  course.prereqs[0][0] = 'CSE 101';
+  course.prereqs.push(['CSE 102']);
 
   assert.deepStrictEqual(courseGraph.getCourse('CSE 143'), {
     code: 'CSE 143',
@@ -275,6 +278,7 @@ test('CourseGraph: getCourse() returns the stored record', async () => {
     prereqs: [['CSE 142']],
     schedulable: true,
   });
+  assert.equal(courseGraph.prereqsSatisfied('CSE 143', new Set(['CSE 142'])), true);
 });
 
 test('CourseGraph: getCourse() returns undefined for unknown courses and outside prerequisites', async () => {

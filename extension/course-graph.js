@@ -1,5 +1,5 @@
 /**
- * A directed graph of courses, where courses point to their dependents.
+ * An immutable directed graph of courses, where courses point to their dependents.
  */
 export class CourseGraph {
   /** 
@@ -27,7 +27,7 @@ export class CourseGraph {
   static fromCatalog(catalog) {
     const graph = new CourseGraph();
     for (const entry of catalog) {
-      graph.addCourse(entry.code, {
+      graph.#addCourse(entry.code, {
         credits: entry.credits_min ?? 0,
         prereqs: entry.prerequisite_courses,
         schedulable: CourseGraph.#isSchedulable(entry),
@@ -66,8 +66,8 @@ export class CourseGraph {
    * @param {string} code
    * @param {{credits?: number, prereqs?: string[][], schedulable?: boolean}} [info]
    */
-  addCourse(code, { credits = 0, prereqs = [], schedulable = false } = {}) {
-    this.#courses.set(code, { code, credits, prereqs, schedulable });
+  #addCourse(code, { credits = 0, prereqs = [], schedulable = false } = {}) {
+    this.#courses.set(code, { code, credits, prereqs: structuredClone(prereqs), schedulable });
     for (const group of prereqs) {
       for (const prereq of group) {
         if (!this.#dependents.has(prereq)) this.#dependents.set(prereq, new Set());
@@ -85,12 +85,12 @@ export class CourseGraph {
   }
 
   /**
-   * Returns the class with the given code, or undefined if it is not present in the course graph.
+   * Returns a copy of the course record, or undefined if the code is absent.
    * @param {string} code
    * @returns {{code: string, credits: number, prereqs: string[][], schedulable: boolean} | undefined}
    */
   getCourse(code) {
-    return this.#courses.get(code);
+    return structuredClone(this.#courses.get(code));
   }
 
   /**
