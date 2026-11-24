@@ -94,13 +94,12 @@ export class CourseGraph {
   }
 
   /**
-   * Return all dependents of a course with the given code, or an empty set if it is not present in
-   * the course graph.
-   * @param {String} code 
-   * @returns {Set<string>} courses that list `code` as a prerequisite (read-only; do not mutate).
+   * Returns the codes of courses that list the given code as a prerequisite.
+   * @param {string} code
+   * @returns {Set<string>} A copy of the dependents, or an empty set if there are none.
    */
   getDependents(code) {
-    return this.#dependents.get(code) ?? new Set();
+    return new Set(this.#dependents.get(code));
   }
 
   /**

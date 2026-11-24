@@ -98,6 +98,15 @@ test('CourseGraph: getDependents() gives all dependents', async () => {
   });
 });
 
+test('CourseGraph: modifying the set returned by getDependents() preserves the graph', () => {
+  const graph = new CourseGraph();
+  graph.addCourse('CSE 200', { prereqs: [['CSE 100']] });
+
+  graph.getDependents('CSE 100').clear();
+
+  assert.deepStrictEqual(graph.getDependents('CSE 100'), new Set(['CSE 200']));
+});
+
 test('CourseGraph: getDependents() returns an empty set for a course not in the graph', async () => {
   const json = await fs.readFile('./extension/uw_cse_courses.json', 'utf8', async (err, data) => {
     return data;
