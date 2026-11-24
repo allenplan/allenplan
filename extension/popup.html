@@ -7,95 +7,21 @@
     <link rel="stylesheet" href="popup.css">
     <script src="popup.js" type="module"></script>
   </head>
-  <body>
+  <body class="popup-window">
     <header class="brand">
-      <p class="eyebrow">YOUR NEXT QUARTER</p>
       <h1>AllenPlan<span aria-hidden="true">.</span></h1>
-      <p>A little planning. A world of possibilities.</p>
+      <a id="open-help" href="help.html" target="_blank" rel="noopener" hidden>Help</a>
     </header>
-    <div class="tabs" role="tablist" aria-label="Planning tools">
-      <button id="dars-tab" type="button" role="tab" aria-selected="true"
-          aria-controls="dars-panel">Import DARS</button>
-      <button id="generate-tab" type="button" role="tab" aria-selected="false"
-          aria-controls="generate-panel" tabindex="-1">Generate Schedule</button>
-      <button id="settings-tab" type="button" role="tab" aria-selected="false"
-          aria-controls="settings-panel" tabindex="-1">Settings</button>
-    </div>
-    <main>
-      <section id="generate-panel" role="tabpanel" aria-labelledby="generate-tab"
-          tabindex="0" hidden>
-        <p class="eyebrow">02 / MAKE IT YOURS</p>
-        <h2>Build your next quarter.</h2>
-        <p class="intro">Choose what matters to you. We'll take it from here.</p>
-        <fieldset>
-          <legend>Schedule preferences</legend>
-          <div class="preference">
-            <label for="max-cs-courses">Maximum CS classes per quarter</label>
-            <select id="max-cs-courses" name="max-cs-courses">
-              <option value="0">0</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3" selected>3</option>
-              <option value="4">4</option>
-            </select>
-          </div>
-          <div class="preference">
-            <label for="desired-courses">Desired courses (Optional)</label>
-            <textarea id="desired-courses" name="desired-courses" rows="2"
-                placeholder="CSE 421, CSE 451" aria-describedby="desired-courses-hint"></textarea>
-            <small id="desired-courses-hint">Separate course codes with commas or new lines. These are added to your audit goals.</small>
-          </div>
-          <label class="option"><input type="checkbox" name="option-3">
-            <span>Schedule option 3 <small>Preference to be determined</small></span>
-          </label>
-        </fieldset>
-        <button id="generate-schedule" class="primary" type="button"
-            aria-describedby="generate-hint" disabled>Generate schedule
-          <span aria-hidden="true">&rarr;</span></button>
-        <p id="generate-hint" class="hint action-note" role="status">Import your DARS degree audit to generate a schedule.</p>
-      </section>
-      <section id="dars-panel" role="tabpanel" aria-labelledby="dars-tab"
-          tabindex="0">
-        <p class="eyebrow">01 / START WITH YOUR PROGRESS</p>
-        <h2>Bring your credits along.</h2>
-        <p class="intro">Your degree audit will help shape your next steps.</p>
-        <div id="dars-controls" class="card">
-          <h3>Your DARS audit</h3>
-          <p>Open your degree audit, then import it into AllenPlan.</p>
-          <button id="open-dars" class="secondary" type="button">Open DARS page
-            <span aria-hidden="true">&nearr;</span></button>
-          <button id="import-dars" class="primary" type="button"
-              aria-describedby="dars-hint" disabled>Import</button>
-          <p id="dars-hint" class="hint action-note" role="status">Open your DARS degree audit to enable Import.</p>
-        </div>
-      </section>
-      <section id="settings-panel" role="tabpanel" aria-labelledby="settings-tab"
-          tabindex="0" hidden>
-        <p class="eyebrow">03 / YOUR WORKSPACE</p>
-        <h2>A plan that fits you.</h2>
-        <p class="intro">Your preferences, all in one place.</p>
-
-        <div class="settings-sections">
-          <section class="card"><h3>General</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p></section>
-          <section class="card"><h3>Scraping</h3>
-            <p>Remove your saved degree audit from AllenPlan.</p>
-            <button id="delete-imported-data" class="secondary" type="button"
-                aria-describedby="delete-data-status" disabled>Delete imported data</button>
-            <p id="delete-data-status" class="action-note" role="status"></p>
-          </section>
-          <section class="card"><h3>Schedule</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p></section>
-          <section class="card"><h3>Help</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p></section>
-        </div>
-      </section>
+    <main class="popup">
+      <fieldset id="popup-actions" aria-label="Audit actions" hidden>
+        <button id="import-dars" class="primary" type="button" aria-describedby="audit-major" hidden disabled>Import DARS</button>
+        <p id="audit-major" class="audit-note" role="status" hidden></p>
+        <button id="open-planner" type="button" aria-describedby="saved-audit" hidden>Open planner</button>
+        <p id="saved-audit" class="audit-note" hidden></p>
+        <button id="open-dars" type="button" hidden>Open DARS</button>
+        <button id="delete-imported-data" class="delete-action" type="button" hidden>Delete imported audit</button>
+      </fieldset>
+      <p id="popup-status" role="status"></p>
     </main>
-    <footer>AllenPlan <span>Made for your next chapter.</span></footer>
-    <div id="import-success" class="import-success" role="status"
-        aria-live="polite" hidden>
-      <strong>Import Success!</strong>
-    </div>
   </body>
 </html>
-

@@ -37,18 +37,13 @@ Temporary Extensions > AllenPlan.
 
 1. Enable developer mode via `Safari > Settings > Advanced > Show features for web developers`.
 2. Enter the new `Developer` tab and enable `Allow unsigned extensions`.
-3. Click `Add Temporary Extension` and select the `extensions` subdirectory of this repository.
+3. Click `Add Temporary Extension` and select the `extension/` subdirectory of this repository.
 
 To update the extension after making changes, go to the Extensions tab, select `AllenPlan` and press `Reload`.
 
 ## Usage
 
-1. Install the extension as above
-2. Click on the AllenPlan extension icon in the browser
-3. Open the "Import DARS" tab and click the "Open DARS page" button
-4. Log in with your UW account if necessary
-5. Choose the "Computer Science" major option ("Computer Science: Data Science" and "Computer Engineering" not yet supported)
-6. Click "Import" within the extension modal under the "Import DARS" tab
-7. Choose your options under the "Generate Schedule" tab
-8. Click "Generate Schedule" under the "Generate Schedule" tab
-9. Profit
+1. Select **Open DARS** on the Help page that opens on first install, or in the AllenPlan popup.
+2. Sign in to MyPlan if prompted. Select Computer Science, Computer Science: Data Science, or Computer Engineering and open the completed audit.
+3. With the audit open, click the AllenPlan extension icon and select **Import DARS**.
+4. In the planner that opens, choose your preferences and select **Generate schedule**.

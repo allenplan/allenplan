@@ -1,7 +1,10 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-test('results page restores preferences, regenerates in place, and tracks audit deletion', async (t) => {
+let plannerInstance = 0;
+
+/** Opens the planner with a saved audit and an optional previously generated result. */
+async function loadPlanner(t, initial, storage = {}) {
   const originals = new Map(['document', 'window', 'chrome', 'fetch'].map((name) =>
     [name, Object.getOwnPropertyDescriptor(globalThis, name)]));
   t.after(() => {
@@ -18,24 +21,31 @@ test('results page restores preferences, regenerates in place, and tracks audit 
   });
   const elements = new Map();
   const element = (selector) => {
-    if (!elements.has(selector)) elements.set(selector, node());
+    if (!elements.has(selector)) {
+      const entry = node();
+      entry.value = ({'#start-quarter': 'Autumn', '#start-year': '2026', '#max-cs-courses': '3'})[selector] ?? '';
+      entry.hidden = selector === '.schedule-results' || selector === '#schedule-warnings';
+      elements.set(selector, entry);
+    }
     return elements.get(selector);
   };
   globalThis.document = {querySelector: element, createElement: node};
-  const initial = {
-    groups: [{quarter: 'Autumn', courses: []}], warnings: [],
-    options: {maxCourses: 1, desired: ['CSE 401']},
-  };
   globalThis.window = {
-    location: {hash: `#${encodeURIComponent(JSON.stringify(initial))}`},
-    history: {replaceState: (_state, _title, hash) => { window.location.hash = hash; }},
+    location: {hash: initial ? `#${encodeURIComponent(JSON.stringify(initial))}` : ''},
+    history: {replaceState: (_state, _title, url) => {
+      window.location.hash = new URL(url, 'chrome-extension://test/schedule.html').hash;
+    }},
   };
   let audit = [[], []];
   let onStorageChange;
   globalThis.chrome = {
     runtime: {getURL: (path) => path},
     storage: {
-      local: {get: async () => ({importedDars: audit})},
+      local: {
+        get: async (key) => Array.isArray(key) ? {importedDars: audit, importedDarsInfo: storage.importedDarsInfo} :
+          {[key]: storage[key]},
+        set: async (values) => { Object.assign(storage, values); },
+      },
       onChanged: {addListener: (handler) => { onStorageChange = handler; }},
     },
   };
@@ -43,15 +53,109 @@ test('results page restores preferences, regenerates in place, and tracks audit 
     code: 'CSE 401', title: 'Compilers', credits_min: 4, credits_max: 4,
     prerequisite_courses: [],
   }]});
-  await import('../extension/schedule-page.js');
+  await import(`../extension/schedule-page.js?test=${plannerInstance++}`);
   await new Promise((resolve) => setImmediate(resolve));
+  return {
+    element,
+    setAudit(value) {
+      audit = value;
+      onStorageChange({importedDars: {newValue: value}}, 'local');
+    },
+  };
+}
+
+test('planner restores ungenerated preferences independently of the audit and URL', async (t) => {
+  const storage = {};
+  const draft = 'CSE 401,\nCSE ';
+  await t.test('edit before generating', async (t) => {
+    const {element, setAudit} = await loadPlanner(t, undefined, storage);
+    for (const [selector, value] of [
+      ['#max-cs-courses', '0'], ['#start-quarter', 'Spring'], ['#start-year', '2029'],
+      ['#desired-courses', draft],
+    ]) {
+      element(selector).value = value;
+      await element('#schedule-preferences').listeners.input();
+    }
+    assert.equal(window.location.hash, '');
+    setAudit(null);
+    assert.deepEqual(storage.schedulePreferences, {
+      maxCourses: 0, startQuarter: 'Spring', startYear: 2029, desiredCourses: draft,
+    });
+  });
+  await t.test('reopen over an older result', async (t) => {
+    const {element} = await loadPlanner(t, {
+      groups: [{quarter: 'Autumn', courses: []}],
+      options: {maxCourses: 3, desired: ['CSE 401'], startQuarter: 'Autumn', startYear: 2028},
+    }, storage);
+    assert.equal(element('#max-cs-courses').value, '0');
+    assert.equal(element('#start-quarter').value, 'Spring');
+    assert.equal(element('#start-year').value, '2029');
+    assert.equal(element('#desired-courses').value, draft);
+  });
+});
+
+test('reset saves form defaults over an older result without regenerating', async (t) => {
+  const storage = {};
+  const {element} = await loadPlanner(t, {
+    groups: [{quarter: 'Winter', courses: []}],
+    options: {startQuarter: 'Winter', startYear: 2030, maxCourses: 1, desired: ['CSE 401']},
+  }, storage);
+  const previousResult = window.location.hash;
+  element('#schedule-preferences').form = {reset() {
+    element('#start-quarter').value = 'Autumn';
+    element('#start-year').value = '2026';
+    element('#max-cs-courses').value = '3';
+    element('#desired-courses').value = '';
+  }};
+  await element('#reset-preferences').listeners.click();
+  assert.deepEqual(storage.schedulePreferences, {
+    startQuarter: 'Autumn', startYear: 2026, maxCourses: 3, desiredCourses: '',
+  });
+  assert.equal(window.location.hash, previousResult);
+});
+
+test('fresh planner waits for Generate and can retry after a catalog error', async (t) => {
+  const {element, setAudit} = await loadPlanner(t);
+  assert.equal(window.location.hash, '');
+  assert.equal(element('.schedule-results').hidden, true);
+  assert.equal(element('#schedule-status').textContent, '');
+  assert.equal(element('#generate-schedule').disabled, false);
+
+  setAudit([[], [{name: 'CSE 4XX', notes: 'https://example.com/#core'}]]);
+  globalThis.fetch = async () => ({ok: false});
+  await element('#generate-schedule').listeners.click();
+  assert.equal(element('.schedule-results').hidden, true);
+  assert.match(element('#generate-hint').textContent, /Unable to load the course catalog/);
+
+  globalThis.fetch = async (path) => ({
+    ok: true, json: async () => path.endsWith('uw_cse_core_courses.json') ? [{code: 'CSE 421'}] : [
+      {code: 'CSE 401', credits_min: 4, credits_max: 4, prerequisite_courses: []},
+      {code: 'CSE 421', credits_min: 3, credits_max: 3, prerequisite_courses: []},
+    ],
+  });
+  await element('#generate-schedule').listeners.click();
+  assert.equal(element('.schedule-results').hidden, false);
+  const {groups} = JSON.parse(decodeURIComponent(window.location.hash.slice(1)));
+  assert.equal(groups[0].courses[0].code, 'CSE 421');
+  assert.equal(element('#schedule-quarters').children.length, 3);
+});
+
+test('results page restores preferences, regenerates in place, and tracks audit deletion', async (t) => {
+  const {element, setAudit} = await loadPlanner(t, {
+    groups: [{quarter: 'Autumn', courses: []}], warnings: [],
+    options: {maxCourses: 1, desired: ['CSE 401'], startQuarter: 'Winter', startYear: 2028},
+  });
+  assert.equal(element('.schedule-results').hidden, false);
   assert.equal(element('#max-cs-courses').value, '1');
+  assert.equal(element('#start-quarter').value, 'Winter');
+  assert.equal(element('#start-year').value, '2028');
   assert.equal(element('#desired-courses').value, 'CSE 401');
   assert.equal(element('#generate-schedule').disabled, false);
 
   await element('#generate-schedule').listeners.click();
   let saved = JSON.parse(decodeURIComponent(window.location.hash.slice(1)));
   assert.equal(saved.groups[0].courses[0].code, 'CSE 401');
+  assert.deepEqual(saved.groups.map((group) => group.quarter), ['Winter 2028', 'Spring 2028', 'Autumn 2028']);
   assert.equal(element('#schedule-quarters').children.length, 3);
   assert.match(element('#schedule-status').textContent, /1 course recommended/);
 
@@ -68,7 +172,10 @@ test('results page restores preferences, regenerates in place, and tracks audit 
   assert.ok(saved.groups.every((group) => group.courses.length === 0));
   assert.equal(saved.options.maxCourses, 0);
 
-  audit = [[], [{name: 'XXX', courseType: ['W'], credits: 2}]];
+  setAudit([[], [{name: 'XXX', courseType: ['W'], credits: 2}]]);
+  assert.equal(element('.schedule-results').hidden, true);
+  assert.equal(window.location.hash, '');
+  assert.equal(element('#start-year').value, '2028');
   element('#desired-courses').value = '';
   await element('#generate-schedule').listeners.click();
   saved = JSON.parse(decodeURIComponent(window.location.hash.slice(1)));
@@ -81,14 +188,44 @@ test('results page restores preferences, regenerates in place, and tracks audit 
   assert.equal(template.children[2].textContent, '2 credits');
   assert.match(element('#schedule-status').textContent, /Includes 1 gen-ed template/);
 
-  audit = null;
-  onStorageChange({importedDars: {newValue: null}}, 'local');
+  setAudit(null);
   assert.equal(element('#generate-schedule').disabled, true);
+  assert.equal(element('#planner-open-dars').hidden, false);
+  assert.equal(element('.schedule-results').hidden, true);
+  assert.equal(element('#schedule-quarters').children.length, 0);
+  assert.equal(window.location.hash, '');
   const savedHash = window.location.hash;
   await element('#generate-schedule').listeners.click();
   assert.equal(window.location.hash, savedHash);
   assert.match(element('#generate-hint').textContent, /Import your DARS audit/);
-  audit = [[], []];
-  onStorageChange({importedDars: {newValue: audit}}, 'local');
+  setAudit([[], []]);
   assert.equal(element('#generate-schedule').disabled, false);
+  assert.equal(element('#planner-open-dars').hidden, true);
+});
+
+test('a result URL from a different audit opens with preferences and no stale schedule', async (t) => {
+  const {element} = await loadPlanner(t, {
+    groups: [{quarter: 'Autumn', courses: []}],
+    auditImportedAt: '2026-11-18T12:00:00.000Z',
+    options: {maxCourses: 2},
+  }, {importedDarsInfo: {importedAt: '2026-11-19T12:00:00.000Z'}});
+  assert.equal(element('.schedule-results').hidden, true);
+  assert.equal(window.location.hash, '');
+  assert.equal(element('#max-cs-courses').value, '2');
+});
+
+test('generation in flight cannot put a deleted audit back on screen', async (t) => {
+  const {element, setAudit} = await loadPlanner(t);
+  let finishFetch;
+  const catalog = new Promise((resolve) => { finishFetch = resolve; });
+  globalThis.fetch = () => catalog;
+  const generation = element('#generate-schedule').listeners.click();
+  await new Promise((resolve) => setImmediate(resolve));
+  setAudit(null);
+  finishFetch({ok: true, json: async () => []});
+  await generation;
+  assert.equal(window.location.hash, '');
+  assert.equal(element('.schedule-results').hidden, true);
+  assert.equal(element('#generate-schedule').disabled, true);
+  assert.equal(element('#planner-open-dars').hidden, false);
 });

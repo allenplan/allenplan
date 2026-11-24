@@ -1,0 +1,42 @@
+body {
+  width: 100%;
+}
+
+.brand {
+  background: var(--uw-purple);
+}
+
+.brand h1, main {
+  max-width: 40rem;
+  margin-inline: auto;
+}
+
+main {
+  font-size: 16px;
+}
+
+ol {
+  padding-inline-start: 1.5em;
+}
+
+li + li {
+  margin-top: .5em;
+}
+
+.primary {
+  width: fit-content;
+  text-decoration: none;
+}
+
+.install-note {
+  display: none;
+}
+
+#first-install:target .install-note {
+  display: block;
+  margin-top: 0;
+}
+
+h2 ~ h2 {
+  margin-top: 1.5em;
+}
