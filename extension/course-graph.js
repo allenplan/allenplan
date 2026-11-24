@@ -62,13 +62,12 @@ export class CourseGraph {
 
   /**
    * Add or update the given course in the graph, setting dependents to depend on that course as a
-   * prerequisite. Also adds dependents to the graph if not already present.
+   * prerequisite.
    * @param {string} code
    * @param {{credits?: number, prereqs?: string[][], schedulable?: boolean}} [info]
    */
   addCourse(code, { credits = 0, prereqs = [], schedulable = false } = {}) {
     this.#courses.set(code, { code, credits, prereqs, schedulable });
-    if (!this.#dependents.has(code)) this.#dependents.set(code, new Set());
     for (const group of prereqs) {
       for (const prereq of group) {
         if (!this.#dependents.has(prereq)) this.#dependents.set(prereq, new Set());
