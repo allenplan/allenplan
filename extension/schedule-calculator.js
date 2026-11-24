@@ -12,6 +12,15 @@ export const WEIGHTS = { desired: 100, prereq: 10, fundamental: 1, core: 1 };
 export const DEFAULT_MAX_TOTAL_COURSES = 5;
 export const DEFAULT_MAX_TOTAL_CREDITS = 18;
 
+/** @typedef {[string, string|string[], number|string]} TakenGenEd */
+/** @typedef {{courseType: string|string[], credits: number|string}} RemainingGenEd */
+/** @typedef {{type: string, label: string, credits: number, flexOf?: string[]}} GenEdRequirement */
+/**
+ * @typedef {(string|object) & {
+ *   code?: string, name?: string, courseType?: string|string[], credits?: number|string, notes?: string
+ * }} AuditRequirement A course-code string or an object with DARS requirement fields.
+ */
+
 /**
  * Non-CSE credit requirements from the UW College of Arts & Sciences degree page
  * (https://www.washington.edu/students/gencat/program/S/college_arts_sciences.html).
@@ -25,7 +34,7 @@ export const DEFAULT_MAX_TOTAL_CREDITS = 18;
  * @param {object} [options]
  * @param {number} [options.divCredits=5] 3 for students admitted before autumn quarter 2023
  * @param {number} [options.langCredits=0] 0-15, depending on placement or high school background
- * @returns {{type: string, label: string, credits: number, flexOf?: string[]}[]} A requirement with
+ * @returns {GenEdRequirement[]} A requirement with
  * `flexOf` is met by credits beyond the 20-credit minimum of those types, and is only suggested
  * once they are all filled.
  */
@@ -50,10 +59,11 @@ export function genEdRequirements({ divCredits = 5, langCredits = 0 } = {}) {
  * array of types when one course satisfies several (['A&H', 'W']); its credits count toward every
  * type listed. Types that aren't in `requirements` are ignored.
  *
- * @param {[string, string|string[], number][]} takenGenEds
+ * @param {TakenGenEd[]} takenGenEds
  * @param {{type: string, credits: number, flexOf?: string[]}[]} [requirements]
  * @returns {Map<string, number>} type -> credits still needed (0 when met), in requirement order
- * @throws {TypeError} when an entry isn't `[name, courseType, credits]` with a non-negative number
+ * @throws {TypeError} If an entry is not an array of at least three items, or its credits
+ * cannot be converted to a finite, nonnegative number.
  */
 export function remainingGenEdCredits(takenGenEds, requirements = genEdRequirements()) {
   const earned = new Map();
@@ -84,12 +94,17 @@ export function remainingGenEdCredits(takenGenEds, requirements = genEdRequireme
   return needs;
 }
 
-/** Upper-case type -> readable name, e.g. 'SSC' -> 'Social Sciences'. */
+/** Upper-case type -> readable name, e.g. 'SSC' -> 'Social Sciences'.
+ * @returns {Map<string, string>}
+ */
 function friendlyNames() {
   return new Map(genEdRequirements().map((r) => [r.type.toUpperCase(), r.label]));
 }
 
-/** Normalizes a DARS-style row's `courseType` (a type or an array of types) to upper-case types. */
+/** Normalizes a DARS-style row's `courseType` (a type or an array of types) to upper-case types.
+ * @param {AuditRequirement} requirement
+ * @returns {string[]}
+ */
 function typesOf(requirement) {
   return [requirement?.courseType ?? []].flat().map((type) => String(type).trim().toUpperCase());
 }
@@ -104,12 +119,12 @@ function typesOf(requirement) {
  * A row is a gen-ed row when its name is XXX and its types don't include CSE; everything else,
  * including XXX (CSE) electives and specific course codes, is left for the resolver untouched.
  *
- * @param {Array<string|object>} requirements remaining requirements
+ * @param {AuditRequirement[]} requirements remaining requirements
  * @returns {{
- *   resolverRequirements: Array<string|object>,
+ *   resolverRequirements: AuditRequirement[],
  *   genEds: {courseType: string[], credits: number}[],
  *   warnings: string[],
- * }} gen-ed rows with a missing or non-positive credit total are dropped with a warning
+ * }} Gen-ed rows whose credits do not convert to a finite, positive number are dropped with a warning.
  */
 export function splitGenEdRequirements(requirements) {
   const resolverRequirements = [];
@@ -136,6 +151,13 @@ export function splitGenEdRequirements(requirements) {
 /**
  * What the planner still has to place: one entry per requirement, with `need` credits remaining.
  * `waitFor` lists types that must be filled before this one is suggested.
+ * @param {object} options
+ * @param {TakenGenEd[]|null} options.takenGenEds
+ * @param {RemainingGenEd[]|null} options.remainingGenEds
+ * @param {GenEdRequirement[]} options.requirements
+ * @returns {{type: string, label: string, need: number, waitFor: string[]}[]}
+ * @throws {TypeError} If a remaining row has no course types or its credits do not convert
+ * to a finite, positive number, or if `remainingGenEdCredits` rejects a taken row.
  */
 function buildGenEdNeeds({ takenGenEds, remainingGenEds, requirements }) {
   if (remainingGenEds !== null) {
@@ -169,7 +191,7 @@ export class ScheduleCalculator {
   /**
    * Score every eligible course.
    *
-   * @param {CourseGraph} graph
+   * @param {import('./course-graph.js').CourseGraph} graph
    * @param {Set<string>} completed
    * @param {object} goals
    * @param {string[]} goals.desired
@@ -233,12 +255,12 @@ export class ScheduleCalculator {
    * @param {Map<string, number>} scores
    * @param {object} options
    * @param {number} options.maxCourses
-   * @param {number} [options.maxCredits]
+   * @param {number} [options.maxCredits=Infinity]
    * @param {(code: string) => number} [options.credits]
    * @param {(a: string, b: string) => boolean} [options.conflicts]
-   * @param {boolean} [options.includeZeroScore=false] pad with courses that advance no goal e.g.,
-   *                                                   seminar classes
-   * @returns {{courses: string[], score: number}}
+   * @param {boolean} [options.includeZeroScore=false] Include all scores and fill spare slots
+   * with remaining courses that fit the credit and conflict limits.
+   * @returns {{courses: string[], score: number}} Selected course codes and the score before padding.
    */
   static bestSchedule(
     scores,
@@ -301,7 +323,7 @@ export class ScheduleCalculator {
   /**
    * Calculate the best schedule for multiple consecutive quarters.
    *
-   * @param {CourseGraph} graph
+   * @param {import('./course-graph.js').CourseGraph} graph
    * @param {Set<string>|string[]} completed
    * @param {string[]} quarters labels, in order, e.g. ['Winter 2027', 'Spring 2027']
    * @param {object} options
@@ -315,19 +337,23 @@ export class ScheduleCalculator {
    * placeholders use DEFAULT_MAX_TOTAL_COURSES.
    * @param {number} [options.maxTotalCredits] same, for credits (DEFAULT_MAX_TOTAL_CREDITS)
    * @param {(a: string, b: string) => boolean} [options.conflicts]
-   * @param {[string, string|string[], number][]} [options.takenGenEds] non-CSE courses already taken,
-   * each `[name, courseType, credits]`. Passing this (even as `[]`) turns on placeholders for the
-   * types that still need credits; leaving it out gives the original CSE-only plan.
-   * @param {{courseType: string|string[], credits: number}[]} [options.remainingGenEds] gen-ed credits
+   * @param {TakenGenEd[]|null} [options.takenGenEds=null] Completed non-CSE courses as
+   * `[name, courseType, credits]`. An empty array enables placeholders with no credits earned.
+   * @param {RemainingGenEd[]|null} [options.remainingGenEds=null] Gen-ed credits
    * still needed, as returned in `genEds` by splitGenEdRequirements() from DARS rows. These are
    * already net of what was taken, so nothing is subtracted; when given, it is used instead of
    * `takenGenEds`/`requirements`. A row with several types (['A&H', 'SSC', 'NSC']) means credits
    * from any one of them, and its placeholder's `type` is the types joined by '/'.
-   * @param {object[]} [options.requirements=genEdRequirements()] the requirements to plan for
+   * @param {GenEdRequirement[]} [options.requirements=genEdRequirements()] the requirements to plan for
    * @param {number} [options.placeholderCredits=5] credits in a full-size placeholder
-   * @returns {{quarter: string, courses: string[], credits: number}[]} `courses` and `credits` cover
-   * CSE courses only. With `takenGenEds`, each quarter also has `placeholders`
-   * (`{type, label, credits}[]`), `totalCredits` and `totalCourses`, which include the placeholders.
+   * @returns {Array<{
+   *   quarter: string, courses: string[], credits: number,
+   *   placeholders?: {type: string, label: string, credits: number}[],
+   *   totalCredits?: number, totalCourses?: number
+   * }>} Each quarter lists CSE courses and their credits. When either gen-ed input is non-null,
+   * each quarter also includes placeholders and totals counting both CSE courses and placeholders.
+   * @throws {TypeError} If a remaining gen-ed row has no course types or lacks finite, positive
+   * credits after conversion. When using taken courses, the validation in `remainingGenEdCredits` applies.
    */
   static planQuarters(graph, completed, quarters, options) {
     const {
