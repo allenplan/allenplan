@@ -2,14 +2,26 @@
  * A directed graph of courses, where courses point to their dependents.
  */
 export class CourseGraph {
-  /** @type {Map<string, {code: string, credits: number, prereqs: string[][], schedulable: boolean}>} */
+  /** 
+   * Map of course code to course entry.
+   * @type {Map<string, {code: string, credits: number, prereqs: string[][], schedulable: boolean}>}
+   */
   #courses = new Map();
-  /** @type {Map<string, Set<string>>} prerequisite -> courses that list it in any group */
+  /**
+   * Map of course code to a set of course codes that depend on it as a prereq.
+   * @type {Map<string, Set<string>>}
+   */
   #dependents = new Map();
 
   /**
-   * Builds a graph from the catalog JSON (uw_cse_courses.json).
-   * @param {object[]} catalog
+   * Builds a course graph from a given catalog JSON object.
+   * @param {Array<{
+   *   code: string,
+   *   credits_min: number | null,
+   *   credits_max: number | null,
+   *   max_total_credits?: number | null,
+   *   prerequisite_courses: string[][]
+   * }>} catalog
    * @returns {CourseGraph}
    */
   static fromCatalog(catalog) {
@@ -28,6 +40,12 @@ export class CourseGraph {
    * Whether a catalog entry is something the planner should place on a schedule e.g., undergraduate
    * CSE courses with a fixed credit value that can only be taken once. Variable-credit / repeatable
    * topics courses (CSE 390, 490, ...) and graduate courses are excluded.
+   * @param {{
+   *   code: string,
+   *   credits_min: number | null,
+   *   credits_max: number | null,
+   *   max_total_credits?: number | null
+   * }} entry
    */
   static #isSchedulable(entry) {
     // Extract course code
@@ -61,7 +79,7 @@ export class CourseGraph {
 
   /**
    * Whether or not the course graph contains the class with the given code.
-   * @param {String} code 
+   * @param {string} code
    */
   has(code) {
     return this.#courses.has(code);
@@ -69,7 +87,7 @@ export class CourseGraph {
 
   /**
    * Returns the class with the given code, or undefined if it is not present in the course graph.
-   * @param {String} code 
+   * @param {string} code
    * @returns {{code: string, credits: number, prereqs: string[][], schedulable: boolean} | undefined}
    */
   getCourse(code) {
@@ -119,6 +137,7 @@ export class CourseGraph {
    * @param {string} target
    * @param {Set<string>} completed
    * @param {Map<string, {courses: Set<string>, edges: Map<string, Set<string>>}>} [memo]
+   * @param {Set<string>} [visiting]
    * @returns {{courses: Set<string>, edges: Map<string, Set<string>>}}
    */
   requiredFor(target, completed, memo = new Map(), visiting = new Set()) {
@@ -162,7 +181,7 @@ export class CourseGraph {
   }
 
   /**
-   * Merges two graphs used in requiredFor().
+   * Merges two graphs. Solely used in requiredFor().
    * @param {{courses: Set<string>, edges: Map<string, Set<string>>}} into 
    * @param {{courses: Set<string>, edges: Map<string, Set<string>>}} from 
    */
