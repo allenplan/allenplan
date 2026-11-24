@@ -186,6 +186,13 @@ export function parseDARSDocumentRequirements() {
                 requirements.push(temp);
         }
     }
+    temp = document.querySelector("div.CE-SCI-EL");
+    if (temp !== null) {
+        const status_div_classes = temp.children[0].classList;
+        if (temp.classList.contains("Status_NO") && !status_div_classes.contains("Status_OK") && !status_div_classes.contains("Status_IP")) {
+                requirements.push(temp);
+        }
+    }
     return requirements;
 }
 
@@ -713,8 +720,8 @@ export function EngineeringOrganizer(requirements) {
             }
         } else if (requirements[i].classList.contains("CE-SCI-EL") || requirements[i].classList.contains("CESCI-EL")) {
             // Need to check div-audit-requirement for CE-SCI-EL (not div-subrequirement)
-            const text = requirements[i].innerText;
-            const credits_amt = getCreditsAmt(text);
+            let text = requirements[i].innerText;
+            let credits_amt = getCreditsAmt(text);
             while (credits_amt > 0) {
                 if (credits_amt < 5) {
                     course_list.push(["XXX", "NSc", credits_amt, "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#ce-natural-science"]);
