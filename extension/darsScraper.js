@@ -108,9 +108,9 @@ export function parseFinishedCourses(major_name) {
         let course_properties = tables[index].children
         const requirement_div_class_list = tables[index].offsetParent.offsetParent.offsetParent.classList;
         const courseType = returnCourseType(major_name, requirement_div_class_list);
-        /*if (courseType === -1) {
+        if (courseType === -1) {
             throw new Error("courseType was not found for the class list: " + requirement_div.classList);
-        }*/
+        }
         switch (course_properties[courseCCodeIndex].innerText) {
             case ">D": // dropped courses
                 continue;
@@ -200,34 +200,13 @@ export function CSRequirementsOrganizer(requirements) {
     let course_list = [];
     for (let i = 0; i < requirements.length; i++) {
         const offsetParentClassList = requirements[i].offsetParent.classList;
+        const text = requirements[i].innerText;
+        const category_num = getCategoryNum(text);
+        const credits_amt = getCreditsAmt(text);
+        const course_amt = getCourseAmt(text);
         if (offsetParentClassList.contains("CSCIELEC") || offsetParentClassList.contains("CSCI-ELEC")) {
-            let course_amt;
-            let category_num;
-            let text = requirements[i].innerText;
-            let temp = text.match("[0-9] (\)");
-            if (temp === null) {
-                category_num = 4;
-            } else {
-                try {
-                    category_num = parseInt(temp[0]);
-                } catch (error) {
-                    console.log(category_num, error);
-                    continue;
-                }
-            }
-            temp = text.match("Needs: [0-9]+");
-            if (temp === null) {
-                course_amt = 0;
-            } else {
-                temp = temp[0].substring("Needs: ".length)
-                try {
-                    course_amt = parseInt(temp);
-                } catch (error) {
-                    console.log(error);
-                    continue;
-                }
-            }
             // TODO: make it so that it adds classes on a case by case basis
+            console.log("HERE HERE ", category_num);
             switch (category_num) {
                 // matches order in DARS of the subrequirements
                 case 1:
@@ -247,17 +226,12 @@ export function CSRequirementsOrganizer(requirements) {
                     //course_list.push(["XXX", "CSE", 5, "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#electives"]);
                     break;
                 default:
-                    throw new Error("Entered CSIC ELEC and got a number subcategory that does not exist: " + category_num);
+                    console.log(offsetParentClassList, category_num);
+                    break;
+                    // throw new Error("Entered CSIC Core and got a number subcategory that does not exist: " + category_num);
             }
+                
         } else if (offsetParentClassList.contains("CSCICORE")) {
-            let category_num;
-            let text = requirements[i].innerText;
-            try {
-                category_num = parseInt(text.charAt(text.match("[0-9] (\)").index));
-            } catch (error) {
-                console.log(error);
-                continue;
-            }
             switch (category_num) {
                 case 1:
                     // check for CSE 143 while clearing this
@@ -275,7 +249,9 @@ export function CSRequirementsOrganizer(requirements) {
                     course_list.push(["CSE 351", "CSE", 4, "required"]);
                     break;
                 default:
-                    throw new Error("Entered CSIC Core and got a number subcategory that does not exist: " + category_num);
+                    console.log(offsetParentClassList, category_num);
+                    break;
+                    // throw new Error("Entered CSIC Core and got a number subcategory that does not exist: " + category_num);
                 }
             
         } else if (offsetParentClassList.contains("CS-MATH") && requirements[i].innerText.match("OR (\)") === null) {
@@ -288,14 +264,8 @@ export function CSRequirementsOrganizer(requirements) {
         } else if (requirements[i].classList.contains("CSCI-NS")) {
             course_list.push(["XXX", "CS-NSc", 5, "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#cs-natural-science"]);
         } else if (offsetParentClassList.contains("A&SA&HY")) {
-            let credits_amt;
-            let text = requirements[i].offsetParent.innerText;
-            try {
-                credits_amt = parseInt((text.match("Needs: [0-9]+ credits")[0]).substring("Needs: ".length));
-            } catch (error) {
-                console.log(error);
-                continue;
-            }
+            const text = requirements[i].offsetParent.innerText;
+            const credits_amt = getCreditsAmt(text);
             while (credits_amt > 0) {
                 if (credits_amt < 5) {
                     course_list.push(["XXX", "A&H", credits_amt, "required"]);
@@ -307,14 +277,8 @@ export function CSRequirementsOrganizer(requirements) {
                 
             }
         } else if (offsetParentClassList.contains("A&SSSCY")) {
-            let credits_amt;
-            let text = requirements[i].offsetParent.innerText;
-            try {
-                credits_amt = parseInt((text.match("Needs: [0-9]+ credits")[0]).substring("Needs: ".length));
-            } catch (error) {
-                console.log(error);
-                continue;
-            }
+            const text = requirements[i].offsetParent.innerText;
+            const credits_amt = getCreditsAmt(text);
             while (credits_amt > 0) {
                 if (credits_amt < 5) {
                     course_list.push(["XXX", "SSc", credits_amt, "required"]);
@@ -326,14 +290,8 @@ export function CSRequirementsOrganizer(requirements) {
                 
             }
         } else if (offsetParentClassList.contains("A&SNSCY")) {
-            let credits_amt;
-            let text = requirements[i].offsetParent.innerText;
-            try {
-                credits_amt = parseInt((text.match("Needs: [0-9]+ credits")[0]).substring("Needs: ".length));
-            } catch (error) {
-                console.log(error);
-                continue;
-            }
+            const text = requirements[i].offsetParent.innerText;
+            const credits_amt = getCreditsAmt(text);
             while (credits_amt > 0) {
                 if (credits_amt < 5) {
                     course_list.push(["XXX", "NSc", credits_amt, "required"]);
@@ -355,14 +313,8 @@ export function CSRequirementsOrganizer(requirements) {
         } else if (offsetParentClassList.contains("RSN")) {
             course_list.push(["XXX", "RSN", 5, "required"]);
         } else if (offsetParentClassList.contains("WRITING")) {
-            let credits_amt;
-            let text = requirements[i].offsetParent.innerText;
-            try {
-                credits_amt = parseInt((text.match("Needs: [0-9]+ credits")[0]).substring("Needs: ".length));
-            } catch (error) {
-                console.log(error);
-                continue;
-            }
+            const text = requirements[i].offsetParent.innerText;
+            const credits_amt = getCreditsAmt(text);
             while (credits_amt > 0) {
                 if (credits_amt < 5) {
                     course_list.push(["XXX", "W", credits_amt, "required"]);
@@ -467,32 +419,8 @@ export function TSCIRequirementsOrganizer(requirements) {
     for (let i = 0; i < requirements.length; i++) {
         const offsetParentClassList = requirements[i].offsetParent.classList;
         if (offsetParentClassList.contains("TSCIDATA") || offsetParentClassList.contains("TSCI-DATA")) {
-            let course_amt;
-            let category_num;
             let text = requirements[i].innerText;
-            let temp = text.match("[0-9] (\)");
-            if (temp === null) {
-                category_num = 4;
-            } else {
-                try {
-                    category_num = parseInt(temp[0]);
-                } catch (error) {
-                    console.log(category_num, error);
-                    continue;
-                }
-            }
-            temp = text.match("Needs: [0-9]+");
-            if (temp === null) {
-                course_amt = 0;
-            } else {
-                temp = temp[0].substring("Needs: ".length)
-                try {
-                    course_amt = parseInt(temp);
-                } catch (error) {
-                    console.log(error);
-                    continue;
-                }
-            }
+            let category_num = getCategoryNum(text);
             // TODO: make it so that it adds classes on a case by case basis
             switch (category_num) {
                 // matches order in DARS of the subrequirements
@@ -512,18 +440,13 @@ export function TSCIRequirementsOrganizer(requirements) {
                     course_list.push(["CSE 3XX/4XX", "CSE", 4, "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#core"]);
                     break;
                 default: // suppress to handle electives later
+                    console.log(offsetParentClassList, category_num);
                     break;
-                    // throw new Error("Entered CSIC ELEC and got a number subcategory that does not exist: " + category_num);
+                    // throw new Error("Entered CSIC Core and got a number subcategory that does not exist: " + category_num);
             }
         } else if (offsetParentClassList.contains("CSCICORE")) {
-            let category_num;
             let text = requirements[i].innerText;
-            try {
-                category_num = parseInt(text.charAt(text.match("[0-9] (\)").index));
-            } catch (error) {
-                console.log(error);
-                continue;
-            }
+            let category_num = getCategoryNum(text);
             switch (category_num) {
                 case 1:
                     // check for CSE 143 while clearing this
@@ -541,7 +464,9 @@ export function TSCIRequirementsOrganizer(requirements) {
                     course_list.push(["CSE 351", "CSE", 4, "required"]);
                     break;
                 default:
-                    throw new Error("Entered CSIC Core and got a number subcategory that does not exist: " + category_num);
+                    console.log(offsetParentClassList, category_num);
+                    break;
+                    // throw new Error("Entered CSIC Core and got a number subcategory that does not exist: " + category_num);
                 }
             
         } else if (offsetParentClassList.contains("CS-MATH") && requirements[i].innerText.match("OR (\)") === null) {
@@ -569,32 +494,9 @@ export function CERequirementsOrganizer(requirements) {
     for (let i = 0; i < requirements.length; i++) {
         const offsetParentClassList = requirements[i].offsetParent.classList;
         if (offsetParentClassList.contains("TCE-EL") || offsetParentClassList.contains("TCEEL")) {
-            let course_amt;
-            let category_num;
             let text = requirements[i].innerText;
-            let temp = text.match("[0-9] (\)");
-            if (temp === null) {
-                category_num = 4;
-            } else {
-                try {
-                    category_num = parseInt(temp[0]);
-                } catch (error) {
-                    console.log(category_num, error);
-                    continue;
-                }
-            }
-            temp = text.match("Needs: [0-9]+");
-            if (temp === null) {
-                course_amt = 0;
-            } else {
-                temp = temp[0].substring("Needs: ".length)
-                try {
-                    course_amt = parseInt(temp);
-                } catch (error) {
-                    console.log(error);
-                    continue;
-                }
-            }
+            let category_num = getCategoryNum(text);
+            let course_amt = getCourseAmt(text);
             // TODO: make it so that it adds classes on a case by case basis
             switch (category_num) {
                 // matches order in DARS of the subrequirements
@@ -623,28 +525,14 @@ export function CERequirementsOrganizer(requirements) {
                     // throw new Error("Entered CSIC Core and got a number subcategory that does not exist: " + category_num);
             }
         } else if (offsetParentClassList.contains("CE-CORE") || offsetParentClassList.contains("CECORE")) {
-            let category_num;
-            let course_amt;
             let text = requirements[i].innerText;
-            try {
-                category_num = parseInt(text.charAt(text.match("[0-9] (\)").index));
-            } catch (error) {
-                console.log(offsetParentClassList, error);
-                category_num = -1;
-                continue;
-            }
-            try {
-                credits_amt = parseInt((text.match("Needs: [0-9]+ course")[0]).substring("Needs: ".length));
-            } catch (error) {
-                console.log(offsetParentClassList, error);
-                course_amt = -1;
-                continue;
-            } 
+            let category_num = getCategoryNum(text);
             switch (category_num) {
                 case 1:
                     course_list.push(["CSE 123", "CSE", 4, "required"]);
                     break;
                 case 2:
+                    let course_amt = getCourseAmt(text);
                     if (course_amt == 2) {
                         course_list.push(["CSE 311", "CSE", 4, "required"]);
                     }
@@ -657,7 +545,7 @@ export function CERequirementsOrganizer(requirements) {
                     // filter these classes
                     course_list.push(["CSE 351", "CSE", 4, "required"]);
                     course_list.push(["CSE 369", "CSE", 4, "required"]);
-                    course_list.push(["CSE 371", "CSE", 5, "required"]);
+                    course_list.push(["CSE 371", "CSE", 5, "alternative: E E 205"]);
                     break;
                 case 5:
                     course_list.push(["E E 205", "CE", 4, "alternative: E E 215"]);
@@ -668,15 +556,8 @@ export function CERequirementsOrganizer(requirements) {
                 }
             
         } else if (offsetParentClassList.contains("CE-MAT124") && requirements[i].innerText.match("OR (\)") === null) {
-            let category_num;
             let text = requirements[i].innerText;
-            try {
-                category_num = parseInt(text.charAt(text.match("[0-9] (\)").index));
-            } catch (error) {
-                console.log(offsetParentClassList, error);
-                category_num = -1;
-                continue;
-            }
+            let category_num = getCategoryNum(text);
             let previous_sibling = requirements[i];
             while (previous_sibling.previousElementSibling !== null) {
                 previous_sibling = previous_sibling.previousElementSibling;
@@ -728,27 +609,16 @@ export function EngineeringOrganizer(requirements) {
     let course_list = [];
     for (let i = 0; i < requirements.length; i++) {
         const offsetParentClassList = requirements[i].offsetParent.classList;
+        const text = requirements[i].offsetParent.innerText;
+        const category_num = getCategoryNum(text);
+        const credits_amt = getCreditsAmt(text);
         if (offsetParentClassList.contains("CE-WRITE") || offsetParentClassList.contains("CEWRITE")) {
-            let credits_amt;
-            let text = requirements[i].offsetParent.innerText;
-            try {
-                category_num = parseInt(text.charAt(text.match("[0-9] (\)").index));
-            } catch (error) {
-                console.log(offsetParentClassList, error);
-                continue;
-            }
             switch (category_num) {
                 case 1:
                     course_list.push(["XXX", "C", 5, "required"]);
                     break;
                 case 2:
-                    try {
-                        credits_amt = parseInt((text.match("Needs: [0-9]+ credits")[0]).substring("Needs: ".length));
-                    } catch (error) {
-                        console.log(offsetParentClassList, error);
-                        credits_amt = 7;
-                        continue;
-                    }
+                    let credits_amt = getCourseAmt(text);
                     while (credits_amt > 0) {
                         if (credits_amt < 5) {
                             course_list.push(["XXX", "C/W", credits_amt, "required"]);
@@ -767,14 +637,6 @@ export function EngineeringOrganizer(requirements) {
         } else if (offsetParentClassList.contains("DIVERSITY")) {
             course_list.push(["XXX", "DIV", 5, "required"]);
         } else if (offsetParentClassList.contains("ENGR-A&H") || offsetParentClassList.contains("ENGRA&H")) {
-            let credits_amt;
-            let text = requirements[i].offsetParent.innerText;
-            try {
-                credits_amt = parseInt((text.match("Needs: [0-9]+ credits")[0]).substring("Needs: ".length));
-            } catch (error) {
-                console.log(offsetParentClassList, error);
-                continue;
-            }
             while (credits_amt > 0) {
                 if (credits_amt < 5) {
                     course_list.push(["XXX", "A&H", credits_amt, "required"]);
@@ -786,14 +648,6 @@ export function EngineeringOrganizer(requirements) {
                 
             }
         } else if (offsetParentClassList.contains("ENGR-SSC") || offsetParentClassList.contains("ENGRSSC")) {
-            let credits_amt;
-            let text = requirements[i].offsetParent.innerText;
-            try {
-                credits_amt = parseInt((text.match("Needs: [0-9]+ credits")[0]).substring("Needs: ".length));
-            } catch (error) {
-                console.log(offsetParentClassList, error);
-                continue;
-            }
             while (credits_amt > 0) {
                 if (credits_amt < 5) {
                     course_list.push(["XXX", "SSc", credits_amt, "required"]);
@@ -805,14 +659,6 @@ export function EngineeringOrganizer(requirements) {
                 
             }
         } else if (offsetParentClassList.contains("ENGRAOI10") || offsetParentClassList.contains("ENGR-AOI10")) {
-            let credits_amt;
-            let text = requirements[i].offsetParent.innerText;
-            try {
-                credits_amt = parseInt((text.match("Needs: [0-9]+ credits")[0]).substring("Needs: ".length));
-            } catch (error) {
-                console.log(offsetParentClassList, error);
-                continue;
-            }
             while (credits_amt > 0) {
                 if (credits_amt < 5) {
                     course_list.push(["XXX", "A&H/SSc", credits_amt, "required"]);
@@ -823,14 +669,8 @@ export function EngineeringOrganizer(requirements) {
                 }
             }
         } else if (offsetParentClassList.contains("CE-MAT124") || offsetParentClassList.contains("CEMAT124")) {
-            let category_num;
-            let text = requirements[i].innerText;
-            try {
-                category_num = parseInt(text.charAt(text.match("[0-9] (\)").index));
-            } catch (error) {
-                console.log(error);
-                continue;
-            }
+            const text = requirements[i].innerText;
+            const category_num = getCategoryAmt(text);
             switch (category_num) {
                 case 1:
                     course_list.push(["MATH 124", "CE-MATH", 5, "required"]);
@@ -873,14 +713,8 @@ export function EngineeringOrganizer(requirements) {
             }
         } else if (requirements[i].classList.contains("CE-SCI-EL") || requirements[i].classList.contains("CESCI-EL")) {
             // Need to check div-audit-requirement for CE-SCI-EL (not div-subrequirement)
-            let text = requirements[i].innerText;
-            try {
-                credits_amt = parseInt((text.match("Needs: [0-9]+ credits")[0]).substring("Needs: ".length));
-            } catch (error) {
-                console.log(offsetParentClassList, error);
-                credits_amt = 10;
-                continue;
-            }
+            const text = requirements[i].innerText;
+            const credits_amt = getCreditsAmt(text);
             while (credits_amt > 0) {
                 if (credits_amt < 5) {
                     course_list.push(["XXX", "NSc", credits_amt, "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#ce-natural-science"]);
@@ -1183,23 +1017,14 @@ function searchCourseType_CE(course_div) {
     }
 }
 
-function CourseNameIndexOf(array, target) {
-    for (let i = 0; i < array.length; i++) {
-        if (array[i].name.match(target) !== null) {
-            return i;
-        }
-    }
-    return -1;
-}
-
-function chooseCollegeMajorType(major_name) {
-    switch (major_name) {
-        case "Computer Science: Data Science":
-            return "DS";
-        case "Computer Engineering":
-            return "CE";
-        default:
-            return "CS";
+function chooseCollegeMajorType() {
+    const audit_header = document.querySelectorAll("div.audit-summary")[0].children[0].innerText;
+    if (audit_header.match("COMPUTER SCIENCE: DATA SCIENCE") !== null) {
+        return "DS";
+    } else if (audit_header.match("COMPUTER ENGINEERING") !== null) {
+        return "CE";
+    } else {
+        return "CS";
     }
 }
 
@@ -1236,9 +1061,69 @@ function returnFilter(major_name, completed, required) {
     }
 }
 
+function CourseNameIndexOf(array, target) {
+    for (let i = 0; i < array.length; i++) {
+        if (array[i].name.match(target) !== null) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+function getCategoryNum(innerText) {
+    let category_num = -1;
+    let temp;
+    try {
+        temp = innerText.match("[0-9] (\)");
+        if (temp === null) {
+            console.log("Category: ", innerText);
+            return category_num;
+        }
+        category_num = parseInt(innerText.charAt(temp.index));
+    } catch (error) {
+        console.log("Category: ", innerText, error);
+        return category_num;
+    }
+    return category_num;
+}
+
+function getCreditsAmt(innerText) {
+    let credits_amt = -1;
+    let temp;
+    try {
+        temp = innerText.match("Needs: [0-9]+ credits");
+        if (temp === null) {
+            console.log("Credits: ", innerText);
+            return credits_amt;
+        }
+        credits_amt = parseInt(temp[0].substring("Needs: ".length));
+    } catch (error) {
+        console.log("Credits: ", innerText, error);
+        return credits_amt;
+    }
+    return credits_amt;
+}
+
+function getCourseAmt(innerText) {
+    let course_amt = -1;
+    let temp;
+    try {
+        temp = innerText.match("Needs: [0-9]+ course");
+        if (temp === null) {
+            console.log("Course: ", innerText);
+            return course_amt;
+        }
+        course_amt = parseInt(temp.substring("Needs: "));
+    } catch (error) {
+        console.log("Course: ", innerText, error);
+        return course_amt;
+    }
+    return course_amt;
+}
+
 export function retrieveDARS() {
     // TODO: Replace temp var with input from user
-    const major_name = chooseCollegeMajorType("Computer Science"); // will result in CS
+    const major_name = chooseCollegeMajorType(); // will result in what's on the page currently
     const finished_courses = getFinishedCourses(major_name);
     const required_courses = getRequiredCourses(major_name, finished_courses);
     return [finished_courses, required_courses];
