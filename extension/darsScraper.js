@@ -237,7 +237,6 @@ export function CSRequirementsOrganizer(requirements) {
                     break;
                     // throw new Error("Entered CSIC Core and got a number subcategory that does not exist: " + category_num);
             }
-                
         } else if (offsetParentClassList.contains("CSCICORE")) {
             switch (category_num) {
                 case 1:
@@ -270,7 +269,16 @@ export function CSRequirementsOrganizer(requirements) {
             course_list.push(["MATH 208", "CS-MATH", 3, "alternative: MATH 136"]);
         } else if (requirements[i].classList.contains("CSCI-NS")) {
             course_list.push(["XXX", "CS-NSc", 5, "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#cs-natural-science"]);
-        } else if (offsetParentClassList.contains("A&SA&HY")) {
+        }
+    }
+    return course_list;
+}
+
+export function ArtsAndSciencesOrganizer(requirements) {
+    let course_list = [];
+    for (let i = 0; i < requirements.length; i++) {
+        const offsetParentClassList = requirements[i].offsetParent.classList;
+        if (offsetParentClassList.contains("A&SA&HY")) {
             const text = requirements[i].offsetParent.innerText;
             const credits_amt = getCreditsAmt(text);
             while (credits_amt > 0) {
