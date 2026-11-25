@@ -1,0 +1,5844 @@
+[
+  {
+    "code": "CSE 121",
+    "title": "Introduction to Computer Programming I",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": "completion of Paul G. Allen School's Guided Self-Placement",
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "12737",
+        "meetings": [
+          {
+            "days": [
+              "W",
+              "F"
+            ],
+            "start_time": "10:30",
+            "end_time": "11:20"
+          }
+        ],
+        "enrolled": 143,
+        "capacity": 252
+      },
+      {
+        "section": "B",
+        "type": "lecture",
+        "sln": "12754",
+        "meetings": [
+          {
+            "days": [
+              "W",
+              "F"
+            ],
+            "start_time": "14:30",
+            "end_time": "15:20"
+          }
+        ],
+        "enrolled": 85,
+        "capacity": 168
+      }
+    ],
+    "quiz_sections": [
+      {
+        "section": "AA",
+        "type": "quiz",
+        "sln": "12738",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "08:30",
+            "end_time": "09:20"
+          }
+        ],
+        "enrolled": 5,
+        "capacity": 21
+      },
+      {
+        "section": "AE",
+        "type": "quiz",
+        "sln": "12742",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "12:30",
+            "end_time": "13:20"
+          }
+        ],
+        "enrolled": 17,
+        "capacity": 21
+      },
+      {
+        "section": "AF",
+        "type": "quiz",
+        "sln": "12743",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 16,
+        "capacity": 21
+      },
+      {
+        "section": "AG",
+        "type": "quiz",
+        "sln": "12744",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "14:30",
+            "end_time": "15:20"
+          }
+        ],
+        "enrolled": 10,
+        "capacity": 21
+      },
+      {
+        "section": "AH",
+        "type": "quiz",
+        "sln": "12745",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "15:30",
+            "end_time": "16:20"
+          }
+        ],
+        "enrolled": 5,
+        "capacity": 21
+      },
+      {
+        "section": "AK",
+        "type": "quiz",
+        "sln": "12748",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "10:30",
+            "end_time": "11:20"
+          }
+        ],
+        "enrolled": 6,
+        "capacity": 21
+      },
+      {
+        "section": "AL",
+        "type": "quiz",
+        "sln": "12749",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "11:30",
+            "end_time": "12:20"
+          }
+        ],
+        "enrolled": 5,
+        "capacity": 21
+      },
+      {
+        "section": "AM",
+        "type": "quiz",
+        "sln": "12750",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "12:30",
+            "end_time": "13:20"
+          }
+        ],
+        "enrolled": 7,
+        "capacity": 21
+      },
+      {
+        "section": "AN",
+        "type": "quiz",
+        "sln": "12751",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 5,
+        "capacity": 21
+      },
+      {
+        "section": "AO",
+        "type": "quiz",
+        "sln": "12752",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "14:30",
+            "end_time": "15:20"
+          }
+        ],
+        "enrolled": 2,
+        "capacity": 21
+      },
+      {
+        "section": "AP",
+        "type": "quiz",
+        "sln": "12753",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "15:30",
+            "end_time": "16:20"
+          }
+        ],
+        "enrolled": 2,
+        "capacity": 21
+      },
+      {
+        "section": "BA",
+        "type": "quiz",
+        "sln": "12755",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "08:30",
+            "end_time": "09:20"
+          }
+        ],
+        "enrolled": 5,
+        "capacity": 30
+      },
+      {
+        "section": "BB",
+        "type": "quiz",
+        "sln": "12756",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "09:30",
+            "end_time": "10:20"
+          }
+        ],
+        "enrolled": 7,
+        "capacity": 21
+      },
+      {
+        "section": "BC",
+        "type": "quiz",
+        "sln": "12757",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "10:30",
+            "end_time": "11:20"
+          }
+        ],
+        "enrolled": 10,
+        "capacity": 21
+      },
+      {
+        "section": "BD",
+        "type": "quiz",
+        "sln": "12758",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "11:30",
+            "end_time": "12:20"
+          }
+        ],
+        "enrolled": 14,
+        "capacity": 21
+      },
+      {
+        "section": "BE",
+        "type": "quiz",
+        "sln": "12759",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "12:30",
+            "end_time": "13:20"
+          }
+        ],
+        "enrolled": 14,
+        "capacity": 21
+      },
+      {
+        "section": "BF",
+        "type": "quiz",
+        "sln": "12760",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 10,
+        "capacity": 21
+      },
+      {
+        "section": "BG",
+        "type": "quiz",
+        "sln": "12761",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "14:30",
+            "end_time": "15:20"
+          }
+        ],
+        "enrolled": 15,
+        "capacity": 21
+      },
+      {
+        "section": "BH",
+        "type": "quiz",
+        "sln": "12762",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "15:30",
+            "end_time": "16:20"
+          }
+        ],
+        "enrolled": 10,
+        "capacity": 21
+      }
+    ]
+  },
+  {
+    "code": "CSE 122",
+    "title": "Introduction to Computer Programming II",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [
+      "CSE 121"
+    ],
+    "prerequisite_text": null,
+    "suggested_text": "CSE 121 or completion of Paul G. Allen School's Guided Self-Placement",
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "12763",
+        "meetings": [
+          {
+            "days": [
+              "W",
+              "F"
+            ],
+            "start_time": "12:30",
+            "end_time": "13:20"
+          }
+        ],
+        "enrolled": 247,
+        "capacity": 315
+      },
+      {
+        "section": "B",
+        "type": "lecture",
+        "sln": "12780",
+        "meetings": [
+          {
+            "days": [
+              "W",
+              "F"
+            ],
+            "start_time": "15:30",
+            "end_time": "16:20"
+          }
+        ],
+        "enrolled": 138,
+        "capacity": 252
+      }
+    ],
+    "quiz_sections": [
+      {
+        "section": "AA",
+        "type": "quiz",
+        "sln": "12764",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "08:30",
+            "end_time": "09:20"
+          }
+        ],
+        "enrolled": 11,
+        "capacity": 21
+      },
+      {
+        "section": "AB",
+        "type": "quiz",
+        "sln": "12765",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "09:30",
+            "end_time": "10:20"
+          }
+        ],
+        "enrolled": 20,
+        "capacity": 21
+      },
+      {
+        "section": "AH",
+        "type": "quiz",
+        "sln": "12771",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "15:30",
+            "end_time": "16:20"
+          }
+        ],
+        "enrolled": 20,
+        "capacity": 21
+      },
+      {
+        "section": "AJ",
+        "type": "quiz",
+        "sln": "12773",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "09:30",
+            "end_time": "10:20"
+          }
+        ],
+        "enrolled": 19,
+        "capacity": 22
+      },
+      {
+        "section": "AO",
+        "type": "quiz",
+        "sln": "12778",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "14:30",
+            "end_time": "15:20"
+          }
+        ],
+        "enrolled": 10,
+        "capacity": 21
+      },
+      {
+        "section": "BA",
+        "type": "quiz",
+        "sln": "12781",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "08:30",
+            "end_time": "09:20"
+          }
+        ],
+        "enrolled": 7,
+        "capacity": 21
+      },
+      {
+        "section": "BE",
+        "type": "quiz",
+        "sln": "12785",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "12:30",
+            "end_time": "13:20"
+          }
+        ],
+        "enrolled": 13,
+        "capacity": 21
+      },
+      {
+        "section": "BF",
+        "type": "quiz",
+        "sln": "12786",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 12,
+        "capacity": 21
+      },
+      {
+        "section": "BG",
+        "type": "quiz",
+        "sln": "12787",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "14:30",
+            "end_time": "15:20"
+          }
+        ],
+        "enrolled": 10,
+        "capacity": 21
+      },
+      {
+        "section": "BJ",
+        "type": "quiz",
+        "sln": "12790",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "09:30",
+            "end_time": "10:20"
+          }
+        ],
+        "enrolled": 5,
+        "capacity": 21
+      },
+      {
+        "section": "BM",
+        "type": "quiz",
+        "sln": "12793",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "12:30",
+            "end_time": "13:20"
+          }
+        ],
+        "enrolled": 6,
+        "capacity": 21
+      },
+      {
+        "section": "BN",
+        "type": "quiz",
+        "sln": "12794",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 5,
+        "capacity": 21
+      },
+      {
+        "section": "BO",
+        "type": "quiz",
+        "sln": "12795",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "14:30",
+            "end_time": "15:20"
+          }
+        ],
+        "enrolled": 5,
+        "capacity": 21
+      }
+    ]
+  },
+  {
+    "code": "CSE 123",
+    "title": "Introduction to Computer Programming III",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [
+      "CSE 122"
+    ],
+    "prerequisite_text": null,
+    "suggested_text": "CSE 122 or completion of Paul G. Allen School's Guided Self-Placement",
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "12798",
+        "meetings": [
+          {
+            "days": [
+              "W",
+              "F"
+            ],
+            "start_time": "12:30",
+            "end_time": "13:20"
+          }
+        ],
+        "enrolled": 219,
+        "capacity": 294
+      },
+      {
+        "section": "B",
+        "type": "lecture",
+        "sln": "12815",
+        "meetings": [
+          {
+            "days": [
+              "W",
+              "F"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 168,
+        "capacity": 252
+      }
+    ],
+    "quiz_sections": [
+      {
+        "section": "AA",
+        "type": "quiz",
+        "sln": "12799",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "08:30",
+            "end_time": "09:20"
+          }
+        ],
+        "enrolled": 8,
+        "capacity": 21
+      },
+      {
+        "section": "AG",
+        "type": "quiz",
+        "sln": "12805",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "14:30",
+            "end_time": "15:20"
+          }
+        ],
+        "enrolled": 20,
+        "capacity": 21
+      },
+      {
+        "section": "AH",
+        "type": "quiz",
+        "sln": "12806",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "15:30",
+            "end_time": "16:20"
+          }
+        ],
+        "enrolled": 10,
+        "capacity": 21
+      },
+      {
+        "section": "AJ",
+        "type": "quiz",
+        "sln": "12808",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "09:30",
+            "end_time": "10:20"
+          }
+        ],
+        "enrolled": 6,
+        "capacity": 21
+      },
+      {
+        "section": "AK",
+        "type": "quiz",
+        "sln": "12809",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "10:30",
+            "end_time": "11:20"
+          }
+        ],
+        "enrolled": 15,
+        "capacity": 21
+      },
+      {
+        "section": "AL",
+        "type": "quiz",
+        "sln": "12810",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "11:30",
+            "end_time": "12:20"
+          }
+        ],
+        "enrolled": 18,
+        "capacity": 21
+      },
+      {
+        "section": "AM",
+        "type": "quiz",
+        "sln": "12811",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "12:30",
+            "end_time": "13:20"
+          }
+        ],
+        "enrolled": 20,
+        "capacity": 21
+      },
+      {
+        "section": "AN",
+        "type": "quiz",
+        "sln": "12812",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 10,
+        "capacity": 21
+      },
+      {
+        "section": "AO",
+        "type": "quiz",
+        "sln": "12813",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "14:30",
+            "end_time": "15:20"
+          }
+        ],
+        "enrolled": 8,
+        "capacity": 21
+      },
+      {
+        "section": "BA",
+        "type": "quiz",
+        "sln": "12816",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "08:30",
+            "end_time": "09:20"
+          }
+        ],
+        "enrolled": 5,
+        "capacity": 21
+      },
+      {
+        "section": "BB",
+        "type": "quiz",
+        "sln": "12817",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "09:30",
+            "end_time": "10:20"
+          }
+        ],
+        "enrolled": 11,
+        "capacity": 21
+      },
+      {
+        "section": "BD",
+        "type": "quiz",
+        "sln": "12819",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "11:30",
+            "end_time": "12:20"
+          }
+        ],
+        "enrolled": 16,
+        "capacity": 21
+      },
+      {
+        "section": "BG",
+        "type": "quiz",
+        "sln": "12822",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "14:30",
+            "end_time": "15:20"
+          }
+        ],
+        "enrolled": 17,
+        "capacity": 21
+      },
+      {
+        "section": "BH",
+        "type": "quiz",
+        "sln": "12823",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "15:30",
+            "end_time": "16:20"
+          }
+        ],
+        "enrolled": 13,
+        "capacity": 21
+      },
+      {
+        "section": "BK",
+        "type": "quiz",
+        "sln": "12824",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "10:30",
+            "end_time": "11:20"
+          }
+        ],
+        "enrolled": 10,
+        "capacity": 21
+      },
+      {
+        "section": "BL",
+        "type": "quiz",
+        "sln": "12825",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "11:30",
+            "end_time": "12:20"
+          }
+        ],
+        "enrolled": 9,
+        "capacity": 21
+      },
+      {
+        "section": "BM",
+        "type": "quiz",
+        "sln": "12826",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "12:30",
+            "end_time": "13:20"
+          }
+        ],
+        "enrolled": 13,
+        "capacity": 20
+      },
+      {
+        "section": "BO",
+        "type": "quiz",
+        "sln": "12827",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "14:30",
+            "end_time": "15:20"
+          }
+        ],
+        "enrolled": 11,
+        "capacity": 21
+      }
+    ]
+  },
+  {
+    "code": "CSE 160",
+    "title": "Data Programming",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "12831",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W",
+              "F"
+            ],
+            "start_time": "15:30",
+            "end_time": "16:20"
+          }
+        ],
+        "enrolled": 224,
+        "capacity": 224
+      }
+    ],
+    "quiz_sections": [
+      {
+        "section": "AA",
+        "type": "quiz",
+        "sln": "12832",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "11:30",
+            "end_time": "12:20"
+          }
+        ],
+        "enrolled": 28,
+        "capacity": 28
+      },
+      {
+        "section": "AB",
+        "type": "quiz",
+        "sln": "12833",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "12:30",
+            "end_time": "13:20"
+          }
+        ],
+        "enrolled": 28,
+        "capacity": 28
+      },
+      {
+        "section": "AC",
+        "type": "quiz",
+        "sln": "12834",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 28,
+        "capacity": 28
+      },
+      {
+        "section": "AD",
+        "type": "quiz",
+        "sln": "12835",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "14:30",
+            "end_time": "15:20"
+          }
+        ],
+        "enrolled": 28,
+        "capacity": 28
+      },
+      {
+        "section": "AE",
+        "type": "quiz",
+        "sln": "12836",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "15:30",
+            "end_time": "16:20"
+          }
+        ],
+        "enrolled": 28,
+        "capacity": 28
+      },
+      {
+        "section": "AF",
+        "type": "quiz",
+        "sln": "12837",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "09:30",
+            "end_time": "10:20"
+          }
+        ],
+        "enrolled": 28,
+        "capacity": 28
+      },
+      {
+        "section": "AG",
+        "type": "quiz",
+        "sln": "12838",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "10:30",
+            "end_time": "11:20"
+          }
+        ],
+        "enrolled": 28,
+        "capacity": 28
+      },
+      {
+        "section": "AH",
+        "type": "quiz",
+        "sln": "12839",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "11:30",
+            "end_time": "12:20"
+          }
+        ],
+        "enrolled": 28,
+        "capacity": 28
+      },
+      {
+        "section": "AI",
+        "type": "quiz",
+        "sln": "12840",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "12:30",
+            "end_time": "13:20"
+          }
+        ],
+        "enrolled": 0,
+        "capacity": 28
+      }
+    ]
+  },
+  {
+    "code": "CSE 163",
+    "title": "Intermediate Data Programming",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 122",
+        "CSE 123",
+        "CSE 142",
+        "CSE 143",
+        "CSE 160"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either CSE 122, CSE 123, CSE 142, CSE 143, or CSE 160",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "12841",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W",
+              "F"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 191,
+        "capacity": 196
+      }
+    ],
+    "quiz_sections": [
+      {
+        "section": "AH",
+        "type": "quiz",
+        "sln": "12848",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "15:30",
+            "end_time": "16:20"
+          }
+        ],
+        "enrolled": 23,
+        "capacity": 28
+      }
+    ]
+  },
+  {
+    "code": "CSE 170",
+    "title": "Artificial Intelligence Principles, Applications, and Impacts",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "12849",
+        "meetings": [
+          {
+            "days": [
+              "W",
+              "F"
+            ],
+            "start_time": "14:30",
+            "end_time": "16:20"
+          }
+        ],
+        "enrolled": 36,
+        "capacity": 90
+      }
+    ],
+    "quiz_sections": [
+      {
+        "section": "AA",
+        "type": "quiz",
+        "sln": "12850",
+        "meetings": [
+          {
+            "days": [
+              "M"
+            ],
+            "start_time": "14:30",
+            "end_time": "16:20"
+          }
+        ],
+        "enrolled": 36,
+        "capacity": 90
+      }
+    ]
+  },
+  {
+    "code": "CSE 196",
+    "title": "Allen Scholars Seminar",
+    "credits": "1",
+    "credits_min": 1,
+    "credits_max": 1,
+    "max_total_credits": 4,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "12851",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "14:30",
+            "end_time": "15:50"
+          }
+        ],
+        "enrolled": 49,
+        "capacity": 60
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 197",
+    "title": "Problem Solving for Computer Science and Engineering",
+    "credits": "1/2",
+    "credits_min": 1,
+    "credits_max": 2,
+    "max_total_credits": 8,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "X",
+        "type": "lecture",
+        "sln": "12852",
+        "meetings": [
+          {
+            "days": [
+              "T"
+            ],
+            "start_time": "14:30",
+            "end_time": "16:20"
+          },
+          {
+            "days": [
+              "F"
+            ],
+            "start_time": "12:30",
+            "end_time": "16:20"
+          }
+        ],
+        "enrolled": 32,
+        "capacity": 60
+      },
+      {
+        "section": "Y",
+        "type": "lecture",
+        "sln": "12853",
+        "meetings": [
+          {
+            "days": [
+              "T"
+            ],
+            "start_time": "14:30",
+            "end_time": "16:20"
+          },
+          {
+            "days": [
+              "F"
+            ],
+            "start_time": "12:30",
+            "end_time": "16:20"
+          }
+        ],
+        "enrolled": 20,
+        "capacity": 25
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 311",
+    "title": "Foundations of Computing I",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 123",
+        "CSE 143"
+      ],
+      [
+        "MATH 126",
+        "MATH 135"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "a minimum grade of 2.0 in either CSE 123 or CSE 143; and a minimum grade of 2.0 in MATH 126 or MATH 135",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "B",
+        "type": "lecture",
+        "sln": "12860",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W",
+              "F"
+            ],
+            "start_time": "14:30",
+            "end_time": "15:20"
+          }
+        ],
+        "enrolled": 79,
+        "capacity": 108
+      }
+    ],
+    "quiz_sections": [
+      {
+        "section": "BA",
+        "type": "quiz",
+        "sln": "12861",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "12:30",
+            "end_time": "13:20"
+          }
+        ],
+        "enrolled": 26,
+        "capacity": 27
+      },
+      {
+        "section": "BB",
+        "type": "quiz",
+        "sln": "12862",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 22,
+        "capacity": 27
+      },
+      {
+        "section": "BD",
+        "type": "quiz",
+        "sln": "12864",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "15:30",
+            "end_time": "16:20"
+          }
+        ],
+        "enrolled": 4,
+        "capacity": 27
+      }
+    ]
+  },
+  {
+    "code": "CSE 312",
+    "title": "Foundations of Computing II",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 311"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 311",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "12866",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W",
+              "F"
+            ],
+            "start_time": "10:30",
+            "end_time": "11:20"
+          }
+        ],
+        "enrolled": 137,
+        "capacity": 140
+      },
+      {
+        "section": "B",
+        "type": "lecture",
+        "sln": "12873",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W",
+              "F"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 123,
+        "capacity": 135
+      }
+    ],
+    "quiz_sections": [
+      {
+        "section": "AA",
+        "type": "quiz",
+        "sln": "12867",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "09:30",
+            "end_time": "10:20"
+          }
+        ],
+        "enrolled": 27,
+        "capacity": 28
+      },
+      {
+        "section": "AE",
+        "type": "quiz",
+        "sln": "12871",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 26,
+        "capacity": 28
+      },
+      {
+        "section": "BA",
+        "type": "quiz",
+        "sln": "12874",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "11:30",
+            "end_time": "12:20"
+          }
+        ],
+        "enrolled": 26,
+        "capacity": 27
+      },
+      {
+        "section": "BB",
+        "type": "quiz",
+        "sln": "12875",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "12:30",
+            "end_time": "13:20"
+          }
+        ],
+        "enrolled": 24,
+        "capacity": 27
+      },
+      {
+        "section": "BE",
+        "type": "quiz",
+        "sln": "12878",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "15:30",
+            "end_time": "16:20"
+          }
+        ],
+        "enrolled": 19,
+        "capacity": 27
+      }
+    ]
+  },
+  {
+    "code": "CSE 331",
+    "title": "Software Design and Implementation",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 123",
+        "CSE 143"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "a minimum grade of 2.0 in either CSE 123 or CSE 143",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "12880",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W",
+              "F"
+            ],
+            "start_time": "14:30",
+            "end_time": "15:20"
+          }
+        ],
+        "enrolled": 102,
+        "capacity": 120
+      },
+      {
+        "section": "B",
+        "type": "lecture",
+        "sln": "12885",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W",
+              "F"
+            ],
+            "start_time": "10:30",
+            "end_time": "11:20"
+          }
+        ],
+        "enrolled": 96,
+        "capacity": 110
+      }
+    ],
+    "quiz_sections": [
+      {
+        "section": "AB",
+        "type": "quiz",
+        "sln": "12882",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 24,
+        "capacity": 28
+      },
+      {
+        "section": "AD",
+        "type": "quiz",
+        "sln": "12884",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "15:30",
+            "end_time": "16:20"
+          }
+        ],
+        "enrolled": 17,
+        "capacity": 31
+      },
+      {
+        "section": "BA",
+        "type": "quiz",
+        "sln": "12886",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "09:30",
+            "end_time": "10:20"
+          }
+        ],
+        "enrolled": 18,
+        "capacity": 27
+      },
+      {
+        "section": "BD",
+        "type": "quiz",
+        "sln": "12889",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "12:30",
+            "end_time": "13:20"
+          }
+        ],
+        "enrolled": 23,
+        "capacity": 28
+      }
+    ]
+  },
+  {
+    "code": "CSE 332",
+    "title": "Data Structures and Parallelism",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 311"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 311",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "12890",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W",
+              "F"
+            ],
+            "start_time": "12:30",
+            "end_time": "13:20"
+          }
+        ],
+        "enrolled": 177,
+        "capacity": 195
+      },
+      {
+        "section": "B",
+        "type": "lecture",
+        "sln": "12898",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W",
+              "F"
+            ],
+            "start_time": "15:30",
+            "end_time": "16:20"
+          }
+        ],
+        "enrolled": 54,
+        "capacity": 98
+      }
+    ],
+    "quiz_sections": [
+      {
+        "section": "AA",
+        "type": "quiz",
+        "sln": "12891",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "08:30",
+            "end_time": "09:20"
+          }
+        ],
+        "enrolled": 16,
+        "capacity": 30
+      },
+      {
+        "section": "AB",
+        "type": "quiz",
+        "sln": "12892",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "09:30",
+            "end_time": "10:20"
+          }
+        ],
+        "enrolled": 26,
+        "capacity": 30
+      },
+      {
+        "section": "BA",
+        "type": "quiz",
+        "sln": "12899",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "12:30",
+            "end_time": "13:20"
+          }
+        ],
+        "enrolled": 14,
+        "capacity": 27
+      },
+      {
+        "section": "BB",
+        "type": "quiz",
+        "sln": "12900",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 18,
+        "capacity": 28
+      },
+      {
+        "section": "BC",
+        "type": "quiz",
+        "sln": "12901",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "14:30",
+            "end_time": "15:20"
+          }
+        ],
+        "enrolled": 14,
+        "capacity": 28
+      },
+      {
+        "section": "BD",
+        "type": "quiz",
+        "sln": "12902",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "15:30",
+            "end_time": "16:20"
+          }
+        ],
+        "enrolled": 8,
+        "capacity": 15
+      }
+    ]
+  },
+  {
+    "code": "CSE 333",
+    "title": "Systems Programming",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 351"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 351",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "12903",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W",
+              "F"
+            ],
+            "start_time": "11:30",
+            "end_time": "12:20"
+          }
+        ],
+        "enrolled": 183,
+        "capacity": 196
+      }
+    ],
+    "quiz_sections": [
+      {
+        "section": "AA",
+        "type": "quiz",
+        "sln": "12904",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "08:30",
+            "end_time": "09:20"
+          }
+        ],
+        "enrolled": 15,
+        "capacity": 28
+      }
+    ]
+  },
+  {
+    "code": "CSE 341",
+    "title": "Programming Languages",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 123",
+        "CSE 143"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 123 or CSE 143",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "12911",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W",
+              "F"
+            ],
+            "start_time": "09:30",
+            "end_time": "10:20"
+          }
+        ],
+        "enrolled": 16,
+        "capacity": 90
+      }
+    ],
+    "quiz_sections": [
+      {
+        "section": "AA",
+        "type": "quiz",
+        "sln": "12912",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "09:30",
+            "end_time": "10:20"
+          }
+        ],
+        "enrolled": 3,
+        "capacity": 30
+      },
+      {
+        "section": "AB",
+        "type": "quiz",
+        "sln": "12913",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "10:30",
+            "end_time": "11:20"
+          }
+        ],
+        "enrolled": 5,
+        "capacity": 30
+      },
+      {
+        "section": "AC",
+        "type": "quiz",
+        "sln": "12914",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "12:30",
+            "end_time": "13:20"
+          }
+        ],
+        "enrolled": 8,
+        "capacity": 30
+      }
+    ]
+  },
+  {
+    "code": "CSE 344",
+    "title": "Introduction to Data Management",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 311"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 311",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "12915",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W",
+              "F"
+            ],
+            "start_time": "09:30",
+            "end_time": "10:20"
+          }
+        ],
+        "enrolled": 128,
+        "capacity": 130
+      }
+    ],
+    "quiz_sections": [
+      {
+        "section": "AC",
+        "type": "quiz",
+        "sln": "12918",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "10:30",
+            "end_time": "11:20"
+          }
+        ],
+        "enrolled": 30,
+        "capacity": 32
+      }
+    ]
+  },
+  {
+    "code": "CSE 351",
+    "title": "The Hardware/Software Interface",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 123",
+        "CSE 143"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 123 or CSE 143",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "12921",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W",
+              "F"
+            ],
+            "start_time": "11:30",
+            "end_time": "12:20"
+          }
+        ],
+        "enrolled": 99,
+        "capacity": 100
+      }
+    ],
+    "quiz_sections": [
+      {
+        "section": "AB",
+        "type": "quiz",
+        "sln": "12923",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "09:30",
+            "end_time": "10:20"
+          }
+        ],
+        "enrolled": 24,
+        "capacity": 25
+      }
+    ]
+  },
+  {
+    "code": "CSE 369",
+    "title": "Introduction to Digital Design",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 311"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 311",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "12943",
+        "meetings": [
+          {
+            "days": [
+              "T"
+            ],
+            "start_time": "11:30",
+            "end_time": "12:50"
+          }
+        ],
+        "enrolled": 44,
+        "capacity": 70
+      }
+    ],
+    "quiz_sections": [
+      {
+        "section": "AA",
+        "type": "quiz",
+        "sln": "22113",
+        "meetings": [
+          {
+            "days": [
+              "F"
+            ],
+            "start_time": "15:30",
+            "end_time": "16:20"
+          }
+        ],
+        "enrolled": 44,
+        "capacity": 70
+      }
+    ]
+  },
+  {
+    "code": "CSE 371",
+    "title": "Design of Digital Circuits and Systems",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 205",
+        "E E 215"
+      ],
+      [
+        "E E 271",
+        "CSE 369"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either E E 205 or E E 215; either E E 271 or CSE 369",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "12944",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W"
+            ],
+            "start_time": "12:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 25,
+        "capacity": 25
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 373",
+    "title": "Data Structures and Algorithms",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 123",
+        "CSE 143"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 123 or CSE 143",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "12945",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W",
+              "F"
+            ],
+            "start_time": "14:30",
+            "end_time": "15:20"
+          }
+        ],
+        "enrolled": 186,
+        "capacity": 210
+      }
+    ],
+    "quiz_sections": [
+      {
+        "section": "AA",
+        "type": "quiz",
+        "sln": "12946",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "09:30",
+            "end_time": "10:20"
+          }
+        ],
+        "enrolled": 24,
+        "capacity": 30
+      },
+      {
+        "section": "AE",
+        "type": "quiz",
+        "sln": "12950",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 26,
+        "capacity": 30
+      },
+      {
+        "section": "AG",
+        "type": "quiz",
+        "sln": "12952",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "15:30",
+            "end_time": "16:20"
+          }
+        ],
+        "enrolled": 16,
+        "capacity": 30
+      }
+    ]
+  },
+  {
+    "code": "CSE 390",
+    "title": "Special Topics in Computer Science and Engineering",
+    "credits": "1-5",
+    "credits_min": 1,
+    "credits_max": 5,
+    "max_total_credits": 10,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "C",
+        "type": "lecture",
+        "sln": "12956",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W",
+              "F"
+            ],
+            "start_time": "11:30",
+            "end_time": "12:20"
+          }
+        ],
+        "enrolled": 18,
+        "capacity": 50
+      },
+      {
+        "section": "H",
+        "type": "lecture",
+        "sln": "12958",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "15:30",
+            "end_time": "16:50"
+          }
+        ],
+        "enrolled": 7,
+        "capacity": 30
+      }
+    ],
+    "quiz_sections": [
+      {
+        "section": "CA",
+        "type": "quiz",
+        "sln": "12957",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 18,
+        "capacity": 50
+      }
+    ]
+  },
+  {
+    "code": "CSE 391",
+    "title": "System and Software Tools",
+    "credits": "1",
+    "credits_min": 1,
+    "credits_max": 1,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 122",
+        "CSE 123",
+        "CSE 143"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either CSE 122, CSE 123, or CSE 143",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "12962",
+        "meetings": [
+          {
+            "days": [
+              "T"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 80,
+        "capacity": 150
+      },
+      {
+        "section": "B",
+        "type": "lecture",
+        "sln": "12963",
+        "meetings": [
+          {
+            "days": [
+              "T"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 1,
+        "capacity": 22
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 401",
+    "title": "Introduction to Compiler Construction",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 332"
+      ],
+      [
+        "CSE 351"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 332 and CSE 351",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "12964",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W",
+              "F"
+            ],
+            "start_time": "14:30",
+            "end_time": "15:20"
+          }
+        ],
+        "enrolled": 45,
+        "capacity": 70
+      }
+    ],
+    "quiz_sections": [
+      {
+        "section": "AA",
+        "type": "quiz",
+        "sln": "12965",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 26,
+        "capacity": 35
+      },
+      {
+        "section": "AB",
+        "type": "quiz",
+        "sln": "12966",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "14:30",
+            "end_time": "15:20"
+          }
+        ],
+        "enrolled": 19,
+        "capacity": 35
+      }
+    ]
+  },
+  {
+    "code": "CSE 403",
+    "title": "Software Engineering",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 331"
+      ],
+      [
+        "CSE 332"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 331; CSE 332",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "12967",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W",
+              "F"
+            ],
+            "start_time": "12:30",
+            "end_time": "13:20"
+          }
+        ],
+        "enrolled": 48,
+        "capacity": 100
+      }
+    ],
+    "quiz_sections": [
+      {
+        "section": "AA",
+        "type": "quiz",
+        "sln": "12968",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 48,
+        "capacity": 100
+      }
+    ]
+  },
+  {
+    "code": "CSE 412",
+    "title": "Introduction to Data Visualization",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 123",
+        "CSE 143",
+        "CSE 163"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either CSE 123, CSE 143, or CSE 163",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "21839",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W"
+            ],
+            "start_time": "15:30",
+            "end_time": "16:50"
+          }
+        ],
+        "enrolled": 77,
+        "capacity": 120
+      }
+    ],
+    "quiz_sections": [
+      {
+        "section": "AB",
+        "type": "quiz",
+        "sln": "21841",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 16,
+        "capacity": 30
+      },
+      {
+        "section": "AC",
+        "type": "quiz",
+        "sln": "21842",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "14:30",
+            "end_time": "15:20"
+          }
+        ],
+        "enrolled": 20,
+        "capacity": 30
+      },
+      {
+        "section": "AD",
+        "type": "quiz",
+        "sln": "21843",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "15:30",
+            "end_time": "16:20"
+          }
+        ],
+        "enrolled": 11,
+        "capacity": 30
+      }
+    ]
+  },
+  {
+    "code": "CSE 414",
+    "title": "Introduction to Database Systems",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 123",
+        "CSE 143",
+        "CSE 163"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "a minimum grade of 2.5 in either CSE 123, CSE 143, or CSE 163",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "12969",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W",
+              "F"
+            ],
+            "start_time": "12:30",
+            "end_time": "13:20"
+          }
+        ],
+        "enrolled": 109,
+        "capacity": 150
+      },
+      {
+        "section": "B",
+        "type": "lecture",
+        "sln": "12975",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W",
+              "F"
+            ],
+            "start_time": "12:30",
+            "end_time": "13:20"
+          }
+        ],
+        "enrolled": 0,
+        "capacity": 10
+      }
+    ],
+    "quiz_sections": [
+      {
+        "section": "AB",
+        "type": "quiz",
+        "sln": "12971",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "12:30",
+            "end_time": "13:20"
+          }
+        ],
+        "enrolled": 26,
+        "capacity": 30
+      },
+      {
+        "section": "AC",
+        "type": "quiz",
+        "sln": "12972",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 22,
+        "capacity": 30
+      },
+      {
+        "section": "AD",
+        "type": "quiz",
+        "sln": "12973",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "14:30",
+            "end_time": "15:20"
+          }
+        ],
+        "enrolled": 22,
+        "capacity": 30
+      },
+      {
+        "section": "AE",
+        "type": "quiz",
+        "sln": "12974",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "15:30",
+            "end_time": "16:20"
+          }
+        ],
+        "enrolled": 9,
+        "capacity": 30
+      },
+      {
+        "section": "BA",
+        "type": "quiz",
+        "sln": "12976",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "11:30",
+            "end_time": "12:20"
+          }
+        ],
+        "enrolled": 0,
+        "capacity": 2
+      },
+      {
+        "section": "BB",
+        "type": "quiz",
+        "sln": "12977",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "12:30",
+            "end_time": "13:20"
+          }
+        ],
+        "enrolled": 0,
+        "capacity": 2
+      },
+      {
+        "section": "BC",
+        "type": "quiz",
+        "sln": "12978",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 0,
+        "capacity": 2
+      },
+      {
+        "section": "BD",
+        "type": "quiz",
+        "sln": "12979",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "14:30",
+            "end_time": "15:20"
+          }
+        ],
+        "enrolled": 0,
+        "capacity": 2
+      },
+      {
+        "section": "BE",
+        "type": "quiz",
+        "sln": "12980",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "15:30",
+            "end_time": "16:20"
+          }
+        ],
+        "enrolled": 0,
+        "capacity": 2
+      }
+    ]
+  },
+  {
+    "code": "CSE 416",
+    "title": "Introduction to Machine Learning",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 123",
+        "CSE 143",
+        "CSE 160",
+        "CSE 163"
+      ],
+      [
+        "STAT 311",
+        "STAT 390",
+        "STAT 391",
+        "IND E 315",
+        "MATH 394",
+        "STAT 394",
+        "STAT 395",
+        "MATH 395",
+        "Q SCI 381"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either CSE 123, CSE 143, CSE 160, or CSE 163; and either STAT 311, STAT 390, STAT 391, IND E 315, MATH 394/STAT 394, STAT 395/MATH 395, or Q SCI 381",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "B",
+        "type": "lecture",
+        "sln": "12987",
+        "meetings": [
+          {
+            "days": [
+              "W",
+              "F"
+            ],
+            "start_time": "15:30",
+            "end_time": "16:50"
+          }
+        ],
+        "enrolled": 7,
+        "capacity": 15
+      }
+    ],
+    "quiz_sections": [
+      {
+        "section": "BC",
+        "type": "quiz",
+        "sln": "12990",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "14:30",
+            "end_time": "15:20"
+          }
+        ],
+        "enrolled": 1,
+        "capacity": 3
+      },
+      {
+        "section": "BD",
+        "type": "quiz",
+        "sln": "12991",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "15:30",
+            "end_time": "16:20"
+          }
+        ],
+        "enrolled": 0,
+        "capacity": 3
+      },
+      {
+        "section": "BE",
+        "type": "quiz",
+        "sln": "12992",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "15:30",
+            "end_time": "16:20"
+          }
+        ],
+        "enrolled": 0,
+        "capacity": 3
+      }
+    ]
+  },
+  {
+    "code": "CSE 417",
+    "title": "Algorithms and Computational Complexity",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 373"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 373",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "12993",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W",
+              "F"
+            ],
+            "start_time": "09:30",
+            "end_time": "10:20"
+          }
+        ],
+        "enrolled": 60,
+        "capacity": 100
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 421",
+    "title": "Introduction to Algorithms",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 312"
+      ],
+      [
+        "CSE 332"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 312; CSE 332",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "12994",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W",
+              "F"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 120,
+        "capacity": 186
+      }
+    ],
+    "quiz_sections": [
+      {
+        "section": "AA",
+        "type": "quiz",
+        "sln": "12995",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "10:30",
+            "end_time": "11:20"
+          }
+        ],
+        "enrolled": 25,
+        "capacity": 31
+      },
+      {
+        "section": "AB",
+        "type": "quiz",
+        "sln": "12996",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "11:30",
+            "end_time": "12:20"
+          }
+        ],
+        "enrolled": 22,
+        "capacity": 31
+      },
+      {
+        "section": "AC",
+        "type": "quiz",
+        "sln": "12997",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "12:30",
+            "end_time": "13:20"
+          }
+        ],
+        "enrolled": 20,
+        "capacity": 31
+      },
+      {
+        "section": "AD",
+        "type": "quiz",
+        "sln": "12998",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 27,
+        "capacity": 31
+      },
+      {
+        "section": "AE",
+        "type": "quiz",
+        "sln": "12999",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "14:30",
+            "end_time": "15:20"
+          }
+        ],
+        "enrolled": 17,
+        "capacity": 31
+      },
+      {
+        "section": "AF",
+        "type": "quiz",
+        "sln": "13000",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "15:30",
+            "end_time": "16:20"
+          }
+        ],
+        "enrolled": 9,
+        "capacity": 31
+      }
+    ]
+  },
+  {
+    "code": "CSE 426",
+    "title": "Cryptography",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 312"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 312",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13001",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W",
+              "F"
+            ],
+            "start_time": "10:30",
+            "end_time": "11:20"
+          }
+        ],
+        "enrolled": 57,
+        "capacity": 70
+      }
+    ],
+    "quiz_sections": [
+      {
+        "section": "AA",
+        "type": "quiz",
+        "sln": "13002",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 34,
+        "capacity": 35
+      },
+      {
+        "section": "AB",
+        "type": "quiz",
+        "sln": "13003",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "14:30",
+            "end_time": "15:20"
+          }
+        ],
+        "enrolled": 23,
+        "capacity": 35
+      }
+    ]
+  },
+  {
+    "code": "CSE 427",
+    "title": "Computational Biology",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 312"
+      ],
+      [
+        "CSE 332"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 312; CSE 332",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13004",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "10:00",
+            "end_time": "11:20"
+          }
+        ],
+        "enrolled": 65,
+        "capacity": 65
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 431",
+    "title": "Introduction to Theory of Computation",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 312"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 312",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "21992",
+        "meetings": [
+          {
+            "days": [
+              "W"
+            ],
+            "start_time": "10:00",
+            "end_time": "11:20"
+          }
+        ],
+        "enrolled": 21,
+        "capacity": 40
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 434",
+    "title": "Introduction to Quantum Computation",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 312"
+      ],
+      [
+        "MATH 136",
+        "MATH 208"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 312; and MATH 136 or MATH 208",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13005",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "11:30",
+            "end_time": "12:50"
+          }
+        ],
+        "enrolled": 46,
+        "capacity": 80
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 440",
+    "title": "Introduction to HCI: User Interface Design, Prototyping, and Evaluation",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 332"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 332",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13006",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "10:00",
+            "end_time": "11:20"
+          }
+        ],
+        "enrolled": 48,
+        "capacity": 48
+      },
+      {
+        "section": "B",
+        "type": "lecture",
+        "sln": "13009",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "10:00",
+            "end_time": "11:20"
+          }
+        ],
+        "enrolled": 0,
+        "capacity": 12
+      }
+    ],
+    "quiz_sections": [
+      {
+        "section": "AA",
+        "type": "quiz",
+        "sln": "13007",
+        "meetings": [
+          {
+            "days": [
+              "F"
+            ],
+            "start_time": "11:30",
+            "end_time": "12:20"
+          }
+        ],
+        "enrolled": 24,
+        "capacity": 24
+      },
+      {
+        "section": "AB",
+        "type": "quiz",
+        "sln": "13008",
+        "meetings": [
+          {
+            "days": [
+              "F"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 24,
+        "capacity": 24
+      },
+      {
+        "section": "BA",
+        "type": "quiz",
+        "sln": "13010",
+        "meetings": [
+          {
+            "days": [
+              "F"
+            ],
+            "start_time": "11:30",
+            "end_time": "12:20"
+          }
+        ],
+        "enrolled": 0,
+        "capacity": 6
+      },
+      {
+        "section": "BB",
+        "type": "quiz",
+        "sln": "13011",
+        "meetings": [
+          {
+            "days": [
+              "F"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 0,
+        "capacity": 6
+      }
+    ]
+  },
+  {
+    "code": "CSE 443",
+    "title": "Digital Accessibility",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 340"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 340",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13013",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W",
+              "F"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 14,
+        "capacity": 60
+      }
+    ],
+    "quiz_sections": [
+      {
+        "section": "AA",
+        "type": "quiz",
+        "sln": "13014",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 11,
+        "capacity": 30
+      },
+      {
+        "section": "AB",
+        "type": "quiz",
+        "sln": "13015",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "14:30",
+            "end_time": "15:20"
+          }
+        ],
+        "enrolled": 3,
+        "capacity": 30
+      }
+    ]
+  },
+  {
+    "code": "CSE 444",
+    "title": "Database Systems Internals",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 332"
+      ],
+      [
+        "CSE 344",
+        "CSE 414"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 332; and either CSE 344 or CSE 414",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13016",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W",
+              "F"
+            ],
+            "start_time": "10:30",
+            "end_time": "11:20"
+          }
+        ],
+        "enrolled": 87,
+        "capacity": 120
+      }
+    ],
+    "quiz_sections": [
+      {
+        "section": "AB",
+        "type": "quiz",
+        "sln": "13018",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "12:30",
+            "end_time": "13:20"
+          }
+        ],
+        "enrolled": 29,
+        "capacity": 30
+      },
+      {
+        "section": "AC",
+        "type": "quiz",
+        "sln": "13019",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 15,
+        "capacity": 30
+      },
+      {
+        "section": "AD",
+        "type": "quiz",
+        "sln": "13020",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "14:30",
+            "end_time": "15:20"
+          }
+        ],
+        "enrolled": 13,
+        "capacity": 30
+      }
+    ]
+  },
+  {
+    "code": "CSE 446",
+    "title": "Machine Learning",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 332"
+      ],
+      [
+        "MATH 208",
+        "MATH 136"
+      ],
+      [
+        "STAT 390",
+        "STAT 391",
+        "CSE 312"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 332; MATH 208 or MATH 136; and either STAT 390, STAT 391, or CSE 312",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13021",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W"
+            ],
+            "start_time": "09:00",
+            "end_time": "10:20"
+          }
+        ],
+        "enrolled": 174,
+        "capacity": 182
+      }
+    ],
+    "quiz_sections": [
+      {
+        "section": "AA",
+        "type": "quiz",
+        "sln": "13022",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "08:30",
+            "end_time": "09:20"
+          }
+        ],
+        "enrolled": 22,
+        "capacity": 30
+      }
+    ]
+  },
+  {
+    "code": "CSE 447",
+    "title": "Natural Language Processing",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 312"
+      ],
+      [
+        "CSE 332"
+      ]
+    ],
+    "suggested_courses": [
+      "MATH 208",
+      "CSE 446"
+    ],
+    "prerequisite_text": "CSE 312 and CSE 332",
+    "suggested_text": "MATH 208; and CSE 446 before or concurrently",
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13028",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W",
+              "F"
+            ],
+            "start_time": "15:30",
+            "end_time": "16:20"
+          }
+        ],
+        "enrolled": 154,
+        "capacity": 180
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 451",
+    "title": "Introduction to Operating Systems",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 332"
+      ],
+      [
+        "CSE 333"
+      ],
+      [
+        "CSE 351"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 332; CSE 333; and CSE 351",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13034",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W",
+              "F"
+            ],
+            "start_time": "11:30",
+            "end_time": "12:20"
+          }
+        ],
+        "enrolled": 110,
+        "capacity": 110
+      }
+    ],
+    "quiz_sections": [
+      {
+        "section": "AA",
+        "type": "quiz",
+        "sln": "13035",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "12:30",
+            "end_time": "13:20"
+          }
+        ],
+        "enrolled": 37,
+        "capacity": 37
+      },
+      {
+        "section": "AB",
+        "type": "quiz",
+        "sln": "13036",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 35,
+        "capacity": 35
+      },
+      {
+        "section": "AC",
+        "type": "quiz",
+        "sln": "13037",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "14:30",
+            "end_time": "15:20"
+          }
+        ],
+        "enrolled": 38,
+        "capacity": 38
+      }
+    ]
+  },
+  {
+    "code": "CSE 452",
+    "title": "Introduction to Distributed Systems",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 332"
+      ],
+      [
+        "CSE 333"
+      ]
+    ],
+    "suggested_courses": [
+      "CSE 451"
+    ],
+    "prerequisite_text": "CSE 332 and CSE 333",
+    "suggested_text": "CSE 451",
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13038",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W",
+              "F"
+            ],
+            "start_time": "11:30",
+            "end_time": "12:20"
+          }
+        ],
+        "enrolled": 172,
+        "capacity": 172
+      }
+    ],
+    "quiz_sections": [
+      {
+        "section": "AA",
+        "type": "quiz",
+        "sln": "13039",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "12:30",
+            "end_time": "13:20"
+          }
+        ],
+        "enrolled": 35,
+        "capacity": 35
+      },
+      {
+        "section": "AB",
+        "type": "quiz",
+        "sln": "13040",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 35,
+        "capacity": 35
+      },
+      {
+        "section": "AC",
+        "type": "quiz",
+        "sln": "13041",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "14:30",
+            "end_time": "15:20"
+          }
+        ],
+        "enrolled": 34,
+        "capacity": 34
+      },
+      {
+        "section": "AD",
+        "type": "quiz",
+        "sln": "13042",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "15:30",
+            "end_time": "16:20"
+          }
+        ],
+        "enrolled": 34,
+        "capacity": 34
+      },
+      {
+        "section": "AE",
+        "type": "quiz",
+        "sln": "13043",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "09:30",
+            "end_time": "10:20"
+          }
+        ],
+        "enrolled": 34,
+        "capacity": 34
+      }
+    ]
+  },
+  {
+    "code": "CSE 455",
+    "title": "Computer Vision",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 332"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 332",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13044",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "10:00",
+            "end_time": "11:20"
+          }
+        ],
+        "enrolled": 75,
+        "capacity": 200
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 457",
+    "title": "Computer Graphics",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 332"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 332",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "21935",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "10:00",
+            "end_time": "11:20"
+          }
+        ],
+        "enrolled": 55,
+        "capacity": 80
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 460",
+    "title": "Animation Capstone",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 458"
+      ],
+      [
+        "CSE 459"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 458, CSE 459",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13045",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "T",
+              "W",
+              "Th",
+              "F"
+            ],
+            "start_time": "11:30",
+            "end_time": "12:20"
+          }
+        ],
+        "enrolled": 9,
+        "capacity": 30
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 461",
+    "title": "Introduction to Computer-Communication Networks",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 326",
+        "CSE 332"
+      ],
+      [
+        "CSE 303",
+        "CSE 333"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either CSE 326 or CSE 332; either CSE 303 or CSE 333",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13046",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W",
+              "F"
+            ],
+            "start_time": "12:30",
+            "end_time": "13:20"
+          }
+        ],
+        "enrolled": 104,
+        "capacity": 105
+      }
+    ],
+    "quiz_sections": [
+      {
+        "section": "AA",
+        "type": "quiz",
+        "sln": "13047",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 34,
+        "capacity": 35
+      }
+    ]
+  },
+  {
+    "code": "CSE 469",
+    "title": "Computer Architecture I",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 271",
+        "CSE 369"
+      ],
+      [
+        "CSE 123",
+        "CSE 143"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either E E 271 or CSE 369; and either CSE 123 or CSE 143",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13050",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W"
+            ],
+            "start_time": "10:30",
+            "end_time": "12:20"
+          }
+        ],
+        "enrolled": 10,
+        "capacity": 10
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 472",
+    "title": "Introduction to Computational Linguistics",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "LING 200",
+        "LING 400"
+      ],
+      [
+        "LING 461",
+        "CSE 311"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either LING 200 or LING 400; either LING 461 or CSE 311",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13051",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W"
+            ],
+            "start_time": "10:30",
+            "end_time": "12:20"
+          }
+        ],
+        "enrolled": 5,
+        "capacity": 5
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 473",
+    "title": "Artificial Intelligence",
+    "credits": "3",
+    "credits_min": 3,
+    "credits_max": 3,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 312"
+      ],
+      [
+        "CSE 332"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 312 and CSE 332",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13052",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W",
+              "F"
+            ],
+            "start_time": "14:30",
+            "end_time": "15:20"
+          }
+        ],
+        "enrolled": 68,
+        "capacity": 170
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 474",
+    "title": "Introduction to Embedded Systems",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 123",
+        "CSE 143"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 123 or CSE 143",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13053",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "12:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 20,
+        "capacity": 20
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 475",
+    "title": "Embedded Systems Capstone",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 271",
+        "CSE 369"
+      ],
+      [
+        "E E 472",
+        "CSE 474",
+        "E E 474"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "E E 271 or CSE 369; and E E 472 or CSE 474/E E 474",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13054",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W"
+            ],
+            "start_time": "14:30",
+            "end_time": "16:20"
+          }
+        ],
+        "enrolled": 7,
+        "capacity": 7
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 478",
+    "title": "Autonomous Robotics",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 332"
+      ]
+    ],
+    "suggested_courses": [
+      "CSE 312",
+      "MATH 208"
+    ],
+    "prerequisite_text": "CSE 332",
+    "suggested_text": "CSE 312; MATH 208",
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13055",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W",
+              "F"
+            ],
+            "start_time": "08:30",
+            "end_time": "09:20"
+          }
+        ],
+        "enrolled": 42,
+        "capacity": 42
+      }
+    ],
+    "quiz_sections": [
+      {
+        "section": "AA",
+        "type": "quiz",
+        "sln": "13056",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 21,
+        "capacity": 21
+      },
+      {
+        "section": "AB",
+        "type": "quiz",
+        "sln": "13057",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "14:30",
+            "end_time": "15:20"
+          }
+        ],
+        "enrolled": 21,
+        "capacity": 21
+      }
+    ]
+  },
+  {
+    "code": "CSE 480",
+    "title": "Computer Ethics Seminar",
+    "credits": "1-3",
+    "credits_min": 1,
+    "credits_max": 3,
+    "max_total_credits": 5,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13058",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "11:30",
+            "end_time": "12:20"
+          }
+        ],
+        "enrolled": 58,
+        "capacity": 75
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 481",
+    "title": "Capstone Software Design",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": 15,
+    "prerequisite_courses": [
+      [
+        "CSE 312"
+      ],
+      [
+        "CSE 332"
+      ],
+      [
+        "CSE 351"
+      ],
+      [
+        "CSE 331",
+        "CSE 333",
+        "CSE 369"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 312; CSE 332; CSE 351; and either CSE 331, CSE 333, or CSE 369",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "V",
+        "type": "lecture",
+        "sln": "13061",
+        "meetings": [
+          {
+            "days": [
+              "T"
+            ],
+            "start_time": "12:30",
+            "end_time": "13:50"
+          }
+        ],
+        "enrolled": 27,
+        "capacity": 32
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 484",
+    "title": "Computer Security",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 332"
+      ],
+      [
+        "CSE 351"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 332; CSE 351",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13062",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W",
+              "F"
+            ],
+            "start_time": "10:30",
+            "end_time": "11:20"
+          }
+        ],
+        "enrolled": 116,
+        "capacity": 160
+      }
+    ],
+    "quiz_sections": [
+      {
+        "section": "AB",
+        "type": "quiz",
+        "sln": "13064",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 39,
+        "capacity": 40
+      },
+      {
+        "section": "AC",
+        "type": "quiz",
+        "sln": "13065",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "14:30",
+            "end_time": "15:20"
+          }
+        ],
+        "enrolled": 21,
+        "capacity": 40
+      },
+      {
+        "section": "AD",
+        "type": "quiz",
+        "sln": "13066",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "15:30",
+            "end_time": "16:20"
+          }
+        ],
+        "enrolled": 16,
+        "capacity": 40
+      }
+    ]
+  },
+  {
+    "code": "CSE 490",
+    "title": "Special Topics in Computer Science and Engineering",
+    "credits": "1-5",
+    "credits_min": 1,
+    "credits_max": 5,
+    "max_total_credits": 15,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "D",
+        "type": "lecture",
+        "sln": "13070",
+        "meetings": [],
+        "enrolled": 54,
+        "capacity": 150
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 492",
+    "title": "Undergraduate Seminar",
+    "credits": "1-2",
+    "credits_min": 1,
+    "credits_max": 2,
+    "max_total_credits": 5,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "F",
+        "type": "lecture",
+        "sln": "13072",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "16:00",
+            "end_time": "17:20"
+          }
+        ],
+        "enrolled": 25,
+        "capacity": 65
+      },
+      {
+        "section": "J",
+        "type": "lecture",
+        "sln": "13073",
+        "meetings": [
+          {
+            "days": [
+              "M"
+            ],
+            "start_time": "12:30",
+            "end_time": "13:20"
+          }
+        ],
+        "enrolled": 37,
+        "capacity": 90
+      },
+      {
+        "section": "L",
+        "type": "lecture",
+        "sln": "13074",
+        "meetings": [
+          {
+            "days": [
+              "T"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 56,
+        "capacity": 75
+      },
+      {
+        "section": "M",
+        "type": "lecture",
+        "sln": "13075",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "12:30",
+            "end_time": "13:20"
+          }
+        ],
+        "enrolled": 32,
+        "capacity": 40
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 493",
+    "title": "Advanced Special Topics in Computer Science and Engineering",
+    "credits": "1-5",
+    "credits_min": 1,
+    "credits_max": 5,
+    "max_total_credits": 15,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "N",
+        "type": "lecture",
+        "sln": "13082",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W",
+              "F"
+            ],
+            "start_time": "14:30",
+            "end_time": "15:20"
+          }
+        ],
+        "enrolled": 5,
+        "capacity": 45
+      }
+    ],
+    "quiz_sections": [
+      {
+        "section": "NA",
+        "type": "quiz",
+        "sln": "13083",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "14:30",
+            "end_time": "15:20"
+          }
+        ],
+        "enrolled": 5,
+        "capacity": 40
+      }
+    ]
+  },
+  {
+    "code": "CSE 494",
+    "title": "Guided Research in Computer Science and Engineering",
+    "credits": "3/4",
+    "credits_min": 3,
+    "credits_max": 4,
+    "max_total_credits": 8,
+    "prerequisite_courses": [
+      [
+        "CSE 394"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 394",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13084",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "10:30",
+            "end_time": "11:20"
+          }
+        ],
+        "enrolled": 92,
+        "capacity": 107
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 495",
+    "title": "Project Practicum",
+    "credits": "[1-5]-",
+    "credits_min": 1,
+    "credits_max": 5,
+    "max_total_credits": 5,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13085",
+        "meetings": [],
+        "enrolled": 0,
+        "capacity": 25
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 496",
+    "title": "Honors Undergraduate Research",
+    "credits": "1-9",
+    "credits_min": 1,
+    "credits_max": 9,
+    "max_total_credits": 9,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13086",
+        "meetings": [],
+        "enrolled": 1,
+        "capacity": 50
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 498",
+    "title": "Undergraduate Research",
+    "credits": "1-9",
+    "credits_min": 1,
+    "credits_max": 9,
+    "max_total_credits": 9,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13087",
+        "meetings": [],
+        "enrolled": 5,
+        "capacity": 50
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 499",
+    "title": "Reading and Research",
+    "credits": "1-24",
+    "credits_min": 1,
+    "credits_max": 24,
+    "max_total_credits": 24,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13088",
+        "meetings": [],
+        "enrolled": 1,
+        "capacity": 10
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 512",
+    "title": "Data Visualization",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13089",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "11:30",
+            "end_time": "12:50"
+          }
+        ],
+        "enrolled": 23,
+        "capacity": 90
+      },
+      {
+        "section": "B",
+        "type": "lecture",
+        "sln": "13090",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "11:30",
+            "end_time": "12:50"
+          }
+        ],
+        "enrolled": 3,
+        "capacity": 10
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 519",
+    "title": "Current Research in Computer Science",
+    "credits": "1",
+    "credits_min": 1,
+    "credits_max": 1,
+    "max_total_credits": 18,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13091",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "14:30",
+            "end_time": "15:20"
+          }
+        ],
+        "enrolled": 0,
+        "capacity": 220
+      },
+      {
+        "section": "C",
+        "type": "lecture",
+        "sln": "13093",
+        "meetings": [
+          {
+            "days": [
+              "M"
+            ],
+            "start_time": "16:30",
+            "end_time": "19:20"
+          },
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "16:30",
+            "end_time": "18:20"
+          }
+        ],
+        "enrolled": 0,
+        "capacity": 100
+      },
+      {
+        "section": "D",
+        "type": "lecture",
+        "sln": "13094",
+        "meetings": [
+          {
+            "days": [
+              "M"
+            ],
+            "start_time": "16:30",
+            "end_time": "18:20"
+          }
+        ],
+        "enrolled": 0,
+        "capacity": 100
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 520",
+    "title": "Computer Science Colloquium",
+    "credits": "1",
+    "credits_min": 1,
+    "credits_max": 1,
+    "max_total_credits": 18,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13095",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "15:30",
+            "end_time": "17:20"
+          }
+        ],
+        "enrolled": 35,
+        "capacity": 230
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 527",
+    "title": "Computational Biology",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13099",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W"
+            ],
+            "start_time": "10:00",
+            "end_time": "11:20"
+          }
+        ],
+        "enrolled": 4,
+        "capacity": 45
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 546",
+    "title": "Machine Learning",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 312",
+        "STAT 341",
+        "STAT 391"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either CSE 312, STAT 341, STAT 391 or equivalent",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13101",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W"
+            ],
+            "start_time": "09:00",
+            "end_time": "10:20"
+          }
+        ],
+        "enrolled": 7,
+        "capacity": 59
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 549",
+    "title": "High-Performance Computer Architectures",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 548",
+        "E E 544"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 548/E E 544",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13102",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W"
+            ],
+            "start_time": "13:00",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 5,
+        "capacity": 15
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 550",
+    "title": "Computer Systems",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 451"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 451",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13103",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:50"
+          }
+        ],
+        "enrolled": 6,
+        "capacity": 35
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 554",
+    "title": "Systems for Machine Learning",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [
+      "CSE 446",
+      "CSE 451",
+      "CSE 452"
+    ],
+    "prerequisite_text": null,
+    "suggested_text": "machine learning from a course at the level of CSE 446; and systems from a course at the level of CSE 451 or CSE 452",
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13104",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W"
+            ],
+            "start_time": "10:30",
+            "end_time": "11:50"
+          }
+        ],
+        "enrolled": 34,
+        "capacity": 30
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 567",
+    "title": "Digital VLSI: Gates to Systems",
+    "credits": "5",
+    "credits_min": 5,
+    "credits_max": 5,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "E E 371",
+        "CSE 371",
+        "E E 469",
+        "CSE 469"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either E E 371/CSE 371, or E E 469/CSE 469",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13105",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W",
+              "F"
+            ],
+            "start_time": "10:30",
+            "end_time": "11:50"
+          }
+        ],
+        "enrolled": 1,
+        "capacity": 5
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 571",
+    "title": "AI-based Mobile Robotics",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 473"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "either CSE 473 or permission of instructor",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13106",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "10:00",
+            "end_time": "11:20"
+          }
+        ],
+        "enrolled": 9,
+        "capacity": 35
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 578",
+    "title": "Convex Optimization",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "A A 510",
+        "CHEM E 510",
+        "E E 510",
+        "M E 510"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "A A 510, CHEM E 510, E E 510, or M E 510",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13107",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W",
+              "F"
+            ],
+            "start_time": "11:30",
+            "end_time": "12:50"
+          }
+        ],
+        "enrolled": 3,
+        "capacity": 10
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 582",
+    "title": "Ethics in Artificial Intelligence",
+    "credits": "4",
+    "credits_min": 4,
+    "credits_max": 4,
+    "max_total_credits": null,
+    "prerequisite_courses": [
+      [
+        "CSE 446",
+        "CSE 546"
+      ]
+    ],
+    "suggested_courses": [],
+    "prerequisite_text": "CSE 446 or CSE 546",
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13109",
+        "meetings": [
+          {
+            "days": [
+              "W",
+              "F"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:50"
+          }
+        ],
+        "enrolled": 30,
+        "capacity": 40
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 590",
+    "title": "Research Seminar",
+    "credits": "*",
+    "credits_min": null,
+    "credits_max": null,
+    "max_total_credits": 50,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13110",
+        "meetings": [
+          {
+            "days": [
+              "F"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 5,
+        "capacity": 45
+      },
+      {
+        "section": "B",
+        "type": "lecture",
+        "sln": "13111",
+        "meetings": [
+          {
+            "days": [
+              "F"
+            ],
+            "start_time": "12:00",
+            "end_time": "12:50"
+          }
+        ],
+        "enrolled": 0,
+        "capacity": 25
+      },
+      {
+        "section": "C",
+        "type": "lecture",
+        "sln": "13112",
+        "meetings": [
+          {
+            "days": [
+              "T"
+            ],
+            "start_time": "13:00",
+            "end_time": "13:50"
+          }
+        ],
+        "enrolled": 3,
+        "capacity": 25
+      },
+      {
+        "section": "D",
+        "type": "lecture",
+        "sln": "13114",
+        "meetings": [],
+        "enrolled": 0,
+        "capacity": 20
+      },
+      {
+        "section": "E",
+        "type": "lecture",
+        "sln": "13116",
+        "meetings": [
+          {
+            "days": [
+              "Th"
+            ],
+            "start_time": "10:30",
+            "end_time": "11:20"
+          }
+        ],
+        "enrolled": 4,
+        "capacity": 30
+      },
+      {
+        "section": "F",
+        "type": "lecture",
+        "sln": "13117",
+        "meetings": [
+          {
+            "days": [
+              "T"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 0,
+        "capacity": 25
+      },
+      {
+        "section": "H",
+        "type": "lecture",
+        "sln": "13118",
+        "meetings": [
+          {
+            "days": [
+              "W"
+            ],
+            "start_time": "12:00",
+            "end_time": "13:20"
+          }
+        ],
+        "enrolled": 3,
+        "capacity": 50
+      },
+      {
+        "section": "J",
+        "type": "lecture",
+        "sln": "13120",
+        "meetings": [],
+        "enrolled": 3,
+        "capacity": 40
+      },
+      {
+        "section": "N",
+        "type": "lecture",
+        "sln": "13124",
+        "meetings": [
+          {
+            "days": [
+              "M"
+            ],
+            "start_time": "15:30",
+            "end_time": "16:20"
+          }
+        ],
+        "enrolled": 6,
+        "capacity": 25
+      },
+      {
+        "section": "P",
+        "type": "lecture",
+        "sln": "13126",
+        "meetings": [
+          {
+            "days": [
+              "F"
+            ],
+            "start_time": "14:30",
+            "end_time": "15:20"
+          }
+        ],
+        "enrolled": 3,
+        "capacity": 30
+      },
+      {
+        "section": "Q",
+        "type": "lecture",
+        "sln": "13127",
+        "meetings": [],
+        "enrolled": 5,
+        "capacity": 30
+      },
+      {
+        "section": "R",
+        "type": "lecture",
+        "sln": "13128",
+        "meetings": [
+          {
+            "days": [
+              "F"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 4,
+        "capacity": 40
+      },
+      {
+        "section": "S",
+        "type": "lecture",
+        "sln": "13129",
+        "meetings": [
+          {
+            "days": [
+              "W"
+            ],
+            "start_time": "12:30",
+            "end_time": "13:20"
+          }
+        ],
+        "enrolled": 5,
+        "capacity": 30
+      },
+      {
+        "section": "U",
+        "type": "lecture",
+        "sln": "13131",
+        "meetings": [
+          {
+            "days": [
+              "M"
+            ],
+            "start_time": "12:00",
+            "end_time": "12:50"
+          }
+        ],
+        "enrolled": 3,
+        "capacity": 30
+      },
+      {
+        "section": "W",
+        "type": "lecture",
+        "sln": "13133",
+        "meetings": [
+          {
+            "days": [
+              "M"
+            ],
+            "start_time": "14:30",
+            "end_time": "15:20"
+          }
+        ],
+        "enrolled": 2,
+        "capacity": 25
+      },
+      {
+        "section": "Y",
+        "type": "lecture",
+        "sln": "13135",
+        "meetings": [
+          {
+            "days": [
+              "W"
+            ],
+            "start_time": "14:30",
+            "end_time": "15:20"
+          }
+        ],
+        "enrolled": 6,
+        "capacity": 20
+      },
+      {
+        "section": "Z",
+        "type": "lecture",
+        "sln": "13136",
+        "meetings": [
+          {
+            "days": [
+              "T"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:20"
+          }
+        ],
+        "enrolled": 2,
+        "capacity": 25
+      },
+      {
+        "section": "Z1",
+        "type": "lecture",
+        "sln": "13137",
+        "meetings": [
+          {
+            "days": [
+              "M"
+            ],
+            "start_time": "14:30",
+            "end_time": "16:50"
+          }
+        ],
+        "enrolled": 1,
+        "capacity": 25
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 591",
+    "title": "Group Projects in Computer Science",
+    "credits": "1-3",
+    "credits_min": 1,
+    "credits_max": 3,
+    "max_total_credits": 25,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "B",
+        "type": "lecture",
+        "sln": "13138",
+        "meetings": [],
+        "enrolled": 2,
+        "capacity": 20
+      },
+      {
+        "section": "D",
+        "type": "lecture",
+        "sln": "13139",
+        "meetings": [],
+        "enrolled": 4,
+        "capacity": 20
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 599",
+    "title": "Special Topics in Computer Science",
+    "credits": "1-5",
+    "credits_min": 1,
+    "credits_max": 5,
+    "max_total_credits": 30,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "C",
+        "type": "lecture",
+        "sln": "13141",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "11:30",
+            "end_time": "12:50"
+          }
+        ],
+        "enrolled": 5,
+        "capacity": 50
+      },
+      {
+        "section": "D",
+        "type": "lecture",
+        "sln": "13142",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W"
+            ],
+            "start_time": "11:30",
+            "end_time": "12:50"
+          }
+        ],
+        "enrolled": 6,
+        "capacity": 30
+      },
+      {
+        "section": "G",
+        "type": "lecture",
+        "sln": "13144",
+        "meetings": [
+          {
+            "days": [
+              "T",
+              "Th"
+            ],
+            "start_time": "11:30",
+            "end_time": "12:50"
+          }
+        ],
+        "enrolled": 2,
+        "capacity": 10
+      },
+      {
+        "section": "I",
+        "type": "lecture",
+        "sln": "13147",
+        "meetings": [],
+        "enrolled": 4,
+        "capacity": 30
+      },
+      {
+        "section": "J",
+        "type": "lecture",
+        "sln": "13148",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W"
+            ],
+            "start_time": "15:00",
+            "end_time": "16:20"
+          }
+        ],
+        "enrolled": 0,
+        "capacity": 25
+      },
+      {
+        "section": "K",
+        "type": "lecture",
+        "sln": "21995",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:50"
+          }
+        ],
+        "enrolled": 0,
+        "capacity": 35
+      },
+      {
+        "section": "N",
+        "type": "lecture",
+        "sln": "13149",
+        "meetings": [
+          {
+            "days": [
+              "M",
+              "W"
+            ],
+            "start_time": "13:30",
+            "end_time": "14:50"
+          }
+        ],
+        "enrolled": 8,
+        "capacity": 40
+      }
+    ],
+    "quiz_sections": [
+      {
+        "section": "GA",
+        "type": "quiz",
+        "sln": "13145",
+        "meetings": [
+          {
+            "days": [
+              "F"
+            ],
+            "start_time": "09:30",
+            "end_time": "10:20"
+          }
+        ],
+        "enrolled": 0,
+        "capacity": 5
+      },
+      {
+        "section": "GB",
+        "type": "quiz",
+        "sln": "13146",
+        "meetings": [
+          {
+            "days": [
+              "F"
+            ],
+            "start_time": "12:30",
+            "end_time": "13:20"
+          }
+        ],
+        "enrolled": 2,
+        "capacity": 5
+      }
+    ]
+  },
+  {
+    "code": "CSE 600",
+    "title": "Independent Study or Research",
+    "credits": "*-",
+    "credits_min": null,
+    "credits_max": null,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13150",
+        "meetings": [],
+        "enrolled": 85,
+        "capacity": 80
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 601",
+    "title": "Internship",
+    "credits": "1-2",
+    "credits_min": 1,
+    "credits_max": 2,
+    "max_total_credits": 12,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13151",
+        "meetings": [],
+        "enrolled": 0,
+        "capacity": 90
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 700",
+    "title": "Master's Thesis",
+    "credits": "*-",
+    "credits_min": null,
+    "credits_max": null,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13152",
+        "meetings": [],
+        "enrolled": 0,
+        "capacity": 50
+      }
+    ],
+    "quiz_sections": []
+  },
+  {
+    "code": "CSE 800",
+    "title": "Doctoral Dissertation",
+    "credits": "*-",
+    "credits_min": null,
+    "credits_max": null,
+    "max_total_credits": null,
+    "prerequisite_courses": [],
+    "suggested_courses": [],
+    "prerequisite_text": null,
+    "suggested_text": null,
+    "sections": [
+      {
+        "section": "A",
+        "type": "lecture",
+        "sln": "13153",
+        "meetings": [],
+        "enrolled": 60,
+        "capacity": 100
+      }
+    ],
+    "quiz_sections": []
+  }
+]
