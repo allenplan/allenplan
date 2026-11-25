@@ -1,3 +1,100 @@
+import csCoreCatalog from './uw_cse_core_courses.json' with {type: 'json'};
+
+const csCoreCourses = csCoreCatalog.filter(({code}) => code !== 'CSE 331');
+const csCapstones = ['CSE 428', 'CSE 460', 'CSE 475', 'CSE 481', 'CSE 482'];
+
+let savedMajor;
+if (globalThis.location?.protocol === 'chrome-extension:' &&
+    globalThis.location.pathname === '/schedule.html') {
+  const key = 'importedDarsInfo';
+  let changed = false;
+  chrome.storage.onChanged.addListener((changes, area) => {
+    if (area === 'local' && Object.hasOwn(changes, key)) {
+      changed = true;
+      savedMajor = changes[key].newValue?.major;
+    }
+  });
+  try {
+    const saved = await chrome.storage.local.get(key);
+    if (!changed) savedMajor = saved[key]?.major;
+  } catch {
+  }
+}
+
+/** Count distinct courses in the narrowest slots first and sum their credits. */
+function csCoreBalance(codes, graph) {
+  let upper = 0;
+  let core = 0;
+  let capstones = 0;
+  let credits = 0;
+  for (const entry of csCoreCourses) {
+    if (!codes.has(entry.code) && !entry.cross_listed?.some((alias) => codes.has(alias))) continue;
+    core++;
+    if (/^CSE [4-9]\d{2}$/.test(entry.code)) upper++;
+    credits += graph.getCourse(entry.code)?.credits ?? entry.credits;
+  }
+  for (const code of csCapstones) {
+    if (!codes.has(code) && !(code === 'CSE 475' && codes.has('E E 475'))) continue;
+    capstones++;
+    credits += graph.getCourse(code)?.credits ?? 5;
+  }
+  const upperUsed = Math.min(4, upper);
+  const additionalUsed = Math.min(2, core - upperUsed);
+  return [
+    4 - upperUsed, 2 - additionalUsed,
+    Math.max(0, 1 - (core - upperUsed - additionalUsed + capstones)),
+    Math.max(0, 33 - credits),
+  ];
+}
+
+/** Add qualifying goals that fit alongside the existing three-quarter plan. */
+function planCsCore(graph, completed, quarters, options) {
+  const done = new Set(completed);
+  for (const {code, cross_listed: aliases = []} of csCoreCourses) {
+    if (done.has(code) || aliases.some((alias) => done.has(alias))) {
+      done.add(code);
+      aliases.forEach((alias) => done.add(alias));
+    }
+  }
+  if (done.has('E E 475')) done.add('CSE 475');
+  const goals = [...options.desired];
+  const planFor = (desired) => ScheduleCalculator.planQuarters(
+      graph, done, quarters, {...options, desired, csCore: false});
+  const placed = (plan) => new Set(plan.flatMap(({courses}) => courses));
+  const balanceFor = (codes) => csCoreBalance(new Set([...done, ...codes]), graph);
+  const candidates = [...csCoreCourses.map(({code}) => code), ...csCapstones]
+      .filter((code) => !done.has(code) && graph.getCourse(code)?.schedulable);
+  const maxCredits = Math.max(1, ...candidates.map((code) => graph.getCourse(code).credits));
+  let plan = planFor(goals);
+  let planned = placed(plan);
+  let balance = balanceFor(planned);
+  while (balance.some((amount) => amount > 0)) {
+    let best;
+    for (const code of candidates) {
+      if (planned.has(code)) continue;
+      if (csCapstones.includes(code) && balance[2] === 0) continue;
+      const trial = planFor([...goals, code]);
+      const codes = placed(trial);
+      if (!codes.has(code) || [...planned].some((placedCode) => !codes.has(placedCode))) continue;
+      const remaining = balanceFor(codes);
+      const priority = remaining.findIndex((amount, index) => amount < balance[index]);
+      if (priority < 0) continue;
+      const [upper, additional, finalSlot, credits] = remaining;
+      const size = codes.size + Math.max(upper + additional + finalSlot, Math.ceil(credits / maxCredits));
+      if (!best || priority < best.priority || (priority === best.priority &&
+          (size < best.size || (size === best.size && credits < best.remaining[3])))) {
+        best = {code, trial, codes, remaining, priority, size};
+      }
+    }
+    if (!best) break;
+    goals.push(best.code);
+    plan = best.trial;
+    planned = best.codes;
+    balance = best.remaining;
+  }
+  return plan;
+}
+
 /**
  * Scoring (per course, additive):
  *   desired course            +100
@@ -325,6 +422,7 @@ export class ScheduleCalculator {
    * @param {string[]} options.desired
    * @param {Set<string>} [options.fundamental]
    * @param {Set<string>} [options.core]
+   * @param {boolean} [options.csCore] Plan the standard CS core requirements.
    * @param {boolean} [options.computerEngineering=false] treat CE alternative and cross-listed
    * courses as equivalent completions
    * @param {number} [options.maxCourses=3] most CSE courses in one quarter
@@ -349,6 +447,9 @@ export class ScheduleCalculator {
    * (`{type, label, credits}[]`), `totalCredits` and `totalCourses`, which include the placeholders.
    */
   static planQuarters(graph, completed, quarters, options) {
+    const csCore = options.csCore ?? (options.remainingGenEds != null &&
+        !options.computerEngineering && savedMajor === 'Computer Science');
+    if (csCore) return planCsCore(graph, completed, quarters, options);
     const {
       desired,
       fundamental = new Set(),
