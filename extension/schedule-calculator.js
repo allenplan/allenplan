@@ -1,3 +1,44 @@
+const WEEKDAYS = ['M', 'T', 'W', 'Th', 'F', 'Sa', 'Su'];
+
+/** Find a compatible choice of lecture and quiz sections for the entire course set. */
+function assignSections(graph, codes) {
+  const choices = codes.map((code) => ({code, options: graph.getSectionOptions(code)}))
+      .sort((a, b) => a.options.length - b.options.length);
+  const selected = new Map();
+  const occupied = [];
+  const overlaps = (a, b) => a.start_time < b.end_time && b.start_time < a.end_time &&
+      a.days.some((day) => b.days.includes(day));
+
+  function search(index) {
+    if (index === choices.length) return true;
+    const {code, options} = choices[index];
+    for (const {lecture, quiz} of options) {
+      const meetings = [...(lecture.meetings ?? []), ...(quiz?.meetings ?? [])];
+      if (meetings.some((meeting, i) => occupied.some((other) => overlaps(meeting, other)) ||
+          meetings.slice(0, i).some((other) => overlaps(meeting, other)))) continue;
+      selected.set(code, {lecture, quiz});
+      occupied.push(...meetings);
+      if (search(index + 1)) return true;
+      occupied.length -= meetings.length;
+      selected.delete(code);
+    }
+    return false;
+  }
+
+  return search(0) ? codes.map((code) => ({code, ...selected.get(code)})) : null;
+}
+
+/** Expand section meetings into a weekly list ordered by weekday and start time. */
+function buildWeeklySchedule(sections) {
+  return sections.flatMap(({code, lecture, quiz}) => [lecture, quiz].filter(Boolean)
+      .flatMap(({section, type, sln, meetings = []}) => meetings.flatMap((meeting) =>
+        meeting.days.map((day) => ({
+          day, code, section, type, sln, start_time: meeting.start_time, end_time: meeting.end_time,
+        })))))
+      .sort((a, b) => WEEKDAYS.indexOf(a.day) - WEEKDAYS.indexOf(b.day) ||
+        a.start_time.localeCompare(b.start_time));
+}
+
 /**
  * Scoring (per course, additive):
  *   desired course            +100
@@ -226,7 +267,7 @@ export class ScheduleCalculator {
    * Scores are additive and courses chosen in the same quarter can't be prerequisites of each other
    * (eligibility is computed from *previous* quarters), so with only a course-count cap the answer
    * is simply the top-k by score. The branch-and-bound below also respects a credit cap and an
-   * optional pairwise `conflicts(a, b)` (e.g. overlapping meeting times) and is exact. It stays
+   * optional pairwise and whole-set constraints. It stays
    * fast because candidates are sorted by score and a branch is cut as soon as even taking the best
    * remaining courses can't beat the incumbent.
    *
@@ -236,13 +277,15 @@ export class ScheduleCalculator {
    * @param {number} [options.maxCredits]
    * @param {(code: string) => number} [options.credits]
    * @param {(a: string, b: string) => boolean} [options.conflicts]
+   * @param {function(string[]): boolean} [options.canSchedule] Checks feasibility of a course set.
    * @param {boolean} [options.includeZeroScore=false] pad with courses that advance no goal e.g.,
    *                                                   seminar classes
    * @returns {{courses: string[], score: number}}
    */
   static bestSchedule(
     scores,
-    { maxCourses, maxCredits = Infinity, credits = () => 0, conflicts = () => false, includeZeroScore = false },
+    { maxCourses, maxCredits = Infinity, credits = () => 0, conflicts = () => false,
+      canSchedule = () => true, includeZeroScore = false },
   ) {
     // Sort and filter candidates by score
     const candidates = [...scores.entries()]
@@ -272,7 +315,7 @@ export class ScheduleCalculator {
         if (creditsUsed + cr > maxCredits) continue;
         if (chosen.some((other) => conflicts(code, other))) continue;
         chosen.push(code);
-        search(i + 1, score + s, creditsUsed + cr);
+        if (canSchedule(chosen)) search(i + 1, score + s, creditsUsed + cr);
         chosen.pop();
       }
     };
@@ -289,6 +332,7 @@ export class ScheduleCalculator {
         const cr = credits(code);
         if (creditsUsed + cr > maxCredits) continue;
         if (best.courses.some((other) => conflicts(code, other))) continue;
+        if (!canSchedule([...best.courses, code])) continue;
         best.courses.push(code);
         picked.add(code);
         creditsUsed += cr;
@@ -315,6 +359,7 @@ export class ScheduleCalculator {
    * placeholders use DEFAULT_MAX_TOTAL_COURSES.
    * @param {number} [options.maxTotalCredits] same, for credits (DEFAULT_MAX_TOTAL_CREDITS)
    * @param {(a: string, b: string) => boolean} [options.conflicts]
+   * @param {boolean} [options.includeTimes] Use section data for Winter 2027 (also accepts Winter).
    * @param {[string, string|string[], number][]} [options.takenGenEds] non-CSE courses already taken,
    * each `[name, courseType, credits]`. Passing this (even as `[]`) turns on placeholders for the
    * types that still need credits; leaving it out gives the original CSE-only plan.
@@ -339,6 +384,7 @@ export class ScheduleCalculator {
       maxTotalCourses,
       maxTotalCredits,
       conflicts,
+      includeTimes = graph.hasSectionData,
       takenGenEds = null,
       remainingGenEds = null,
       requirements = genEdRequirements(),
@@ -354,6 +400,7 @@ export class ScheduleCalculator {
     const totalCreditCap = maxTotalCredits ?? DEFAULT_MAX_TOTAL_CREDITS;
 
     return quarters.map((quarter) => {
+      const timed = includeTimes && graph.hasSectionData && /^Winter(?: 2027)?$/i.test(quarter.trim());
       const scores = ScheduleCalculator.scoreEligible(graph, done, { desired, fundamental, core });
       const { courses } = ScheduleCalculator.bestSchedule(scores, {
         // Explicit totals also limit CSE courses; omitted totals leave the original caps alone.
@@ -361,12 +408,18 @@ export class ScheduleCalculator {
         maxCredits: Math.min(maxCredits, maxTotalCredits ?? Infinity),
         credits,
         conflicts,
+        canSchedule: timed ? (codes) => assignSections(graph, codes) !== null : undefined,
         includeZeroScore: false,
       });
       // Mark courses taken in previous quarter as complete
       courses.forEach((c) => done.add(c));
       const cseCredits = courses.reduce((sum, c) => sum + credits(c), 0);
-      if (!planGenEds) return { quarter, courses, credits: cseCredits };
+      const result = { quarter, courses, credits: cseCredits };
+      if (timed) {
+        result.sections = assignSections(graph, courses);
+        result.weeklySchedule = buildWeeklySchedule(result.sections);
+      }
+      if (!planGenEds) return result;
 
       // CSE courses come first. Room left over goes to placeholders for the type with the most
       // credits still needed, so the types fill evenly across quarters.
@@ -391,9 +444,7 @@ export class ScheduleCalculator {
 
       const placeholderTotal = placeholders.reduce((sum, p) => sum + p.credits, 0);
       return {
-        quarter,
-        courses,
-        credits: cseCredits,
+        ...result,
         placeholders,
         totalCredits: cseCredits + placeholderTotal,
         totalCourses: courses.length + placeholders.length,

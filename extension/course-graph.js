@@ -6,6 +6,12 @@ export class CourseGraph {
   #courses = new Map();
   /** @type {Map<string, Set<string>>} prerequisite -> courses that list it in any group */
   #dependents = new Map();
+  #sectionOptions = new Map();
+
+  /** Whether the graph contains section data. */
+  get hasSectionData() {
+    return this.#sectionOptions.size > 0;
+  }
 
   /**
    * Builds a graph from the catalog JSON (uw_cse_courses.json).
@@ -19,6 +25,8 @@ export class CourseGraph {
         credits: entry.credits_min ?? 0,
         prereqs: entry.prerequisite_courses,
         schedulable: CourseGraph.#isSchedulable(entry),
+        sections: entry.sections,
+        quizSections: entry.quiz_sections,
       });
     }
     return graph;
@@ -46,10 +54,30 @@ export class CourseGraph {
    * Add or update the given course in the graph, setting dependents to depend on that course as a
    * prerequisite. Also adds dependents to the graph if not already present.
    * @param {string} code
-   * @param {{credits?: number, prereqs?: string[][], schedulable?: boolean}} [info]
+   * @param {{credits?: number, prereqs?: string[][], schedulable?: boolean,
+   *   sections?: object[], quizSections?: object[]}} [info]
    */
-  addCourse(code, { credits = 0, prereqs = [], schedulable = false } = {}) {
+  addCourse(code, { credits = 0, prereqs = [], schedulable = false, sections, quizSections = [] } = {}) {
     this.#courses.set(code, { code, credits, prereqs, schedulable });
+    this.#sectionOptions.delete(code);
+    if (sections) {
+      const options = [];
+      for (const lecture of sections) {
+        const quizzes = quizSections.filter((quiz) => {
+          // A quiz belongs to the lecture with the longest matching section prefix.
+          const parent = sections.reduce((match, section) =>
+            quiz.section.startsWith(section.section) &&
+                section.section.length > (match?.section.length ?? 0) ? section : match, null);
+          return parent === lecture;
+        });
+        if (quizzes.length) {
+          quizzes.forEach((quiz) => options.push({lecture, quiz}));
+        } else if (!quizSections.length) {
+          options.push({lecture, quiz: null});
+        }
+      }
+      this.#sectionOptions.set(code, options);
+    }
     if (!this.#dependents.has(code)) this.#dependents.set(code, new Set());
     for (const group of prereqs) {
       for (const prereq of group) {
@@ -57,6 +85,11 @@ export class CourseGraph {
         this.#dependents.get(prereq).add(code);
       }
     }
+  }
+
+  /** Returns lecture and quiz combinations for a course, in catalog order. */
+  getSectionOptions(code) {
+    return this.#sectionOptions.get(code) ?? [];
   }
 
   /**

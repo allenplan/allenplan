@@ -184,3 +184,63 @@ test('ScheduleCalculator: planQuarters() keeps adding placeholders in later quar
   assert.equal(quartersWithPlaceholders, 2); // one 5-credit placeholder in each of two quarters
   assert.equal(placed, 10);
 });
+
+/** Builds a section using the Winter catalog's meeting format. */
+function section(name, sln, type, days, start_time, end_time) {
+  return {section: name, sln, type, meetings: [{days, start_time, end_time}]};
+}
+
+test('Winter plans expand lecture and quiz meetings into a weekly schedule', () => {
+  const lecture = section('A', '10001', 'lecture', ['M', 'W'], '10:00', '10:50');
+  const quiz = section('AA', '10002', 'quiz', ['T'], '09:00', '09:50');
+  const graph = CourseGraph.fromCatalog([{
+    ...entry('CSE 100'), sections: [lecture], quiz_sections: [quiz],
+  }]);
+  const [winter] = ScheduleCalculator.planQuarters(graph, [], ['Winter 2027'], {desired: ['CSE 100']});
+
+  assert.deepEqual(winter.sections, [{code: 'CSE 100', lecture, quiz}]);
+  assert.deepEqual(winter.weeklySchedule, [
+    {day: 'M', code: 'CSE 100', section: 'A', type: 'lecture', sln: '10001', start_time: '10:00', end_time: '10:50'},
+    {day: 'T', code: 'CSE 100', section: 'AA', type: 'quiz', sln: '10002', start_time: '09:00', end_time: '09:50'},
+    {day: 'W', code: 'CSE 100', section: 'A', type: 'lecture', sln: '10001', start_time: '10:00', end_time: '10:50'},
+  ]);
+});
+
+test('Winter plans choose a matching quiz that fits around other lectures', () => {
+  const lecture = section('A', '10001', 'lecture', ['M'], '09:00', '10:00');
+  const otherLecture = section('A', '10006', 'lecture', ['Th'], '10:00', '11:00');
+  const conflictingQuiz = section('AA', '10002', 'quiz', ['Th'], '10:30', '11:30');
+  const matchingQuiz = section('AB', '10003', 'quiz', ['Th'], '11:00', '12:00');
+  const graph = CourseGraph.fromCatalog([
+    {...entry('CSE 100'), sections: [lecture, section('B', '10004', 'lecture', ['Th'], '10:00', '11:00')],
+      quiz_sections: [conflictingQuiz, section('BA', '10005', 'quiz', ['F'], '09:00', '10:00'), matchingQuiz]},
+    {...entry('CSE 150'), sections: [otherLecture]},
+  ]);
+  const [winter] = ScheduleCalculator.planQuarters(graph, [], ['Winter 2027'],
+      {desired: ['CSE 100', 'CSE 150']});
+
+  assert.deepEqual(winter.sections, [
+    {code: 'CSE 100', lecture, quiz: matchingQuiz},
+    {code: 'CSE 150', lecture: otherLecture, quiz: null},
+  ]);
+  const thursday = winter.weeklySchedule.filter(({day}) => day === 'Th');
+  assert.equal(thursday.length, 2);
+  assert.equal(thursday[0].end_time, thursday[1].start_time);
+});
+
+test('Winter plans defer a course when its required quiz cannot fit', () => {
+  const graph = CourseGraph.fromCatalog([
+    {...entry('CSE 100'), sections: [section('A', '10001', 'lecture', ['M'], '09:00', '10:00')],
+      quiz_sections: [section('AA', '10002', 'quiz', ['T'], '10:00', '11:00')]},
+    {...entry('CSE 150'), sections: [section('A', '10003', 'lecture', ['W'], '09:00', '10:00')],
+      quiz_sections: [section('AA', '10004', 'quiz', ['T'], '10:30', '11:30')]},
+  ]);
+  const options = {desired: ['CSE 100', 'CSE 150']};
+  const [winter, spring] = ScheduleCalculator.planQuarters(graph, [], ['Winter 2027', 'Spring 2027'], options);
+  assert.deepEqual(winter.courses, ['CSE 100']);
+  assert.deepEqual(winter.weeklySchedule.map(({sln}) => sln), ['10001', '10002']);
+  assert.deepEqual(spring.courses, ['CSE 150']);
+
+  const [untimed] = ScheduleCalculator.planQuarters(graph, [], ['Winter 2027'], {...options, includeTimes: false});
+  assert.deepEqual(untimed, {quarter: 'Winter 2027', courses: ['CSE 100', 'CSE 150'], credits: 8});
+});
